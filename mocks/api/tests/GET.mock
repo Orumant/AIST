@@ -1,0 +1,157 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+[
+  {
+    "test_id": 3,
+    "test_name": "Create Client FS",
+    "asystem": "ФС",
+    "job_trigger":
+          {
+            "uri": "someURL",
+            "login": "",
+            "params": {"TAGS": "bla"},
+            "jobName": "DEBIT_CARD",
+            "passOrToken": "MS_UFS"
+          },
+     "tag_names": {
+        "static": ["STATICTAG","ANOTHERSTATICTAG"],
+        "dynamic": ["dynamicTag", "OneMoreDynamicTag"]
+     }
+  },
+  {
+    "test_id": 4,
+    "test_name": "Create Request Debit Card FS",
+    "asystem": "ФС",
+    "job_trigger":
+      {
+        "uri": "someURL",
+        "login": "",
+        "params": {"TAGS": "bla"},
+        "jobName": "DEBIT_CARD",
+        "passOrToken": "MS_UFS"
+      },
+    "tag_names": {}
+  },
+  {
+    "test_id": 5,
+    "test_name": "Release Debit Card",
+    "job_trigger":
+          {
+            "uri": "someURL",
+            "login": "",
+            "params": {"TAGS": "bla"},
+            "jobName": "DEBIT_CARD",
+            "passOrToken": "MS_UFS"
+          },
+    "tag_names": {}
+  },
+  {
+    "test_id": 2,
+    "test_name": "Create Client with Account",
+    "asystem": "ФС",
+    "job_trigger":
+          {
+            "uri": "someURL",
+            "login": "",
+            "params": {"TAGS": "bla"},
+            "jobName": "DEBIT_CARD",
+            "passOrToken": "MS_UFS"
+          },
+    "tag_names": {}
+  },
+  {
+    "test_id": 11,
+    "test_name": "Create Request for Credit Card",
+    "asystem": "СПООБК2",
+    "job_trigger":
+          {
+            "uri": "someURL",
+            "login": "",
+            "params": {"TAGS": "bla"},
+            "jobName": "DEBIT_CARD",
+            "passOrToken": "MS_UFS"
+          },
+    "tag_names": {}
+  },
+  {
+    "test_id": 12,
+    "asystem": "WAY4",
+    "test_name": "Check Application Credit Card",
+    "job_trigger":
+          {
+            "uri": "someURL",
+            "login": "",
+            "params": {"TAGS": "bla"},
+            "jobName": "DEBIT_CARD",
+            "passOrToken": "MS_UFS"
+          },
+    "tag_names": {}
+  },
+  {
+    "test_id": 13,
+    "test_name": "Review Application Credit Card",
+    "job_trigger":
+          {
+            "uri": "someURL",
+            "login": "",
+            "params": {"TAGS": "bla"},
+            "jobName": "DEBIT_CARD",
+            "passOrToken": "MS_UFS"
+          },
+    "tag_names": {}
+  },
+  {
+    "test_id": 1,
+    "test_name": "Way for Card Accrual",
+    "job_trigger":
+          {
+            "uri": "someURL",
+            "login": "",
+            "params": {"TAGS": "bla"},
+            "jobName": "DEBIT_CARD",
+            "passOrToken": "MS_UFS"
+          },
+    "tag_names": {}
+  },
+  {
+    "test_id": 201704191401206171,
+    "asystem": "ЕКП",
+    "test_name": "Create Mortage Loan",
+    "job_trigger":
+          {
+            "uri": "someURL",
+            "login": "",
+            "params": {"TAGS": "bla"},
+            "jobName": "DEBIT_CARD",
+            "passOrToken": "MS_UFS"
+          },
+    "tag_names": {}
+  },
+  {
+    "test_id": 201707191401206173,
+    "test_name": "Apply for Mortage Loan",
+    "job_trigger":
+          {
+            "uri": "someURL",
+            "login": "",
+            "params": {"TAGS": "bla"},
+            "jobName": "DEBIT_CARD",
+            "passOrToken": "MS_UFS"
+          },
+    "tag_names": {}
+  },
+  {
+    "test_id": 10,
+    "test_name": "WAY4Ipass",
+    "job_trigger":
+          {
+            "uri": "someURL",
+            "login": "",
+            "params": {"TAGS": "bla"},
+            "jobName": "DEBIT_CARD",
+            "passOrToken": "MS_UFS"
+          },
+    "tag_names": {}
+  }
+]
