@@ -391,7 +391,8 @@ export const submitTest = (testObject) => (dispatch, getState) => {
     test_name: testObject.test.test_name,
     job_trigger: testObject.test.job_trigger,
     tag_names: tags,
-    asystem: testObject.test.asystem,
+    stands: testObject.test.stands,
+    a_system: testObject.test.a_system,
   }];
   const header = {headers: {SessionID : getToken()}};
   if (testObject.test.modified) {
