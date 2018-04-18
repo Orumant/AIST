@@ -544,7 +544,6 @@ export const getUsersGroups = () => (dispatch) => {
   const url = `${BACKEND_URL}/owners/personal/getGroups`;
   const header = {headers: {SessionID : getToken()}};
   axios.get(url, header).then(function (response) {
-    console.log('response',response);
     dispatch(launcherUserGroupsFetchSucceed(response.data))
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));
