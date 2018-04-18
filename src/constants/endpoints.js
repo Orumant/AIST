@@ -5,4 +5,4 @@
 //export const BACKEND_URL = 'http://10.247.98.231:8080';
 //export const BACKEND_URL = "http://10.116.18.85:8080";
 // ПРОД
-export const BACKEND_URL = 'http://aist-stage.vm.mos.cloud.sbrf.ru:8082';
+export const BACKEND_URL = 'http://aist-stage.vm.mos.cloud.sbrf.ru:8080';
