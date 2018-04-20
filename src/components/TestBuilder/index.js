@@ -20,6 +20,7 @@ import Header from "../Header";
 import {forceLogin, getUserName} from '../../globalFunc';
 import Toolbar from "../toolbar/index";
 import TestParamsForm from "./TestParamsForm";
+import './style.css';
 
 class TestBuilderPage extends React.Component {
   constructor(props, context) {
@@ -47,7 +48,6 @@ class TestBuilderPage extends React.Component {
   handleShow() {
     this.setState({show: true});
   }
-
 
   handleTagInputChange = (value, field) => {
     const {testBuilderTests, selectedTestIndex} = this.props;
@@ -124,6 +124,8 @@ class TestBuilderPage extends React.Component {
           menuStyle={{display: 'none'}}
           arrowRenderer={null}
           options={[]}
+          shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
+          promptTextCreator={name => name}
           onChange={this.handleSearchByTagsInputChanges}
           style={{borderRadius: '0 4px 4px 0'}}
         />
@@ -246,7 +248,7 @@ class TestBuilderPage extends React.Component {
     return (
       <div>
         <Header owner={getUserName()}/>
-        <Grid fluid={true}>
+        <Grid fluid={true} className={'test-builder-main'}>
           <Row>
             <Col md={3}>
               {testBuilderTests !== undefined ? this.renderToolbar() : null}

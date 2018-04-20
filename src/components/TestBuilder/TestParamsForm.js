@@ -45,7 +45,7 @@ class TestParamsForm extends Component {
                 <Col md={12}>
                   <InputGroup>
                     <InputGroup.Addon>Доступные стенды</InputGroup.Addon>
-                    <Select.Creatable
+                    <Select
                       id={'stands' + testBuilderTests[selectedTestIndex].test_name}
                       multi={true}
                       wrapperStyle={{zIndex: '1', position: 'relative'}}
@@ -53,7 +53,7 @@ class TestParamsForm extends Component {
                       onChange={(stands) => testStandsInputChange(stands)}
                       style={{borderRadius: '0 4px 4px 0'}}
                       value={testBuilderTests[selectedTestIndex].stands}
-
+                      searchable={true}
                     />
                   </InputGroup>
                 </Col>
@@ -113,6 +113,8 @@ class TestParamsForm extends Component {
                       menuStyle={{display: 'none'}}
                       arrowRenderer={null}
                       autosize={false}
+                      shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
+                      promptTextCreator={name => name}
                       onChange={(values) => this.props.handleTagInputChange(values, 'static')}
                       value={testBuilderTests[selectedTestIndex].tag_names.static}
                       style={{borderRadius: '0 4px 4px 0'}}
@@ -131,6 +133,8 @@ class TestParamsForm extends Component {
                       menuStyle={{display: 'none'}}
                       arrowRenderer={null}
                       autosize={false}
+                      shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
+                      promptTextCreator={name => name}
                       onChange={(values) => this.props.handleTagInputChange(values, 'dynamic')}
                       value={testBuilderTests[selectedTestIndex].tag_names.dynamic}
                       style={{borderRadius: '0 4px 4px 0'}}
