@@ -213,7 +213,7 @@ class TestBuilderPage extends React.Component {
                 <Select.Creatable
                   multi
                   value={this.state.filters.tags}
-                  placeholder={'Поиск теста по тегам...'}
+                  placeholder={'Фильтрация тестов по тегам...'}
                   menuStyle={{display: 'none'}}
                   arrowRenderer={null}
                   options={[]}
