@@ -1,6 +1,6 @@
-import React from 'react'
-import TestBlock from '../TestBlock'
-import './style.css'
+import React from 'react';
+import TestBlock from '../TestBlock';
+import './style.css';
 import SearchBar from "../SearchBar";
 
 class TestsList extends React.Component {

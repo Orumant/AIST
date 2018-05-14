@@ -205,6 +205,7 @@ class ChainEditorPage extends React.Component {
                   redirDisabled={this.props.chainSelected === null}
                   onDuplicate={() => duplicate()}
                   additionalElement={this.props.chainSelected !== null ? chainParamsInput : null}
+                  duplicateDisabled={this.props.chainSelected === null}
                 />
                 {modalTooltip}
               </Col>

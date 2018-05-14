@@ -11,6 +11,7 @@ class AuthorizationPage extends React.Component {
     if (isUserLoggedIn()){
       window.location.hash = '#/homepage';
     }
+    document.addEventListener('keydown',this.handleEnterKeyPress,false);
   }
 
   state = {
@@ -26,6 +27,12 @@ class AuthorizationPage extends React.Component {
       this.setState({password: payload.value})
     }
   }
+
+  handleEnterKeyPress = (event) => {
+    if (event.keyCode === 13){
+      this.HandleLoginButtonCLick();
+    }
+  };
 
   HandleLoginButtonCLick() {
     const {loginPasswordChange, loginButtonClicked} = this.props;
