@@ -46,7 +46,7 @@ ReactDOM.render((
             <Route exact path="/formbuilder" component={FormBuilderPage}/>
             <Route path="/formbuilder/:chainIndex" component={FormBuilderPage}/>
 
-            {/*<Route path="/datadirectory" component={DataDirectoryPage}/>*/}
+            <Route exact path="/datadirectory/:chainName" component={DataDirectoryPage}/>
             <Route exact path="/datadirectory" component={DataDirectoryPage}/>
 
 

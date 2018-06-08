@@ -65,6 +65,7 @@ import {
   CLEAR_TEST_FILTER,
   FILTERED_TEST_BY_TAGS_FETCH_SUCCEED,
   APPLY_TESTS_FILTERS,
+  GET_VALIDATION_RESULTS,
 } from './constants';
 
 export const groupNameChange = (payload) => ({
@@ -385,4 +386,10 @@ export const filteredTestByTagsFetchSucceed = (tests, filters) => ({
 export const applyTestsFilters = (filters) => ({
   type: APPLY_TESTS_FILTERS,
   filters,
+});
+
+export const getValidationResults = (chain, index) => ({
+  type: GET_VALIDATION_RESULTS,
+  chain,
+  index,
 });

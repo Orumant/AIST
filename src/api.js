@@ -22,15 +22,16 @@ import {
   submitRerunOrderSucceed,
   formGroupsFetchSucceed,
   formGroupsForMembersFetchSucceed,
+  getValidationResults,
 } from './actions';
 import axios from 'axios';
 import {BACKEND_URL} from "./constants/endpoints";
-import {getToken, getUserName, setCurrentUser} from './globalFunc';
+import {getToken, getUserName, isObjectEmpty, setCurrentUser} from './globalFunc';
 
 
 export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch, getState) => {
-  const header = {headers: {SessionID : getToken()}};
-  const url = `${BACKEND_URL}/orders/?chainName=${chainName}&start=${dateFrom}&end=${dateTo}`;
+  const header = {headers: {SessionID: getToken()}};
+  const url = `${BACKEND_URL}/orders/?chainName=${chainName}&start=${dateFrom}&end=${dateTo + ' 23:59:59'}`;
 
   axios.get(url, header).then(function (response) {
     dispatch(ordersFetchSucceed(response.data));
@@ -96,14 +97,14 @@ export const getCSVbyOrderID = (orderID) => (dispatch) => {
  */
 
 export const updatePersonalForm = (payload) => (dispatch) => {
-  if (payload.groupName === "" ){
+  if (payload.groupName === "") {
     dispatch(error({message: "Error: Field getGroups name empty"}));
     return;
   }
   const url = `${BACKEND_URL}/owners/personal`;
-  const header = {headers: {SessionID : getToken()}};
-  const requestBody = {groupName : payload.groupName};
-  axios.put(url,[requestBody], header).then(function (response) {
+  const header = {headers: {SessionID: getToken()}};
+  const requestBody = {groupName: payload.groupName};
+  axios.put(url, [requestBody], header).then(function (response) {
     dispatch(success({message: "Group was created"}));
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));
@@ -204,7 +205,7 @@ export const updateLoginForm = (payload, publicKey) => (dispatch) => {
 
 export const fetchDataTemplatesList = () => (dispatch, getState) => {
   const url = `${BACKEND_URL}/templates`;
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
 
   axios.get(url).then(function (response) {
     dispatch(dataTemplateFetchSucceed(response.data));
@@ -235,7 +236,7 @@ export const fetchFormTemplate = (formName) => (dispatch) => {
  */
 export const fetchTests = () => (dispatch) => {
   const url = `${BACKEND_URL}/tests`;
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
   axios.get(url, header).then(function (response) {
     dispatch(testsListTemplateFetchSucceed(response.data))
   }).catch(function (response) {
@@ -249,8 +250,8 @@ export const fetchTests = () => (dispatch) => {
  */
 export const fetchChainTemplates = () => (dispatch, getState) => {
   const url = `${BACKEND_URL}/chain_templates`;
-  const header = {headers: {SessionID : getToken()}};
-  axios.get(url,header).then(function (response) {
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
     dispatch(chainEditorTemplateFetchSucceed(response.data))
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));
@@ -271,7 +272,7 @@ export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
     templates: chainTemplate.value.templates.map(t => t.value),
     groups: chainTemplate.value.groups.map(t => t.label),
   };
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
 
   if (chainTemplate.value.modified) {
     const url = `${BACKEND_URL}/chain_templates/${chainTemplate.name}`;
@@ -300,7 +301,7 @@ export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
 export const fetchBuilderChains = () => (dispatch, getState) => {
   const url = `${BACKEND_URL}/chain_templates`;
   const header = {headers: {SessionID: getToken()}};
-  axios.get(url,header ).then(function (response) {
+  axios.get(url, header).then(function (response) {
     dispatch(formBuilderChainsFetchSucceed(response.data))
   }).catch(function (response) {
     dispatch(error({message: "fetch failed with error!" + response}));
@@ -312,7 +313,7 @@ export const fetchBuilderChains = () => (dispatch, getState) => {
  */
 export const fetchGroups = () => (dispatch, getState) => {
   const url = `${BACKEND_URL}/owners/personal`;
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
   axios.get(url, header).then(function (response) {
     dispatch(formGroupsFetchSucceed(response.data))
   }).catch(function (response) {
@@ -325,12 +326,64 @@ export const fetchGroups = () => (dispatch, getState) => {
  */
 export const fetchGroupsForMembers = () => (dispatch) => {
   const url = `${BACKEND_URL}/owners/personal`;
-  const header = {headers: {SessionID : getToken()}};
-  axios.get(url,header).then(function (response) {
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
     dispatch(formGroupsForMembersFetchSucceed(response.data))
   }).catch(function (response) {
     dispatch(error({message: "fetch failed with error!" + response}));
   });
+};
+
+/**
+ * Validate form entries
+ */
+
+export const validateForm = (chainName, chain, idx) => (dispatch) => {
+  let result = true;
+  let tempArr = [];
+  if (chain.fields.length > 0 && !isObjectEmpty(chain.fields)) {
+    for (let field of chain.fields) {
+      let validation = [];
+      delete field.validation;
+      if (tempArr.indexOf(field.paramName) !== -1 && field.paramName !== '') {
+        validation.push({
+          errorOn: 'paramName',
+          state: 'error',
+          message: 'Названия параметров дублируются',
+        });
+        result = false;
+      } else {
+        tempArr.push(field.paramName);
+        if (field.label === '') {
+          console.log('label',field.label);
+          validation.push({
+            errorOn: 'label',
+            state: 'error',
+            message: 'Имя поля не может быть пустым',
+          });
+          result = false;
+        }
+        if (field.paramName === ''){
+          console.log('paramName',field.paramName);
+          validation.push({
+            errorOn: 'paramName',
+            state: 'error',
+            message: 'Имя параметра не может быть пустым',
+          });
+          result = false;
+        }
+      }
+      if(validation.length > 0) {
+        field.validation = validation;
+      }
+    }
+  }
+
+  if (result) {
+    dispatch(updateChainForm(chainName, chain, idx));
+  }
+
+  dispatch(getValidationResults(chain,idx));
 };
 
 /**
@@ -339,15 +392,7 @@ export const fetchGroupsForMembers = () => (dispatch) => {
  */
 export const updateChainForm = (chainName, chain, idx) => (dispatch) => {
   const url = `${BACKEND_URL}/chain_templates/${chainName}`;
-  let tempArr = [];
-  for (let field of chain.fields) {
-    if (tempArr.indexOf(field.paramName) === -1) {
-      tempArr.push(field.paramName);
-    } else {
-      dispatch(error({message: "Названия параметров дублируются! Дублирубющийся параметр: " + field.paramName}));
-      return;
-    }
-  }
+
   const header = {headers: {SessionID: getToken()}};
   axios.post(url, [chain], header).then(function () {
     dispatch(success({message: "Submit succeeded!"}));
@@ -363,7 +408,7 @@ export const updateChainForm = (chainName, chain, idx) => (dispatch) => {
  */
 export const testBuilderDataFetch = () => (dispatch) => {
   const url = `${BACKEND_URL}/tests`;
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
 
   axios.get(url, header).then(function (response) {
     dispatch(testBuilderTestsFetchSucceed(response.data))
@@ -379,11 +424,11 @@ export const testBuilderDataFetch = () => (dispatch) => {
 export const submitTest = (testObject) => (dispatch, getState) => {
   let staticTags, dynamicTags;
   let tags = {};
-  if (testObject.test.tag_names.static.length > 0){
+  if (testObject.test.tag_names.static.length > 0) {
     staticTags = testObject.test.tag_names.static.map(t => t.label);
     tags.static = staticTags;
   }
-  if (testObject.test.tag_names.dynamic.length > 0){
+  if (testObject.test.tag_names.dynamic.length > 0) {
     dynamicTags = testObject.test.tag_names.dynamic.map(t => t.label);
     tags.dynamic = dynamicTags;
   }
@@ -394,7 +439,7 @@ export const submitTest = (testObject) => (dispatch, getState) => {
     stands: testObject.test.stands,
     a_system: testObject.test.a_system,
   }];
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
   if (testObject.test.modified) {
     const updateTestUrl = `${BACKEND_URL}/tests/${testObject.id}`;
     axios.post(updateTestUrl, result, header).then(function () {
@@ -422,7 +467,7 @@ export const submitTest = (testObject) => (dispatch, getState) => {
  */
 export const fetchDataTemplates = () => (dispatch) => {
   const url = `${BACKEND_URL}/templates`;
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
   axios.get(url, header).then(function (response) {
     dispatch(dataTemplatesFetchSuccess(response.data))
   }).catch(function (response) {
@@ -458,7 +503,7 @@ export const submitDataTemplates = (submitData) => (dispatch) => {
     acc[current.key] = current.value;
     return acc;
   }, {});
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
 
   const requestBody = {
     name: submitData.value.name,
@@ -507,7 +552,7 @@ export const filterDirectoryData = (filterData) => (dispatch) => {
 export const submitFormTemplate = (params) => (dispatch) => {
 
   const url = `${BACKEND_URL}/orders`;
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
   axios.put(url, [params], header).then(function (response) {
     dispatch(orderCreated(response.data.message));
   }).catch(function (response) {
@@ -542,7 +587,7 @@ export const getDictionaryData = (dictionary, onSuccess) => (dispatch) => {
  */
 export const getUsersGroups = () => (dispatch) => {
   const url = `${BACKEND_URL}/owners/personal/getGroups`;
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
   axios.get(url, header).then(function (response) {
     dispatch(launcherUserGroupsFetchSucceed(response.data))
   }).catch(function (response) {
@@ -557,9 +602,9 @@ export const getUsersGroups = () => (dispatch) => {
 export const submitFormMembers = (params) => (dispatch) => {
 
   const url = `${BACKEND_URL}/owners/personal`;
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
   axios.post(url, [params], header).then(function (response) {
-    dispatch(success({message:"Update succeeded"}));
+    dispatch(success({message: "Update succeeded"}));
   }).catch(function (response) {
     dispatch(error({message: "Submit failed with error!" + response}));
   });
