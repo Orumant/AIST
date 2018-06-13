@@ -23,10 +23,12 @@ import {
   formGroupsFetchSucceed,
   formGroupsForMembersFetchSucceed,
   getValidationResults,
+  testListTestsFetchSucceed,
+  allChainEditorTemplateFetchSucceed,
 } from './actions';
 import axios from 'axios';
 import {BACKEND_URL} from "./constants/endpoints";
-import {getToken, getUserName, isObjectEmpty, setCurrentUser} from './globalFunc';
+import {getToken, isObjectEmpty, setCurrentUser} from './globalFunc';
 
 
 export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch, getState) => {
@@ -36,7 +38,7 @@ export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch, get
   axios.get(url, header).then(function (response) {
     dispatch(ordersFetchSucceed(response.data));
   }).catch(function (response) {
-    dispatch(ordersFetchFail());
+    //dispatch(ordersFetchFail());
     dispatch(error({message: "Fetch failed with error!" + response}));
   });
 };
@@ -250,9 +252,9 @@ export const fetchTests = () => (dispatch) => {
  */
 export const fetchChainTemplates = () => (dispatch, getState) => {
   const url = `${BACKEND_URL}/chain_templates`;
-  const header = {headers: {SessionID: getToken()}};
-  axios.get(url, header).then(function (response) {
-    dispatch(chainEditorTemplateFetchSucceed(response.data))
+  const header = {headers: {SessionID : getToken()}};
+  axios.get(url,header).then(function (response) {
+    dispatch(allChainEditorTemplateFetchSucceed(response.data))
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));
   });
@@ -273,7 +275,6 @@ export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
     groups: chainTemplate.value.groups.map(t => t.label),
   };
   const header = {headers: {SessionID: getToken()}};
-
   if (chainTemplate.value.modified) {
     const url = `${BACKEND_URL}/chain_templates/${chainTemplate.name}`;
     axios.post(url, [requestBody], header).then(function () {
@@ -412,6 +413,21 @@ export const testBuilderDataFetch = () => (dispatch) => {
 
   axios.get(url, header).then(function (response) {
     dispatch(testBuilderTestsFetchSucceed(response.data))
+  }).catch(function (response) {
+    dispatch(error({message: "Fetch failed with error!" + response}));
+  });
+};
+
+/**
+ * Test List
+ * fetching data from database
+ */
+export const testListDataFetch = () => (dispatch) => {
+  const url = `${BACKEND_URL}/tests`;
+  const header = {headers: {SessionID : getToken()}};
+
+  axios.get(url, header).then(function (response) {
+    dispatch(testListTestsFetchSucceed(response.data))
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));
   });

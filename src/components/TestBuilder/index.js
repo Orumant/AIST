@@ -337,7 +337,10 @@ class TestBuilderPage extends React.Component {
         <Toolbar
           help={this.handleShow}
           redirDisabled={true}
-          onNewEntryAdded={() => addNewTest()}
+          onNewEntryAdded={() => {
+            addNewTest();
+            this.setState({selectedSystem: null});
+          }}
           onDuplicate={duplicateCurrentTest}
           submitDisabled={!(selectedTestIndex !== null
             && this.state.selectedSystem !== null

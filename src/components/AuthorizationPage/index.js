@@ -11,7 +11,6 @@ class AuthorizationPage extends React.Component {
     if (isUserLoggedIn()){
       window.location.hash = '#/homepage';
     }
-    document.addEventListener('keydown',this.handleEnterKeyPress,false);
   }
 
   state = {
@@ -44,7 +43,7 @@ class AuthorizationPage extends React.Component {
   render() {
 
     return (
-      <div className="form">
+      <div onKeyDown={this.handleEnterKeyPress} className="form">
           <Modal.Dialog>
             <Modal.Header>
               <Modal.Title>
