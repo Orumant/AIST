@@ -44,6 +44,7 @@ const chainTemplateReducer = (state = initialState, action) => {
         if (chain.groups) chain['groups'] = chain.groups.map((name, index) => {
           return {label: name, value: index};
         });
+        chain.tests = chain.tests.filter( test => test !== '');
         return chain;
       });
       const allChainTemplates = [...chainTemplates];
@@ -181,22 +182,13 @@ const chainTemplateReducer = (state = initialState, action) => {
         return chainTemplates[selectedTemplateIndex].name === chainTemplate.name
       });
       const modified = !state.chainTemplates[selectedTemplateIndex].new;
-      chainTemplates[selectedTemplateIndex] = {
-        ...chainTemplates[selectedTemplateIndex],
-        tests: [
-          ...chainTemplates[selectedTemplateIndex].tests,
-          action.payload.test_id
-        ],
-        modified,
-      };
-      allChainTemplates[chainIndex] = {
-        ...allChainTemplates[chainIndex],
-        tests: [
-          ...allChainTemplates[chainIndex].tests,
-          action.payload.test_id
-        ],
-        modified,
-      };
+      let tests = [...chainTemplates[selectedTemplateIndex].tests];
+      const newChain = Object.assign({},chainTemplates[selectedTemplateIndex]);
+      tests.push(action.payload.test_id);
+      newChain.tests = tests;
+      newChain.modified = modified;
+      chainTemplates[selectedTemplateIndex] = newChain;
+      allChainTemplates[chainIndex] = newChain;
       return {
         ...state,
         chainTemplates,
