@@ -123,11 +123,11 @@ class DropdownRow extends React.Component {
                   value: name,
                 }))}
                 menuStyle={{display: 'none'}}
-                arrowRenderer={null}
+                arrowRenderer={() => null}
                 placeholder='Введите опции для списка'
                 clearable={false}
                 autosize={false}
-                inputProps={{fixCaret: 'fixCaret'}}
+                inputProps={{fixcaret: 'fixcaret'}}
                 onChange={this.handleOnChangeDropdown}
                 value={field.dropDownOptions}
                 style={{borderRadius: '0 4px 4px 0'}}
