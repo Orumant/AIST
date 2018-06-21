@@ -151,7 +151,7 @@ class ChainEditorPage extends React.Component {
                 <Select.Creatable
                   multi
                   value={this.state.filters.tags}
-                  placeholder={'Фильтрация тестов по тегам...'}
+                  placeholder={'Фильтрация цепочки по тегам...'}
                   menuStyle={{display: 'none'}}
                   arrowRenderer={null}
                   options={[]}
@@ -168,7 +168,7 @@ class ChainEditorPage extends React.Component {
                 <Select
                   className='test-filter'
                   options={searchMarker}
-                  placeholder={'Фильтрация тестов по маркеру...'}
+                  placeholder={'Фильтрация цепочки по маркеру...'}
                   onChange={this.handleMarkerFilterInput}
                   value={this.state.filters.marker}
                 />
@@ -188,7 +188,7 @@ class ChainEditorPage extends React.Component {
     };
 
     return [
-      <SearchBar options={searchOpt} placeholder={'Поиск теста по названию...'}
+      <SearchBar options={searchOpt} placeholder={'Поиск цепочки по названию...'}
                  onOptionClick={onChainSelected}/>,
       <InputGroup style={{marginBottom: '5px', marginTop: '5px'}}>
         <InputGroup.Addon>Фильтры:</InputGroup.Addon>
