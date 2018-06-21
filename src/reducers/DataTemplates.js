@@ -78,7 +78,7 @@ const dataTemplatesBuilderReducer = (state = initialState, action) => {
 
     case NEW_DATA_TEMPLATE_ADDED: {
       const newEntry = {
-        name: 'new template',
+        name: Math.round(Math.random()*10000000000).toString(),
         data: [],
         modified: false,
         new: true,
