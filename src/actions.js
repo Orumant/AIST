@@ -75,6 +75,7 @@ import {
   CLEAR_CHAIN_FILTER,
   ALL_CHAIN_EDITOR_TEMPLATE_FETCH_SUCCEED,
   FILTERED_TEST_BY_TAGS_FETCH_SUCCEED_CHAIN_EDITOR,
+  BROWSER_ALERT_POPUP,
 } from './constants';
 
 export const groupNameChange = (payload) => ({
@@ -448,3 +449,10 @@ export const applyChainsFilters = (filters) => ({
   type: APPLY_CHAINS_FILTERS,
   filters,
 });
+
+export const setAlertChromeVersion = (notification) => ({
+  type: BROWSER_ALERT_POPUP,
+  notification
+})
+
+

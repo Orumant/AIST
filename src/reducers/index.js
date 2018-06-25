@@ -13,6 +13,7 @@ import dataDirectory from './dataDirectory'
 import dataAuthorization from './dataAuthorization'
 import dataPersonal from "./dataPersonal";
 import testList from "./testList";
+import browserAlert from "./browserAlert";
 
 
 const rootReducer = combineReducers({
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   dataAuthorization,
   dataPersonal,
   dataTemplatesBuilderReducer,
+  browserAlert,
   notifications,
   dataDirectory,
   testList,
