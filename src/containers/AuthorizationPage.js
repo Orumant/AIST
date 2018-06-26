@@ -7,7 +7,6 @@ function mapStateToProps(state) {
   return {
     paramNames: state.dataAuthorization.paramNames,
     notifications: state.notifications,
-    warnings: state.browserAlert.notifications
   }
 }
 
@@ -15,7 +14,6 @@ function mapDispatchToProps(dispatch) {
   return {
     loginButtonClicked : (payload) => dispatch(getPublicKeyLogin(payload)),
     loginPasswordChange : (payload) => dispatch(loginPasswordChange(payload)),
-    setAlert: (notification) => dispatch(setAlertChromeVersion(notification)),
   }
 }
 

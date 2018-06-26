@@ -7,11 +7,11 @@ class BrowserAlert extends React.Component {
 
   state = {
     show: true,
-  }
+  };
 
   handleDismiss = () => {
     this.setState({show: false})
-  }
+  };
 
   alertTemplate = (text) => {
     return(
@@ -32,34 +32,35 @@ class BrowserAlert extends React.Component {
       </Modal.Footer>
     </Modal.Dialog>
     )
-  }
+  };
 
   alertForm() {
     const browser = detect();
     const version = browser.version.split('.')[0];
     if (browser.name !== 'chrome') {
-      const message = `Уважаемый пользователь, рекомендуемым бразером для использования АИСТ является Google Chrome (версии 61+). В других браузерах некоторые функции могут быть недоступны или работать некорректно`;
+      const message = `Уважаемый пользователь, рекомендуемым бразером для использования АИСТ является Google Chrome `+
+      `(версии 61+). В других браузерах некоторые функции могут быть недоступны или работать некорректно`;
       return (this.alertTemplate(message));
     }
     if (version < 61) {
-      const message = `Уважаемый пользователь, рекомендуемая версия Google Chrome: 61+. Ваша версия ${browser.version}. В более ранних версиях Google Chrome некоторые функции могут быть недоступны или работать некорректно. Пожалуйста, обновите свой браузер`;
-      const notification = [{
+      const message = `Уважаемый пользователь, рекомендуемая версия Google Chrome: 61+. Ваша версия ` +
+        `${browser.version}. В более ранних версиях Google Chrome некоторые функции могут быть недоступны или ` +
+        `работать некорректно. Пожалуйста, обновите свой браузер`;
+      const notification = {
         level: "warning",
         message: message,
         autoDismiss: 0,
         action: {
-          label: "Close"
+          label: "Закрыть"
         }
-      }]
-      this.props.UpdateNotification(notification)
+      };
+      this.props.setAlert(notification)
     }
     return null;
   }
 
-
   render () {
-     if (this.state.show) {return (this.alertForm())}
-    return null;
+    return this.state.show ? this.alertForm() : null;
   }
 }
 

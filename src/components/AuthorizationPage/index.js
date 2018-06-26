@@ -41,10 +41,6 @@ class AuthorizationPage extends React.Component {
     loginButtonClicked(this.state)
   }
 
-  UpdateNotification = (value) => {
-      this.props.setAlert(value)
-  }
-
   render() {
     return (
       <div onKeyDown={this.handleEnterKeyPress} className="form">
@@ -55,7 +51,7 @@ class AuthorizationPage extends React.Component {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <BrowserAlert UpdateNotification={this.UpdateNotification}/>
+              <BrowserAlert/>
               <Form horizontal>
                 <FormGroup controlId="formHorizontalLogin">
                   <Col componentClass={ControlLabel} sm={2}>
@@ -98,7 +94,6 @@ class AuthorizationPage extends React.Component {
             </Modal.Footer>
           </Modal.Dialog>
         <Notifications notifications={this.props.notifications}/>
-        <Notifications notifications={this.props.warnings}/>
       </div>
     )
   }

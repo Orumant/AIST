@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import BrowserAlert from '../components/BrowserAlert'
+import {error} from "react-notification-system-redux";
 
 function mapStateToProps(state) {
   return {
@@ -8,6 +9,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    setAlert: (notification) => dispatch(error(notification)),
   }
 }
 

@@ -450,9 +450,4 @@ export const applyChainsFilters = (filters) => ({
   filters,
 });
 
-export const setAlertChromeVersion = (notification) => ({
-  type: BROWSER_ALERT_POPUP,
-  notification
-})
-
 
