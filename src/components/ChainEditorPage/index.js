@@ -34,6 +34,7 @@ class ChainEditorPage extends React.Component {
     this.handleGroupChange = this.handleGroupChange.bind(this);
     this.props.fetchChainTemplates();
     this.props.getAllDataTemplates();
+    this.checkAvailableStand = this.checkAvailableStand.bind(this);
 
     this.state = {
       groups: [],
@@ -43,7 +44,8 @@ class ChainEditorPage extends React.Component {
         tags: [],
         marker: null,
         stands: null,
-      }
+      },
+      isAvailableStand: true,
     };
   }
 
@@ -211,6 +213,14 @@ class ChainEditorPage extends React.Component {
     ];
   };
 
+  checkAvailableStand(isAvailable) {
+    isAvailable ? this.setState({isAvailableStand: true}) : this.setState({isAvailableStand: false})
+  }
+
+  submitChainTemplate(chainTemplate){
+    const message = 'У выбранных тестов нет совпадающих стендов, на которых они могут быть запущены'
+    this.state.isAvailableStand ? this.props.updateChainTemplate(chainTemplate) : alert(message)
+  }
 
   render() {
     const {
@@ -361,7 +371,7 @@ class ChainEditorPage extends React.Component {
                 <Toolbar
                   onNewEntryAdded={() => addChainTemplate(owner)}
                   help={this.handleShow}
-                  onSubmit={() => updateChainTemplate({name: chainName, value: chainTemplate,})}
+                  onSubmit={() => this.submitChainTemplate({name: chainName, value: chainTemplate,})}
                   chainName={chainName}
                   chainTemplate={chainTemplate}
                   submitDisabled={!(chainTemplate.modified || chainTemplate.new)}
@@ -377,7 +387,8 @@ class ChainEditorPage extends React.Component {
             </Row>
             <div style={{height: '10px'}}/>
             <Row>
-                <ChainDisplay chainTemplate={chainTemplate}/>
+                <ChainDisplay chainTemplate={chainTemplate}
+                checkStands={this.checkAvailableStand}/>
             </Row>
           </Col>
           <Col md={3}>
