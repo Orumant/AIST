@@ -1,8 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Button, Col, ControlLabel, Form, FormControl, FormGroup, Modal} from 'react-bootstrap'
-import Notifications from 'react-notification-system-redux';
+import Notifications, {error} from 'react-notification-system-redux';
 import {isUserLoggedIn, onUserLogOut} from '../../globalFunc';
+import BrowserAlert from '../../containers/BrowserAlert'
 
 
 class AuthorizationPage extends React.Component {
@@ -15,7 +16,7 @@ class AuthorizationPage extends React.Component {
 
   state = {
     login: "",
-    password: ""
+    password: "",
   };
 
   ChangeLP(payload) {
@@ -41,7 +42,6 @@ class AuthorizationPage extends React.Component {
   }
 
   render() {
-
     return (
       <div onKeyDown={this.handleEnterKeyPress} className="form">
           <Modal.Dialog>
@@ -51,7 +51,7 @@ class AuthorizationPage extends React.Component {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-
+              <BrowserAlert/>
               <Form horizontal>
                 <FormGroup controlId="formHorizontalLogin">
                   <Col componentClass={ControlLabel} sm={2}>
