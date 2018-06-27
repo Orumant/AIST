@@ -75,7 +75,6 @@ import {
   CLEAR_CHAIN_FILTER,
   ALL_CHAIN_EDITOR_TEMPLATE_FETCH_SUCCEED,
   FILTERED_TEST_BY_TAGS_FETCH_SUCCEED_CHAIN_EDITOR,
-  BROWSER_ALERT_POPUP,
 } from './constants';
 
 export const groupNameChange = (payload) => ({

@@ -28,7 +28,7 @@ class BrowserAlert extends React.Component {
         <Button bsStyle={"danger"}
                 className="btn btn-default btn-sm"
                 onClick={() => this.handleDismiss()}
-        >Close</Button>
+        >Закрыть</Button>
       </Modal.Footer>
     </Modal.Dialog>
     )
@@ -45,7 +45,7 @@ class BrowserAlert extends React.Component {
     if (version < 61) {
       const message = `Уважаемый пользователь, рекомендуемая версия Google Chrome: 61+. Ваша версия ` +
         `${browser.version}. В более ранних версиях Google Chrome некоторые функции могут быть недоступны или ` +
-        `работать некорректно. Пожалуйста, обновите свой браузер`;
+        `работать некорректно`;
       const notification = {
         level: "warning",
         message: message,
