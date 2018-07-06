@@ -356,7 +356,7 @@ class ChainEditorPage extends React.Component {
     });
     return [
       <Header owner={getUserName()}/>,
-      <div className='container chain-editor-main'>
+      <div className='chain-editor-main'>
         <Row>
           <Col md={3}>
             <Toolbar
