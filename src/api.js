@@ -636,10 +636,63 @@ export const submitFormMembers = (params) => (dispatch) => {
  */
 export const filterEntityByTags = (tags, entity, callback, {...props}) => (dispatch) => {
   const url = `${BACKEND_URL}/${entity}/filter`;
-
   axios.post(url, tags).then(function (response) {
+
     dispatch(callback(response.data, props));
   }).catch(function (response) {
     dispatch(error({message: "Request failed with error!" + response.message}));
+  });
+};
+
+// /**
+//  * Chain builder page
+//  * fetching data from database
+//  */
+// export const fetchChainsTests= () => (dispatch, getState) => {
+//   const urlChains = `${BACKEND_URL}/chain_templates`;
+//   const urlTests = `${BACKEND_URL}/tests`;
+//   const header = {headers: {SessionID : getToken()}};
+//   Promise.all([
+//       axios.get(urlChains,header).then(function (response) {
+//         dispatch(fetchFiltersChains(response.data))
+//       }).catch(function (response) {
+//         dispatch(error({message: "Fetch failed with error!" + response}));
+//       }),
+//       axios.get(urlTests,header).then(function (response) {
+//         console.log('templateNEW')
+//         dispatch(fetchFiltersTests(response.data))
+//       }).catch(function (response) {
+//         dispatch(error({message: "Fetch failed with error!" + response}));
+//       }),
+//   ]
+//   )
+// };
+
+
+export const fetchOrdersByParam = (dateStart, dateEnd) => (dispatch, getState) => {
+  const url = `${BACKEND_URL}/orders/?start=${dateStart}&end=${dateEnd + ' 23:59:59'}`;
+  fetchOrders(url, dispatch)
+};
+
+const fetchOrders = (url, dispatch)  => {
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
+    console.log(response.data)
+    dispatch(ordersFetchSucceed(response.data));
+  }).catch(function (response) {
+    dispatch(error({message: "Fetch failed with error!" + response}));
+  });
+};
+
+
+export const lockOrder = (orderId) => (dispatch, getState) => {
+  const header = {headers: {SessionID: getToken()}};
+  const url = `${BACKEND_URL}/orders/${orderId}/lock`;
+  axios.post(url, header).then(function (response) {
+    console.log(response)
+    // dispatch(ordersFetchSucceed(response.data));
+  }).catch(function (response) {
+    //dispatch(ordersFetchFail());
+    dispatch(error({message: "Fetch failed with error!" + response}));
   });
 };

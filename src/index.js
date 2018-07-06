@@ -12,6 +12,8 @@ import ChainEditorPage from './containers/ChainEditorPage';
 import FormBuilderPage from "./containers/FormBuilderPage";
 import TestBuilder from "./containers/TestBuilder";
 import DataDirectoryPage from "./containers/DataDirectoryPage";
+import DataDirectoryTest from "./containers/DataDirectoryTest";
+import FilterChain from "./containers/FilterChain"
 
 import DataTemplatesBuilderPage from "./containers/DataTemplates";
 import AuthorizationPage from "./containers/AuthorizationPage"
@@ -53,7 +55,9 @@ ReactDOM.render((
             <Route path="/TDME2E" component={TDME2E}/>
             <Route path="/registration" component={RegistrationPage}/>
             <Route path="/personaldata" component={PersonalPage}/>
+            <Route path="/filterchain" component={FilterChain}/>
             <Route exact path="/" component={AuthorizationPage}/>
+            <Route exect path="/datadirectory_test" component={DataDirectoryTest}/>
           </Switch>
         </HashRouter>
       </div>

@@ -13,6 +13,10 @@ import dataDirectory from './dataDirectory'
 import dataAuthorization from './dataAuthorization'
 import dataPersonal from "./dataPersonal";
 import testList from "./testList";
+import filterChain from "./filterChain";
+import dataDirectoryTestReducer from "../modules/DataDirectoryTest";
+import filterChainReducer from "../modules/FilterChain";
+import dataDirectoryTest from "./dataDirectoryTest";
 
 
 const rootReducer = combineReducers({
@@ -30,6 +34,9 @@ const rootReducer = combineReducers({
   notifications,
   dataDirectory,
   testList,
+  dataDirectoryTest,
+  filterChainReducer,
+  dataDirectoryTestReducer,
 });
 
 export default rootReducer
