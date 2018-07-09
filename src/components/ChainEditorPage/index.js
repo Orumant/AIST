@@ -356,16 +356,16 @@ class ChainEditorPage extends React.Component {
     });
     return [
       <Header owner={getUserName()}/>,
-      <div className='container chain-editor-main'>
+      <div className='chain-editor-main'>
         <Row>
-          <Col md={3}>
+          <Col md={4}>
             <Toolbar
               additionalElement={this.renderSearches()}
             />
             <ChainList/>
 
           </Col>
-          <Col md={6}>
+          <Col md={5}>
             <Row>
               <Col md={12}>
                 <Toolbar
