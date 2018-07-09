@@ -128,7 +128,7 @@ class AuthorizationPage extends React.Component {
                   <Modal.Body>
                     <p>Чтобы восстановить пароль, необходимо:</p>
                     <br/>
-                    <li type="square">Оформить заявку в Jira(альфа) SD АИСТ: <a href='http://jira.ca.sbrf.ru/secure/CreateIssueDetails!init.jspa?pid=19902&issuetype=3&priority=3&customfield_17814=21315&summary=%D0%92%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D1%8F%20%D0%90%D0%98%D0%A1%D0%A2%203&components=78201&assignee=SBT-Ogoltcov-AA&labels=%D0%90%D0%98%D0%A1%D0%A2' target='_blank'>Оформить(альфа)</a></li>
+                    <li type="square">Оформить заявку в Jira(альфа) SD АИСТ: <a href='http://jira.ca.sbrf.ru/secure/CreateIssueDetails!init.jspa?pid=19902&issuetype=3&priority=3&customfield_17814=21315&summary=%D0%92%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D1%8F%20%D0%90%D0%98%D0%A1%D0%A2%203&components=78201&assignee=SBT-Ogoltcov-AA&labels=%D0%90%D0%98%D0%A1%D0%A2' target='_blank'>Оформить</a></li>
                     <br/>
                     <br/>
                     <li type="square">Нет Jira? <a href="#" onClick={this.handleShowBlock} data-toggle="collapse">нажмите сюда</a></li>
