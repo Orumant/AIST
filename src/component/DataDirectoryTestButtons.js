@@ -30,10 +30,9 @@ export const RenderGetDataButton = (cell, row, rowIndex) => {
   )
 }
 
-export const renderOrderDetails = (cell, row, rowIndex) => {
+export const RenderOrderDetails = (openWindow) => (cell, row, rowIndex) => {
+  console.log(openWindow)
   return (
-    <span>
-        <a href=''>{row.id_order}</a>
-      </span>
+        <a href onClick={openWindow}>{row.id_order}</a>
   )
 }

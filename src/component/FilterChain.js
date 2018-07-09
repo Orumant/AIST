@@ -15,7 +15,6 @@ class FilterChain extends React.Component {
 
   render() {
     const {chains, tests, ...others} = this.props;
-    console.log(others)
     return (
       <div>
         {this.state.isMarketFiler ? <FilterMarker chains={chains} {...others}/>: null}

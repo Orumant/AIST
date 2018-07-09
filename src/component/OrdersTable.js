@@ -4,15 +4,25 @@ import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
 import {Button} from "react-bootstrap";
-import {RenderGetDataButton, renderOrderDetails} from "./DataDirectoryTestButtons";
+import {RenderGetDataButton, RenderOrderDetails} from "./DataDirectoryTestButtons";
+import DataJSON from "./DataJSON";
 
 
 class OrdersTable extends React.Component {
+
+  state = {
+    isOrderData: false,
+  }
+
+  changeOrderDataStatus(val){
+    this.setState({isOrderData: val})
+  }
+
   columns = [
     {
       dataField: 'id_order',
       text: 'ID заявки:',
-      formatter: renderOrderDetails,
+      formatter: RenderOrderDetails(() => this.changeOrderDataStatus(true)),
       sort: true,
       filter: textFilter()
     }, {
@@ -45,12 +55,17 @@ class OrdersTable extends React.Component {
       order: 'desc'
     }];
 
-   render () {
-     console.log(this.props.getOrderCSV)
 
+
+
+
+   render () {
+     const {isOrderData} = this.state;
+     const {data} = this.props;
      return (
+       <div>
        <BootstrapTable keyField='id'
-                       data={this.props.data}
+                       data={data}
                        columns={this.columns}
                        defaultSorted={this.defSort}
                        pagination={paginationFactory()}
@@ -58,6 +73,8 @@ class OrdersTable extends React.Component {
                        filter={filterFactory()}
                        striped
                        overlay={overlayFactory()}/>
+         {isOrderData ? <DataJSON data={"arrararara"} close={() => this.changeOrderDataStatus(false)}/> : null}
+       </div>
      )
    }
 }
