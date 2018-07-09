@@ -9,6 +9,7 @@ class ToolbarEdit extends React.Component {
       style,
       link,
       setVisible,
+      redirDisabled
     } = this.props;
 
     const submitBtn = (
@@ -21,7 +22,7 @@ class ToolbarEdit extends React.Component {
         border: '1px solid rgb(69,122,140)',
         backgroundColor: 'rgb(69,122,140)',
         color: '#FFF',
-      }} href={link}>
+      }} href={link} disabled={redirDisabled}>
         <Glyphicon glyph='glyphicon glyphicon-wrench'/> Редактор формы
       </Button>
     ];

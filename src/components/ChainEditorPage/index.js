@@ -387,6 +387,7 @@ class ChainEditorPage extends React.Component {
                   submitDisabled={!(chainTemplate.modified || chainTemplate.new)}
                   link={'#/formbuilder/' + chainSelected}
                   setVisible={this.props.chainSelected !== null ? 'visible' : 'hidden'}
+                  redirDisabled={false}
                 />
               </Col>
             </Row>

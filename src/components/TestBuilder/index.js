@@ -23,6 +23,7 @@ import SearchBar from "../SearchBar";
 import Header from "../Header";
 import {forceLogin, getUserName} from '../../globalFunc';
 import Toolbar from "../toolbar/index";
+import ToolbarEdit from "../toolbarEdit/index";
 import TestParamsForm from "./TestParamsForm";
 import './style.css';
 
@@ -336,20 +337,24 @@ class TestBuilderPage extends React.Component {
         {helpModal}
         <Toolbar
           help={this.handleShow}
-          redirDisabled={true}
           onNewEntryAdded={() => {
             addNewTest();
             this.setState({selectedSystem: null});
           }}
           onDuplicate={duplicateCurrentTest}
+          style={{marginLeft: 10}}
+          additionalElement={this.renderSearches()}
+          duplicateDisabled={selectedTestIndex === null}
+        />
+        <ToolbarEdit
+          redirDisabled={true}
+          onSubmit={this.handleSubmitButtonClick}
+          style={{marginLeft: 10}}
+          setVisible={'visible'}
           submitDisabled={!(selectedTestIndex !== null
             && this.state.selectedSystem !== null
             && (testBuilderTests[selectedTestIndex].modified
               || testBuilderTests[selectedTestIndex].new))}
-          onSubmit={this.handleSubmitButtonClick}
-          style={{marginLeft: 10}}
-          additionalElement={this.renderSearches()}
-          duplicateDisabled={selectedTestIndex === null}
         />
         <div style={{height: '10px'}}/>
       </Row>
