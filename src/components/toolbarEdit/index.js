@@ -31,9 +31,6 @@ class ToolbarEdit extends React.Component {
         ...style,
         visibility: setVisible,
         position: 'relative',
-        boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
-        border: '1px solid #CCC',
-        borderRadius: 3,
         padding: 5,
       }}>
         <Row>
