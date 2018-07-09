@@ -384,6 +384,7 @@ class ChainEditorPage extends React.Component {
                   onSubmit={() => this.submitChainTemplate({name: chainName, value: chainTemplate,})}
                   chainName={chainName}
                   chainTemplate={chainTemplate}
+                  style={{backgroundColor: '#EEE'}}
                   submitDisabled={!(chainTemplate.modified || chainTemplate.new)}
                   link={'#/formbuilder/' + chainSelected}
                   setVisible={this.props.chainSelected !== null ? 'visible' : 'hidden'}

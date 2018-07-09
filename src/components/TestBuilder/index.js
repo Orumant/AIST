@@ -346,16 +346,6 @@ class TestBuilderPage extends React.Component {
           additionalElement={this.renderSearches()}
           duplicateDisabled={selectedTestIndex === null}
         />
-        <ToolbarEdit
-          redirDisabled={true}
-          onSubmit={this.handleSubmitButtonClick}
-          style={{marginLeft: 10}}
-          setVisible={'visible'}
-          submitDisabled={!(selectedTestIndex !== null
-            && this.state.selectedSystem !== null
-            && (testBuilderTests[selectedTestIndex].modified
-              || testBuilderTests[selectedTestIndex].new))}
-        />
         <div style={{height: '10px'}}/>
       </Row>
     )
@@ -430,6 +420,17 @@ class TestBuilderPage extends React.Component {
                   {...this.props}
                 />
                 : null}
+              <div style={{height: '10px'}}/>
+              <ToolbarEdit
+                redirDisabled={true}
+                onSubmit={this.handleSubmitButtonClick}
+                setVisible={'visible'}
+                style={{backgroundColor: '#FFF'}}
+                submitDisabled={!(selectedTestIndex !== null
+                  && this.state.selectedSystem !== null
+                  && (testBuilderTests[selectedTestIndex].modified
+                    || testBuilderTests[selectedTestIndex].new))}
+              />
             </Col>
           </Row>
         </Grid>
