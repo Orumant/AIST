@@ -277,6 +277,7 @@ class DataDirectoryPage extends React.Component {
           style={{borderRadius: '4px 4px 4px 4px'}}
           shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
           promptTextCreator={name => name}
+          noResultsText={'Результаты не найдены'}
         />
         <span>Дата запуска от:</span>
         <DatePicker onChange={this.changeDateFrom}

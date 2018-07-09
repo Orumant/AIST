@@ -130,6 +130,7 @@ class PersonalPage extends Component {
                         onChange={this.dataMembersSelected}
                         value={this.state.selectedMembers}
                         placeholder="Выберите необходимых пользователей"
+                        noResultsText={'Результаты не найдены'}
                       />
                     </div>
                   </OverlayTrigger>

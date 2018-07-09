@@ -280,6 +280,7 @@ class FormBuilderPage extends Component {
             style={{borderRadius: '4px 4px 4px 4px'}}
             shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
             promptTextCreator={name => name}
+            noResultsText={'Результаты не найдены'}
             optionRenderer={(opt) => {
               return (
                 <Row>

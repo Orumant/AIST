@@ -220,6 +220,7 @@ class TestBuilderPage extends React.Component {
                   shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
                   promptTextCreator={name => name}
                   onChange={this.handleSearchTagCreation}
+                  noResultsText={'Результаты не найдены'}
                 />
               );
               break;
@@ -233,6 +234,7 @@ class TestBuilderPage extends React.Component {
                   placeholder={'Фильтрация тестов по АС...'}
                   onChange={this.handleSysFilterInput}
                   value={this.state.filters.systems}
+                  noResultsText={'Результаты не найдены'}
                 />
               );
               break;
@@ -246,6 +248,7 @@ class TestBuilderPage extends React.Component {
                   placeholder={'Фильтрация тестов по контуру...'}
                   onChange={this.handleStandsFilterInput}
                   value={this.state.filters.stands}
+                  noResultsText={'Результаты не найдены'}
                 />
               );
               break;

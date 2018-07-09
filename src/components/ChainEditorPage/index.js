@@ -160,6 +160,7 @@ class ChainEditorPage extends React.Component {
                   shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
                   promptTextCreator={name => name}
                   onChange={this.handleSearchTagChainCreation}
+                  noResultsText={'Результаты не найдены'}
                 />
               );
               break;
@@ -173,6 +174,7 @@ class ChainEditorPage extends React.Component {
                   placeholder={'Фильтрация цепочки по маркеру...'}
                   onChange={this.handleMarkerFilterInput}
                   value={this.state.filters.marker}
+                  noResultsText={'Результаты не найдены'}
                 />
               );
               break;
@@ -286,11 +288,11 @@ class ChainEditorPage extends React.Component {
         <Col md={12}>
           <FormGroup>
             <InputGroup>
-              <InputGroup.Addon>Name</InputGroup.Addon>
+              <InputGroup.Addon>Название</InputGroup.Addon>
               <FormControl
                 type="text"
                 value={chainTemplate.name}
-                placeholder="Chain Name"
+                placeholder="Название цепочки"
                 onChange={e => chainTemplateNameChanged(e.target.value)}/>
             </InputGroup>
           </FormGroup>
@@ -300,11 +302,11 @@ class ChainEditorPage extends React.Component {
         <Col md={12}>
           <FormGroup>
             <InputGroup>
-              <InputGroup.Addon>Marker</InputGroup.Addon>
+              <InputGroup.Addon>Маркер</InputGroup.Addon>
               <FormControl
                 type="text"
                 value={chainTemplate.marker}
-                placeholder="Marker"
+                placeholder="Маркер"
                 onChange={e => chainTemplateMarkerChanged(e.target.value)}/>
             </InputGroup>
           </FormGroup>
@@ -314,15 +316,17 @@ class ChainEditorPage extends React.Component {
         <Col md={12}>
           <FormGroup>
             <InputGroup>
-              <InputGroup.Addon>Data templates</InputGroup.Addon>
+              <InputGroup.Addon>Шаблон</InputGroup.Addon>
               <Select.Creatable
                 multi={true}
                 options={options}
                 onChange={dt => this.props.addDTToChain(dt)}
                 value={chainTemplate.templates}
+                placeholder="Выберите"
                 id={"balla2"}
                 shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
                 promptTextCreator={name => name}
+                noResultsText={'Результаты не найдены'}
               />
             </InputGroup>
           </FormGroup>
@@ -332,16 +336,17 @@ class ChainEditorPage extends React.Component {
         <Col md={12}>
           <FormGroup>
             <InputGroup>
-              <InputGroup.Addon>Group</InputGroup.Addon>
+              <InputGroup.Addon>Группа</InputGroup.Addon>
               <Select.Creatable
                 multi={true}
                 options={groups}
                 onChange = {this.handleGroupChange}
                 value = {chainTemplate.groups}
-                placeholder="Select"
+                placeholder="Выберите"
                 id={"balla"}
                 shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
                 promptTextCreator={name => name}
+                noResultsText={'Результаты не найдены'}
               />
             </InputGroup>
           </FormGroup>
