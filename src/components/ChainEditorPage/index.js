@@ -316,7 +316,7 @@ class ChainEditorPage extends React.Component {
         <Col md={12}>
           <FormGroup>
             <InputGroup>
-              <InputGroup.Addon>Шаблон</InputGroup.Addon>
+              <InputGroup.Addon>Шаблоны</InputGroup.Addon>
               <Select.Creatable
                 multi={true}
                 options={options}
@@ -336,7 +336,7 @@ class ChainEditorPage extends React.Component {
         <Col md={12}>
           <FormGroup>
             <InputGroup>
-              <InputGroup.Addon>Группа</InputGroup.Addon>
+              <InputGroup.Addon>Группы</InputGroup.Addon>
               <Select.Creatable
                 multi={true}
                 options={groups}
