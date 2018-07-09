@@ -1,21 +1,24 @@
 import React from 'react'
 import ChainDisplay from '../../containers/ChainDisplay'
 import ChainList from "../../containers/ChainList"
-import {Row,
+import {
+  Button,
+  ButtonGroup,
+  ButtonToolbar,
   Col,
-  Modal,
+  FormControl,
   FormGroup,
   InputGroup,
-  FormControl,
-  Button,
-  ButtonToolbar,
-  ToggleButtonGroup,
+  Modal,
+  Row,
   ToggleButton,
-  ButtonGroup,} from "react-bootstrap"
+  ToggleButtonGroup,
+} from "react-bootstrap"
 import TestsList from "../../containers/TestsList"
 import Notifications from 'react-notification-system-redux'
 import './style.css'
 import Toolbar from "../toolbar"
+import ToolbarEdit from "../toolbarEdit"
 import {createConfirmation} from "react-confirm"
 import ConfirmationDialog from "../ConfirmationDialog"
 import SearchBar from "../SearchBar"
@@ -98,12 +101,12 @@ class ChainEditorPage extends React.Component {
     }
   };
 
-  handleGroupChange(groups){
+  handleGroupChange(groups) {
     this.setState({groups});
     this.props.addGroupToChain(groups);
   }
 
-  componentWillMount(){
+  componentWillMount() {
     forceLogin();
   }
 
@@ -217,7 +220,7 @@ class ChainEditorPage extends React.Component {
     isAvailable ? this.setState({isAvailableStand: true}) : this.setState({isAvailableStand: false})
   }
 
-  submitChainTemplate(chainTemplate){
+  submitChainTemplate(chainTemplate) {
     const message = 'У выбранных тестов нет совпадающих стендов, на которых они могут быть запущены'
     this.state.isAvailableStand ? this.props.updateChainTemplate(chainTemplate) : alert(message)
   }
@@ -227,7 +230,8 @@ class ChainEditorPage extends React.Component {
       chainTemplate, chainTemplateNameChanged, deleteChainTemplate,
       addChainTemplate, updateChainTemplate, notifications,
       chainTemplateMarkerChanged, chainSelected, chainName,
-      duplicate, owner, dataTemplatesNames, selectedGroups } = this.props;
+      duplicate, owner, dataTemplatesNames, selectedGroups
+    } = this.props;
 
     const confirm = createConfirmation(ConfirmationDialog, 0);
     const notify = createConfirmation(NotifyUser, 0);
@@ -240,7 +244,8 @@ class ChainEditorPage extends React.Component {
       }
       else {
         notify({confirmation: `You can't delete ${chainTemplate.name}, because ${chainTemplate.name} created by another user!`}).then(
-          () => {})
+          () => {
+          })
       }
     };
     const modalTooltip = (
@@ -260,7 +265,7 @@ class ChainEditorPage extends React.Component {
           <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Submit</li>
           <br/>
           <p>
-            Чтобы создать новую чепочку, необходимо:
+            Чтобы создать новую цепочку, необходимо:
           </p>
           <li type="square">Нажать кнопку Add new chain template</li>
           <li type="square">Выбрать необходимые тесты справа</li>
@@ -336,8 +341,8 @@ class ChainEditorPage extends React.Component {
               <Select.Creatable
                 multi={true}
                 options={groups}
-                onChange = {this.handleGroupChange}
-                value = {chainTemplate.groups}
+                onChange={this.handleGroupChange}
+                value={chainTemplate.groups}
                 placeholder="Select"
                 id={"balla"}
                 shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
@@ -363,7 +368,6 @@ class ChainEditorPage extends React.Component {
               additionalElement={this.renderSearches()}
             />
             <ChainList/>
-
           </Col>
           <Col md={5}>
             <Row>
@@ -371,24 +375,36 @@ class ChainEditorPage extends React.Component {
                 <Toolbar
                   onNewEntryAdded={() => addChainTemplate(owner)}
                   help={this.handleShow}
-                  onSubmit={() => this.submitChainTemplate({name: chainName, value: chainTemplate,})}
-                  chainName={chainName}
-                  chainTemplate={chainTemplate}
-                  submitDisabled={!(chainTemplate.modified || chainTemplate.new)}
-                  link={'#/formbuilder/' + chainSelected}
-                  redirText={'Редактировать форму'}
-                  redirDisabled={this.props.chainSelected === null}
                   onDuplicate={() => duplicate()}
-                  additionalElement={this.props.chainSelected !== null ? chainParamsInput : null}
                   duplicateDisabled={this.props.chainSelected === null}
+                  additionalElement={this.props.chainSelected !== null ? chainParamsInput : null}
                 />
                 {modalTooltip}
               </Col>
             </Row>
+            <Row>
+              <Col md={12}>
+                <ToolbarEdit
+                  onSubmit={() => this.submitChainTemplate({name: chainName, value: chainTemplate,})}
+                  chainName={chainName}
+                  chainTemplate={chainTemplate}
+                  style={{
+                    backgroundColor: '#EEE',
+                    boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
+                    border: '1px solid #CCC',
+                    borderRadius: 3,
+                  }}
+                  submitDisabled={!(chainTemplate.modified || chainTemplate.new)}
+                  link={'#/formbuilder/' + chainSelected}
+                  setVisible={this.props.chainSelected !== null ? 'visible' : 'hidden'}
+                  redirDisabled={false}
+                />
+              </Col>
+            </Row>
             <div style={{height: '10px'}}/>
             <Row>
-                <ChainDisplay chainTemplate={chainTemplate}
-                checkStands={this.checkAvailableStand}/>
+              <ChainDisplay chainTemplate={chainTemplate}
+                            checkStands={this.checkAvailableStand}/>
             </Row>
           </Col>
           <Col md={3}>
