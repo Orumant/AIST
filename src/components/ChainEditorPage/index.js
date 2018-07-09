@@ -16,6 +16,7 @@ import TestsList from "../../containers/TestsList"
 import Notifications from 'react-notification-system-redux'
 import './style.css'
 import Toolbar from "../toolbar"
+import ToolbarEdit from "../toolbarEdit"
 import {createConfirmation} from "react-confirm"
 import ConfirmationDialog from "../ConfirmationDialog"
 import SearchBar from "../SearchBar"
@@ -260,7 +261,7 @@ class ChainEditorPage extends React.Component {
           <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Submit</li>
           <br/>
           <p>
-            Чтобы создать новую чепочку, необходимо:
+            Чтобы создать новую цепочку, необходимо:
           </p>
           <li type="square">Нажать кнопку Add new chain template</li>
           <li type="square">Выбрать необходимые тесты справа</li>
@@ -363,7 +364,6 @@ class ChainEditorPage extends React.Component {
               additionalElement={this.renderSearches()}
             />
             <ChainList/>
-
           </Col>
           <Col md={5}>
             <Row>
@@ -371,24 +371,29 @@ class ChainEditorPage extends React.Component {
                 <Toolbar
                   onNewEntryAdded={() => addChainTemplate(owner)}
                   help={this.handleShow}
+                  onDuplicate={() => duplicate()}
+                  duplicateDisabled={this.props.chainSelected === null}
+                  additionalElement={this.props.chainSelected !== null ? chainParamsInput : null}
+                />
+                {modalTooltip}
+              </Col>
+            </Row>
+            <Row>
+              <Col md={12}>
+                <ToolbarEdit
                   onSubmit={() => this.submitChainTemplate({name: chainName, value: chainTemplate,})}
                   chainName={chainName}
                   chainTemplate={chainTemplate}
                   submitDisabled={!(chainTemplate.modified || chainTemplate.new)}
                   link={'#/formbuilder/' + chainSelected}
-                  redirText={'Редактировать форму'}
-                  redirDisabled={this.props.chainSelected === null}
-                  onDuplicate={() => duplicate()}
-                  additionalElement={this.props.chainSelected !== null ? chainParamsInput : null}
-                  duplicateDisabled={this.props.chainSelected === null}
+                  setVisible={this.props.chainSelected !== null ? 'visible' : 'hidden'}
                 />
-                {modalTooltip}
               </Col>
             </Row>
             <div style={{height: '10px'}}/>
             <Row>
-                <ChainDisplay chainTemplate={chainTemplate}
-                checkStands={this.checkAvailableStand}/>
+              <ChainDisplay chainTemplate={chainTemplate}
+                            checkStands={this.checkAvailableStand}/>
             </Row>
           </Col>
           <Col md={3}>
