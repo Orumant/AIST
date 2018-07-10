@@ -248,6 +248,7 @@ class Launcher extends Component {
             style={{borderRadius: '4px 4px 4px 4px'}}
             shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
             promptTextCreator={name => name}
+            noResultsText={'Результаты не найдены'}
           />
         </Col>
         <Col md={4} key={'column-placeholder'}/>
@@ -338,6 +339,7 @@ class Launcher extends Component {
                       value={this.state.selectedTemplates}
                       shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
                       promptTextCreator={name => name}
+                      noResultsText={'Результаты не найдены'}
                     />
                   </div>
                 </OverlayTrigger>
@@ -360,6 +362,7 @@ class Launcher extends Component {
                       value={this.state.groups}
                       shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
                       promptTextCreator={name => name}
+                      noResultsText={'Результаты не найдены'}
                     />
                   </div>
                 </OverlayTrigger>

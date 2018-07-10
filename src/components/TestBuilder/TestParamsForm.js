@@ -58,6 +58,7 @@ class TestParamsForm extends Component {
                       style={{borderRadius: '0 4px 4px 0'}}
                       value={testBuilderTests[selectedTestIndex].stands}
                       searchable={true}
+                      noResultsText={'Результаты не найдены'}
                     />
                   </InputGroup>
                 </Col>
@@ -129,6 +130,7 @@ class TestParamsForm extends Component {
                       onChange={(values) => this.props.handleTagInputChange(values, 'static')}
                       value={testBuilderTests[selectedTestIndex].tag_names.static}
                       style={{borderRadius: '0 4px 4px 0'}}
+                      noResultsText={'Результаты не найдены'}
                     />
                   </InputGroup>
                 </Col>
@@ -151,6 +153,7 @@ class TestParamsForm extends Component {
                       onChange={(values) => this.props.handleTagInputChange(values, 'dynamic')}
                       value={testBuilderTests[selectedTestIndex].tag_names.dynamic}
                       style={{borderRadius: '0 4px 4px 0'}}
+                      noResultsText={'Результаты не найдены'}
                     />
                   </InputGroup>
                 </Col>
