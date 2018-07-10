@@ -13,7 +13,7 @@ export const getOrderDataJSON = (id_order) => ({
 
 export const getOrderJSON = (id_order) => (dispatch) => {
   const url = `${BACKEND_URL}/objects/${id_order}`;
-  console.log(url)
+  console.log(urk)
   const header = {headers: {SessionID: getToken()}};
   axios.get(url, header).then(function (response) {
     console.log(response.data)

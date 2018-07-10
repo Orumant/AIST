@@ -18,11 +18,16 @@ class OrdersTable extends React.Component {
     this.setState({isOrderData: val})
   }
 
+  handleOpen(id_order) {
+    this.props.getOrderJSON(id_order)
+    this.changeOrderDataStatus(true)
+  }
+
   columns = [
     {
       dataField: 'id_order',
       text: 'ID заявки:',
-      formatter: RenderOrderDetails(() => this.changeOrderDataStatus(true)),
+      formatter: RenderOrderDetails(this.handleOpen),
       sort: true,
       filter: textFilter()
     }, {
@@ -46,7 +51,6 @@ class OrdersTable extends React.Component {
       formatter: RenderGetDataButton,
       align: 'center'
     }
-    //TODO вернуть эти кнопки
   ];
   //Ещё описание таблицы: дефолтные сортировки и т.п.
    defSort = [
@@ -54,9 +58,6 @@ class OrdersTable extends React.Component {
       dataField: 'real_start_time',
       order: 'desc'
     }];
-
-
-
 
 
    render () {
