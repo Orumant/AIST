@@ -93,7 +93,7 @@ const dataTemplatesBuilderReducer = (state = initialState, action) => {
 
     case NEW_DATA_TEMPLATE_PARAM_ADDED: {
       const dataTemplates = [...state.dataTemplates];
-      const newEntry = {key: 'ключ', value: 'значение'};
+      const newEntry = {key: '', value: ''};
       dataTemplates[state.selectedTemplateIndex].data.push(newEntry);
       if (!dataTemplates[state.selectedTemplateIndex].new){
         dataTemplates[state.selectedTemplateIndex].modified = true;
