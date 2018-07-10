@@ -23,6 +23,7 @@ import SearchBar from "../SearchBar";
 import Header from "../Header";
 import {forceLogin, getUserName} from '../../globalFunc';
 import Toolbar from "../toolbar/index";
+import ToolbarEdit from "../toolbarEdit/index";
 import TestParamsForm from "./TestParamsForm";
 import './style.css';
 
@@ -339,17 +340,11 @@ class TestBuilderPage extends React.Component {
         {helpModal}
         <Toolbar
           help={this.handleShow}
-          redirDisabled={true}
           onNewEntryAdded={() => {
             addNewTest();
             this.setState({selectedSystem: null});
           }}
           onDuplicate={duplicateCurrentTest}
-          submitDisabled={!(selectedTestIndex !== null
-            && this.state.selectedSystem !== null
-            && (testBuilderTests[selectedTestIndex].modified
-              || testBuilderTests[selectedTestIndex].new))}
-          onSubmit={this.handleSubmitButtonClick}
           style={{marginLeft: 10}}
           additionalElement={this.renderSearches()}
           duplicateDisabled={selectedTestIndex === null}
@@ -428,6 +423,17 @@ class TestBuilderPage extends React.Component {
                   {...this.props}
                 />
                 : null}
+              <div style={{height: '10px'}}/>
+              <ToolbarEdit
+                redirDisabled={true}
+                onSubmit={this.handleSubmitButtonClick}
+                setVisible={'visible'}
+                style={{backgroundColor: '#FFF'}}
+                submitDisabled={!(selectedTestIndex !== null
+                  && this.state.selectedSystem !== null
+                  && (testBuilderTests[selectedTestIndex].modified
+                    || testBuilderTests[selectedTestIndex].new))}
+              />
             </Col>
           </Row>
         </Grid>
