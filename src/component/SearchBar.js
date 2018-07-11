@@ -10,11 +10,17 @@ class SearchBar extends React.Component {
     const {button, dataLenght, ...others} = this.props;
     return (
       <div className={'search-params'}>
-        <FilterChain {...others}/>
-        <DateForm {...others}/>
-        <div>Количество записей по выбранному маркеру : {dataLenght}</div>
-        <Button>Подобрать цепочки по маркеру</Button>
-        {button}
+        <div className={'search-box'}>
+          <FilterChain {...others}/>
+          <DateForm {...others}/>
+          <div>Количество записей по выбранному маркеру: <b>{dataLenght}</b></div>
+        </div>
+       <div className={'search-box'}>
+         {button}
+       </div>
+        <div className={'search-box'}>
+         <Button block>Подобрать цепочки по маркеру</Button>
+        </div>
       </div>
     )
   }

@@ -1,21 +1,21 @@
 import {connect} from 'react-redux'
 import DataDirectoryTest from '../pages/DataDirectoryTest'
-import {lockOrder} from "../api";
-import {createRequest, fetchOrders, updateRequestAndOrders} from "../modules/DataDirectoryTest";
+import {updateRequestAndOrders} from "../modules/DataDirectoryTest";
+import {lockOrder, unlockOrder} from "../modules/OrdersTable";
 
 
 function mapStateToProps(state) {
   return {
     orders: state.dataDirectoryTestReducer.data || [],
     request: state.dataDirectoryTestReducer.request || {},
-    isRequestModified: state.dataDirectoryTestReducer.isRequestModified,
+    notifications: state.notifications,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchOrders: (requestBody) => dispatch(fetchOrders(requestBody)),
-    addToRequest: (request) => dispatch(createRequest(request)),
+    lockOrder: (id, request) => dispatch(lockOrder(id, request)),
+    unlockOrder: (id, request) => dispatch(unlockOrder(id, request)),
     updateRequestAndOrders: (part, request) => dispatch(updateRequestAndOrders(part, request)),
   }
 }

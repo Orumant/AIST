@@ -16,7 +16,7 @@ import testList from "./testList";
 import filterChain from "./filterChain";
 import dataDirectoryTestReducer from "../modules/DataDirectoryTest";
 import filterChainReducer from "../modules/FilterChain";
-import dataDirectoryTest from "./dataDirectoryTest";
+import ordersTable from "../modules/OrdersTable"
 
 
 const rootReducer = combineReducers({
@@ -34,9 +34,9 @@ const rootReducer = combineReducers({
   notifications,
   dataDirectory,
   testList,
-  dataDirectoryTest,
   filterChainReducer,
   dataDirectoryTestReducer,
+  ordersTable,
 });
 
 export default rootReducer

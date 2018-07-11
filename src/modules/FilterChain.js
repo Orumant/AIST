@@ -17,11 +17,6 @@ export const fetchFiltersTests = (tests) => ({
   tests,
 })
 
-const initialState = {
-  chains: [],
-  tests: [],
-};
-
 /**
  * Chain builder page
  * fetching data from database
@@ -43,6 +38,11 @@ export const fetchChainsTests = () => (dispatch, getState) => {
       }),
     ]
   )
+};
+
+const initialState = {
+  chains: [],
+  tests: [],
 };
 
 const filterChainReducer = (state = initialState, action) => {

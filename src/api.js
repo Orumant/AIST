@@ -685,14 +685,4 @@ const fetchOrders = (url, dispatch)  => {
 };
 
 
-export const lockOrder = (orderId) => (dispatch, getState) => {
-  const header = {headers: {SessionID: getToken()}};
-  const url = `${BACKEND_URL}/orders/${orderId}/lock`;
-  axios.post(url, header).then(function (response) {
-    console.log(response)
-    // dispatch(ordersFetchSucceed(response.data));
-  }).catch(function (response) {
-    //dispatch(ordersFetchFail());
-    dispatch(error({message: "Fetch failed with error!" + response}));
-  });
-};
+

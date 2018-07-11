@@ -1,36 +1,50 @@
 import React from 'react'
 import {Button} from "react-bootstrap";
-import {Link} from "react-router-dom";
 import {BACKEND_URL} from "../constants/endpoints";
 
-export const goArchiveBtn = <Button onClick={() => this.setState({isData: false, isArchive: true})
-}>Перейти в архив</Button>
-
-export const goDataBtn = <Button bsStyle="primary" onClick={() => this.setState({isData: true, isArchive: false})
-}>Перейти  данным</Button>
+export const goArchiveBtn = (onChange, request) =>
+  <Button block onClick={() => onChange({locked: true}, request)}>Перейти в архив</Button>
 
 
-const handleGetData = (cell) => {
-  this.props.lockOrder(cell)
+export const goDataBtn = (onChange, request) =>
+  <Button block onClick={() => onChange({locked: false}, request)} bsStyle="primary">Перейти  данным</Button>
+
+
+export const renderUseButton = (request, lockOrder, unlockOrder) => (cell, row, rowIndex) => {
+  if (!request.locked) return lockOrderButton(lockOrder, row.id_order, request);
+  return unlockOrderButton(unlockOrder, row.id_order, request)
 }
 
-export const RenderGetDataButton = (cell, row, rowIndex) => {
+const lockOrderButton = (lock, id_order, request) => {
   return (
     <span>
           <Button
-            href={`${BACKEND_URL}/objects/${row.id_order}/csv`}
-            bsStyle="success"
-            bsSize="medium"
+            href={`${BACKEND_URL}/objects/${id_order}/csv`}
+            bsStyle="primary"
+            bsSize="small"
             title="Получение данных по заявке"
-            disabled={row.f_used != "0"}
+            onClick={() => lock(id_order, request)}
           >Использовать
         </Button>
     </span>
   )
 }
 
-export const RenderOrderDetails = (openWindow) => (cell, row, rowIndex) => {
+const unlockOrderButton = (unlock, id_order, request) => {
+  return (
+    <span>
+          <Button
+            bsStyle="primary"
+            bsSize="small"
+            title="Вернуть в реестр"
+            onClick={() => unlock(id_order, request)}
+          >Вернуть в реестр
+        </Button>
+    </span>
+  )
+}
 
+export const RenderOrderDetails = (openWindow) => (cell, row, rowIndex) => {
   return (
         <a href onClick={() => openWindow(row.id_order)}>{row.id_order}</a>
   )

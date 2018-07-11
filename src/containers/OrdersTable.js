@@ -1,18 +1,16 @@
 import {connect} from 'react-redux';
 import OrdersTable from "../component/OrdersTable";
-import {fetchChainTemplates, getDictionaryData, getUsersGroups, lockOrder, submitFormTemplate} from "../api";
-import {clearIdOrderAlert, standsFetchSuccess} from "../actions";
-import {getOrderJSON} from "../modules/OrdersTable";
+import {getOrderJSON, lockOrder, unlockOrder} from "../modules/OrdersTable";
 
 function mapStateToProps(state) {
-  return{
+  return {
+    order_data: state.ordersTable.order_data,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    lockOrder: (id) => dispatch(lockOrder(id)),
-    getOrderJSON: (id_order) => dispatch(getOrderJSON(id_order))
+    getOrderJSON: (id_order) => dispatch(getOrderJSON(id_order)),
   }
 }
 

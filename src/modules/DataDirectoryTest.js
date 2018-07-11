@@ -2,9 +2,9 @@ import axios from 'axios';
 import {BACKEND_URL} from "../constants/endpoints";
 import {error} from "react-notification-system-redux";
 import {getToken} from '../globalFunc';
+import {addObjectToObject} from "../utils/filters/index";
 
 const ORDERS_FETCH_SUCCEED = 'ORDERS_FETCH_SUCCEED';
-const CREATE_REQUEST = "CREATE_REQUEST";
 const UPDATE_REQUEST = "UPDATE_REQUEST";
 
 export const ordersFetchSucceed = (payload) => ({
@@ -12,52 +12,47 @@ export const ordersFetchSucceed = (payload) => ({
   payload,
 });
 
-export const createRequest = (request) => ({
-  type: CREATE_REQUEST,
-  request
-})
-
 export const updateRequest = (request) => ({
   type: UPDATE_REQUEST,
   request
 })
 
-// export updateRequestAndOrders = (request) => (dispatch) => {
-//       dispatch(createRequest(request));
-//       dispatch(fetchOrders())
-// }
+
+export const updateRequestAndOrders = (part, request_old) => (dispatch, getState) => {
+  const request = dispatch(updateRequestBody(part, request_old))
+  dispatch(fetchOrders(request))
+
+}
+
+const updateRequestBody = (part, request) => (dispatch) => {
+  console.log(part, request)
+  Object.keys(part).map(key => {
+    if (part[key] === null || part[key].length == 0) {
+      const {[key]: value, ...withoutKey} = request;
+      request = withoutKey}
+    else  {
+        request[key] = part[key]
+  }});
+  dispatch(updateRequest(request));
+  console.log(request)
+  return request;
+}
 
 
-export const fetchOrders = (requestBody) => (dispatch, getState) => {
-  const url = `${BACKEND_URL}/orders/filter`;
-  const header = {headers: {SessionID: getToken()}};
-  axios.post(url, requestBody, header).then(function (response) {
-    console.log(response.data)
-    dispatch(ordersFetchSucceed(response.data));
-  }).catch(function (response) {
-    dispatch(error({message: "Fetch failed with error!" + response}));
-  });
-};
-
-export const updateRequestAndOrders = (part, request) => (dispatch, getState) => {
-  Object.keys(part).map(key => request[key] = part[key]);
-  dispatch(updateRequest(request))
+export const fetchOrders = (request) => (dispatch) => {
   const url = `${BACKEND_URL}/orders/filter`;
   const header = {headers: {SessionID: getToken()}};
   axios.post(url, request, header).then(function (response) {
-    console.log(response.data)
     dispatch(ordersFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));
   });
-};
-
+}
 
 
 const initialState = {
   data: [],
   request: {},
-  isRequestModified: false,
 };
 
 const dataDirectoryTestReducer = (state = initialState, action) => {
@@ -66,23 +61,12 @@ const dataDirectoryTestReducer = (state = initialState, action) => {
       return {
         ...state,
         data: action.payload,
-        isRequestModified: false,
       }
     }
     case UPDATE_REQUEST: {
       return {
         ...state,
         request: action.request
-      }
-    }
-    case CREATE_REQUEST: {
-      let request = {...state.request};
-      // request = addObjectToObject(action.request, request)
-      Object.keys(action.request).map(key => request[key] = action.request[key]);
-      return {
-        ...state,
-        request,
-        isRequestModified: true
       }
     }
     default:

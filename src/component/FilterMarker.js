@@ -10,8 +10,8 @@ class FilterMarker extends React.Component {
 
   changeMarker = (marker) => {
     this.setState({selectedMarker: marker})
-    console.log(this.props.request)
-    this.props.updateRequestAndOrders({marker: marker.label}, this.props.request)
+    if (marker) this.props.updateRequestAndOrders({marker: marker.label}, this.props.request)
+    else this.props.updateRequestAndOrders({marker: marker}, this.props.request)
   }
 
   render ()  {
