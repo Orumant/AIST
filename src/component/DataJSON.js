@@ -4,9 +4,8 @@ import {Button, Modal} from "react-bootstrap";
 
 class DataJSON extends React.Component {
 
-
   render() {
-    const {data, close} = this.props
+    const {data, close} = this.props;
     return (
       <div >
         <Modal.Dialog>

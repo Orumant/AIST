@@ -3,7 +3,7 @@ import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
 import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
-import {lockOrderButton, RenderOrderDetails, renderUseButton, unlockOrderButton} from "./DataDirectoryTestButtons";
+import {RenderOrderDetails, renderUseButton} from "./DataDirectoryTestButtons";
 import DataJSON from "./DataJSON";
 
 
@@ -11,16 +11,16 @@ class OrdersTable extends React.Component {
 
   state = {
     isOrderData: false,
-  }
+  };
 
   changeOrderDataStatus = (val) => {
     this.setState({isOrderData: val})
-  }
+  };
 
   handleOpen = (id_order) => {
-    this.props.getOrderJSON(id_order)
+    this.props.getOrderJSON(id_order);
     this.changeOrderDataStatus(true)
-  }
+  };
 
 
    render () {

@@ -3,11 +3,11 @@ import {Button} from "react-bootstrap";
 import {BACKEND_URL} from "../constants/endpoints";
 
 export const goArchiveBtn = (onChange, request) =>
-  <Button block onClick={() => onChange({locked: true}, request)}>Перейти в архив</Button>
+  <Button block onClick={() => onChange({locked: true}, request)}>Перейти в архив</Button>;
 
 
 export const goDataBtn = (onChange, request) =>
-  <Button block onClick={() => onChange({locked: false}, request)} bsStyle="primary">Перейти  данным</Button>
+  <Button block onClick={() => onChange({locked: false}, request)} bsStyle="primary">Перейти  данным</Button>;
 
 
 export const renderUseButton = (request, lockOrder, unlockOrder) => (cell, row, rowIndex) => {
@@ -28,7 +28,7 @@ const lockOrderButton = (lock, id_order, request) => {
         </Button>
     </span>
   )
-}
+};
 
 const unlockOrderButton = (unlock, id_order, request) => {
   return (
@@ -42,7 +42,7 @@ const unlockOrderButton = (unlock, id_order, request) => {
         </Button>
     </span>
   )
-}
+};
 
 export const RenderOrderDetails = (openWindow) => (cell, row, rowIndex) => {
   return (

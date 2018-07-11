@@ -10,7 +10,7 @@ const GET_ORDER_DATA_JSON = "GET_ORDER_DATA_JSON"
 export const getOrderDataJSON = (order_data) => ({
   type: GET_ORDER_DATA_JSON,
   order_data
-})
+});
 
 export const getOrderJSON = (id_order) => (dispatch) => {
   const url = `${BACKEND_URL}/objects/${id_order}`;
@@ -20,13 +20,11 @@ export const getOrderJSON = (id_order) => (dispatch) => {
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));
   });
-}
+};
 
 export const lockOrder = (orderId, request) => (dispatch, getState) => {
   const header = {headers: {SessionID: getToken()}};
-  // const url_csv=`${BACKEND_URL}/objects/${id_order}/csv`
   const url = `${BACKEND_URL}/orders/${orderId}/lock`;
-  console.log(request)
 
   axios.post(url, header).then(function (response) {
     dispatch(success({message: "Запись успешно заблокирована!"}));
@@ -39,7 +37,6 @@ export const lockOrder = (orderId, request) => (dispatch, getState) => {
 export const unlockOrder = (orderId, request) => (dispatch, getState) => {
   const header = {headers: {SessionID: getToken()}};
   const url = `${BACKEND_URL}/orders/${orderId}/unlock`;
-  console.log(request)
   axios.post(url, header).then(function (response) {
     dispatch(success({message: "Запись успешно разблокирована!"}));
     dispatch(fetchOrders(request))

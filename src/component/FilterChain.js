@@ -7,7 +7,7 @@ class FilterChain extends React.Component {
   state = {
     isTagFilter: true,
     isMarketFiler: true,
-  }
+  };
 
   componentDidMount() {
     this.props.fetchChainsTests();

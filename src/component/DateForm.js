@@ -10,11 +10,11 @@ class DateForm extends React.Component {
     startDate: null,
     endDate: null,
     focusedInput: null,
-  }
+  };
 
   defineRange = (period) => {
     this.setState({startDate: moment({hour: 0, minute: 0, seconds: 0}).subtract(1, period), endDate: moment()})
-  }
+  };
 
   InfoPan = () => (
     <div >
@@ -33,24 +33,23 @@ class DateForm extends React.Component {
         })}>Все время</Button>
     </ButtonGroup>
     </div>
-  )
+  );
 
   handleInput = (focus) => {
     const {focusedInput, startDate, endDate} =  this.state;
     if (focusedInput !== focus) this.setState({focusedInput: focus});
     if (!focus) {
-      let part = {}
-      if (startDate) part[">"] = startDate.format("YYYY.MM.DD HH.mm.SS")
-      if (endDate) part["<"] = endDate.format("YYYY.MM.DD HH.mm.SS")
-      if (Object.keys(part).length === 0) part = null
-      console.log(part)
-      this.props.updateRequestAndOrders({end_time: part}, this.props.request)
+      let part = {};
+      if (startDate) part[">"] = startDate.format("YYYY.MM.DD HH:mm:SS");
+      if (endDate) part["<"] = endDate.format("YYYY.MM.DD HH:mm:SS");
+      if (Object.keys(part).length === 0) part = null;
+      this.props.updateRequestAndOrders({end_time: part}, this.props.request);
     }
-  }
+  };
 
   handleDataChange = ({startDate, endDate}) => {
     this.setState({startDate, endDate})
-  }
+  };
 
   render () {
     moment.locale('ru')

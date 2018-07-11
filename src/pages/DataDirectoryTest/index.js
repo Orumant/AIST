@@ -21,7 +21,7 @@ class DataDirectoryTest extends React.Component{
     const {orders, addToRequest, request, fetchOrders, updateRequestAndOrders, lockOrder, unlockOrder, notifications} = this.props;
     const goToResource = <span>
       {!request.locked ? goArchiveBtn(updateRequestAndOrders, request): goDataBtn(updateRequestAndOrders, request)}
-      </span>
+      </span>;
     return (
       <div style={{height: '100%'}}>
         <Header/>

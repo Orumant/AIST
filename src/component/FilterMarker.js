@@ -6,18 +6,18 @@ class FilterMarker extends React.Component {
 
   state = {
     selectedMarker : null,
-  }
+  };
 
   changeMarker = (marker) => {
-    this.setState({selectedMarker: marker})
-    if (marker) this.props.updateRequestAndOrders({marker: marker.label}, this.props.request)
+    this.setState({selectedMarker: marker});
+    if (marker) this.props.updateRequestAndOrders({marker: marker.label}, this.props.request);
     else this.props.updateRequestAndOrders({marker: marker}, this.props.request)
-  }
+  };
 
   render ()  {
     const {selectedMarker} = this.state;
-    const {chains} = this.props
-    const options = arrayToOptions(filterMarkersFromChains(chains))
+    const {chains} = this.props;
+    const options = arrayToOptions(filterMarkersFromChains(chains));
     return (
       <Select
         className='test-filter'

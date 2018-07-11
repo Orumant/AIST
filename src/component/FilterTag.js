@@ -6,17 +6,17 @@ class FilterTag extends React.Component {
 
   state = {
     selectedTag: [],
-  }
+  };
 
   changeTag = (tag) => {
-    this.setState({selectedTag: tag})
+    this.setState({selectedTag: tag});
     this.props.updateRequestAndOrders({tags: optionsToArray(tag)}, this.props.request)
-  }
+  };
 
   render ()  {
     const {selectedTag} = this.state;
-    const {tests} = this.props
-    const options = arrayToOptions(filterTagsFromTests(tests))
+    const {tests} = this.props;
+    const options = arrayToOptions(filterTagsFromTests(tests));
     return (
       <Select
         multi

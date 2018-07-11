@@ -13,7 +13,6 @@ import dataDirectory from './dataDirectory'
 import dataAuthorization from './dataAuthorization'
 import dataPersonal from "./dataPersonal";
 import testList from "./testList";
-import filterChain from "./filterChain";
 import dataDirectoryTestReducer from "../modules/DataDirectoryTest";
 import filterChainReducer from "../modules/FilterChain";
 import ordersTable from "../modules/OrdersTable"
