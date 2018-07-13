@@ -252,8 +252,8 @@ export const fetchTests = () => (dispatch) => {
  */
 export const fetchChainTemplates = () => (dispatch, getState) => {
   const url = `${BACKEND_URL}/chain_templates`;
-  const header = {headers: {SessionID : getToken()}};
-  axios.get(url,header).then(function (response) {
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
     dispatch(allChainEditorTemplateFetchSucceed(response.data))
   }).catch(function (response) {
     dispatch(error({message: "Произошла ошибка!" + response}));
@@ -356,7 +356,6 @@ export const validateForm = (chainName, chain, idx) => (dispatch) => {
       } else {
         tempArr.push(field.paramName);
         if (field.label === '') {
-          console.log('label',field.label);
           validation.push({
             errorOn: 'label',
             state: 'error',
@@ -364,8 +363,7 @@ export const validateForm = (chainName, chain, idx) => (dispatch) => {
           });
           result = false;
         }
-        if (field.paramName === ''){
-          console.log('paramName',field.paramName);
+        if (field.paramName === '') {
           validation.push({
             errorOn: 'paramName',
             state: 'error',
@@ -374,7 +372,7 @@ export const validateForm = (chainName, chain, idx) => (dispatch) => {
           result = false;
         }
       }
-      if(validation.length > 0) {
+      if (validation.length > 0) {
         field.validation = validation;
       }
     }
@@ -384,7 +382,7 @@ export const validateForm = (chainName, chain, idx) => (dispatch) => {
     dispatch(updateChainForm(chainName, chain, idx));
   }
 
-  dispatch(getValidationResults(chain,idx));
+  dispatch(getValidationResults(chain, idx));
 };
 
 /**
@@ -424,7 +422,7 @@ export const testBuilderDataFetch = () => (dispatch) => {
  */
 export const testListDataFetch = () => (dispatch) => {
   const url = `${BACKEND_URL}/tests`;
-  const header = {headers: {SessionID : getToken()}};
+  const header = {headers: {SessionID: getToken()}};
 
   axios.get(url, header).then(function (response) {
     dispatch(testListTestsFetchSucceed(response.data))
@@ -448,13 +446,21 @@ export const submitTest = (testObject) => (dispatch, getState) => {
     dynamicTags = testObject.test.tag_names.dynamic.map(t => t.label);
     tags.dynamic = dynamicTags;
   }
-  const result = [{
-    test_name: testObject.test.test_name,
-    job_trigger: testObject.test.job_trigger,
-    tag_names: tags,
-    stands: testObject.test.stands,
-    a_system: testObject.test.a_system,
-  }];
+
+  //TODO: Убрать после доработки бэка
+  if (testObject.test.job_trigger.login === undefined || testObject.test.job_trigger.login === '') {
+    testObject.test.job_trigger.passOrToken = testObject.test.job_trigger.token;
+  } else {
+    testObject.test.job_trigger.passOrToken = testObject.test.job_trigger.password;
+  }
+    const result = [{
+      test_name: testObject.test.test_name,
+      job_trigger: testObject.test.job_trigger,
+      tag_names: tags,
+      stands: testObject.test.stands,
+      a_system: testObject.test.a_system,
+    }];
+
   const header = {headers: {SessionID: getToken()}};
   if (testObject.test.modified) {
     const updateTestUrl = `${BACKEND_URL}/tests/${testObject.id}`;

@@ -14,26 +14,29 @@ class Toolbar extends React.Component {
     } = this.props;
 
     const infoBtn = (
-      <Button bsStyle={'info'} onClick={help}><Glyphicon
+      <Button key={'infoBtn'} bsStyle={'info'} onClick={help}><Glyphicon
         glyph='glyphicon glyphicon-info-sign'/></Button>
     );
     const addNewBtn = (
-      <Button bsStyle={'primary'} onClick={onNewEntryAdded}>
+      <Button key={'addNewBtn'} bsStyle={'primary'} onClick={onNewEntryAdded}>
         <Glyphicon glyph='glyphicon glyphicon-plus-sign'/> Создать
       </Button>);
 
     const deleteBtn = (
-      <Button bsStyle={'danger'} onClick={onDelete}>
+      <Button key={'deleteBtn'} bsStyle={'danger'} onClick={onDelete}>
         <Glyphicon glyph='glyphicon glyphicon-trash'/> Удалить
       </Button>
     );
     const duplicateBtn = [
-      <Button bsStyle={'primary'} onClick={onDuplicate} disabled={duplicateDisabled}><Glyphicon
+      <Button key={'duplicateBtn'}
+              bsStyle={'primary'} onClick={onDuplicate} disabled={duplicateDisabled}><Glyphicon
         glyph={'glyphicon glyphicon-duplicate'}/> Клонировать</Button>
     ];
 
     return (
-      <div style={{
+      <div
+        key={'container'}
+        style={{
         ...style,
         position: 'relative',
         backgroundColor: '#EEE',
@@ -63,7 +66,7 @@ class Toolbar extends React.Component {
             </ButtonToolbar>
           </Col>
         </Row>
-        {additionalElement && [<div style={{height: '10px'}}/>, additionalElement]}
+        {additionalElement && [<div key={'spacer'} style={{height: '10px'}}/>, additionalElement]}
       </div>
     )
   }
