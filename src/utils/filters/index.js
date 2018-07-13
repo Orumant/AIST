@@ -22,3 +22,7 @@ export const addObjectToObject = (obg_to_add, main_obj) => {
   Object.keys(obg_to_add).map(key => main_obj[key] = obg_to_add[key]);
   return main_obj
 };
+
+export const getCommonStands = () => {
+
+}

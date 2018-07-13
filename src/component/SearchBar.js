@@ -7,7 +7,7 @@ import {Button} from "react-bootstrap";
 class SearchBar extends React.Component {
 
   render () {
-    const {button, dataLenght, ...others} = this.props;
+    const {button, dataLenght, openChainsForm, ...others} = this.props;
     return (
       <div className={'search-params'}>
         <div className={'search-box'}>
@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
          {button}
        </div>
         <div className={'search-box'}>
-         <Button block>Подобрать цепочки по маркеру</Button>
+         <Button block onClick={openChainsForm}>Подобрать цепочки по маркеру</Button>
         </div>
       </div>
     )

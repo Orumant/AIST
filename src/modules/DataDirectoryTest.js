@@ -18,7 +18,7 @@ export const updateRequest = (request) => ({
 
 
 export const updateRequestAndOrders = (part, request_old) => (dispatch, getState) => {
-  const request = dispatch(updateRequestBody(part, request_old))
+  const request = dispatch(updateRequestBody(part, request_old));
   dispatch(fetchOrders(request))
 };
 

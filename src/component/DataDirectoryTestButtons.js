@@ -1,6 +1,7 @@
 import React from 'react'
-import {Button} from "react-bootstrap";
+import {Button, OverlayTrigger, Popover} from "react-bootstrap";
 import {BACKEND_URL} from "../constants/endpoints";
+import TestTagsPopup from "../containers/TestTagsPopup";
 
 export const goArchiveBtn = (onChange, request) =>
   <Button block onClick={() => onChange({locked: true}, request)}>Перейти в архив</Button>;
@@ -47,5 +48,11 @@ const unlockOrderButton = (unlock, id_order, request) => {
 export const RenderOrderDetails = (openWindow) => (cell, row, rowIndex) => {
   return (
         <a href onClick={() => openWindow(row.id_order)}>{row.id_order}</a>
+  )
+}
+
+export const RenderTestsDetails = (cell, row, rowIndex) => {
+  return (
+    row.tests.map(test => <TestTagsPopup test_id={test}/>)
   )
 }

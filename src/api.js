@@ -342,8 +342,8 @@ export const fetchGroupsForMembers = () => (dispatch) => {
 export const validateForm = (chainName, chain, idx) => (dispatch) => {
   let result = true;
   let tempArr = [];
-  if (chain.fields.length > 0 && !isObjectEmpty(chain.fields)) {
-    for (let field of chain.fields) {
+  if (chain.form.length > 0 && !isObjectEmpty(chain.form)) {
+    for (let field of chain.form) {
       let validation = [];
       delete field.validation;
       if (tempArr.indexOf(field.paramName) !== -1 && field.paramName !== '') {
@@ -588,6 +588,7 @@ export const submitFormTemplate = (params) => (dispatch) => {
 
 export const getDictionaryData = (dictionary, onSuccess) => (dispatch) => {
   const url = `${BACKEND_URL}/dictionaries/${dictionary}`;
+  console.log(url)
 
   axios.get(url).then(function (response) {
     dispatch(onSuccess(response.data))

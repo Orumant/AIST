@@ -290,7 +290,7 @@ class TestsList extends React.Component {
           additionalElement={this.renderSearches()}
         />
         <Row>
-          <ListGroup style={{marginLeft: -5, marginRight: -5, maxHeight: '1080px', overflow: 'auto'}}>
+          <ListGroup style={{marginLeft: -5, marginRight: -5, maxHeight: '700px', overflow: 'auto'}}>
             {filteredTests !== undefined ? this.renderTestsList() : null}
           </ListGroup>
         </Row>
