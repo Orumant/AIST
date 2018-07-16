@@ -23,7 +23,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import './styles/main.css';
 import PersonalPage from "./containers/PersonalPage";
-import ResultsPage from "./pages/Results/index";
+import ResultsPage from "./containers/Results";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

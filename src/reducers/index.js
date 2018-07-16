@@ -13,6 +13,7 @@ import dataDirectory from './dataDirectory'
 import dataAuthorization from './dataAuthorization'
 import dataPersonal from "./dataPersonal";
 import testList from "./testList";
+import ResultsReducer from "../modules/Results";
 
 
 const rootReducer = combineReducers({
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   notifications,
   dataDirectory,
   testList,
+  ResultsReducer,
 });
 
 export default rootReducer

@@ -2,6 +2,7 @@ import React from 'react'
 import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, {textFilter, selectFilter} from 'react-bootstrap-table2-filter';
+import BootstrapTable from 'react-bootstrap-table-next';
 
 class TestsTable extends React.Component {
 
@@ -40,7 +41,7 @@ class TestsTable extends React.Component {
         })
 
       }, {
-        dataField: 'displayed_status',
+        dataField: 'status',
         text: 'Текущий статус:',
         sort: true,
         formatter: this.renderBuildStatusRef,

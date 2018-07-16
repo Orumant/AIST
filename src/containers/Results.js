@@ -1,17 +1,19 @@
 import {connect} from 'react-redux'
 import {getPublicKeyRegistration} from "../api";
 import ResultsPage from "../pages/Results/index";
+import {updateRequestAndOrders} from "../modules/Results";
 
 function mapStateToProps(state) {
   return {
-    orders: state,
+    orders: state.ResultsReducer.data || [],
+    request: state.ResultsReducer.request || {},
     notifications: state.notifications,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    ReqistrationButtonClick : (payload) => dispatch(getPublicKeyRegistration(payload)),
+    updateRequestAndOrders: (part, request) => dispatch(updateRequestAndOrders(part, request)),
   }
 }
 
