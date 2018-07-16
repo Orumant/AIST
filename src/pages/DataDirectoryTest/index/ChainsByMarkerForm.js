@@ -1,6 +1,6 @@
 import React from 'react'
 import {Button, Modal} from "react-bootstrap";
-import ChainsTable from "../containers/ChainsTable";
+import ChainsTable from "../../../containers/ChainsTable";
 
 
 class ChainsByMarkerForm extends React.Component {

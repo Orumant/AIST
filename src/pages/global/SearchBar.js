@@ -1,6 +1,6 @@
 import React from 'react'
 import DateForm from "./DateForm";
-import FilterChain from "../containers/FilterChain";
+import FilterChain from "../../containers/FilterChain";
 import {Button} from "react-bootstrap";
 
 

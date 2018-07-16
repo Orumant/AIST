@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import {arrayToOptions, filterTagsFromTests, optionsToArray} from "../utils/filters/index";
+import {arrayToOptions, filterTagsFromTests, optionsToArray} from "../../utils/filters/index";
 
 class FilterTag extends React.Component {
 

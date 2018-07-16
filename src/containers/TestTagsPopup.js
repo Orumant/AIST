@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import TestTagsPopup from "../component/TestTagsPopup";
+import TestTagsPopup from "../pages/DataDirectoryTest/index/ChainsByMarkerForm/ChainsTable/TestTagsPopup";
 import {fetchTags} from "../modules/TestTagsPopup";
 
 

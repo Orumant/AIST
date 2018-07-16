@@ -40,8 +40,8 @@ class DateForm extends React.Component {
     if (focusedInput !== focus) this.setState({focusedInput: focus});
     if (!focus) {
       let part = {};
-      if (startDate) part[">"] = startDate.format("YYYY.MM.DD HH:mm:SS");
-      if (endDate) part["<"] = endDate.format("YYYY.MM.DD HH:mm:SS");
+      if (startDate) part[">"] = startDate.format("YYYY.MM.DD HH:mm:ss");
+      if (endDate) part["<"] = endDate.format("YYYY.MM.DD HH:mm:ss");
       if (Object.keys(part).length === 0) part = null;
       this.props.updateRequestAndOrders({end_time: part}, this.props.request);
     }

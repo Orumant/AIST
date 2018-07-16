@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import OrdersTable from "../component/OrdersTable";
+import OrdersTable from "../pages/DataDirectoryTest/index/OrdersTable";
 import {getOrderJSON, lockOrder, unlockOrder} from "../modules/OrdersTable";
 
 function mapStateToProps(state) {

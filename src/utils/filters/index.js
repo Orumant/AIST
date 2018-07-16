@@ -23,6 +23,33 @@ export const addObjectToObject = (obg_to_add, main_obj) => {
   return main_obj
 };
 
-export const getCommonStands = () => {
+export const getCommonValues = (list, property) => {
+  const uniqueArray = getAllValuesProperty(list, property);
+  return uniqueArray.filter((value) => list.every((unit) => unit? unit[property].indexOf(value) !== -1 : false));
+}
 
+const getAllValuesProperty = (list, property) => {
+  let uniqueArray = [];
+  list.map((unit)=> unit ?
+    (Array.isArray(unit[property]) ? unit[property].map(
+      (value) => uniqueArray.indexOf(value) === -1 ? uniqueArray.push(value) : null
+    ) : (uniqueArray.indexOf(unit[property]) === -1 ? uniqueArray.push(unit[property]) : null))
+    : null);
+  return uniqueArray
+}
+
+export const getChainTests = (chain, tests) => {
+  if (tests.length > 0) {
+    const test_array = tests.map(test => test.test_id)
+    const num = chain.tests.map(test => test_array.indexOf(test))
+    const test_new = num.map(n => tests[n])
+    const stands = getCommonValues(test_new, 'stands')
+    const a_system = getAllValuesProperty(test_new, 'a_system')
+    return {...chain, stands, a_system}
+  }
+}
+
+export const  JSONwithoutBrakets = (JSON) => {
+  let string = JSON.replace(']', '')
+  return string.replace('[', '')
 }

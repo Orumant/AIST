@@ -3,7 +3,8 @@ import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
 import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
-import {RenderTestsDetails} from "./DataDirectoryTestButtons";
+import {RenderTestsDetails} from "../DataDirectoryTestButtons";
+import {getChainTests} from "../../../../utils/filters/index";
 
 
 class ChainsTable extends React.Component {
@@ -14,6 +15,9 @@ class ChainsTable extends React.Component {
   }
 
   render () {
+    // const renderChainsDetailes = (cell, row, rowIndex) => {
+    //   <span>{tags.length > 0? JSONwithoutBrakets(JSON.stringify(tags)): 'Теги не найдены'}</span>
+    // }
 
     const columns = [
       {
@@ -60,13 +64,17 @@ class ChainsTable extends React.Component {
     //   }];
 
 
-    const {chains, tests} = this.props;
-    console.log(chains, tests)
+    const {chains, tests, data} = this.props;
+    // console.log(chains, tests)
+    // const data = chains.map(chain => getChainTests(chain, tests))
+    // console.log(chains)
+    console.log(data)
+
 
     return (
       <div>
         <BootstrapTable keyField='id'
-                        data={chains}
+                        data={data}
                         columns={columns}
           // defaultSorted={defSort}
                         pagination={paginationFactory()}

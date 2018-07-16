@@ -4,13 +4,11 @@ import "react-dates/initialize"
 import "react-dates/lib/css/_datepicker.css"
 import "./style.css"
 import OrdersTable from "../../containers/OrdersTable"
-import SearchBar from "../../component/SearchBar";
-import {goArchiveBtn, goDataBtn} from "../../component/DataDirectoryTestButtons";
+import SearchBar from "../global/SearchBar";
+import {goArchiveBtn, goDataBtn} from "./index/DataDirectoryTestButtons";
 import Notifications from 'react-notification-system-redux';
 import Header from "../../components/Header";
-import {Modal} from "react-bootstrap";
-import ChainsTable from "../../containers/ChainsTable";
-import ChainsByMarkerForm from "../../component/ChainsByMarkerForm";
+import ChainsByMarkerForm from "./index/ChainsByMarkerForm";
 
 
 class DataDirectoryTest extends React.Component{

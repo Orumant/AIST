@@ -4,7 +4,7 @@ import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
 import {RenderOrderDetails, renderUseButton} from "./DataDirectoryTestButtons";
-import DataJSON from "./DataJSON";
+import DataJSON from "./OrdersTable/DataJSON";
 
 
 class OrdersTable extends React.Component {

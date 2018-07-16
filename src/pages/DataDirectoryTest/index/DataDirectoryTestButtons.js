@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button, OverlayTrigger, Popover} from "react-bootstrap";
-import {BACKEND_URL} from "../constants/endpoints";
-import TestTagsPopup from "../containers/TestTagsPopup";
+import {BACKEND_URL} from "../../../constants/endpoints";
+import TestTagsPopup from "../../../containers/TestTagsPopup";
 
 export const goArchiveBtn = (onChange, request) =>
   <Button block onClick={() => onChange({locked: true}, request)}>Перейти в архив</Button>;
@@ -52,7 +52,7 @@ export const RenderOrderDetails = (openWindow) => (cell, row, rowIndex) => {
 }
 
 export const RenderTestsDetails = (cell, row, rowIndex) => {
-  return (
+  if (row) return (
     row.tests.map(test => <TestTagsPopup test_id={test}/>)
   )
 }

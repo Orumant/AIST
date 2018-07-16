@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import FilterChain from '../component/FilterChain'
+import FilterChain from '../pages/global/FilterChain'
 import {createRequest, fetchChainsTests} from "../modules/FilterChain";
 
 
