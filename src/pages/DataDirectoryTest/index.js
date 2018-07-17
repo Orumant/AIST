@@ -2,25 +2,17 @@ import React from 'react'
 import "moment/locale/ru"
 import "react-dates/initialize"
 import "react-dates/lib/css/_datepicker.css"
-import "./style.css"
+
 import OrdersTable from "../../containers/OrdersTable"
-import SearchBar from "../global/SearchBar";
+import SearchBar from "./index/SearchBar";
 import {goArchiveBtn, goDataBtn} from "./index/DataDirectoryTestButtons";
 import Notifications from 'react-notification-system-redux';
 import Header from "../../components/Header";
 import ChainsByMarkerForm from "./index/ChainsByMarkerForm";
+import "./style.css"
 
 
 class DataDirectoryTest extends React.Component{
-
-  state = {
-    showChainsForm: false,
-  }
-
-  handleChainsForm = (val) => {
-    this.setState({showChainsForm: val})
-  }
-
 
   componentDidMount() {
     const {request, updateRequestAndOrders} = this.props;
@@ -29,7 +21,6 @@ class DataDirectoryTest extends React.Component{
 
   render() {
     const {orders, addToRequest, request, fetchOrders, updateRequestAndOrders, lockOrder, unlockOrder, notifications} = this.props;
-    const {showChainsForm} = this.state;
     const goToResource = <span>
       {!request.locked ? goArchiveBtn(updateRequestAndOrders, request): goDataBtn(updateRequestAndOrders, request)}
       </span>;
@@ -44,9 +35,8 @@ class DataDirectoryTest extends React.Component{
                    addToRequest={addToRequest}
                    request={request}
                    updateRequestAndOrders={updateRequestAndOrders}/>
-        <div className={'view-results-table'}>
-          <OrdersTable data={orders} request={request} lockOrder={lockOrder} unlockOrder={unlockOrder}/>
-          {showChainsForm? <ChainsByMarkerForm marker={request.marker} show={showChainsForm} close={() => this.handleChainsForm(false)}/>: null}
+        <div >
+          <OrdersTable data={orders} request={request} lockOrder={lockOrder} unlockOrder={unlockOrder}  updateRequestAndOrders={updateRequestAndOrders}/>
           <Notifications notifications={notifications}/>
         </div>
       </div>
