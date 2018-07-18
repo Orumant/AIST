@@ -21,6 +21,7 @@ class FilterTag extends React.Component {
       <Select
         multi
         value={selectedTag}
+        className='test-filter'
         placeholder={'Поиск данных по тегам'}
         options={options}
         onChange={this.changeTag}

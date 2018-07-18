@@ -48,7 +48,7 @@ class OrdersTable extends React.Component {
         sort: true,
       }, {
         dataField: 'id_order',
-        text: 'Взятие данных:',
+        text: 'Действия:',
         formatter: ActionButtons(this.props.request, this.props.lockOrder, this.props.unlockOrder, this.handleOpen),
         headerAlign: 'center',
         align: 'center'

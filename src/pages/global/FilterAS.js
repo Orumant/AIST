@@ -20,7 +20,6 @@ class FilterAS extends React.Component {
     const options = arrayToOptions(filterPropertyFromObjects(tests, 'a_system'));
     return (
       <Select
-        className='test-filter'
         options={options}
         placeholder={'Фильтрация тестов по АС'}
         onChange={this.changeAS}

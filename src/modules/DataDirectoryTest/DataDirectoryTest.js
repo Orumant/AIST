@@ -1,10 +1,13 @@
 import axios from 'axios';
 import {BACKEND_URL} from "../../constants/endpoints";
-import {error} from "react-notification-system-redux";
+import {error, info} from "react-notification-system-redux";
 import {getToken} from '../../globalFunc';
+import * as Notifications from "react-notification-system-redux";
 
 const ORDERS_FETCH_SUCCEED = 'ORDERS_FETCH_SUCCEED';
 const UPDATE_REQUEST = "UPDATE_REQUEST";
+
+let isFirstChange = true;
 
 export const ordersFetchSucceed = (payload) => ({
   type: ORDERS_FETCH_SUCCEED,
@@ -16,8 +19,23 @@ export const updateRequest = (request) => ({
   request
 });
 
+const infoPopup = (clearPopups) => ({
+  title: 'Не нашли что искали?',
+  message: 'В таблице отображаются только успешно прошедшие тесты. Вы можете запустить нужную цепочку',
+  position: 'bl',
+  autoDismiss: 0,
+  action: {
+    label: 'Здесь',
+    callback: () => {window.open("#/launcher", "_self"); clearPopups()},
+  }
+})
+
 
 export const updateRequestAndOrders = (part, request_old) => (dispatch, getState) => {
+  if (isFirstChange && Object.keys(request_old).length > 0) {
+    dispatch(info(infoPopup(Notifications.removeAll())));
+    isFirstChange = false;
+  }
   const request = dispatch(updateRequestBody(part, request_old));
   dispatch(fetchOrders(request))
 };
