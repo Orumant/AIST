@@ -2,13 +2,13 @@ import React from 'react'
 import "moment/locale/ru"
 import "react-dates/initialize"
 import "react-dates/lib/css/_datepicker.css"
-
-import OrdersTable from "../../containers/DataDirectoryTest/OrdersTable"
 import SearchBar from "./index/SearchBar";
-import {goArchiveBtn, goDataBtn} from "./index/OrdersTable/ActionButtons";
+import ArchiveCatalogTabs from "./index/ArchiveCatalogTabs";
+import {goArchiveBtn, goDataBtn} from "./index/ArchiveCatalogTabs/OrdersTable/ActionButtons";
 import Notifications from 'react-notification-system-redux';
 import Header from "../../components/Header";
 import "./style.css"
+
 
 
 class DataDirectoryTest extends React.Component{
@@ -41,7 +41,7 @@ class DataDirectoryTest extends React.Component{
                    addToRequest={addToRequest}
                    request={request}
                    updateRequestAndOrders={updateRequestAndOrders}/>
-        <OrdersTable data={orders} request={request} lockOrder={lockOrder} unlockOrder={unlockOrder}  updateRequestAndOrders={updateRequestAndOrders}/>
+        <ArchiveCatalogTabs data={orders} request={request} lockOrder={lockOrder} unlockOrder={unlockOrder}  updateRequestAndOrders={updateRequestAndOrders}/>
         <Notifications notifications={notifications}/>
       </div>
     )

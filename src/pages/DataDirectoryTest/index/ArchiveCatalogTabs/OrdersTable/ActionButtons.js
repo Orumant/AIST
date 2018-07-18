@@ -1,11 +1,11 @@
 import React from 'react'
 import {Button} from "react-bootstrap";
-import {BACKEND_URL} from "../../../../constants/endpoints";
+import {BACKEND_URL} from "../../../../../constants/endpoints";
 
 export const ActionButtons = (request, lockOrder, unlockOrder, openWindow) => (cell, row, rowIndex) => {
   return (
     <span>
-      {previewButton(openWindow, row.id_order)}
+      {!request.locked ? previewButton(openWindow, row.id_order) : null}
       {useButton(request, lockOrder, unlockOrder, row.id_order)}
     </span>
   )
