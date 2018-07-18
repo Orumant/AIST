@@ -1,7 +1,7 @@
-import {BACKEND_URL} from "../constants/endpoints";
+import {BACKEND_URL} from "../../constants/endpoints";
 import {error, success} from "react-notification-system-redux";
 import axios from 'axios';
-import {getToken} from '../globalFunc';
+import {getToken} from '../../globalFunc';
 import {fetchOrders} from "./DataDirectoryTest";
 
 const GET_ORDER_DATA_JSON = "GET_ORDER_DATA_JSON"

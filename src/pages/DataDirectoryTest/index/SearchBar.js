@@ -1,18 +1,21 @@
 import React from 'react'
 import DateForm from "../../global/DateForm";
-import FilterChain from "../../../containers/FilterChain";
-import {Button} from "react-bootstrap";
+import FilterChain from "../../../containers/global/FilterChain";
+import FilterForm from "../../../containers/global/FilterForm";
 
 
 class SearchBar extends React.Component {
 
   render () {
-    const {button, dataLenght, openChainsForm, ...others} = this.props;
+    const {dataLength, ...others} = this.props;
     return (
       <div className={'search-params'}>
         <FilterChain {...others}/>
         <DateForm {...others}/>
-        <div>Количество записей по выбранному маркеру: <b>{dataLenght}</b></div>
+        <div className={'search-additional'}>
+          <FilterForm {...others}/>
+        </div>
+        <div>Количество записей по выбранному маркеру: <b>{dataLength}</b></div>
       </div>
     )
   }

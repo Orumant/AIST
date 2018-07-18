@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {BACKEND_URL} from "../constants/endpoints";
+import {BACKEND_URL} from "../../constants/endpoints";
 import {error} from "react-notification-system-redux";
-import {getToken} from '../globalFunc';
+import {getToken} from '../../globalFunc';
 
 const TAGS_FETCH_SUCCEED = 'TAGS_FETCH_SUCCEED';
 const TAGS_FETCH_FAILED = 'TAGS_FETCH_FAILED';

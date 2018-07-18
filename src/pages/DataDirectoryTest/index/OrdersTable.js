@@ -3,7 +3,7 @@ import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
 import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
-import {RenderOrderDetails, renderUseButton} from "./DataDirectoryTestButtons";
+import {ActionButtons, RenderOrderDetails, renderUseButton} from "./OrdersTable/ActionButtons";
 import DataJSON from "./OrdersTable/DataJSON";
 import {Tab, Tabs} from "react-bootstrap";
 
@@ -38,7 +38,6 @@ class OrdersTable extends React.Component {
       {
         dataField: 'id_order',
         text: 'ID заявки:',
-        formatter: RenderOrderDetails(this.handleOpen),
         sort: true,
       }, {
         dataField: 'chain_name',
@@ -55,7 +54,7 @@ class OrdersTable extends React.Component {
       }, {
         dataField: 'id_order',
         text: 'Взятие данных:',
-        formatter: renderUseButton(this.props.request, this.props.lockOrder, this.props.unlockOrder),
+        formatter: ActionButtons(this.props.request, this.props.lockOrder, this.props.unlockOrder, this.handleOpen),
         align: 'center'
       }
     ];
@@ -68,7 +67,6 @@ class OrdersTable extends React.Component {
 
      const {isOrderData, key} = this.state;
      const {data, order_data} = this.props;
-     console.log('atatat')
 
      return (
        <div className={'view-results-table'}>

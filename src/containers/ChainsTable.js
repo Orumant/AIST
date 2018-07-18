@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {fetchChainsTestsByMarker} from "../modules/ChainsTable";
+import {fetchChainsTestsByMarker} from "../modules/DataDirectoryTest/ChainsTable";
 import ChainsTable from "../pages/DataDirectoryTest/index/ChainsByMarkerForm/ChainsTable";
 
 

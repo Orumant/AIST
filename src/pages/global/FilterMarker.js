@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import {arrayToOptions, filterMarkersFromChains} from "../../utils/filters/index";
+import {arrayToOptions, filterPropertyFromObjects} from "../../utils/filters/index";
 
 class FilterMarker extends React.Component {
 
@@ -17,7 +17,7 @@ class FilterMarker extends React.Component {
   render ()  {
     const {selectedMarker} = this.state;
     const {chains} = this.props;
-    const options = arrayToOptions(filterMarkersFromChains(chains));
+    const options = arrayToOptions(filterPropertyFromObjects(chains, 'marker'));
     return (
       <Select
         className='test-filter'

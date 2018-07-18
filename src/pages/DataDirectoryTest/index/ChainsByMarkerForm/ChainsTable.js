@@ -3,7 +3,7 @@ import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
 import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
-import {RenderTestsDetails} from "../DataDirectoryTestButtons";
+import {RenderTestsDetails} from "../OrdersTable/ActionButtons";
 import {getChainTests} from "../../../../utils/filters/index";
 
 

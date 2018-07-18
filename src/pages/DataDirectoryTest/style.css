@@ -23,7 +23,15 @@
   border-width: 0px 0px 0px 1px !important;
   border-radius: 0 !important;
 }
-
 .nav.nav-tabs::after {
   clear: none;
 }
+.search-additional {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.search-select {
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+

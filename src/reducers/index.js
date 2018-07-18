@@ -13,11 +13,13 @@ import dataDirectory from './dataDirectory'
 import dataAuthorization from './dataAuthorization'
 import dataPersonal from "./dataPersonal";
 import testList from "./testList";
-import dataDirectoryTestReducer from "../modules/DataDirectoryTest";
-import filterChainReducer from "../modules/FilterChain";
-import ordersTable from "../modules/OrdersTable"
-import chainsTableReducer from "../modules/ChainsTable";
-import testTagsPopupReducer from "../modules/TestTagsPopup";
+import dataDirectoryTestReducer from "../modules/DataDirectoryTest/DataDirectoryTest";
+import filterChainReducer from "../modules/global/FilterChain";
+import ordersTable from "../modules/DataDirectoryTest/OrdersTable"
+import chainsTableReducer from "../modules/DataDirectoryTest/ChainsTable";
+import testTagsPopupReducer from "../modules/DataDirectoryTest/TestTagsPopup";
+import filterStandReducer from "../modules/global/FilterStand";
+import filterFormReducer from "../modules/global/FilterForm";
 
 
 const rootReducer = combineReducers({
@@ -40,6 +42,8 @@ const rootReducer = combineReducers({
   ordersTable,
   chainsTableReducer,
   testTagsPopupReducer,
+  filterStandReducer,
+  filterFormReducer,
 });
 
 export default rootReducer

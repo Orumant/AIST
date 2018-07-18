@@ -6,8 +6,8 @@ export const arrayToOptions = (array) => {
   return array.map((value, index) => {return {label: value, value: index}})
 };
 
-export const filterMarkersFromChains = (chains) => {
-  return chains.map((chain) => chain.marker).filter((marker, ind, array) => array.indexOf(marker) === ind)
+export const filterPropertyFromObjects = (objects, property) => {
+  return objects.map((object) => object[property]).filter((val, ind, array) => array.indexOf(val) === ind)
 };
 
 export const filterTagsFromTests = (tests) => {

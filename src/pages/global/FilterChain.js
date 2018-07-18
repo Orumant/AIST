@@ -1,6 +1,9 @@
 import React from 'react'
 import FilterMarker from "./FilterMarker";
 import FilterTag from "./FilterTag";
+import FilterAS from "./FilterAS";
+import FilterStand from "../../containers/global/FilterStand";
+import FilterForm from "./FilterForm";
 
 class FilterChain extends React.Component {
 

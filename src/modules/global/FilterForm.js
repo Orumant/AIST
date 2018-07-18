@@ -1,7 +1,7 @@
-import {BACKEND_URL} from "../constants/endpoints";
+import {BACKEND_URL} from "../../constants/endpoints";
 import {error} from "react-notification-system-redux";
 import axios from 'axios';
-import {getToken, isObjectEmpty, setCurrentUser} from '../globalFunc';
+import {getToken} from '../../globalFunc';
 
 
 const FETCH_FILTERS_CHAINS = 'FETCH_FILTERS_CHAINS';
@@ -45,7 +45,7 @@ const initialState = {
   tests: [],
 };
 
-const filterChainReducer = (state = initialState, action) => {
+const filterFormReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_FILTERS_CHAINS: {
       return {
@@ -62,4 +62,4 @@ const filterChainReducer = (state = initialState, action) => {
   }
 };
 
-export default filterChainReducer
+export default filterFormReducer

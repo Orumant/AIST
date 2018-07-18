@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {BACKEND_URL} from "../constants/endpoints";
+import {BACKEND_URL} from "../../constants/endpoints";
 import {error} from "react-notification-system-redux";
-import {getToken} from '../globalFunc';
-import {getChainTests} from "../utils/filters/index";
+import {getToken} from '../../globalFunc';
+import {getChainTests} from "../../utils/filters/index";
 
 const FILTER_CHAINS_FETCH_SUCCEED = 'FILTER_CHAINS_FETCH_SUCCEED';
 const TESTS_FETCH_SUCCEED = 'TESTS_FETCH_SUCCEED';

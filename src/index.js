@@ -12,8 +12,8 @@ import ChainEditorPage from './containers/ChainEditorPage';
 import FormBuilderPage from "./containers/FormBuilderPage";
 import TestBuilder from "./containers/TestBuilder";
 import DataDirectoryPage from "./containers/DataDirectoryPage";
-import DataDirectoryTest from "./containers/DataDirectoryTest";
-import FilterChain from "./containers/FilterChain"
+import DataDirectoryTest from "./containers/DataDirectoryTest/DataDirectoryTest";
+import FilterChain from "./containers/global/FilterChain"
 
 import DataTemplatesBuilderPage from "./containers/DataTemplates";
 import AuthorizationPage from "./containers/AuthorizationPage"

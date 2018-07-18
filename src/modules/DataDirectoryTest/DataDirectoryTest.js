@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {BACKEND_URL} from "../constants/endpoints";
+import {BACKEND_URL} from "../../constants/endpoints";
 import {error} from "react-notification-system-redux";
-import {getToken} from '../globalFunc';
+import {getToken} from '../../globalFunc';
 
 const ORDERS_FETCH_SUCCEED = 'ORDERS_FETCH_SUCCEED';
 const UPDATE_REQUEST = "UPDATE_REQUEST";
@@ -18,6 +18,7 @@ export const updateRequest = (request) => ({
 
 
 export const updateRequestAndOrders = (part, request_old) => (dispatch, getState) => {
+  console.log(part)
   const request = dispatch(updateRequestBody(part, request_old));
   dispatch(fetchOrders(request))
 };
@@ -38,6 +39,7 @@ const updateRequestBody = (part, request) => (dispatch) => {
 export const fetchOrders = (request) => (dispatch) => {
   const url = `${BACKEND_URL}/orders/filter`;
   const header = {headers: {SessionID: getToken()}};
+  console.log(request)
   console.log(request)
   axios.post(url, request, header).then(function (response) {
     dispatch(ordersFetchSucceed(response.data));
