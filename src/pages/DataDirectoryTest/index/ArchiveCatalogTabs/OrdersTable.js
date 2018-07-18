@@ -12,7 +12,6 @@ class OrdersTable extends React.Component {
 
   state = {
     isOrderData: false,
-    key: 1,
   };
 
   changeOrderDataStatus = (val) => {
@@ -24,37 +23,34 @@ class OrdersTable extends React.Component {
     this.changeOrderDataStatus(true)
   };
 
-  handleSelect = (key) => {
-    const {updateRequestAndOrders, request} = this.props;
-    if (key === 1) updateRequestAndOrders({locked: false}, request)
-    else updateRequestAndOrders({locked: true}, request)
-    this.setState({key})
-  };
-
-
    render () {
 
     const columns = [
       {
         dataField: 'id_order',
         text: 'ID заявки:',
+        headerAlign: 'center',
         sort: true,
       }, {
         dataField: 'chain_name',
         text: 'Имя цепочки:',
+        headerAlign: 'center',
         sort: true,
       }, {
         dataField: 'end_time',
         text: 'Время создания',
+        headerAlign: 'center',
         sort: true,
       }, {
         dataField: 'tags',
         text: 'Теги',
+        headerAlign: 'center',
         sort: true,
       }, {
         dataField: 'id_order',
         text: 'Взятие данных:',
         formatter: ActionButtons(this.props.request, this.props.lockOrder, this.props.unlockOrder, this.handleOpen),
+        headerAlign: 'center',
         align: 'center'
       }
     ];
@@ -65,39 +61,20 @@ class OrdersTable extends React.Component {
          order: 'desc'
        }];
 
-     const {isOrderData, key} = this.state;
+     const {isOrderData} = this.state;
      const {data, order_data} = this.props;
 
      return (
-       <div className={'view-results-table'}>
-         <Tabs
-           activeKey={key}
-           onSelect={this.handleSelect}>
-           <Tab eventKey={1} title="Реестр">
-             <div>
-            <BootstrapTable keyField='id'
-                       data={data}
-                       columns={columns}
-                       defaultSorted={defSort}
-                       pagination={paginationFactory()}
-                       noDataIndication={"Нет данных по запросу"}
-                       filter={filterFactory()}
-                       striped
-                       overlay={overlayFactory()}/>
-             </div>
-           </Tab>
-           <Tab eventKey={2} title="Архив">
-             <BootstrapTable keyField='id'
-                             data={data}
-                             columns={columns}
-                             defaultSorted={defSort}
-                             pagination={paginationFactory()}
-                             noDataIndication={"Нет данных по запросу"}
-                             filter={filterFactory()}
-                             striped
-                             overlay={overlayFactory()}/>
-           </Tab>
-         </Tabs>
+       <div>
+        <BootstrapTable keyField='id'
+                   data={data}
+                   columns={columns}
+                   defaultSorted={defSort}
+                   pagination={paginationFactory()}
+                   noDataIndication={"Нет данных по запросу"}
+                   filter={filterFactory()}
+                   striped
+                   overlay={overlayFactory()}/>
          {isOrderData ? <DataJSON data={order_data} close={() => this.changeOrderDataStatus(false)}/> : null}
        </div>
      )
