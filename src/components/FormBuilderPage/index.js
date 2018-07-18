@@ -57,7 +57,6 @@ class FormBuilderPage extends Component {
   componentWillUpdate(nextProps, prevProps) {
     const {formBuilderChains, match: {params: {chainIndex}}} = nextProps;
     if (chainIndex && formBuilderChains.length > 0 && chainIndex !== prevProps.chainIndex) {
-      console.log(formBuilderChains);
       if (formBuilderChains[chainIndex].form.findIndex(field => {
           return field.type === 'NoForm';
         }) === -1) {

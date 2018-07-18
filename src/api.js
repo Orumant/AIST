@@ -588,8 +588,6 @@ export const submitFormTemplate = (params) => (dispatch) => {
 
 export const getDictionaryData = (dictionary, onSuccess) => (dispatch) => {
   const url = `${BACKEND_URL}/dictionaries/${dictionary}`;
-  console.log(url)
-
   axios.get(url).then(function (response) {
     dispatch(onSuccess(response.data))
   }).catch(function (response) {
@@ -678,7 +676,6 @@ export const fetchOrdersByParam = (dateStart, dateEnd) => (dispatch, getState) =
 const fetchOrders = (url, dispatch)  => {
   const header = {headers: {SessionID: getToken()}};
   axios.get(url, header).then(function (response) {
-    console.log(response.data)
     dispatch(ordersFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));

@@ -15,7 +15,6 @@ const initialState = {
 const formBuilderReducer = (state = initialState, action) => {
   switch (action.type) {
     case FORM_BUILDER_CHAINS_FETCH_SUCCEED: {
-      console.log(action)
       const formattedChains = action.payload.map( chain => {
         if ((chain.form.length === 1) &&(isObjectEmpty(chain.form[0]))){
           chain.form[0] = {type: 'NoForm'};

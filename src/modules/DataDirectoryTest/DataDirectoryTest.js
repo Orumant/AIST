@@ -18,7 +18,6 @@ export const updateRequest = (request) => ({
 
 
 export const updateRequestAndOrders = (part, request_old) => (dispatch, getState) => {
-  console.log(part)
   const request = dispatch(updateRequestBody(part, request_old));
   dispatch(fetchOrders(request))
 };
@@ -39,8 +38,6 @@ const updateRequestBody = (part, request) => (dispatch) => {
 export const fetchOrders = (request) => (dispatch) => {
   const url = `${BACKEND_URL}/orders/filter`;
   const header = {headers: {SessionID: getToken()}};
-  console.log(request)
-  console.log(request)
   axios.post(url, request, header).then(function (response) {
     dispatch(ordersFetchSucceed(response.data));
   }).catch(function (response) {

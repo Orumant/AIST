@@ -26,7 +26,7 @@ class DataDirectoryTest extends React.Component{
     autoDismiss: 0,
     action: {
       label: 'Здесь',
-      callback: () => {window.open("#/launcher", "_self"); this.props.clearPopups()},
+      callback: () => {window.location.hash = "#/launcher"; this.props.clearPopups()},
     }
   }
 
