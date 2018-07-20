@@ -40,17 +40,15 @@ class FilterForm extends React.Component {
       return [
         <InputGroup>
         <InputGroup.Addon>Фильтры:</InputGroup.Addon>
-            <ButtonGroup block>
-              <ToggleButtonGroup type='checkbox' name='searchesSwitcher' value={this.state.selectedFilter}
-                                 onChange={searchType => this.setState({selectedFilter: searchType})} block>
-                <ToggleButton style={{borderRadius: '0'}} value={'as'}>АС</ToggleButton>
-                <ToggleButton value={'stand'}>Контуру</ToggleButton>
-              </ToggleButtonGroup>
-              {this.state.selectedFilter.length > 0
-                ? <Button bsStyle='danger'
-                          onClick={this.clearFilter}>Сброс</Button>
-                : null}
-            </ButtonGroup>
+          <ToggleButtonGroup type='checkbox' name='searchesSwitcher' value={this.state.selectedFilter}
+                             onChange={searchType => this.setState({selectedFilter: searchType})} block>
+            <ToggleButton style={{borderRadius: '0'}} value={'as'}>АС</ToggleButton>
+            <ToggleButton value={'stand'}>Контуру</ToggleButton>
+          {this.state.selectedFilter.length > 0
+            ? <Button bsStyle='danger'
+                      onClick={this.clearFilter}>Сброс</Button>
+            : null}
+          </ToggleButtonGroup>
           </InputGroup>,
         <div className='search-select'>{this.renderSearches()}</div>
       ]
