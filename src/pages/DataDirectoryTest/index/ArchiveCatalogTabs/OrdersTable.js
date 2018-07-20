@@ -6,6 +6,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import {ActionButtons, RenderOrderDetails, renderUseButton} from "./OrdersTable/ActionButtons";
 import DataJSON from "./OrdersTable/DataJSON";
 import {Tab, Tabs} from "react-bootstrap";
+import {JSONwithoutBrakets} from "../../../../utils/filters/index";
 
 
 class OrdersTable extends React.Component {
@@ -25,7 +26,9 @@ class OrdersTable extends React.Component {
 
    render () {
 
-    const columns = [
+     const renderTags = (cell, row, rowIndex) => <span>{JSONwithoutBrakets(JSON.stringify(cell))}</span>
+
+     const columns = [
       {
         dataField: 'id_order',
         text: 'ID заявки:',
@@ -45,6 +48,7 @@ class OrdersTable extends React.Component {
         dataField: 'tags',
         text: 'Теги',
         headerAlign: 'center',
+        formatter: renderTags,
         sort: true,
       }, {
         dataField: 'id_order',
