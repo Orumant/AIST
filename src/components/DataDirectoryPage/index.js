@@ -11,7 +11,7 @@ import Header from "../Header";
 import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import moment from "moment";
-import filterFactory, {textFilter, selectFilter} from 'react-bootstrap-table2-filter';
+import filterFactory, {textFilter} from 'react-bootstrap-table2-filter';
 import Select from 'react-select';
 import './style.css';
 
@@ -115,7 +115,7 @@ class DataDirectoryPage extends React.Component {
           bsStyle="success"
           bsSize="medium"
           title="Получение данных по заявке"
-          disabled={row.f_used != "0"}
+          disabled={row.f_used !== "0"}
         >Использовать
       </Button>
       </span>

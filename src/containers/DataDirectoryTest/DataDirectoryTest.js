@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import DataDirectoryTest from '../../pages/DataDirectoryTest/index'
-import {updateRequestAndOrders} from "../../modules/DataDirectoryTest/DataDirectoryTest";
-import {lockOrder, unlockOrder} from "../../modules/DataDirectoryTest/OrdersTable";
+import {updateRequestAndOrders} from "../../modules/DataDirectoryTest/DataDirectoryTest/operations";
+import {lockOrder, unlockOrder} from "../../modules/DataDirectoryTest/OrdersTable/operations";
 
 
 function mapStateToProps(state) {

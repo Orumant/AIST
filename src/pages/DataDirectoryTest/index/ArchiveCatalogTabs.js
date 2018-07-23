@@ -1,8 +1,4 @@
 import React from 'react'
-import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
-import overlayFactory from 'react-bootstrap-table2-overlay';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import BootstrapTable from 'react-bootstrap-table-next';
 import {Tab, Tabs} from "react-bootstrap";
 import OrdersTable from "../../../containers/DataDirectoryTest/OrdersTable";
 
@@ -27,12 +23,13 @@ class ArchiveCatalogTabs extends React.Component {
     return (
       <div className={'view-results-table'}>
         <Tabs
+          id={'ArchiveCatalogTabs'}
           activeKey={key}
           onSelect={this.handleSelect}>
-          <Tab eventKey={1} title="Реестр">
+          <Tab id_order={'1'} eventKey={1} title="Реестр">
             <OrdersTable {...props}/>
           </Tab>
-          <Tab eventKey={2} title="Архив">
+          <Tab id_order={'2'} eventKey={2} title="Архив">
             <OrdersTable {...props}/>
           </Tab>
         </Tabs>

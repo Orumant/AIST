@@ -3,9 +3,7 @@ import "moment/locale/ru"
 import "react-dates/initialize"
 import "react-dates/lib/css/_datepicker.css"
 
-import OrdersTable from "../../containers/DataDirectoryTest/OrdersTable"
 import SearchBar from "./index/SearchBar";
-import {goArchiveBtn, goDataBtn} from "./index/ArchiveCatalogTabs/OrdersTable/ActionButtons";
 import Notifications from 'react-notification-system-redux';
 import Header from "../../components/Header";
 import "./style.css"

@@ -1,5 +1,5 @@
 import {BACKEND_URL} from "../../constants/endpoints";
-import {error, success} from "react-notification-system-redux";
+import {error} from "react-notification-system-redux";
 import axios from 'axios';
 import {getToken} from '../../globalFunc';
 

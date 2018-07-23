@@ -13,11 +13,11 @@ import dataDirectory from './dataDirectory'
 import dataAuthorization from './dataAuthorization'
 import dataPersonal from "./dataPersonal";
 import testList from "./testList";
-import dataDirectoryTestReducer from "../modules/DataDirectoryTest/DataDirectoryTest";
 import filterChainReducer from "../modules/global/FilterChain";
-import ordersTable from "../modules/DataDirectoryTest/OrdersTable"
+import ordersTable from "../modules/DataDirectoryTest/OrdersTable/index"
 import filterStandReducer from "../modules/global/FilterStand";
 import filterFormReducer from "../modules/global/FilterForm";
+import dataDirectoryTestReducer from "../modules/DataDirectoryTest/DataDirectoryTest/index"
 
 
 const rootReducer = combineReducers({

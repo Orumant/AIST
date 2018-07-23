@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import FilterChain from '../../pages/global/FilterChain'
-import {createRequest, fetchChainsTests} from "../../modules/global/FilterChain";
+import {fetchChainsTests} from "../../modules/global/FilterChain";
 
 
 function mapStateToProps(state) {

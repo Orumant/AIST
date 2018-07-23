@@ -12,7 +12,7 @@ class DataJSON extends React.Component {
           <Modal.Header>
             <Modal.Title>Данные по заявке</Modal.Title>
           </Modal.Header>
-          <Modal.Body style={{'-webkit-user-select': 'none'}}>
+          <Modal.Body style={{'WebkitUserSelect': 'none'}}>
             <span style={{color: 'red'}}>Внимание! Данные отображаются для просмотра.</span>
             <span>Просим не использовать данные, если вы собираетесь их модифицировать.
               Для использования нажмите кнопку "Использовать" в таблице</span>

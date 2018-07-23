@@ -21,7 +21,9 @@ const lockOrderButton = (lock, id_order, request) => {
     <span>
           <Button
             href={`${BACKEND_URL}/objects/${id_order}/csv`}
-            bsStyle="action btn-primary btn-sm"
+            bsStyle="primary"
+            bsSize="sm"
+            className="action"
             title="Получение данных по заявке"
             onClick={() => lock(id_order, request)}
           >Использовать
@@ -34,7 +36,9 @@ const unlockOrderButton = (unlock, id_order, request) => {
   return (
     <span>
           <Button
-            bsStyle="action btn-primary btn-sm"
+            bsStyle="primary"
+            bsSize="sm"
+            className="action"
             title="Вернуть в реестр"
             onClick={() => unlock(id_order, request)}
           >Вернуть в реестр
@@ -46,7 +50,9 @@ const unlockOrderButton = (unlock, id_order, request) => {
 export const previewButton = (openWindow, id_order) => {
   return (
     <Button
-      bsStyle="action btn-primary btn-sm"
+      bsStyle="primary"
+      bsSize="sm"
+      className="action"
       title="Предпросмотр"
       onClick={() => openWindow(id_order)}
     >Предпросмотр

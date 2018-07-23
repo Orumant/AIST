@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import OrdersTable from "../../pages/DataDirectoryTest/index/ArchiveCatalogTabs/OrdersTable";
-import {getOrderJSON, lockOrder, unlockOrder} from "../../modules/DataDirectoryTest/OrdersTable";
+import {getOrderJSON} from "../../modules/DataDirectoryTest/OrdersTable/operations";
 
 function mapStateToProps(state) {
   return {

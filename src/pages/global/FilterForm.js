@@ -1,9 +1,7 @@
 import React from 'react'
-import FilterMarker from "./FilterMarker";
-import FilterTag from "./FilterTag";
 import FilterAS from "./FilterAS";
 import FilterStand from "../../containers/global/FilterStand";
-import {Button, ButtonGroup, ButtonToolbar, InputGroup, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
+import {Button, InputGroup, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 
 class FilterForm extends React.Component {
 
@@ -26,10 +24,12 @@ class FilterForm extends React.Component {
     let searches = [];
     const {selectedFilter} = this.state;
     if (selectedFilter.length > 0) {
-      selectedFilter.map( (searchType) => {
+      selectedFilter.forEach((searchType) => {
         switch (searchType) {
-          case 'as': {searches.push(<FilterAS tests={tests} {...others}/>); break}
-          case 'stand': {searches.push(<FilterStand tests={tests} {...others}/>); break}
+          case 'as': {searches.push(<FilterAS  key={'system-filter'} tests={tests} {...others}/>); break}
+          case 'stand': {searches.push(<FilterStand  key={'stand-filter'} tests={tests} {...others}/>); break}
+          default:
+            return null
         }
       })
     }
@@ -38,19 +38,19 @@ class FilterForm extends React.Component {
 
     render() {
       return [
-        <InputGroup>
-        <InputGroup.Addon>Фильтры:</InputGroup.Addon>
-          <ToggleButtonGroup type='checkbox' name='searchesSwitcher' value={this.state.selectedFilter}
-                             onChange={searchType => this.setState({selectedFilter: searchType})} block>
-            <ToggleButton style={{borderRadius: '0'}} value={'as'}>АС</ToggleButton>
+        <InputGroup key={'additional-filters-form'}>
+        <InputGroup.Addon >Фильтры:</InputGroup.Addon>
+          <ToggleButtonGroup type='checkbox' name='filterSwitch' value={this.state.selectedFilter}
+                             onChange={searchType => this.setState({selectedFilter: searchType})}>
+            <ToggleButton value={'as'} style={{borderRadius: '0'}}>АС</ToggleButton>
             <ToggleButton value={'stand'}>Контуру</ToggleButton>
           {this.state.selectedFilter.length > 0
-            ? <Button bsStyle='danger'
-                      onClick={this.clearFilter}>Сброс</Button>
+            ? <ToggleButton value={'reset'} bsStyle='danger'
+                      onClick={this.clearFilter}>Сброс</ToggleButton>
             : null}
           </ToggleButtonGroup>
           </InputGroup>,
-        <div className='search-select'>{this.renderSearches()}</div>
+        <div className='search-select' key={'additional-filters'}>{this.renderSearches()}</div>
       ]
   }
 }

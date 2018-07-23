@@ -7,7 +7,6 @@ import {
   ListGroup,
   InputGroup,
   Row,
-  Label,
   ButtonToolbar,
   ToggleButtonGroup,
   ToggleButton,
@@ -121,7 +120,7 @@ class TestsList extends React.Component {
   };
 
   handleTestSelection = (index) => {
-    const {setSelectedTestIndex, systems, testBuilderTests, testNamesForDropdown, filteredTests} = this.props;
+    const {systems, testBuilderTests} = this.props;
     const selectedChainTemplateTests = this.props.selectedChainTemplate.tests || [];
     const selectedChainTemplateIndex = this.props.selectedChainTemplateIndex;
     if (selectedChainTemplateIndex !== null) {
@@ -247,11 +246,7 @@ class TestsList extends React.Component {
     ];
   };
   renderTestsList = () => {
-    const {
-      testBuilderTests,
-      selectedTestIndex,
-      testNamesForDropdown,
-    } = this.props;
+    const {testNamesForDropdown} = this.props;
     const selectedChainTemplateTests = this.props.selectedChainTemplate.tests || [];
     const filteredTests = testNamesForDropdown.filter(t => {
       const testInChain = selectedChainTemplateTests.find((element) => {

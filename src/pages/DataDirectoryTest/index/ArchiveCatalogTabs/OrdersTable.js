@@ -1,11 +1,10 @@
 import React from 'react'
-import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
+import filterFactory from "react-bootstrap-table2-filter";
 import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
-import {ActionButtons, RenderOrderDetails, renderUseButton} from "./OrdersTable/ActionButtons";
+import {ActionButtons} from "./OrdersTable/ActionButtons";
 import DataJSON from "./OrdersTable/DataJSON";
-import {Tab, Tabs} from "react-bootstrap";
 import {JSONwithoutBrakets} from "../../../../utils/filters/index";
 
 
@@ -51,7 +50,7 @@ class OrdersTable extends React.Component {
         formatter: renderTags,
         sort: true,
       }, {
-        dataField: 'id_order',
+        dataField: 'locked',
         text: 'Действия:',
         formatter: ActionButtons(this.props.request, this.props.lockOrder, this.props.unlockOrder, this.handleOpen),
         headerAlign: 'center',
@@ -70,7 +69,7 @@ class OrdersTable extends React.Component {
 
      return (
        <div>
-        <BootstrapTable keyField='id'
+        <BootstrapTable keyField='id_order'
                    data={data}
                    columns={columns}
                    defaultSorted={defSort}
