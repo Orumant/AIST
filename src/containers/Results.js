@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
-import {getPublicKeyRegistration} from "../api";
 import ResultsPage from "../pages/Results/index";
-import {updateRequestAndOrders} from "../modules/Results";
+import {updateRequestAndOrders} from "../modules/Results/operations";
+
 
 function mapStateToProps(state) {
   return {

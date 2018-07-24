@@ -13,7 +13,7 @@ import dataDirectory from './dataDirectory'
 import dataAuthorization from './dataAuthorization'
 import dataPersonal from "./dataPersonal";
 import testList from "./testList";
-import ResultsReducer from "../modules/Results";
+import ResultsReducer from "../modules/Results/index";
 
 
 const rootReducer = combineReducers({

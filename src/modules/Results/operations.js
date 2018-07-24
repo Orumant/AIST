@@ -1,21 +1,8 @@
 import axios from 'axios';
-import {BACKEND_URL} from "../constants/endpoints";
+import {BACKEND_URL} from "../../constants/endpoints";
 import {error} from "react-notification-system-redux";
-import {getToken} from '../globalFunc';
-
-const ORDERS_FETCH_SUCCEED = 'ORDERS_FETCH_SUCCEED';
-const UPDATE_REQUEST = "UPDATE_REQUEST";
-
-export const ordersFetchSucceed = (payload) => ({
-  type: ORDERS_FETCH_SUCCEED,
-  payload,
-});
-
-export const updateRequest = (request) => ({
-  type: UPDATE_REQUEST,
-  request
-});
-
+import {getToken} from '../../globalFunc';
+import actions from './actions'
 
 export const updateRequestAndOrders = (part, request_old) => (dispatch, getState) => {
   const request = dispatch(updateRequestBody(part, request_old));
@@ -30,7 +17,7 @@ const updateRequestBody = (part, request) => (dispatch) => {
     else  {
       request[key] = part[key]
     }});
-  dispatch(updateRequest(request));
+  dispatch(actions.updateRequest(request));
   return request;
 };
 
@@ -40,35 +27,13 @@ export const fetchOrders = (request) => (dispatch) => {
   const header = {headers: {SessionID: getToken()}};
   console.log(request)
   axios.post(url, request, header).then(function (response) {
-    dispatch(ordersFetchSucceed(response.data));
+    dispatch(actions.ordersFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));
   });
 };
 
-
-const initialState = {
-  data: [],
-  request: {},
-};
-
-const ResultsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ORDERS_FETCH_SUCCEED: {
-      return {
-        ...state,
-        data: action.payload,
-      }
-    }
-    case UPDATE_REQUEST: {
-      return {
-        ...state,
-        request: action.request
-      }
-    }
-    default:
-      return state
-  }
-};
-
-export default ResultsReducer
+export default {
+  updateRequestAndOrders,
+  fetchOrders,
+}

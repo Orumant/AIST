@@ -5,13 +5,12 @@ class ResultsPage extends React.Component {
 
   componentDidMount() {
     const {updateRequestAndOrders, request} = this.props;
-    console.log(updateRequestAndOrders)
+    console.log(updateRequestAndOrders);
     updateRequestAndOrders({}, request)
   }
 
   render() {
-    const {orders} = this.props
-    console.log(orders)
+    const {orders} = this.props;
     return (
       <div>
         this is results!
