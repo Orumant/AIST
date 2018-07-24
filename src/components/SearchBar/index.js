@@ -1,5 +1,5 @@
 import React from 'react'
-import {FormGroup, Glyphicon, InputGroup} from "react-bootstrap";
+import {Glyphicon, InputGroup} from "react-bootstrap";
 import Select from "react-select";
 
 class SearchBar extends React.Component {

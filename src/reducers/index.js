@@ -14,6 +14,11 @@ import dataAuthorization from './dataAuthorization'
 import dataPersonal from "./dataPersonal";
 import testList from "./testList";
 import ResultsReducer from "../modules/Results/index";
+import filterChainReducer from "../modules/global/FilterChain";
+import ordersTable from "../modules/DataDirectoryTest/OrdersTable/index"
+import filterStandReducer from "../modules/global/FilterStand";
+import filterFormReducer from "../modules/global/FilterForm";
+import dataDirectoryTestReducer from "../modules/DataDirectoryTest/DataDirectoryTest/index";
 
 
 const rootReducer = combineReducers({
@@ -32,6 +37,11 @@ const rootReducer = combineReducers({
   dataDirectory,
   testList,
   ResultsReducer,
+  filterChainReducer,
+  dataDirectoryTestReducer,
+  ordersTable,
+  filterStandReducer,
+  filterFormReducer,
 });
 
 export default rootReducer

@@ -116,8 +116,8 @@ class Launcher extends Component {
   fillFormData(index) {
     const {chains} = this.props;
     let formData = {};
-    if (chains[index].fields.length > 0) {
-      for (let field of chains[index].fields) {
+    if (chains[index].form.length > 0) {
+      for (let field of chains[index].form) {
         if (field.paramName !== undefined) {
           formData[field.paramName] = '';
         }
@@ -143,7 +143,7 @@ class Launcher extends Component {
 
   renderChainForm() {
     const {chains} = this.props;
-    const formBody = chains[this.state.selectedChain].fields.map((field, index) => {
+    const formBody = chains[this.state.selectedChain].form.map((field, index) => {
       switch (field.type) {
         case 'Input': {
           return (
@@ -253,7 +253,7 @@ class Launcher extends Component {
         </Col>
         <Col md={4} key={'column-placeholder'}/>
         {this.state.selectedChain !== null
-        && chains[this.state.selectedChain].fields.length > 0 ? [
+        && chains[this.state.selectedChain].form.length > 0 ? [
           <Col md={1} key={'StandsSelectorColumn'}>
             {/*<DropdownList
               key={'StandsDropdown'}
@@ -297,7 +297,7 @@ class Launcher extends Component {
         {orderCreatedAlert()}
         <Panel header={header} bsStyle={'info'} className={'main-panel'}>
           {this.state.selectedChain !== null
-          && chains[this.state.selectedChain].fields.length > 0 ?
+          && chains[this.state.selectedChain].form.length > 0 ?
             <Panel key={'additionalParamsPanel'} bsStyle='info' header={'Параметры запуска'}>
               <Col md={2} key={'FirstColumnKey'}>
                 <OverlayTrigger
@@ -369,7 +369,7 @@ class Launcher extends Component {
               </Col>
             </Panel> : null}
           {(this.state.selectedChain !== null && this.state.formReady)
-            ? chains[this.state.selectedChain].fields.length > 0 ? this.renderChainForm()
+            ? chains[this.state.selectedChain].form.length > 0 ? this.renderChainForm()
               : <Alert key={'CreateFormFirstAlert'} bsStyle="info">Для запуска теста по этой цепочке необходимо сначала
                 создать форму</Alert>
             : <Alert key={'SelectChainFirst'} bsStyle="warning">Ни одна цепочка не выбрана!</Alert>}

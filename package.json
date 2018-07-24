@@ -27,6 +27,7 @@
     "react-calendar": "^2.11.2",
     "react-confirm": "^0.1.16",
     "react-datepicker": "^0.62.0",
+    "react-dates": "^17.0.0",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",
     "react-header": "0.0.4",

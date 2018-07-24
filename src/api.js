@@ -1,7 +1,6 @@
 import {error, success} from "react-notification-system-redux";
 import {
   formTemplateFetchSuccseed,
-  chainEditorTemplateFetchSucceed,
   testsListTemplateFetchSucceed,
   dataTemplateFetchSucceed,
   dataTemplateFetchFail,
@@ -16,7 +15,6 @@ import {
   orderCreated,
   launcherUserGroupsFetchSucceed,
   ordersFetchSucceed,
-  ordersFetchFail,
   ordersCSVFetchSucceed,
   ordersCSVFetchFail,
   submitRerunOrderSucceed,
@@ -342,8 +340,8 @@ export const fetchGroupsForMembers = () => (dispatch) => {
 export const validateForm = (chainName, chain, idx) => (dispatch) => {
   let result = true;
   let tempArr = [];
-  if (chain.fields.length > 0 && !isObjectEmpty(chain.fields)) {
-    for (let field of chain.fields) {
+  if (chain.form.length > 0 && !isObjectEmpty(chain.form)) {
+    for (let field of chain.form) {
       let validation = [];
       delete field.validation;
       if (tempArr.indexOf(field.paramName) !== -1 && field.paramName !== '') {
@@ -594,7 +592,6 @@ export const submitFormTemplate = (params) => (dispatch) => {
 
 export const getDictionaryData = (dictionary, onSuccess) => (dispatch) => {
   const url = `${BACKEND_URL}/dictionaries/${dictionary}`;
-
   axios.get(url).then(function (response) {
     dispatch(onSuccess(response.data))
   }).catch(function (response) {
@@ -642,10 +639,13 @@ export const submitFormMembers = (params) => (dispatch) => {
  */
 export const filterEntityByTags = (tags, entity, callback, {...props}) => (dispatch) => {
   const url = `${BACKEND_URL}/${entity}/filter`;
-
   axios.post(url, tags).then(function (response) {
+
     dispatch(callback(response.data, props));
   }).catch(function (response) {
     dispatch(error({message: "Произошла ошибка!" + response.message}));
   });
 };
+
+
+
