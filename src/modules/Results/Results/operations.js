@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {BACKEND_URL} from "../../constants/endpoints";
+import {BACKEND_URL} from "../../../constants/endpoints";
 import {error} from "react-notification-system-redux";
-import {getToken} from '../../globalFunc';
+import {getToken} from '../../../globalFunc';
 import actions from './actions'
 
 export const updateRequestAndOrders = (part, request_old) => (dispatch, getState) => {
@@ -25,8 +25,8 @@ const updateRequestBody = (part, request) => (dispatch) => {
 export const fetchOrders = (request) => (dispatch) => {
   const url = `${BACKEND_URL}/orders/filter`;
   const header = {headers: {SessionID: getToken()}};
-  console.log(request)
   axios.post(url, request, header).then(function (response) {
+    console.log(response.data)
     dispatch(actions.ordersFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));

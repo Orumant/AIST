@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
-import ResultsPage from "../pages/Results/index";
-import {updateRequestAndOrders} from "../modules/Results/operations";
+import ResultsPage from "../../pages/Results/index";
+import {updateRequestAndOrders} from "../../modules/Results/Results/operations";
 
 
 function mapStateToProps(state) {

@@ -3,6 +3,7 @@ import FilterStand from "../../pages/global/FilterStand";
 import {getAllStands} from "../../modules/global/FilterStand";
 
 function mapStateToProps(state) {
+  console.log('als;kdlskdl;k')
   return {
     stands: state.filterStandReducer.stands,
   }

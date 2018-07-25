@@ -3,6 +3,9 @@ import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, {textFilter, selectFilter} from 'react-bootstrap-table2-filter';
 import BootstrapTable from 'react-bootstrap-table-next';
+import {StatusLabel} from "./TestsTable/StatusLabel";
+import {Status} from "./TestsTable/Status";
+import {Progress} from "./TestsTable/Progress";
 
 class TestsTable extends React.Component {
 
@@ -12,60 +15,57 @@ class TestsTable extends React.Component {
       {
         dataField: 'id_order',
         text: 'ID заявки:',
-        formatter: this.renderOrderDetails,
+        headerAlign: 'center',
         sort: true,
-        filter: textFilter({
-          placeholder: 'Поиск'
-        })
       }, {
         dataField: 'chain_name',
         text: 'Имя цепочки:',
+        headerAlign: 'center',
         sort: true,
-        filter: textFilter({
-          placeholder: 'Поиск'
-        })
       }, {
         dataField: 'marker',
         text: 'Маркер данных:',
-        sort: true,
-        filter: textFilter({
-          placeholder: 'Поиск'
-        })
-
+        headerAlign: 'center',
       }, {
-        dataField: 'real_start_time',
-        text: 'Время запуска:',
+        dataField: 'end_time',
+        text: 'Время создания',
+        headerAlign: 'center',
         sort: true,
-        filter: textFilter({
-          placeholder: 'Поиск'
-        })
-
+      }, {
+        text: 'Прогресс',
+        headerAlign: 'center',
+        formatter: Progress,
+        sort: true,
+        align: 'center'
+      }, {
+        dataField: 'displayed_status',
+        text: 'Этап',
+        headerAlign: 'center',
+        formatter: Status,
+        sort: true,
       }, {
         dataField: 'status',
-        text: 'Текущий статус:',
+        text: 'Статус',
+        headerAlign: 'center',
+        formatter: StatusLabel,
         sort: true,
-        formatter: this.renderBuildStatusRef,
-        filter: textFilter({
-          placeholder: 'Поиск'
-        })
-      },
-      // {
-      //   headerStyle: { position: 'top' },
-      //   dataField: 'id_order',
-      //   text: 'Перезапуск:',
-      //   formatter: this.renderRerunButton,
-      //   align: 'center'
-      // },
+        align: 'center'
+      }, {
+        dataField: 'locked',
+        text: 'Действия:',
+        headerAlign: 'center',
+        align: 'center'
+      }
     ];
     //Ещё описание таблицы: дефолтные сортировки и т.п.
     const defSort = [
       {
-        dataField: 'real_start_time',
+        dataField: 'end_time',
         order: 'desc'
       }];
 
     return (
-          <BootstrapTable keyField='id'
+          <BootstrapTable keyField='id_order'
                           data={this.props.orders}
                           columns={columns}
                           defaultSorted={defSort}

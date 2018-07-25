@@ -2,12 +2,14 @@ import React from 'react'
 import "moment/locale/ru"
 import "react-dates/initialize"
 import "react-dates/lib/css/_datepicker.css"
-
-import SearchBar from "./index/SearchBar";
 import Notifications from 'react-notification-system-redux';
+
+
 import Header from "../../components/Header";
-import "./style.css"
+import SearchBar from "./index/SearchBar";
 import ArchiveCatalogTabs from "./index/ArchiveCatalogTabs";
+import "./style.css"
+
 
 
 class DataDirectoryTest extends React.Component{
@@ -19,13 +21,12 @@ class DataDirectoryTest extends React.Component{
 
   render() {
 
-    const {orders, addToRequest, request, fetchOrders, updateRequestAndOrders, lockOrder, unlockOrder, notifications} = this.props;
+    const {orders, request, fetchOrders, updateRequestAndOrders, lockOrder, unlockOrder, notifications} = this.props;
     return (
       <div style={{height: '100%'}}>
         <Header/>
         <SearchBar onChange={fetchOrders}
                    dataLength={orders.length}
-                   addToRequest={addToRequest}
                    request={request}
                    updateRequestAndOrders={updateRequestAndOrders}/>
         <ArchiveCatalogTabs data={orders} request={request} lockOrder={lockOrder} unlockOrder={unlockOrder}  updateRequestAndOrders={updateRequestAndOrders}/>
