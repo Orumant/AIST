@@ -26,7 +26,6 @@ export const fetchOrders = (request) => (dispatch) => {
   const url = `${BACKEND_URL}/orders/filter`;
   const header = {headers: {SessionID: getToken()}};
   axios.post(url, request, header).then(function (response) {
-    console.log(response.data)
     dispatch(actions.ordersFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(error({message: "Fetch failed with error!" + response}));

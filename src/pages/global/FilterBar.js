@@ -11,9 +11,9 @@ class FilterBar extends React.Component {
 
   componentDidMount () {
     const {options} = this.props;
-    const options_object = options.map((option, ind) => {return {ind: ind, filter: option}})
-    this.setState({options: options_object});
-    // this.setState({options: options});
+    // const options_object = options.map((option, ind) => {return {ind: ind, filter: option}})
+    // this.setState({options: options_object});
+    this.setState({options: options});
   }
 
   addFilter = (option, ind) => {
@@ -21,38 +21,37 @@ class FilterBar extends React.Component {
     let names = [...this.state.options];
     selected.push(option);
     names.splice(ind, 1);
-    this.setState({options: names, selectedFilter: selected})
+    this.setState({options: names, selectedFilter: selected});
+    this.props.updateFilters(selected)
   }
 
-  renderSearches = () => {
+  clearFilters = () => {
     const {options} = this.props;
-    let searches = [];
-    const {selectedFilter} = this.state;
-    if (selectedFilter.length > 0) {
-      selectedFilter.forEach((searchType) => searches.push(searchType.filter.form)
-
-      )
-    }
-    return searches;
+    this.setState({options: options, selectedFilter: []});
+    this.props.updateFilters([])
   }
 
   render() {
-    const {options} = this.state;
-    // const FilterOptions = options.map((option, ind) =>
-    //   <MenuItem eventKey={ind} onClick={() => this.addFilter(option, ind)}>{option}</MenuItem>);
+    const {options, selectedFilter} = this.state;
     const FilterOptions = options.map((option, ind) =>
-      <MenuItem eventKey={option.ind} onClick={() => this.addFilter(option, ind)}>{option.filter.name}</MenuItem>);
-    return [
-      <DropdownButton
-        className='header-buttons'
-        title={[<Glyphicon glyph={"glyphicon glyphicon-filter"}/>, "Фильтр"]}
-        key={"filter-form"}
-      >
-        {FilterOptions}
-      </DropdownButton>,
-      <div>{this.renderSearches()}</div>
-
-    ]
+      <MenuItem eventKey={ind} onClick={() => this.addFilter(option, ind)}>{option}</MenuItem>);
+    // const FilterOptions = options.map((option, ind) =>
+    //   <MenuItem eventKey={option.ind} onClick={() => this.addFilter(option, ind)}>{option.filter.name}</MenuItem>);
+    return (
+      <div>
+        <div className={'clear-fix'}/>
+        {selectedFilter.length > 0 ? <Button onClick={this.clearFilters}>Сброс Фильтров</Button> : null}
+        {selectedFilter.length !== this.props.options.length ?
+        <DropdownButton
+          className='header-buttons'
+          title={[<Glyphicon glyph={"glyphicon glyphicon-filter"}/>, "Фильтр"]}
+          key={"filter-form"}
+        >
+          {FilterOptions}
+        </DropdownButton>
+          : null}
+      </div>
+    )
   }
 }
 

@@ -20,6 +20,7 @@ import filterStandReducer from "../modules/global/FilterStand";
 import filterFormReducer from "../modules/global/FilterForm";
 import dataDirectoryTestReducer from "../modules/DataDirectoryTest/DataDirectoryTest/index";
 import searchBarReducer from "../modules/Results/SearchBar/index";
+import actionsBarReducer from "../modules/Results/ActionsBar/reducer";
 
 
 const rootReducer = combineReducers({
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   filterStandReducer,
   filterFormReducer,
   searchBarReducer,
+  actionsBarReducer,
 });
 
 export default rootReducer

@@ -1,14 +1,13 @@
 import React from 'react'
 
 import FilterBar from "../../global/FilterBar";
+import ActionsBar from "../../../containers/Results/ActionsBar";
 
 
 class HeaderForm extends React.Component {
-  render () {
 
-    const options=[
-      {name: 'as', form: "as"},
-      {name: 'stand', form: "stand"},];
+  render () {
+    const {...elem_props} = this.props;
 
     return (
       <div>
@@ -16,7 +15,7 @@ class HeaderForm extends React.Component {
           Результаты
         </div>
         <div className={'header-tools'}>
-          <FilterBar options={options}/>
+          <ActionsBar {...elem_props}/>
         </div>
       </div>
     )

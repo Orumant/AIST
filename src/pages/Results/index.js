@@ -24,7 +24,8 @@ class ResultsPage extends React.Component {
                    request={request}
                    updateRequestAndOrders={updateRequestAndOrders}/>
         <div className={'view-results-table'}>
-          <HeaderForm/>
+          <HeaderForm request={request}
+                      updateRequestAndOrders={updateRequestAndOrders}/>
           <TestsTable orders={orders}/>
         </div>
         <Notifications notifications={notifications}/>

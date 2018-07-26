@@ -76,8 +76,7 @@ class OrdersTable extends React.Component {
                    pagination={paginationFactory()}
                    noDataIndication={"Нет данных по запросу"}
                    filter={filterFactory()}
-                   striped
-                   overlay={overlayFactory()}/>
+                   striped/>
          {isOrderData ? <DataJSON data={order_data} close={() => this.changeOrderDataStatus(false)}/> : null}
        </div>
      )

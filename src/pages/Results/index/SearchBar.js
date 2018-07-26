@@ -20,7 +20,6 @@ class SearchBar extends React.Component {
       {name: 'stand', form: <FilterStand  key={'stand-filter'} tests={tests} {...others}/>},];
     return (
       <div className={'search-params'}>
-        <FilterBar options={options}/>
         <FilterChain {...others}/>
         <DateForm {...others}/>
         <div className={'search-additional'}>

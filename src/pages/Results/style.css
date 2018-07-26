@@ -18,12 +18,10 @@
   display: block;
   margin-left: 61%;
   margin-top: 1%;
-  background-color: #EEE;
+
   padding: 0.5%;
   width: 38%;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  border: 1px solid #CCC;
-  border-radius: 3px;
+
 }
 .header-buttons {
   align-self: right;
@@ -39,3 +37,5 @@
   width: 100%;
   color: black;
 }
+
+

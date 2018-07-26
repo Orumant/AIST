@@ -64,16 +64,29 @@ class TestsTable extends React.Component {
         order: 'desc'
       }];
 
+    const customTotal = (from, to, size) => (
+      <span className="react-bootstrap-table-pagination-total">
+        Всего: {size}
+      </span>
+    );
+
+    const options = {
+      firstPageText: 'Первая',
+      lastPageText: 'Последняя',
+      showTotal: true,
+      paginationTotalRenderer: customTotal,
+    };
+
+
     return (
-          <BootstrapTable keyField='id_order'
+          <BootstrapTable keyField='id'
                           data={this.props.orders}
                           columns={columns}
                           defaultSorted={defSort}
-                          pagination={paginationFactory()}
+                          pagination={paginationFactory(options)}
                           noDataIndication={"Нет данных по запросу"}
                           filter={filterFactory()}
-                          striped
-                          overlay={overlayFactory()}/>
+                          striped/>
     )
   }
 }
