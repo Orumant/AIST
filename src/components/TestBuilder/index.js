@@ -431,7 +431,8 @@ class TestBuilderPage extends React.Component {
                     key={'ToolbarEdit'+selectedTestIndex}
                     redirDisabled={true}
                     onSubmit={this.handleSubmitButtonClick}
-                    setVisible={'visible'}
+                    setVisible={(selectedTestIndex !== null
+                      && this.state.selectedSystem !== null) ? 'visible':'hidden'}
                     style={{backgroundColor: '#FFF'}}
                     submitDisabled={!(selectedTestIndex !== null
                       && this.state.selectedSystem !== null

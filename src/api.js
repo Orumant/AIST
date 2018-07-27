@@ -1,30 +1,31 @@
 import {error, success} from "react-notification-system-redux";
 import {
-  formTemplateFetchSuccseed,
-  chainEditorTemplateFetchSucceed,
-  testsListTemplateFetchSucceed,
-  dataTemplateFetchSucceed,
+  allChainEditorTemplateFetchSucceed,
+  allChainTemplateFetchSucceed,
   dataTemplateFetchFail,
-  formTemplateFetchFail,
-  submitChainTemplateSucceed,
-  formBuilderChainsFetchSucceed,
-  updateChainFormSucceed,
-  testBuilderTestsFetchSucceed,
-  resetModificationMarkers,
+  dataTemplateFetchSucceed,
   dataTemplatesFetchSuccess,
-  updateDataTemplateSuccess,
-  orderCreated,
-  launcherUserGroupsFetchSucceed,
-  ordersFetchSucceed,
-  ordersFetchFail,
-  ordersCSVFetchSucceed,
-  ordersCSVFetchFail,
-  submitRerunOrderSucceed,
+  formBuilderChainsFetchSucceed,
   formGroupsFetchSucceed,
   formGroupsForMembersFetchSucceed,
+  formTemplateFetchFail,
+  formTemplateFetchSuccseed,
   getValidationResults,
+  launcherUserGroupsFetchSucceed,
+  orderCreated,
+  ordersCSVFetchFail,
+  ordersCSVFetchSucceed,
+  ordersFetchSucceed,
+  resetModificationMarkers,
+  standsFetchSucceed,
+  submitChainTemplateSucceed,
+  submitRerunOrderSucceed,
+  testBuilderTestsFetchSucceed,
+  testChainTemplateFetchSucceed,
   testListTestsFetchSucceed,
-  allChainEditorTemplateFetchSucceed,
+  testsListTemplateFetchSucceed,
+  updateChainFormSucceed,
+  updateDataTemplateSuccess,
 } from './actions';
 import axios from 'axios';
 import {BACKEND_URL} from "./constants/endpoints";
@@ -453,13 +454,13 @@ export const submitTest = (testObject) => (dispatch, getState) => {
   } else {
     testObject.test.job_trigger.passOrToken = testObject.test.job_trigger.password;
   }
-    const result = [{
-      test_name: testObject.test.test_name,
-      job_trigger: testObject.test.job_trigger,
-      tag_names: tags,
-      stands: testObject.test.stands,
-      a_system: testObject.test.a_system,
-    }];
+  const result = [{
+    test_name: testObject.test.test_name,
+    job_trigger: testObject.test.job_trigger,
+    tag_names: tags,
+    stands: testObject.test.stands,
+    a_system: testObject.test.a_system,
+  }];
 
   const header = {headers: {SessionID: getToken()}};
   if (testObject.test.modified) {
@@ -646,6 +647,38 @@ export const filterEntityByTags = (tags, entity, callback, {...props}) => (dispa
   axios.post(url, tags).then(function (response) {
     dispatch(callback(response.data, props));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response.message}));
+    dispatch(callback([], props));
+    //dispatch(error({message: "Request failed with error!" + response.message}));
   });
 };
+
+export const fetchFullChainTemplateList = () => (dispatch, getState) => {
+  const url = `${BACKEND_URL}/tests`;
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
+    dispatch(testChainTemplateFetchSucceed(response.data));
+  }).catch(function (response) {
+    dispatch(error({message: "Fetch failed with error!" + response}));
+  });
+};
+
+export const fetchAllChainTemplates = () => (dispatch, getState) => {
+  const url = `${BACKEND_URL}/chain_templates`;
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
+    dispatch(allChainTemplateFetchSucceed(response.data));
+  }).catch(function (response) {
+    dispatch(error({message: "Fetch failed with error!" + response}));
+  });
+};
+
+export const fetchStands = () => (dispatch) => {
+  const url = `${BACKEND_URL}/stands`;
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
+    dispatch(standsFetchSucceed(response.data))
+  }).catch(function (response) {
+    dispatch(error({message: "Fetch failed with error!" + response}));
+  });
+};
+

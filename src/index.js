@@ -10,6 +10,7 @@ import HomePage from './containers/HomePage';
 import TDME2E from './containers/TDME2E';
 import ChainEditorPage from './containers/ChainEditorPage';
 import FormBuilderPage from "./containers/FormBuilderPage";
+import ChainsListPage from "./containers/ChainsListPage";
 import TestBuilder from "./containers/TestBuilder";
 import DataDirectoryPage from "./containers/DataDirectoryPage";
 
@@ -48,6 +49,7 @@ ReactDOM.render((
             <Route exact path="/datadirectory/:chainName" component={DataDirectoryPage}/>
             <Route exact path="/datadirectory" component={DataDirectoryPage}/>
             <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesBuilderPage}/>
+            <Route exact path='/chainTemplateList' component={ChainsListPage}/>
             <Route exact path="/datatemplates" component={DataTemplatesBuilderPage}/>
             <Route path="/homepage" component={HomePage}/>
             <Route path="/TDME2E" component={TDME2E}/>
