@@ -223,7 +223,7 @@ class ChainEditorPage extends React.Component {
   }
 
   submitChainTemplate(chainTemplate) {
-    const message = 'У выбранных тестов нет совпадающих стендов, на которых они могут быть запущены'
+    const message = 'У выбранных тестов нет совпадающих стендов, на которых они могут быть запущены';
     this.state.isAvailableStand ? this.props.updateChainTemplate(chainTemplate) : alert(message)
   }
 

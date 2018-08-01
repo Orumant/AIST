@@ -25,7 +25,7 @@ class OrdersTable extends React.Component {
 
    render () {
 
-     const renderTags = (cell, row, rowIndex) => <span>{JSONwithoutBrakets(JSON.stringify(cell))}</span>
+     const renderTags = (cell, row, rowIndex) => {console.log(row); return (<span>{JSONwithoutBrakets(JSON.stringify(cell))}</span>)}
 
      const columns = [
       {

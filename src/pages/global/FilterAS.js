@@ -9,6 +9,7 @@ class FilterAS extends React.Component {
   };
 
   changeAS = (asystem) => {
+    //TODO: Сделать один универсальный модуль генерации фильтров
     this.setState({selectedAS: asystem});
     if (asystem) this.props.updateRequestAndOrders({asystems: [asystem.label]}, this.props.request);
     else this.props.updateRequestAndOrders({asystems: asystem}, this.props.request)

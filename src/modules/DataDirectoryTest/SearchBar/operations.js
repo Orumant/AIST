@@ -4,8 +4,6 @@ import {error} from "react-notification-system-redux";
 import {getToken} from '../../../globalFunc';
 import actions from './actions'
 
-
-//TODO: Очень много копипасты, имеет ли смысл сливать все модули в один универсальный?
 export const fetchChainsTests = () => (dispatch, getState) => {
   const urlChains = `${BACKEND_URL}/chain_templates`;
   const urlTests = `${BACKEND_URL}/tests`;

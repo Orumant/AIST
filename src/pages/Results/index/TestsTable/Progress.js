@@ -3,8 +3,8 @@ import {Button, Label} from "react-bootstrap";
 import TestProgress from "./TestProgress";
 
 
-export const Progress =  (cell, row, rowIndex) => {
+export const Progress =  ({all, now, value, style}) => {
   return (
-    <TestProgress/>
+    <TestProgress all={all} now={now}/>
   )
 };

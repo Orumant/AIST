@@ -1,12 +1,12 @@
 import {connect} from 'react-redux'
-import {fetchChainsTests} from "../../modules/Results/operations";
-import SearchBar from "../../pages/Results/index/SearchBar";
+import {fetchChainsTests} from "../../modules/DataDirectoryTest/SearchBar/operations";
+import SearchBar from "../../pages/DataDirectoryTest/index/SearchBar";
 
 
 function mapStateToProps(state) {
   return {
-    chains: state.searchBarReducer.chains || [],
-    tests: state.searchBarReducer.tests || [],
+    chains: state.searchBarReducerDD.chains || [],
+    tests: state.searchBarReducerDD.tests || [],
   }
 }
 

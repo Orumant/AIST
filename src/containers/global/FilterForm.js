@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {fetchChainsTests} from "../../modules/global/FilterChain";
+import {fetchChainsTests} from "../../modules/global/FetchChainAndTest";
 import FilterForm from "../../pages/global/FilterForm";
 
 

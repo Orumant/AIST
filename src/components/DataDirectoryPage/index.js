@@ -255,8 +255,7 @@ class DataDirectoryPage extends React.Component {
                       pagination={paginationFactory()}
                       noDataIndication={"Нет данных по запросу"}
                       filter={filterFactory()}
-                      striped
-                      overlay={overlayFactory()}/>
+                      striped/>
       {/*<Button*/}
       {/*onClick={() => this.props.updateOrderRerun("201802211300060499")}*/}
       {/*bsStyle="success"*/}

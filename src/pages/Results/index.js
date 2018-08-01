@@ -2,7 +2,7 @@ import React from 'react'
 import Notifications from 'react-notification-system-redux';
 
 import Header from "../../components/Header";
-import TestsTable from "./index/TestsTable";
+import TestsTable from "../../containers/Results/TestTable";
 import SearchBar from "../../containers/Results/SearchBar";
 import './style.css'
 import HeaderForm from "./index/HeaderForm";
@@ -24,8 +24,6 @@ class ResultsPage extends React.Component {
                    request={request}
                    updateRequestAndOrders={updateRequestAndOrders}/>
         <div className={'view-results-table'}>
-          <HeaderForm request={request}
-                      updateRequestAndOrders={updateRequestAndOrders}/>
           <TestsTable orders={orders}/>
         </div>
         <Notifications notifications={notifications}/>

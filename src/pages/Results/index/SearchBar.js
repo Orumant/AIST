@@ -1,10 +1,10 @@
 import React from 'react'
 import DateForm from "../../global/DateForm";
-import FilterChain from "../../../containers/global/FilterChain";
 import FilterForm from "../../../containers/global/FilterForm";
-import FilterBar from "../../global/FilterBar";
 import FilterAS from "../../global/FilterAS";
 import FilterStand from "../../../containers/global/FilterStand";
+import FilterTag from "../../global/FilterTag";
+import FilterChains from "../../global/FilterChains";
 
 
 class SearchBar extends React.Component {
@@ -14,16 +14,21 @@ class SearchBar extends React.Component {
   }
 
   render () {
-    const {dataLength, tests,  ...others} = this.props;
+    const {tests, chains,  ...others} = this.props;
     const options=[
-      {name: 'as', form: <FilterAS  key={'system-filter'} tests={tests} {...others}/>},
-      {name: 'stand', form: <FilterStand  key={'stand-filter'} tests={tests} {...others}/>},];
+      {name: 'as', label: 'АС', request_tag: 'asystems', form: <FilterAS  key={'system-filter'} tests={tests} {...others}/>},
+      {name: 'stand', label: 'Контуру', request_tag: 'stand',form: <FilterStand  key={'stand-filter'} tests={tests} {...others}/>},
+      {name: 'tags', label: 'Тегам', request_tag: 'tags', form: <FilterTag key={'tag-filter'} tests={tests} {...others}/>},
+    ];
     return (
       <div className={'search-params'}>
-        <FilterChain {...others}/>
+        <div className={'header-title'}>
+          Результаты
+        </div>
+        <FilterChains chains={chains} {...others}/>
         <DateForm {...others}/>
         <div className={'search-additional'}>
-          <FilterForm {...others}/>
+          <FilterForm filters={options} {...others}/>
         </div>
       </div>
     )
