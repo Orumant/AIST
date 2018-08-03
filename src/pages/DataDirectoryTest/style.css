@@ -40,6 +40,22 @@
 .action {
   margin: 1%;
 }
+
+.DateRangePicker {
+  width: 100%;
+}
+
+.DateRangePickerInput {
+  width: 100%;
+}
+
+.DateInput__small {
+  width: 49%;
+}
+.DateInput_input__small {
+  text-align: center;
+}
+
 .DateRangePicker_picker {
   z-index: 10;
 }

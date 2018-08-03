@@ -16,21 +16,26 @@ class DetailsTable extends React.Component {
     const columns = [
       {name: "starting_order", title: "№"},
       {name: "test_name", title: "Тест"},
-      {name: "a_system", title: "Контур"},
+      {name: "a_system", title: "АС"},
       {name: "real_start_time", title: "Время старта"},
       {name: "end_time", title: "Время окончания"},
       {name: "build_link", title: "Билд"},
       {name: "status", title: "Статус"},
     ];
     const tableColumnExtensions = [
-      { columnName: 'status', width: 200 },
-      { columnName: 'starting_order', width: 40 },
+      { columnName: 'starting_order', width: 40 , align: 'center'},
+      { columnName: 'test_name', align: 'center'},
+      { columnName: 'a_system', align: 'center'},
+      { columnName: 'real_start_time', align: 'center'},
+      { columnName: 'end_time', align: 'center'},
+      { columnName: 'build_link', align: 'center'},
+      { columnName: 'status', width: 200 , align: 'center'},
     ];
 
     const Cell = (props, ...others) => {
       const {column} = props;
       switch (column.name) {
-        case "status": return <Table.Cell><StatusLabel {...props}/></Table.Cell>;
+        case "status": return <StatusLabel {...props}/>;
         case "build_link": return <Table.Cell><a href={props.value}>{props.value}</a></Table.Cell>;
         default:
           return <Table.Cell {...props}/>;

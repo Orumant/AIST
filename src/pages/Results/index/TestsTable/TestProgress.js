@@ -1,5 +1,4 @@
-import React from 'react'
-import {ProgressBar} from "react-bootstrap";
+import React from 'react';
 
 class TestProgress extends React.Component {
 

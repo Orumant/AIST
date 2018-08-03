@@ -5,7 +5,6 @@ import Header from "../../components/Header";
 import TestsTable from "../../containers/Results/TestTable";
 import SearchBar from "../../containers/Results/SearchBar";
 import './style.css'
-import HeaderForm from "./index/HeaderForm";
 
 class ResultsPage extends React.Component {
 

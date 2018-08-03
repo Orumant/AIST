@@ -1,6 +1,5 @@
 import React from 'react'
 import filterFactory from "react-bootstrap-table2-filter";
-import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
 import {ActionButtons} from "./OrdersTable/ActionButtons";

@@ -2,7 +2,6 @@ import React from 'react'
 import {Tab, Tabs} from "react-bootstrap";
 import OrdersTable from "../../../containers/DataDirectoryTest/OrdersTable";
 
-
 class ArchiveCatalogTabs extends React.Component {
 
   state = {

@@ -1,26 +1,26 @@
-import React from 'react'
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
+
 import {
-  SortingState, SelectionState, FilteringState, PagingState, GroupingState,
-  IntegratedFiltering, IntegratedGrouping, IntegratedPaging, IntegratedSorting, IntegratedSelection,
-  RowDetailState,
+  SortingState, PagingState, GroupingState, IntegratedGrouping,
+  IntegratedPaging, IntegratedSorting, RowDetailState,
 } from '@devexpress/dx-react-grid';
 import {
-  Grid,
-  Table, TableHeaderRow, TableFilterRow, TableSelection, TableGroupRow,
-  PagingPanel, GroupingPanel, DragDropProvider, TableColumnReordering, Toolbar,
+  Grid, Table, TableHeaderRow, TableGroupRow,
+  PagingPanel, GroupingPanel, DragDropProvider, Toolbar,
   TableColumnVisibility, ColumnChooser, TableRowDetail,
 } from "@devexpress/dx-react-grid-material-ui";
-import {StatusLabel} from "./TestsTable/StatusLabel";
-import {Progress} from "./TestsTable/Progress";
+
 import DetailsTable from "./TestsTable/DetailsTable";
+import {columns, tableColumnExtensions} from "./TestsTable/ColumnsProps";
+import {Cell} from './TestsTable/Cell';
+import {restartChain} from "../../../modules/Results/TestTable/operations";
 
 
 class TestsTable extends React.Component {
 
   state = {
     expandedRowIds: [],
-    grouping: [{columnName: 'chain_name',}],
   };
 
   changeExpandedDetails = (expandedRowIds) => {
@@ -28,47 +28,26 @@ class TestsTable extends React.Component {
     expandedRowIds.forEach(id => fetchOrderDetails(orders[id].id_order));
     this.setState({expandedRowIds})};
 
-  changeGrouping = (grouping) => this.setState({grouping});
+  Messages = {
+    groupByColumn: "Перетащите сюда заголовок для группировки по столбцу",
+    noData: "Нет данных",
+    showColumnChooser: "Показать выбор столбцов",
+    sortingHint: "Отсортировать",
+    showAll: "Все",
+    rowsPerPage: "Количество строк на странице",
+  };
+
 
   RowDetails = ({row}) => {
     const {test_details} = this.props;
-    if (test_details[row.id_order]) {console.log(test_details); return <DetailsTable test_details={test_details[row.id_order]}/>;}
-    return <span>Данные не найдены</span>;
+    if (test_details[row.id_order]) return <DetailsTable test_details={test_details[row.id_order]}/>;
+    return <span/>;
   };
 
   render() {
-    const {orders} = this.props;
-    const {expandedRowIds, grouping} = this.state;
-    const columns = [
-      {name: "id_order", title: "ID заявки"},
-      {name: "chain_name", title: "Имя цепочки"},
-      {name: "marker", title: "Маркер данных"},
-      {name: "start_time", title: "Время создания"},
-      {name: "tags", title: "Теги"},
-      {name: "progress", title: "Прогресс"},
-      {name: "ula_decision", title: "Решение ULA"},
-      {name: "status", title: "Статус"},
-    ];
+    const {orders, restartChain} = this.props;
+    const {expandedRowIds} = this.state;
     const pageSizes = [5, 10, 15, 0];
-    const tableColumnExtensions = [ { columnName: 'status', width: 200 },];
-
-    const Cell = (props) => {
-      const {column} = props;
-      switch (column.name) {
-        case "status": return <Table.Cell><StatusLabel {...props}/></Table.Cell>;
-        case "progress": {
-          const {progress_overall, progress_passed} = props.row;
-          return <Table.Cell><Progress all={progress_overall} now={progress_passed} {...props}/></Table.Cell>
-        }
-        case "ula_decision": return <Table.Cell>ULA</Table.Cell>;
-        default:
-          return <Table.Cell {...props}/>;
-      }
-    };
-
-    const ReplayButton = () => {
-
-    }
 
     return (
       <Paper>
@@ -79,8 +58,7 @@ class TestsTable extends React.Component {
             ]}
           />
           <GroupingState
-            grouping={grouping}
-            onGroupnigChange={this.changeGrouping}
+            defaultGrouping={[{columnName: 'chain_name',}]}
           />
           <PagingState
             defaultCurrentPage={0}
@@ -98,13 +76,16 @@ class TestsTable extends React.Component {
             onExpandedRowIdsChange={this.changeExpandedDetails}/>
 
 
-          <Table cellComponent={Cell}
-          columnExtensions={tableColumnExtensions}/>
-          <TableHeaderRow showSortingControls />
+          <Table
+            cellComponent={props => Cell(props, restartChain)}
+            columnExtensions={tableColumnExtensions}
+            messages={this.Messages}/>
+          <TableHeaderRow showSortingControls messages={this.Messages}/>
           <TableRowDetail contentComponent={this.RowDetails}/>
 
           <PagingPanel
             pageSizes={pageSizes}
+            messages={this.Messages}
           />
           <TableGroupRow />
 
@@ -112,8 +93,12 @@ class TestsTable extends React.Component {
             defaultHiddenColumnNames={['marker', 'id_order', 'tags']}
           />
           <Toolbar />
-          <GroupingPanel showSortingControls showGroupingControls/>
-          <ColumnChooser />
+          <GroupingPanel
+            showSortingControls
+            showGroupingControls
+            messages={this.Messages}
+          />
+          <ColumnChooser messages={this.Messages}/>
 
         </Grid>
       </Paper>

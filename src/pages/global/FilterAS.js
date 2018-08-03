@@ -22,6 +22,7 @@ class FilterAS extends React.Component {
     return (
       <Select
         options={options}
+        className='test-filter'
         placeholder={'Фильтрация тестов по АС'}
         onChange={this.changeAS}
         value={selectedAS}

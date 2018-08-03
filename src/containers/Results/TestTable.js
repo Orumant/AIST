@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {fetchOrderDetails} from "../../modules/Results/TestTable/operations";
+import {fetchOrderDetails, restartChain} from "../../modules/Results/TestTable/operations";
 import TestTable from "../../pages/Results/index/TestsTable";
 
 
@@ -12,6 +12,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchOrderDetails: (id_order) => dispatch(fetchOrderDetails(id_order)),
+    restartChain: (id_order) => dispatch(restartChain(id_order)),
   }
 }
 

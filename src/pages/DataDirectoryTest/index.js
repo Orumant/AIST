@@ -4,12 +4,10 @@ import "react-dates/initialize"
 import "react-dates/lib/css/_datepicker.css"
 import Notifications from 'react-notification-system-redux';
 
-
 import Header from "../../components/Header";
 import SearchBar from "../../containers/DataDirectoryTest/SearchBar";
 import ArchiveCatalogTabs from "./index/ArchiveCatalogTabs";
 import "./style.css"
-
 
 
 class DataDirectoryTest extends React.Component{

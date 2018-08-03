@@ -25,6 +25,7 @@ class FilterAS extends React.Component {
     return (
       <Select
         options={options}
+        className='test-filter'
         placeholder={'Фильтрация тестов по контуру'}
         onChange={this.changeStand}
         value={selectedStand}

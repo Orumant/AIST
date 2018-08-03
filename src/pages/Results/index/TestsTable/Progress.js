@@ -1,5 +1,4 @@
-import React from 'react'
-import {Button, Label} from "react-bootstrap";
+import React from 'react';
 import TestProgress from "./TestProgress";
 
 

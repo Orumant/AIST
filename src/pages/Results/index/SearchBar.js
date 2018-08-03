@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
 import DateForm from "../../global/DateForm";
 import FilterForm from "../../../containers/global/FilterForm";
 import FilterAS from "../../global/FilterAS";
 import FilterStand from "../../../containers/global/FilterStand";
 import FilterTag from "../../global/FilterTag";
 import FilterChains from "../../global/FilterChains";
+
+import HeaderTitle from "./SearchBar/HeaderTitle";
+
 
 
 class SearchBar extends React.Component {
@@ -22,9 +25,7 @@ class SearchBar extends React.Component {
     ];
     return (
       <div className={'search-params'}>
-        <div className={'header-title'}>
-          Результаты
-        </div>
+        <HeaderTitle/>
         <FilterChains chains={chains} {...others}/>
         <DateForm {...others}/>
         <div className={'search-additional'}>

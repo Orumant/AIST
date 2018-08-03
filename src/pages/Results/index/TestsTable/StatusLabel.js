@@ -1,30 +1,21 @@
 import React from 'react'
-import {Button} from "react-bootstrap";
+import {Table} from "@devexpress/dx-react-grid-material-ui";
 
-const SuccessLabel = <Button bsStyle={"success"} block>Успех</Button>;
-const FailureLabel = <Button bsStyle={"danger"} block>Провал</Button>;
-const RunningLabel = <Button bsStyle={"primary"} block>Выполняется</Button>;
-const DefferedLabel = <Button bsStyle={"warning"} block>Отложено</Button>;
-const ScheduledLabel = <Button bsStyle={"info"} block>Запланировано</Button>;
-const NoRunLabel = <Button block>Не запущена</Button>;
 
-const Label = (status) => {
-  switch(status) {
-    case 'SUCCESS': return SuccessLabel;
-    case 'FAILURE': return FailureLabel;
-    case 'RUNNING': return RunningLabel;
-    case 'DEFERRED': return DefferedLabel;
-    case 'SCHEDULED': return ScheduledLabel;
-    case 'no run': return NoRunLabel;
-    default:
-      return <span>{status}</span>
-  }
-}
+const Cell = (value, background, color, style) =>
+  <Table.Cell style={{backgroundColor: background, textAlign: 'center', ...style}}>
+    <span style={{color: color, ...style}}>{value}</span>
+  </Table.Cell>
 
 export const StatusLabel =  ({value, style}) => {
-  return (
-    <div>
-      {Label(value)}
-    </div>
-  )
+  switch(value) {
+    case 'SUCCESS': return Cell("Успех", "#5cb85c", "#fff", style); //"#5cb85c", "#fff"
+    case 'FAILURE': return Cell("Провал", "#d9534f", "#fff", style); //"#d9534f", "#fff"
+    case 'RUNNING': return Cell("Выполняется", "#f0ad4e", "#fff", style); //"#f0ad4e", "#fff"
+    case 'DEFERRED': return Cell("Отложено", "#5bc0de", "#fff", style); //"#5bc0de", "#fff"
+    case 'SCHEDULED': return Cell("Запланировано", "#337ab7", "#fff", style); //"#337ab7", "#fff"
+    case 'no run': return Cell("Не запущена", null, "#333", style); //"#fff", "#333"
+    default:
+      return <span>{value}</span>
+  }
 };
