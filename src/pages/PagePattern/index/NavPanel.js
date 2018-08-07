@@ -7,7 +7,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import HomeIcon from '@material-ui/icons/Home';
 
 import {styles} from "./style";
 import UserActions from "./NavPanel/UserActions";
@@ -15,7 +14,7 @@ import UserActions from "./NavPanel/UserActions";
 class NavPanel extends React.Component {
 
   render() {
-    const { classes, title, handleClick} = this.props;
+    const { classes, title, handleClick, help} = this.props;
 
     return (
           <AppBar
@@ -39,7 +38,7 @@ class NavPanel extends React.Component {
               <Typography variant="title" color="inherit" className={classes.flex}>
                 {title}
               </Typography>
-              <UserActions />
+              <UserActions helpForm={help}/>
             </Toolbar>
           </AppBar>
     );

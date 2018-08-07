@@ -46,6 +46,10 @@
   margin-top: 1%;
   margin-bottom: 1%;
 }
+.sidebar-content{
+  margin-top: 64px;
+  width: 350px;
+}
 
 html {
   font-size: 100%;

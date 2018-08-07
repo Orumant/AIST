@@ -1,22 +1,19 @@
 import React from 'react';
 
-const drawerWidth = 240;
+const drawerWidth = 350;
 
 export const styles = theme => {
+  console.log(theme)
   return{
   drawerPaper: {
-    position: 'relative',
     width: drawerWidth,
   },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     padding: '0 8px',
     ...theme.mixins.toolbar,
-  },
-  accountIcon: {
-    marginRight: theme.spacing.unit,
   },
 }};
 

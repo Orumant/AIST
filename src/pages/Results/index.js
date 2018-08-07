@@ -1,35 +1,67 @@
 import React from 'react'
 import Notifications from 'react-notification-system-redux';
-
+import Button from '@material-ui/core/Button';
 import Header from "../../components/Header";
 import TestsTable from "../../containers/Results/TestTable";
 import SearchBar from "../../containers/Results/SearchBar";
+import Paper from '@material-ui/core/Paper';
+import FilterList from '@material-ui/icons/FilterList';
 import './style.css'
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import {styles} from "./style";
+
+
 
 class ResultsPage extends React.Component {
+
+  state = {
+    showFilter: false,
+  }
 
   componentDidMount() {
     const {updateRequestAndOrders, request} = this.props;
     updateRequestAndOrders({}, request)
   }
 
-  render() {
-    const {fetchOrders, updateRequestAndOrders, request, orders, notifications} = this.props;
-    return (
-      <div style={{height: '100%'}}>
-        <Header/>
-        <SearchBar onChange={fetchOrders}
-                   dataLength={orders.length}
-                   request={request}
-                   updateRequestAndOrders={updateRequestAndOrders}/>
-        <div className={'view-results-table'}>
-          <TestsTable orders={orders}/>
-        </div>
-        <Notifications notifications={notifications}/>
-      </div>
+  handleClickFilter = () => {
+    this.setState(state => ({showFilter: !state.showFilter}));
+  };
 
+
+  render() {
+    const {classes, fetchOrders, updateRequestAndOrders, request, orders, notifications} = this.props;
+    const {showFilter} = this.state;
+
+    return (
+      <Paper
+        className={classNames(classes.content, classes[`content-right`], {
+          [classes.contentShift]: showFilter,
+          [classes[`contentShift-right`]]: showFilter,
+        })}
+      >
+          <Button onClick={this.handleClickFilter}>
+            <FilterList style={{marginRight: '8px'}}/>
+            Фильтры
+          </Button>
+          {showFilter? <SearchBar onChange={fetchOrders}
+                     dataLength={orders.length}
+                     request={request}
+                     updateRequestAndOrders={updateRequestAndOrders}
+                                  close={this.handleClickFilter}
+                                  isOpen={showFilter}
+          /> : null}
+          <TestsTable orders={orders}/>
+          <Notifications notifications={notifications}/>
+
+      </Paper>
     )
   }
 }
+ResultsPage.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+};
 
-export default ResultsPage
+export default withStyles(styles, { withTheme: true })(ResultsPage);

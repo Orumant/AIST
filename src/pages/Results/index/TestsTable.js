@@ -50,7 +50,6 @@ class TestsTable extends React.Component {
     const pageSizes = [5, 10, 15, 0];
 
     return (
-      <Paper>
         <Grid rows={orders} columns={columns}>
           <SortingState
             defaultSorting={[
@@ -101,7 +100,7 @@ class TestsTable extends React.Component {
           <ColumnChooser messages={this.Messages}/>
 
         </Grid>
-      </Paper>
+
     )
   }
 }

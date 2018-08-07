@@ -24,13 +24,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import './styles/main.css';
 import PersonalPage from "./containers/PersonalPage";
-<<<<<<< HEAD
-import TestElem from "./pages/TestElem";
+import TestResults from "./pages/Test";
 import ResultsPage from "./containers/Results/Results";
 
-=======
-import ResultsPage from "./containers/Results/Results";
->>>>>>> OAT-52201_results
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -61,10 +57,7 @@ ReactDOM.render((
             <Route path="/TDME2E" component={TDME2E}/>
             <Route path="/registration" component={RegistrationPage}/>
             <Route path="/personaldata" component={PersonalPage}/>
-<<<<<<< HEAD
-            <Route path="/paneltest" component={TestElem}/>
-=======
->>>>>>> OAT-52201_results
+            <Route path="/paneltest" component={TestResults}/>
             <Route path="/results" component={ResultsPage}/>
             <Route exact path="/" component={AuthorizationPage}/>
             <Route exect path="/datadirectory_test" component={DataDirectoryTest}/>

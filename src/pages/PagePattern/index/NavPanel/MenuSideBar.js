@@ -20,8 +20,7 @@ class MenuSideBar extends React.Component {
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.drawerHeader}/>
-        <NavMenu/>
+        <NavMenu />
       </Drawer>
     );
   }

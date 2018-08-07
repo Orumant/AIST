@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
-import MenuSideBar from "../NavPanel/NavPanel/MenuSideBar";
-import NavPanel from "../NavPanel"
+import MenuSideBar from "./index/NavPanel/MenuSideBar";
+import NavPanel from "./index/NavPanel"
 import './style.css'
+import SpeedDials from "./index/SpeedDials";
 
 class PagePattern extends React.Component {
   state = {
@@ -19,13 +20,13 @@ class PagePattern extends React.Component {
   };
 
   render() {
-    const { classes, title, content } = this.props;
+    const { classes, title, content, help } = this.props;
     const { open } = this.state;
 
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <NavPanel title={title} handleClick={this.handleDrawerClick}/>
+          <NavPanel title={title} handleClick={this.handleDrawerClick} help={help}/>
           <MenuSideBar open={open}/>
           <div
             className={classNames(classes.content, classes[`content-left`], {
