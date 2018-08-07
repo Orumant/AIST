@@ -13,6 +13,15 @@ import dataDirectory from './dataDirectory'
 import dataAuthorization from './dataAuthorization'
 import dataPersonal from "./dataPersonal";
 import testList from "./testList";
+import ResultsReducer from "../modules/Results/Results/index";
+import ordersTable from "../modules/DataDirectoryTest/OrdersTable/index"
+import filterStandReducer from "../modules/global/FilterStand";
+import filterFormReducer from "../modules/global/FilterForm";
+import dataDirectoryTestReducer from "../modules/DataDirectoryTest/DataDirectoryTest/index";
+import searchBarReducer from "../modules/Results/SearchBar/index";
+import actionsBarReducer from "../modules/Results/ActionsBar/reducer";
+import searchBarReducerDD from "../modules/DataDirectoryTest/SearchBar/index";
+import TestTableReducer from "../modules/Results/TestTable/reducer";
 
 
 const rootReducer = combineReducers({
@@ -30,6 +39,15 @@ const rootReducer = combineReducers({
   notifications,
   dataDirectory,
   testList,
+  ResultsReducer,
+  dataDirectoryTestReducer,
+  ordersTable,
+  filterStandReducer,
+  filterFormReducer,
+  searchBarReducer,
+  actionsBarReducer,
+  searchBarReducerDD,
+  TestTableReducer,
 });
 
 export default rootReducer

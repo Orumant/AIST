@@ -12,6 +12,7 @@ import ChainEditorPage from './containers/ChainEditorPage';
 import FormBuilderPage from "./containers/FormBuilderPage";
 import TestBuilder from "./containers/TestBuilder";
 import DataDirectoryPage from "./containers/DataDirectoryPage";
+import DataDirectoryTest from "./containers/DataDirectoryTest/DataDirectoryTest";
 
 import DataTemplatesBuilderPage from "./containers/DataTemplates";
 import AuthorizationPage from "./containers/AuthorizationPage"
@@ -24,6 +25,8 @@ import 'font-awesome/css/font-awesome.min.css';
 import './styles/main.css';
 import PersonalPage from "./containers/PersonalPage";
 import TestElem from "./pages/TestElem";
+import ResultsPage from "./containers/Results/Results";
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -55,7 +58,9 @@ ReactDOM.render((
             <Route path="/registration" component={RegistrationPage}/>
             <Route path="/personaldata" component={PersonalPage}/>
             <Route path="/paneltest" component={TestElem}/>
+            <Route path="/results" component={ResultsPage}/>
             <Route exact path="/" component={AuthorizationPage}/>
+            <Route exect path="/datadirectory_test" component={DataDirectoryTest}/>
           </Switch>
         </HashRouter>
       </div>

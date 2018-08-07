@@ -57,8 +57,7 @@ class FormBuilderPage extends Component {
   componentWillUpdate(nextProps, prevProps) {
     const {formBuilderChains, match: {params: {chainIndex}}} = nextProps;
     if (chainIndex && formBuilderChains.length > 0 && chainIndex !== prevProps.chainIndex) {
-      console.log(formBuilderChains);
-      if (formBuilderChains[chainIndex].fields.findIndex(field => {
+      if (formBuilderChains[chainIndex].form.findIndex(field => {
           return field.type === 'NoForm';
         }) === -1) {
         this.setState({chainIndex: chainIndex, noFormChecked: false});
@@ -69,7 +68,7 @@ class FormBuilderPage extends Component {
   }
 
   onChainSelected = (chain) => {
-    if (this.props.formBuilderChains[chain.value].fields.findIndex(field => {
+    if (this.props.formBuilderChains[chain.value].form.findIndex(field => {
       return field.type === 'NoForm';
     }) === -1) {
       this.setState({chainIndex: chain.value, noFormChecked: false});
@@ -157,7 +156,7 @@ class FormBuilderPage extends Component {
     const {formBuilderChains} = this.props;
     const {chainIndex, inputTypeIndex, inputTypes} = this.state;
     const disablePlus = () => {
-      return formBuilderChains[chainIndex].fields.findIndex(field => {
+      return formBuilderChains[chainIndex].form.findIndex(field => {
         return field.type === 'NoForm';
       }) !== -1;
     };
@@ -186,7 +185,7 @@ class FormBuilderPage extends Component {
         });
         this.setState({noFormChecked: !this.state.noFormChecked});
       } else {
-        this.onFieldRemove(formBuilderChains[chainIndex].fields.length -1);
+        this.onFieldRemove(formBuilderChains[chainIndex].form.length -1);
         this.setState({noFormChecked: !this.state.noFormChecked});
       }
     };
@@ -233,7 +232,7 @@ class FormBuilderPage extends Component {
           <ListGroup style={{maxHeight: '655px', overflow: 'auto'}}>
             <FieldPicker
               onChange={this.onFieldsUpdate}
-              fields={formBuilderChains[chainIndex].fields}
+              fields={formBuilderChains[chainIndex].form}
               odx={0}
               collapseFields={this.state.noFormChecked}
               onFieldRemove={this.onFieldRemove}
@@ -248,10 +247,10 @@ class FormBuilderPage extends Component {
     const chainName = this.props.formBuilderChains[this.state.chainIndex].name;
     const fields = this.props.formBuilderChains[this.state.chainIndex];
     const chainIndex = this.state.chainIndex;
-    if ((-1) !== fields.fields.findIndex(field => {
+    if ((-1) !== fields.form.findIndex(field => {
         return field.type === 'NoForm'
       })) {
-      fields.fields = [{}];
+      fields.form = [{}];
     }
     this.props.submit(chainName, fields, chainIndex);
   };

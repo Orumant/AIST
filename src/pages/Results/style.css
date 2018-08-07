@@ -1,0 +1,52 @@
+.expanded-button-name {
+  width: 100%;
+}
+.expanded-button-glyph {
+  float: right;
+  vertical-align: bottom !important;
+}
+.header-title {
+  height: 100%;
+  width: 98%;
+  margin: 1% 1% 3% 1%;
+  font-size: xx-large;
+  float: left;
+}
+.header-tools {
+  display: block;
+  margin-left: 61%;
+  margin-top: 1%;
+
+  padding: 0.5%;
+  width: 38%;
+
+}
+.header-buttons {
+  align-self: right;
+  text-align: right;
+}
+.progress {
+  position: relative;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.progress span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  color: black;
+  text-align: center;
+}
+.progress-bar {
+  box-shadow: none;
+}
+
+.search-bar {
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+html {
+  font-size: 100%;
+}
