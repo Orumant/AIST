@@ -5,6 +5,7 @@ const drawerWidth = 240;
 export const styles = theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    backgroundColor: 'rgb(67, 136, 204)',
     position: 'absolute',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -35,4 +36,8 @@ export const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
+  button: {
+    marginLeft: theme.spacing.unit,
+  },
+
 });

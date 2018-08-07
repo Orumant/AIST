@@ -15,5 +15,8 @@ export const styles = theme => {
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
+  accountIcon: {
+    marginRight: theme.spacing.unit,
+  },
 }};
 
