@@ -15,8 +15,9 @@ import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
 
 import IconButton from '@material-ui/core/IconButton';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import ExpansionItem from "../../global/ExpansionItem";
 
 
 
@@ -33,6 +34,8 @@ class SearchBar extends React.Component {
       {name: 'stand', label: 'Контуру', request_tag: 'stand',form: <FilterStand  key={'stand-filter'} tests={tests} {...others}/>},
       {name: 'tags', label: 'Тегам', request_tag: 'tags', form: <FilterTag key={'tag-filter'} tests={tests} {...others}/>},
     ];
+
+    const item = (name, elem) => <div className={'filter-item'}>{name}{elem}</div>
     return (
       <Drawer
         variant="persistent"
@@ -44,19 +47,19 @@ class SearchBar extends React.Component {
         onClose={close}>
         <div className={"sidebar-content"}>
           <div className={classes.drawerHeader}>
-            <IconButton onClick={close}>
-              <ChevronRightIcon />
-            </IconButton>
-            <Typography variant="title">
+            <Typography variant="title" className={classes.drawerTitle}>
               Фильтры
             </Typography>
+            <IconButton onClick={close}>
+              <CloseIcon />
+            </IconButton>
           </div>
-          {/*<HeaderTitle/>*/}
-          <Divider />
-          <FilterChains chains={chains} {...others}/>
-          <DateForm {...others}/>
-          <div className={'search-additional'}>
-            <FilterForm filters={options} {...others}/>
+          <div>
+            {item("Название цепочки", <FilterChains chains={chains} {...others}/>)}
+            {item("Дата", <DateForm {...others}/>)}
+            {item("Система", <FilterAS  key={'system-filter'} tests={tests} {...others}/>)}
+            {item("Контур", <FilterStand  key={'stand-filter'} tests={tests} {...others}/>)}
+            {item("Теги", <FilterTag key={'tag-filter'} tests={tests} {...others}/>)}
           </div>
         </div>
       </Drawer>

@@ -43,19 +43,19 @@ class NavMenu extends React.Component {
 
     return (
       <List style={{marginTop: '64px'}}>
-        <ListItem button onClick={this.handleClick}>
-          <ListItemText primary={"Создать..."}/>
-          {expand? <ExpandLess/> : <ExpandMore/>}
-        </ListItem>
-        <Collapse in={expand} timeout="auto" unmountOnExit>
-          <List>
-            {Object.keys(entities).map(elem =>
-              <div style={{paddingLeft: '16px'}}>
-                {item(entities[elem].name, entities[elem].link)}
-              </div>)}
-          </List>
-        </Collapse>
-        <Divider />
+        {/*<ListItem button onClick={this.handleClick}>*/}
+          {/*<ListItemText primary={"Создать..."}/>*/}
+          {/*{expand? <ExpandLess/> : <ExpandMore/>}*/}
+        {/*</ListItem>*/}
+        {/*<Collapse in={expand} timeout="auto" unmountOnExit>*/}
+          {/*<List>*/}
+            {/*{Object.keys(entities).map(elem =>*/}
+              {/*<div style={{paddingLeft: '16px'}}>*/}
+                {/*{item(entities[elem].name, entities[elem].link)}*/}
+              {/*</div>)}*/}
+          {/*</List>*/}
+        {/*</Collapse>*/}
+        {/*<Divider />*/}
 
         {Object.keys(links).map(elem => item(links[elem].name, links[elem].link)) }
 

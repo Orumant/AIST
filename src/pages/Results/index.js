@@ -34,6 +34,11 @@ class ResultsPage extends React.Component {
     const {classes, fetchOrders, updateRequestAndOrders, request, orders, notifications} = this.props;
     const {showFilter} = this.state;
 
+    const FilterButton =           <Button onClick={this.handleClickFilter}>
+      <FilterList style={{marginRight: '8px'}}/>
+      Фильтры
+    </Button>
+
     return (
       <Paper
         className={classNames(classes.content, classes[`content-right`], {
@@ -41,10 +46,12 @@ class ResultsPage extends React.Component {
           [classes[`contentShift-right`]]: showFilter,
         })}
       >
+        <div className="table-toolbar">
           <Button onClick={this.handleClickFilter}>
             <FilterList style={{marginRight: '8px'}}/>
             Фильтры
           </Button>
+        </div>
           {showFilter? <SearchBar onChange={fetchOrders}
                      dataLength={orders.length}
                      request={request}
@@ -52,7 +59,7 @@ class ResultsPage extends React.Component {
                                   close={this.handleClickFilter}
                                   isOpen={showFilter}
           /> : null}
-          <TestsTable orders={orders}/>
+          <TestsTable orders={orders} FilterButton={FilterButton}/>
           <Notifications notifications={notifications}/>
 
       </Paper>

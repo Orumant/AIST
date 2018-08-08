@@ -45,7 +45,7 @@ class TestsTable extends React.Component {
   };
 
   render() {
-    const {orders, restartChain} = this.props;
+    const {orders, restartChain, FilterButton} = this.props;
     const {expandedRowIds} = this.state;
     const pageSizes = [5, 10, 15, 0];
 

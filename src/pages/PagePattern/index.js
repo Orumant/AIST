@@ -6,7 +6,6 @@ import {styles} from "./style";
 import MenuSideBar from "./index/NavPanel/MenuSideBar";
 import NavPanel from "./index/NavPanel"
 import './style.css'
-import SpeedDials from "./index/SpeedDials";
 
 class PagePattern extends React.Component {
   state = {

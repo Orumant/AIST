@@ -46,9 +46,21 @@
   margin-top: 1%;
   margin-bottom: 1%;
 }
-.sidebar-content{
+.sidebar-content {
   margin-top: 64px;
   width: 350px;
+}
+
+.expansion-name {
+  flex: 1;
+}
+
+.filter-item {
+  margin: 8px;
+}
+
+.table-toolbar {
+  text-align: right;
 }
 
 html {

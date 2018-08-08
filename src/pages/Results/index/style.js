@@ -7,6 +7,7 @@ export const styles = theme => {
   return{
   drawerPaper: {
     width: drawerWidth,
+    overflowY: 'initial',
   },
   drawerHeader: {
     display: 'flex',
@@ -14,6 +15,9 @@ export const styles = theme => {
     justifyContent: 'flex-start',
     padding: '0 8px',
     ...theme.mixins.toolbar,
+  },
+  drawerTitle: {
+    flex: '1',
   },
 }};
 
