@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const columns = [
   {name: "id_order", title: "ID заявки"},
   {

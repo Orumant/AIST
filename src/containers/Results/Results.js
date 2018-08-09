@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import ResultsPage from "../../pages/Results/index";
+import Results from "../../pages/Results/Results";
 import {updateRequestAndOrders} from "../../modules/Results/Results/operations";
 
 
@@ -17,4 +17,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage)
+export default connect(mapStateToProps, mapDispatchToProps)(Results)

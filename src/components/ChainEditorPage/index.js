@@ -24,10 +24,9 @@ import ConfirmationDialog from "../ConfirmationDialog"
 import SearchBar from "../SearchBar"
 import NotifyUser from "../NotifyUser/NotifyUser"
 import Select from 'react-select'
-import Header from "../Header";
-import {forceLogin, getUserName} from '../../globalFunc';
+import {forceLogin} from '../../globalFunc';
 
-class ChainEditorPage extends React.Component {
+class ChainEditor extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.props.fetchGroupsForMembers();
@@ -365,7 +364,6 @@ class ChainEditorPage extends React.Component {
       return {label: test, value: index}
     });
     return [
-      <Header owner={getUserName()}/>,
       <div className='chain-editor-main'>
         <Row>
           <Col md={4}>
@@ -422,4 +420,4 @@ class ChainEditorPage extends React.Component {
   }
 }
 
-export default ChainEditorPage
+export default ChainEditor

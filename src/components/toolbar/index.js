@@ -35,7 +35,7 @@ class Toolbar extends React.Component {
 
     return (
       <div
-        key={'container'}
+        key="toolbar-container"
         style={{
         ...style,
         position: 'relative',
@@ -45,7 +45,7 @@ class Toolbar extends React.Component {
         borderRadius: 3,
         padding: 5,
       }}>
-        <Row>
+        <Row key="toolbar-container-row">
           <Col md={12}>
             <ButtonToolbar>
               <ButtonGroup>

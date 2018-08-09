@@ -1,5 +1,3 @@
-import React from 'react';
-
 const drawerWidth = 240;
 
 export const styles = theme => ({

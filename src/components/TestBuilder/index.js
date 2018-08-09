@@ -20,14 +20,13 @@ import 'react-select/dist/react-select.css'
 import Select from 'react-select'
 import Notifications from 'react-notification-system-redux'
 import SearchBar from "../SearchBar";
-import Header from "../Header";
-import {forceLogin, getUserName} from '../../globalFunc';
+import {forceLogin} from '../../globalFunc';
 import Toolbar from "../toolbar/index";
 import ToolbarEdit from "../toolbarEdit/index";
 import TestParamsForm from "./TestParamsForm";
 import './style.css';
 
-class TestBuilderPage extends React.Component {
+class TestBuilder extends React.Component {
   constructor(props, context) {
     super(props, context);
     forceLogin();
@@ -343,6 +342,7 @@ class TestBuilderPage extends React.Component {
       <Row key={'Toolbar'+selectedTestIndex}>
         {helpModal}
         <Toolbar
+          key="test-builder-toolbar"
           help={this.handleShow}
           onNewEntryAdded={() => {
             addNewTest();
@@ -405,7 +405,6 @@ class TestBuilderPage extends React.Component {
     }
     return (
       <div>
-        <Header owner={getUserName()}/>
         <Grid fluid={true} className={'test-builder-main'}>
           <Row>
             <Col md={3}>
@@ -449,4 +448,4 @@ class TestBuilderPage extends React.Component {
 
 }
 
-export default TestBuilderPage
+export default TestBuilder

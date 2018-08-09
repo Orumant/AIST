@@ -195,7 +195,7 @@ export const updateLoginForm = (payload, publicKey) => (dispatch) => {
   axios.post(url, payload).then(function (response) {
     payload.token = response.data.token;
     setCurrentUser(payload.login, response.data);
-    window.location.hash = '#/homepage';
+    window.location.hash = '#/launcher';
 
   }).catch(function (response) {
     payload.password = a;

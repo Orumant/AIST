@@ -1,4 +1,4 @@
-import PersonalPage from '../components/PersonalPage'
+import Personal from '../components/PersonalPage'
 import {selectGroupForm} from "../actions";
 import {
   fetchGroups,
@@ -30,4 +30,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PersonalPage)
+export default connect(mapStateToProps, mapDispatchToProps)(Personal)

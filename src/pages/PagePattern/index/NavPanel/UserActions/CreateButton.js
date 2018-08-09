@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import {onUserLogOut, forceLogin, getUserName, getPersonalPage} from '../../../../../globalFunc';
 import {styles} from "./style";
 import {Link} from "react-router-dom";
 
@@ -24,17 +23,6 @@ class CreateButton extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  logOut = () => {
-    onUserLogOut();
-    forceLogin();
-    this.handleClose();
-  };
-
-  getPersonal = () => {
-    getPersonalPage();
-    this.handleClose();
-  };
-
   render() {
     const {classes} = this.props;
     const {anchorEl} = this.state;
@@ -42,18 +30,19 @@ class CreateButton extends React.Component {
 
     return [
       <Button
-        aria-owns='menu-appbar'
+        key="create-btn"
+        aria-owns='menu-create-btn'
         aria-haspopup="true"
         onClick={this.handleMenu}
         color="inherit"
         className={classes.createButton}
       >
-        <AddIcon  className={classes.accountIcon}/>
+        <ExpandMoreIcon className={classes.accountIcon}/>
         <Typography color="inherit">Создать</Typography>
       </Button>,
       <Menu
-        id="account-menu"
-        key="account-menu"
+        id="create-menu"
+        key="create-menu"
         open={open}
         onClose={this.handleClose}
         anchorEl={anchorEl}
@@ -63,8 +52,8 @@ class CreateButton extends React.Component {
           horizontal: 'left',
         }}
       >
-        <MenuItem key="chain_link" onClick={this.getPersonal}><Link to={"/chaineditor"}>Цепочку</Link></MenuItem>
-        <MenuItem key="test_link" onClick={this.logOut}><Link to={"/testbuilder"}>Тест</Link></MenuItem>
+        <MenuItem key="create_chain_link" component={Link} to={"/chaineditor"}>Цепочку</MenuItem>
+        <MenuItem key="create_test_link" component={Link} to={"/testbuilder"}>Тест</MenuItem>
       </Menu>
     ];
   }

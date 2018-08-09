@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import HelpIcon from '@material-ui/icons/Help';
-import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
 import AccountButton from "./UserActions/AccountButton";
 import Typography from '@material-ui/core/Typography';
@@ -21,14 +20,6 @@ class UserActions extends React.Component {
 
     return (
       <div>
-        {/*<Button*/}
-          {/*aria-owns='menu-appbar'*/}
-          {/*aria-haspopup="true"*/}
-          {/*color="inherit"*/}
-        {/*>*/}
-          {/*<AddIcon/>*/}
-          {/*<Typography color="inherit">Создать</Typography>*/}
-        {/*</Button>*/}
         <CreateButton/>
         <Button
           onClick={()=> this.setState({showHelp: true})}

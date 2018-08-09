@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-
 import {styles} from "./style";
 import UserActions from "./NavPanel/UserActions";
 
@@ -30,12 +29,6 @@ class NavPanel extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              {/*<IconButton*/}
-                {/*color="inherit"*/}
-                {/*aria-label="Open drawer"*/}
-              {/*>*/}
-                {/*<HomeIcon />*/}
-              {/*</IconButton>*/}
               <Typography variant="title" color="inherit" className={classes.flex}>
                 {title}
               </Typography>

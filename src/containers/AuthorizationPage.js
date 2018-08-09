@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import AuthorizationPage from '../components/AuthorizationPage'
-import {setAlertChromeVersion, loginPasswordChange} from "../actions";
+import {loginPasswordChange} from "../actions";
 import {getPublicKeyLogin} from "../api";
 
 function mapStateToProps(state) {

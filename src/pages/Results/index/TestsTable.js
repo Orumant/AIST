@@ -1,5 +1,4 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 
 import {
   SortingState, PagingState, GroupingState, IntegratedGrouping,
@@ -14,7 +13,6 @@ import {
 import DetailsTable from "./TestsTable/DetailsTable";
 import {columns, tableColumnExtensions} from "./TestsTable/ColumnsProps";
 import {Cell} from './TestsTable/Cell';
-import {restartChain} from "../../../modules/Results/TestTable/operations";
 
 
 class TestsTable extends React.Component {
@@ -45,7 +43,7 @@ class TestsTable extends React.Component {
   };
 
   render() {
-    const {orders, restartChain, FilterButton} = this.props;
+    const {orders, restartChain} = this.props;
     const {expandedRowIds} = this.state;
     const pageSizes = [5, 10, 15, 0];
 

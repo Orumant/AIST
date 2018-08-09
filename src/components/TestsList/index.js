@@ -284,6 +284,7 @@ class TestsList extends React.Component {
     return [
       <ol>
         <Toolbar
+          key="test-list-toolbar"
           style={{marginLeft: -40, marginRight: -40}}
           additionalElement={this.renderSearches()}
         />

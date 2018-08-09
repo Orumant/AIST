@@ -8,24 +8,22 @@ import {HashRouter} from 'react-router-dom';
 import rootReducer from './reducers';
 import HomePage from './containers/HomePage';
 import TDME2E from './containers/TDME2E';
-import ChainEditorPage from './containers/ChainEditorPage';
+import ChainEditorPage from './pages/ChainEditorPage';
 import FormBuilderPage from "./containers/FormBuilderPage";
-import TestBuilder from "./containers/TestBuilder";
-import DataDirectoryPage from "./containers/DataDirectoryPage";
-import DataDirectoryTest from "./containers/DataDirectoryTest/DataDirectoryTest";
+import DataDirectoryPage from "./pages/DataDirectoryPage";
 
 import DataTemplatesBuilderPage from "./containers/DataTemplates";
 import AuthorizationPage from "./containers/AuthorizationPage"
 import RegistrationPage from "./containers/RegistrationPage"
-import Launcher from "./containers/Launcher"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'font-awesome/css/font-awesome.min.css';
 import './styles/main.css';
-import PersonalPage from "./containers/PersonalPage";
-import TestResults from "./pages/Test";
-import ResultsPage from "./containers/Results/Results";
+import PersonalPage from "./pages/PersonalPage";
+import ResultsPage from "./pages/Results";
+import LauncherPage from "./pages/Launcher/index";
+import TestBuilderPage from "./pages/TestBuilderPage/index";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -42,9 +40,9 @@ ReactDOM.render((
       <div>
         <HashRouter>
           <Switch>
-            <Route exact path='/launcher' component={Launcher}/>
-            <Route exact path="/testbuilder" component={TestBuilder}/>
-            <Route path="/testbuilder/:testName" component={TestBuilder}/>
+            <Route exact path='/launcher' component={LauncherPage}/>
+            <Route exact path="/testbuilder" component={TestBuilderPage}/>
+            <Route path="/testbuilder/:testName" component={TestBuilderPage}/>
             <Route exact path="/chaineditor" component={ChainEditorPage}/>}
             <Route path="/chaineditor/:chainName" component={ChainEditorPage}/>}
             <Route exact path="/formbuilder" component={FormBuilderPage}/>
@@ -57,10 +55,8 @@ ReactDOM.render((
             <Route path="/TDME2E" component={TDME2E}/>
             <Route path="/registration" component={RegistrationPage}/>
             <Route path="/personaldata" component={PersonalPage}/>
-            <Route path="/paneltest" component={TestResults}/>
             <Route path="/results" component={ResultsPage}/>
             <Route exact path="/" component={AuthorizationPage}/>
-            <Route exect path="/datadirectory_test" component={DataDirectoryTest}/>
           </Switch>
         </HashRouter>
       </div>

@@ -1,7 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
 import {arrayToOptions, filterPropertyFromObjects} from "../../utils/filters/index";
-import SearchBar from "./SearchBar";
 
 class FilterChains extends React.Component {
 
@@ -20,8 +19,13 @@ class FilterChains extends React.Component {
     const {chains} = this.props;
     const options = arrayToOptions(filterPropertyFromObjects(chains, 'name'));
     return (
-      <SearchBar options={options} placeholder={'Поиск цепочки по названию...'}
-                 onOptionClick={this.changeChain} value={selectedChain}/>
+      <Select
+        options={options}
+        className='test-filter'
+        placeholder={'Поиск цепочки по названию'}
+        onChange={this.changeChain}
+        value={selectedChain}
+      />
     )
   }
 }

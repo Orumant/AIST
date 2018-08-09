@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Header from "../Header";
 import {forceLogin} from "../../globalFunc";
 import {
   Alert,
@@ -294,7 +293,6 @@ class Launcher extends Component {
     });
 
     return [
-      <Header/>,
       <Grid>
         {orderCreatedAlert()}
         <Panel header={header} bsStyle={'info'} className={'main-panel'}>

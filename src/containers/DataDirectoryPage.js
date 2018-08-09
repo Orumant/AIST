@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import DataDirectoryPage from '../components/DataDirectoryPage'
+import DataDirectory from '../components/DataDirectoryPage'
 import {
   fetchBuilderChains,
   filterDirectoryData,
@@ -29,4 +29,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DataDirectoryPage)
+export default connect(mapStateToProps, mapDispatchToProps)(DataDirectory)

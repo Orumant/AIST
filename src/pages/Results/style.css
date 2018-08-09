@@ -61,7 +61,12 @@
 
 .table-toolbar {
   text-align: right;
+  padding: 12px;
 }
+.Select-control {
+  border-radius: 0px;
+}
+
 
 html {
   font-size: 100%;

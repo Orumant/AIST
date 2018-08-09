@@ -1,7 +1,6 @@
 const drawerWidth = 350;
 
 export const styles = theme => {
-
   return{
   drawerPaper: {
     width: drawerWidth,

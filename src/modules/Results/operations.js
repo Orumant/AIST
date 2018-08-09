@@ -11,11 +11,11 @@ export const updateRequestAndOrders = (part, request_old) => (dispatch, getState
 
 const updateRequestBody = (part, request) => (dispatch) => {
   Object.keys(part).map(key => {
-    if (part[key] === null || part[key].length == 0) {
+    if (part[key] === null || part[key].length === 0) {
       const {[key]: value, ...withoutKey} = request;
-      request = withoutKey}
+      return request = withoutKey}
     else  {
-      request[key] = part[key]
+      return request[key] = part[key]
     }});
   dispatch(actions.updateRequest(request));
   return request;

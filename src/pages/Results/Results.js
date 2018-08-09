@@ -1,42 +1,41 @@
 import React from 'react'
-import "moment/locale/ru"
-import "react-dates/initialize"
-import "react-dates/lib/css/_datepicker.css"
 import Notifications from 'react-notification-system-redux';
-
-import SearchBar from "../../containers/DataDirectoryTest/SearchBar";
-import ArchiveCatalogTabs from "./index/ArchiveCatalogTabs";
-import "./style.css"
-
 import Button from '@material-ui/core/Button';
+import TestsTable from "../../containers/Results/TestTable";
+import SearchBar from "../../containers/Results/SearchBar";
 import Paper from '@material-ui/core/Paper';
 import FilterList from '@material-ui/icons/FilterList';
+import './style.css'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
 
-
-class DataDirectoryTest extends React.Component{
+class Results extends React.Component {
 
   state = {
     showFilter: false,
   };
 
+  componentDidMount() {
+    const {updateRequestAndOrders, request} = this.props;
+    updateRequestAndOrders({}, request)
+  }
 
   handleClickFilter = () => {
     this.setState(state => ({showFilter: !state.showFilter}));
   };
 
-  componentDidMount() {
-    const {request, updateRequestAndOrders} = this.props;
-    updateRequestAndOrders({locked: false, status: "SUCCESS"}, request);
-  }
 
   render() {
-
-    const {classes, orders, request, fetchOrders, updateRequestAndOrders, lockOrder, unlockOrder, notifications} = this.props;
+    const {classes, fetchOrders, updateRequestAndOrders, request, orders, notifications} = this.props;
     const {showFilter} = this.state;
+
+    const FilterButton = <Button onClick={this.handleClickFilter}>
+      <FilterList style={{marginRight: '8px'}}/>
+      Фильтры
+    </Button>;
+
     return (
       <Paper
         className={classNames(classes.content, classes[`content-right`], {
@@ -58,23 +57,16 @@ class DataDirectoryTest extends React.Component{
                                 isOpen={showFilter}
         /> : null}
         <Paper>
-      {/*<div style={{height: '100%'}}>*/}
-        {/*<SearchBar onChange={fetchOrders}*/}
-                   {/*dataLength={orders.length}*/}
-                   {/*request={request}*/}
-                   {/*updateRequestAndOrders={updateRequestAndOrders}/>*/}
-        <ArchiveCatalogTabs data={orders} request={request} lockOrder={lockOrder} unlockOrder={unlockOrder}  updateRequestAndOrders={updateRequestAndOrders}/>
-        <Notifications notifications={notifications}/>
+          <TestsTable orders={orders} FilterButton={FilterButton}/>
+          <Notifications notifications={notifications}/>
         </Paper>
       </Paper>
-      // </div>
     )
   }
 }
-
-DataDirectoryTest.propTypes = {
+Results.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(DataDirectoryTest);
+export default withStyles(styles, { withTheme: true })(Results);

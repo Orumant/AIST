@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import TestBuilderPage from '../components/TestBuilder'
+import TestBuilder from '../components/TestBuilder'
 import {
   testBuilderDataFetch,
   submitTest,
@@ -52,4 +52,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TestBuilderPage)
+export default connect(mapStateToProps, mapDispatchToProps)(TestBuilder)

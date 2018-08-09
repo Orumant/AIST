@@ -8,7 +8,6 @@ import DatePicker from "react-datepicker"
 import Notifications from 'react-notification-system-redux'
 import {forceLogin} from '../../globalFunc';
 import Header from "../Header";
-import overlayFactory from 'react-bootstrap-table2-overlay';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import moment from "moment";
 import filterFactory, {textFilter} from 'react-bootstrap-table2-filter';
@@ -18,7 +17,7 @@ import './style.css';
 import {BACKEND_URL} from "../../constants/endpoints";
 import "moment/locale/ru"
 
-class DataDirectoryPage extends React.Component {
+class DataDirectory extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -320,4 +319,4 @@ class DataDirectoryPage extends React.Component {
   }
 }
 
-export default DataDirectoryPage
+export default DataDirectory

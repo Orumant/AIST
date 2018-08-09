@@ -1,5 +1,4 @@
 import React,{Component} from "react";
-import Header from "../Header";
 import {forceLogin} from "../../globalFunc";
 import {
   Button,
@@ -19,7 +18,7 @@ import Select from 'react-select';
 import './style.css'
 
 
-class PersonalPage extends Component {
+class Personal extends Component {
   constructor(props, context) {
     super(props, context);
     forceLogin();
@@ -82,7 +81,6 @@ class PersonalPage extends Component {
       </ListGroupItem>));
     return (
       <div>
-        <Header/>
         <Grid>
           <Panel header={"Создание группы"}>
             <Row>
@@ -165,4 +163,4 @@ class PersonalPage extends Component {
   }
 }
 
-export default PersonalPage;
+export default Personal;
