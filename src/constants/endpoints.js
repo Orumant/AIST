@@ -13,6 +13,8 @@ export const BACKEND_URL = "http://10.247.96.146:8080";
 // ПРОД
 // export const BACKEND_URL = 'http://aist-stage.vm.mos.cloud.sbrf.ru:8080';
 
+// export const BACKEND_URL = 'http://10.247.96.125:8080';
+
 //Прод для доступа из сигмы
 // export const BACKEND_URL = 'http://10.21.152.115:7777/aistservice';
 //export const BACKEND_URL = 'http://10.21.152.115:7777/aistservice/test';
