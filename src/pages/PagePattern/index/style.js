@@ -23,8 +23,8 @@ export const styles = theme => ({
   'appBarShift-left': {
     marginLeft: drawerWidth,
   },
-  menuButton: {
-    marginLeft: 12,
+  homeButton: {
+    // marginLeft: 12,
     marginRight: 20,
   },
   drawerHeader: {

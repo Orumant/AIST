@@ -7,5 +7,5 @@ export const ColumnChooserHelp = [
     <li key={"help-choose-column-1"}>1. Нажмите на иконку глаза в правом верхнем углу таблицы</li>
     <li key={"help-choose-column-2"}>2. Отметьте нужные заголовки</li>
   </ul>,
-  <img key={'help-choose-column-gif'} style={{width: '100%', maxWidth: '255px'}} src={ColumnChooser} className="center-block"/>
+  <img key={'help-choose-column-gif'} style={{width: '100%', maxWidth: '255px'}} alt="Choose column" src={ColumnChooser} className="center-block"/>
 ];

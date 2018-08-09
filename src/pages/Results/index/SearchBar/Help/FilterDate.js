@@ -9,5 +9,5 @@ export const FilterDateHelp = [
     <li key={"date-3"}>2. Выберите дату начала (записи с временем создания начиная с этой даты)</li>
     <li key={"date-4"}>3. Выберите дату окончания (записи с временем создания до этой даты)</li>
   </ul>,
-  <img key={"date-filter-gif"} style={{width: '100%', maxWidth: '748px'}} src={FilterDate} className="center-block"/>
+  <img key={"date-filter-gif"} style={{width: '100%', maxWidth: '748px'}} alt="Date filter" src={FilterDate} className="center-block"/>
 ];

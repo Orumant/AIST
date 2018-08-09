@@ -10,5 +10,5 @@ export const FilterAddHelp = [
     <li key={"add-4"}>Некоторые списки поддерживают выбор нескольких значений</li>
     <li key={"add-5"}>4. Для удаления значения нажмите на крестик в правой части формы</li>
   </ul>,
-  <img key={"add-filter-gif"} style={{width: '100%', maxWidth: '408px'}} src={FilterAdd} className="center-block"/>
+  <img key={"add-filter-gif"} style={{width: '100%', maxWidth: '408px'}} alt="Add filter" src={FilterAdd} className="center-block"/>
 ];

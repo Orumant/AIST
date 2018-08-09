@@ -7,5 +7,5 @@ export const SortHelp = [
     <li key={"sort-1"}>1. Нажмите на название столбца для сортировки записей по возрастанию</li>
     <li key={"sort-2"}>2. Повторно нажмите на название столбца для сортировки записей по убыванию</li>
   </ul>,
-  <img key={"sort-gif"} style={{width: '100%', maxWidth: '1005px'}} src={Sort} className="center-block"/>
+  <img key={"sort-gif"} style={{width: '100%', maxWidth: '1005px'}} alt="Sort" src={Sort} className="center-block"/>
 ];
