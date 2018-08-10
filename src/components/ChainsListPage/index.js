@@ -8,7 +8,7 @@ import Header from "../Header";
 import Loading from 'react-loading'
 import Select from 'react-select';
 
-class ChainsListPage extends React.Component {
+class ChainsList extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -172,7 +172,6 @@ class ChainsListPage extends React.Component {
 
     if (chains === undefined) {
       return [
-        <Header owner={getUserName()}/>,
         <div className='chain-component-loading'>
           <Loading type='spin' color='#457A8C' height='10%' width='10%'/>
         </div>
@@ -261,8 +260,8 @@ class ChainsListPage extends React.Component {
         </Modal>
       );
 
-      return [<Header owner={getUserName()}/>,
-        <div className='chain-component-tbl'>
+      return [
+        <div>
           {selectSearchPanel}
           <BootstrapTable keyField='id' striped hover pagination
                           data={chains} ignoreSinglePage trClassName='chain-component-col'>
@@ -304,4 +303,4 @@ class ChainsListPage extends React.Component {
   }
 }
 
-export default ChainsListPage;
+export default ChainsList;

@@ -23,6 +23,7 @@ import actionsBarReducer from "../modules/Results/ActionsBar/reducer";
 import searchBarReducerDD from "../modules/DataDirectoryTest/SearchBar/index";
 import TestTableReducer from "../modules/Results/TestTable/reducer";
 import chainTemplateList from "./chainTemplateList";
+import filterSidebarReducer from "../modules/global/FilterSidebar";
 
 
 
@@ -51,6 +52,7 @@ const rootReducer = combineReducers({
   searchBarReducerDD,
   TestTableReducer,
   chainTemplateList,
+  filterSidebarReducer,
 });
 
 export default rootReducer

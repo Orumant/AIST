@@ -1,6 +1,7 @@
 import React from 'react';
 
 const drawerWidth = 240;
+const filterDrawerWidth = 350;
 
 export const styles = theme => ({
   root: {
@@ -24,5 +25,19 @@ export const styles = theme => ({
   },
   rootFilter: {
     padding: '0px',
-  }
+  },
+  drawerPaper: {
+    width: filterDrawerWidth,
+    overflowY: 'initial',
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+  },
+  drawerTitle: {
+    flex: '1',
+  },
 });

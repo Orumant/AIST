@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
+import FilterSidebar from '../../containers/global/FilterSidebar'
+import FilterStand from "../../containers/global/FilterStandNew";
 
 class Results extends React.Component {
 
@@ -36,6 +38,8 @@ class Results extends React.Component {
       Фильтры
     </Button>;
 
+      const content = [{name: "stand", label: "Контур", form: <FilterStand key={'stand-filter'} tests={["1", "2"]}/>}];
+
     return (
       <Paper
         className={classNames(classes.content, classes[`content-right`], {
@@ -49,13 +53,22 @@ class Results extends React.Component {
             Фильтры
           </Button>
         </div>
-        {showFilter? <SearchBar onChange={fetchOrders}
-                                dataLength={orders.length}
-                                request={request}
-                                updateRequestAndOrders={updateRequestAndOrders}
-                                close={this.handleClickFilter}
-                                isOpen={showFilter}
-        /> : null}
+        {showFilter?
+ //         <SearchBar onChange={fetchOrders}
+ //                               dataLength={orders.length}
+ //                               request={request}
+ //                               updateRequestAndOrders={updateRequestAndOrders}
+ //                               close={this.handleClickFilter}
+ //                               isOpen={showFilter}
+ //       />
+        <FilterSidebar
+          submit={fetchOrders}
+          request={request}
+          content={content}
+          close={this.handleClickFilter}
+          isOpen={showFilter}
+        />
+          : null}
         <Paper>
           <TestsTable orders={orders} FilterButton={FilterButton}/>
           <Notifications notifications={notifications}/>

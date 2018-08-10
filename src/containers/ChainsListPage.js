@@ -10,7 +10,7 @@ import {
   filterChainTemplateListByTagsSucceed,
   clearFilterChainTemplateList,
 } from '../actions'
-import ChainsListPage from '../components/ChainsListPage'
+import ChainsList from '../components/ChainsListPage'
 
 function mapStateToProps(state) {
   return {
@@ -35,4 +35,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChainsListPage)
+export default connect(mapStateToProps, mapDispatchToProps)(ChainsList)

@@ -1,54 +1,43 @@
 import React from 'react'
-import { InputGroup, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
+import Select from 'react-select'
+import PropTypes from 'prop-types';
+import {arrayToOptions} from "../../utils/filters/index";
 
 class FilterForm extends React.Component {
 
   state = {
-    selectedFilter: [],
-  }
+    selectedOption : null,
+  };
 
-  clearFilter = () => {
-    const {updateRequestAndOrders, request, filters} = this.props;
-    this.setState({selectedFilter: []});
-    let empty_request = {};
-    filters.forEach(filter => empty_request = {...empty_request, [filter.request_tag]: null});
-    updateRequestAndOrders(empty_request, request)
-  }
+  changeSelection = (option) => {
+    const {onChange, name} = this.props;
+    this.setState({selectedOption: option});
+    onChange({[name]: option.label});
+  };
 
-  renderSearches = () => {
-    const {filters} = this.props;
-    let searches = [];
-    const {selectedFilter} = this.state;
-    if (selectedFilter.length > 0) {
-      selectedFilter.forEach((searchInd) => searches.push(filters[searchInd].form)
-      )
-    }
-    return searches;
-    };
+  render ()  {
+    const {selectedOption} = this.state;
+    const {options, placeholder} = this.props;
+    const optionsList = arrayToOptions(options);
 
-    render() {
-    const {filters} = this.props;
-
-    const buttons = (filters) => {
-      return filters.map((filter, ind) =>
-        <ToggleButton key={filter.name} value={ind} style={ind === 0? {borderRadius: '0'} : null}>{filter.label}</ToggleButton>)
-    };
-
-      return [
-        <InputGroup key={'additional-filters-form'}>
-        <InputGroup.Addon >Фильтры:</InputGroup.Addon>
-          <ToggleButtonGroup type='checkbox' name='filterSwitch' value={this.state.selectedFilter}
-                             onChange={searchInd => this.setState({selectedFilter: searchInd})}>
-            {buttons(filters)}
-            {this.state.selectedFilter.length > 0
-              ? <ToggleButton value={'reset'} bsStyle='danger'
-                        onClick={this.clearFilter}>Сброс</ToggleButton>
-              : null}
-          </ToggleButtonGroup>
-          </InputGroup>,
-        <div className='search-select' key={'additional-filters'}>{this.renderSearches()}</div>
-      ]
+    return (
+      <Select
+        options={optionsList}
+        className='test-filter'
+        placeholder={placeholder? placeholder: ""}
+        onChange={this.changeSelection}
+        value={selectedOption}
+      />
+    )
   }
 }
 
+FilterForm.propTypes = {
+  name: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+};
+
 export default FilterForm
+

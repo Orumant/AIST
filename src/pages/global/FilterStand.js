@@ -2,7 +2,7 @@ import React from 'react'
 import Select from 'react-select'
 import {arrayToOptions, filterPropertyFromObjects} from "../../utils/filters/index";
 
-class FilterAS extends React.Component {
+class FilterStand extends React.Component {
 
   state = {
     selectedStand : null,
@@ -34,5 +34,5 @@ class FilterAS extends React.Component {
   }
 }
 
-export default FilterAS
+export default FilterStand
 

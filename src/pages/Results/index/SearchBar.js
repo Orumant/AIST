@@ -14,6 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
+import FilterStandNew from "../../../containers/global/FilterStandNew";
 
 class SearchBar extends React.Component {
 
@@ -48,6 +49,7 @@ class SearchBar extends React.Component {
             {item("Дата", <DateForm {...others}/>)}
             {item("Система", <FilterAS  key={'system-filter'} tests={tests} {...others}/>)}
             {item("Контур", <FilterStand  key={'stand-filter'} tests={tests} {...others}/>)}
+            {item("Контур2", <FilterStandNew  key={'stand-filter'} tests={tests} {...others}/>)}
             {item("Теги", <FilterTag key={'tag-filter'} tests={tests} {...others}/>)}
           </div>
         </div>

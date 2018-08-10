@@ -12,7 +12,7 @@ import ChainEditorPage from './pages/ChainEditorPage';
 import FormBuilderPage from "./containers/FormBuilderPage";
 
 import DataDirectoryPage from "./pages/DataDirectoryPage";
-import ChainsListPage from "./containers/ChainsListPage";
+import ChainsListPage from "./pages/ChainListPage";
 import DataTemplatesBuilderPage from "./containers/DataTemplates";
 import AuthorizationPage from "./containers/AuthorizationPage"
 import RegistrationPage from "./containers/RegistrationPage"
