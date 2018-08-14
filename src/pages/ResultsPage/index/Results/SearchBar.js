@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DateForm from "../../global/DateForm";
-import FilterAS from "../../global/FilterAS";
-import FilterStand from "../../../containers/global/FilterStand";
-import FilterTag from "../../global/FilterTag";
-import FilterChains from "../../global/FilterChains";
+import DateForm from "../../../global/DateForm";
+import FilterAS from "../../../global/FilterAS";
+import FilterStand from "../../../../containers/global/FilterStand";
+import FilterTag from "../../../global/FilterTag";
+import FilterChains from "../../../global/FilterChains";
 
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
@@ -14,7 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
-import FilterStandNew from "../../../containers/global/FilterStandNew";
+import FilterStandNew from "../../../../containers/global/FilterStandNew";
 
 class SearchBar extends React.Component {
 

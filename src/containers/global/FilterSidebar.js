@@ -10,7 +10,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateFilterRequest: (request) => dispatch(Actions.updateFilterRequest(request))
+    updateFilterRequest: (request) => dispatch(Actions.updateFilterRequest(request)),
+    getStartFilterRequest: (request) => dispatch(Actions.getStartFilterRequest(request))
   }
 }
 

@@ -10,8 +10,13 @@ const updateRequest = (request) => ({
   request,
 });
 
+const startFetching = () => ({
+  type: types.START_FETCHING
+});
+
 
 export default {
   ordersFetchSucceed,
-  updateRequest
+  updateRequest,
+  startFetching,
 }

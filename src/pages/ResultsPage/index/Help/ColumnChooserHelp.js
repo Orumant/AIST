@@ -1,5 +1,5 @@
 import React from 'react';
-import ColumnChooser from '../../../../../assets/ColumnChooser.gif';
+import ColumnChooser from '../../../../assets/ColumnChooser.gif';
 
 export const ColumnChooserHelp = [
   <h3 key={'help-choose-column-title'}>Работа со столбцами</h3>,

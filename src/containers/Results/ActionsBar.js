@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {fetchChainsTests} from "../../modules/Results/operations";
-import ActionsBar from "../../pages/Results/index/HeaderForm/ActionsBar";
+import ActionsBar from "../../pages/ResultsPage/index/HeaderForm/ActionsBar";
 
 
 function mapStateToProps(state) {

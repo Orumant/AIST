@@ -25,6 +25,7 @@ const updateRequestBody = (part, request) => (dispatch) => {
 export const fetchOrders = (request) => (dispatch) => {
   const url = `${BACKEND_URL}/orders/filter`;
   const header = {headers: {SessionID: getToken()}};
+  actions.startFetching();
   axios.post(url, request, header).then(function (response) {
     dispatch(actions.ordersFetchSucceed(response.data));
   }).catch(function (response) {

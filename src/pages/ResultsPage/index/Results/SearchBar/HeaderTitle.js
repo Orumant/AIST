@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 
 import Divider from '@material-ui/core/Divider'
-import Help from "./Help";
+import Help from "../../Help";
 
 class SearchBar extends React.Component {
 

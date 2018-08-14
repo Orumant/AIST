@@ -1,12 +1,11 @@
 import React from 'react';
-import Results from "../../containers/Results";
 import PagePattern from '../PagePattern';
-import Help from "../Results/index/SearchBar/Help";
+import Results from "../../containers/Results/Results";
+import Help from "./index/Help";
 
 class ResultsPage extends React.Component {
 
   render() {
-
     return (
       <PagePattern title="Результаты" content={<Results/>} help={<Help/>}/>
     );

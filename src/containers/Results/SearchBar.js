@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {fetchChainsTests} from "../../modules/Results/operations";
-import SearchBar from "../../pages/Results/index/SearchBar";
+import SearchBar from "../../pages/ResultsPage/index/Results/SearchBar";
 
 
 function mapStateToProps(state) {

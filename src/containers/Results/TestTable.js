@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {fetchOrderDetails, restartChain} from "../../modules/Results/TestTable/operations";
-import TestTable from "../../pages/Results/index/TestsTable";
+import TestTable from "../../pages/ResultsPage/index/Results/TestsTable";
 
 
 function mapStateToProps(state) {

@@ -22,7 +22,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import './styles/main.css';
 import PersonalPage from "./pages/PersonalPage";
-import ResultsPage from "./pages/Results";
+import ResultsPage from "./pages/ResultsPage";
 import LauncherPage from "./pages/Launcher/index";
 import TestBuilderPage from "./pages/TestBuilderPage/index";
 

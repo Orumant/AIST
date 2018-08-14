@@ -1,5 +1,5 @@
 import React from 'react';
-import FilterAdd from '../../../../../assets/FilterAdd.gif';
+import FilterAdd from '../../../../assets/FilterAdd.gif';
 
 export const FilterAddHelp = [
   <h3 key={"add-filter-title"}>Использование фильтров</h3>,

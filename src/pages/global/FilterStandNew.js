@@ -10,13 +10,16 @@ class FilterStand extends React.Component {
   }
 
   render ()  {
-    const {stands, onChange} = this.props;
+    const {stands, onChange, name, value} = this.props;
     const options = filterPropertyFromObjects(stands, 'code');
+
     return (
       <FilterForm
-        name={'stand'}
+        name={name}
+        label="Контур"
         options={options}
         onChange={onChange}
+        value={value}
       />
     )
   }

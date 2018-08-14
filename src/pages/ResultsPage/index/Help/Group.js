@@ -1,5 +1,5 @@
 import React from 'react';
-import Group from '../../../../../assets/Group.gif';
+import Group from '../../../../assets/Group.gif';
 
 export const GroupHelp = [
   <h3 key={"group-title"}>Группировка</h3>,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Sort from '../../../../../assets/Sort.gif';
+import Sort from '../../../../assets/Sort.gif';
 
 export const SortHelp = [
   <h3 key={"sort-title"}>Сортировка</h3>,

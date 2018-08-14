@@ -11,29 +11,48 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
+import Loading from 'react-loading';
 
 class FilterSidebar extends React.Component {
 
   state = {
-    values : {},
+    isUpdated: false,
   };
 
-  changeValue = (filterName) => (val) => {
+  componentDidMount() {
+    const {isNewPage, startRequest, getStartFilterRequest, resetFilters} = this.props;
+    if (isNewPage) {
+      getStartFilterRequest(startRequest);
+      resetFilters();
+    }
+    this.setState({isUpdated: true});
+  };
+
+  changeValue = (val) => {
     const {updateFilterRequest} = this.props;
-    console.log(filterName, val);
-    this.setState({values: {[filterName]: val}});
-    updateFilterRequest(shift(values))
+    this.setState({values: val});
+    updateFilterRequest(val)
   };
 
-
+  resetFilters = () => {
+    const {getStartFilterRequest, startRequest, submit} = this.props;
+    getStartFilterRequest(startRequest);
+    submit(startRequest);
+  };
 
   render ()  {
-    const item = (label, elem) => <div className={'filter-item'}>{label}{elem}</div>;
-    const {classes, isOpen, close, content, request} = this.props;
-    console.log(request)
+    const {classes, isOpen, content, request, submit, close, updateFilterRequest} = this.props;
 
-    const SubmitButton = <Button color="primary" onClick={() => this.props.submit()}>Отфильтровать</Button>;
-    const CancelButton = <Button>Сбросить</Button>;
+    const SubmitButton = <Button color="primary" onClick={() => submit(request)}>Отфильтровать</Button>;
+    const CancelButton = <Button onClick={this.resetFilters}>Сбросить</Button>;
+    const sidebarContent =
+        <div>
+          {content.map(filter => {console.log(request[filter.props.name]); return React.cloneElement(filter, {onChange: updateFilterRequest, value: request[filter.props.name]})})}
+          <br/>
+          {SubmitButton}
+          {CancelButton}
+        </div>;
+
 
     return (
       <Drawer
@@ -54,13 +73,11 @@ class FilterSidebar extends React.Component {
             </IconButton>
           </div>
           <div>
-            {content.map(filter => {
-              console.log(filter)
-              const form = React.cloneElement(filter.form, {onChange: this.changeValue(filter.name)})
-              return item(filter.label, form)})}
-            <br/>
-            {SubmitButton}
-            {CancelButton}
+            {request? sidebarContent :
+              <div className='chain-component-loading'>
+                <Loading type='spin' color='#457A8C' height='30%' width='30%'/>
+              </div>
+            }
             {/*{item("Название цепочки", <FilterChains chains={chains} {...others}/>)}*/}
             {/*{item("Дата", <DateForm {...others}/>)}*/}
             {/*{item("Система", <FilterAS  key={'system-filter'} tests={tests} {...others}/>)}*/}

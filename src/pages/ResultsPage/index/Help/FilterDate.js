@@ -1,5 +1,5 @@
 import React from 'react';
-import FilterDate from '../../../../../assets/FilterDate.gif';
+import FilterDate from '../../../../assets/FilterDate.gif';
 
 export const FilterDateHelp = [
   <h3 key={"date-filter-title"}>Выбор даты</h3>,

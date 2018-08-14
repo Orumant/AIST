@@ -1,5 +1,5 @@
 import React from 'react';
-import Details from '../../../../../assets/Details.gif';
+import Details from '../../../../assets/Details.gif';
 
 export const DetailsHelp = [
   <h3 key={"details-title"}>Работа с таблицей</h3>,
