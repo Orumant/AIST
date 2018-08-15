@@ -1,10 +1,10 @@
 import React from 'react';
-import FilterAS from "../../../global/FilterASNew";
-import FilterStand from "../../../../containers/global/FilterStandNew";
-import FilterTag from "../../../global/FilterTagsNew";
-import FilterChains from "../../../global/FilterChains";
-import FilterSidebar from "../../../../containers/global/FilterSidebar";
-import FilterDate from "../../../global/FilterDate";
+import FilterAS from "../../../_global/filters/FilterAS";
+import FilterStand from "../../../../containers/_global/FilterStand";
+import FilterTag from "../../../_global/filters/FilterTags";
+import FilterChains from "../../../_global/filters/FilterChains";
+import FilterSidebar from "../../../../containers/_global/FilterSidebar";
+import FilterDate from "../../../_global/filters/FilterDate";
 
 
 class SearchBar extends React.Component {

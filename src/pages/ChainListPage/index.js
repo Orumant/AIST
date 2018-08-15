@@ -1,7 +1,7 @@
 import React from 'react';
-import PagePattern from '../global/PagePattern';
+import PagePattern from '../_global/PagePattern';
 import ChainEditorHelp from "../ChainEditorPage/help";
-import ChainList from "../../containers/ChainsListPage";
+import ChainList from "../../containers/ChainListPage/ChainsListPage";
 
 class ChainListPage extends React.Component {
 

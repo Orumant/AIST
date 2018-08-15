@@ -15,14 +15,15 @@ import dataPersonal from "./dataPersonal";
 import testList from "./testList";
 import ResultsReducer from "../modules/ResultsPage/Results/index";
 import ordersTable from "../modules/DataDirectoryTest/OrdersTable/index"
-import filterStandReducer from "../modules/global/FilterStand";
-import filterFormReducer from "../modules/global/FilterForm";
+import filterStandReducer from "../modules/_global/FilterStand";
 import dataDirectoryTestReducer from "../modules/DataDirectoryTest/DataDirectoryTest/index";
 import searchBarReducer from "../modules/ResultsPage/SearchBar/index";
 import searchBarReducerDD from "../modules/DataDirectoryTest/SearchBar/index";
 import TestTableReducer from "../modules/ResultsPage/TestTable/reducer";
 import chainTemplateList from "./chainTemplateList";
-import filterSidebarReducer from "../modules/global/FilterSidebar";
+import filterSidebarReducer from "../modules/_global/FilterSidebar";
+import searchBarReducerChainList from "../modules/ChainListPage/SearchBar";
+import chainsListReducer from "../modules/ChainListPage/ChainListPage";
 
 
 
@@ -45,12 +46,13 @@ const rootReducer = combineReducers({
   dataDirectoryTestReducer,
   ordersTable,
   filterStandReducer,
-  filterFormReducer,
   searchBarReducer,
   searchBarReducerDD,
   TestTableReducer,
   chainTemplateList,
   filterSidebarReducer,
+  searchBarReducerChainList,
+  chainsListReducer,
 });
 
 export default rootReducer

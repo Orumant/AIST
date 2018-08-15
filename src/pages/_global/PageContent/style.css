@@ -1,0 +1,11 @@
+.table-toolbar {
+  text-align: right;
+  padding: 12px;
+}
+
+.loading {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  z-index: 9999;
+}

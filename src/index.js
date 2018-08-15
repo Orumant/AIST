@@ -25,6 +25,7 @@ import PersonalPage from "./pages/PersonalPage";
 import ResultsPage from "./pages/ResultsPage";
 import LauncherPage from "./pages/Launcher/index";
 import TestBuilderPage from "./pages/TestBuilderPage/index";
+import './style.css'
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

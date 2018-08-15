@@ -1,7 +1,7 @@
 import reducer from './reducer'
 
-export {default as DataDirectoryTestActions} from './actions'
-export {default as DataDirectoryTestOperations} from './operations'
-export {default as DataDirectoryTestTypes} from './types'
+export {default as Actions} from './actions'
+export {default as Operations} from './operations'
+export {default as Types} from './types'
 
 export default reducer

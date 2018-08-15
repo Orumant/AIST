@@ -1,5 +1,5 @@
 import React from 'react';
-import PagePattern from '../global/PagePattern';
+import PagePattern from '../_global/PagePattern';
 import Results from "../../containers/ResultsPage/Results";
 import Help from "./index/Help";
 

@@ -40,13 +40,27 @@ const updateRequestBody = (part, request) => (dispatch) => {
   return request;
 };
 
+const showPopup = (dispatch) => {
+  if (isFirstChange) {
+    dispatch(info(infoPopup(dispatch)));
+    isFirstChange = false;
+  }
+};
+
 
 export const fetchOrders = (request) => (dispatch) => {
   const url = `${BACKEND_URL}/orders/filter`;
   const header = {headers: {SessionID: getToken()}};
+  dispatch(showPopup);
+  dispatch(actions.startFetching())
   axios.post(url, request, header).then(function (response) {
     dispatch(actions.ordersFetchSucceed(response.data));
   }).catch(function (response) {
+    dispatch(actions.endFetching())
     dispatch(error({message: "Fetch failed with error!" + response}));
   });
 };
+
+export default {
+  fetchOrders,
+}
