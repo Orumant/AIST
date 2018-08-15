@@ -6,11 +6,9 @@ import actions from './actions'
 
 const fetchChains = (request) => (dispatch) => {
   const url = `${BACKEND_URL}/chain_templates/filter`;
-  console.log(request)
   const header = {headers: {SessionID: getToken()}};
   dispatch(actions.startFetching());
   axios.post(url, request, header).then(function (response) {
-    console.log(response.data)
     dispatch(actions.chainsFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(actions.endFetching());
@@ -18,6 +16,17 @@ const fetchChains = (request) => (dispatch) => {
   });
 };
 
+export const fetchTestsData = () => (dispatch) => {
+  const url = `${BACKEND_URL}/tests`;
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
+    dispatch(actions.testsFetchSucceed(response.data));
+  }).catch(function (response) {
+    dispatch(error({message: "Произошла ошибка!" + response}));
+  });
+};
+
 export default {
   fetchChains,
+  fetchTestsData,
 }

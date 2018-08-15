@@ -1,43 +1,26 @@
 import React from 'react'
-import './style.css'
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css'
-import {forceLogin} from '../../../globalFunc';
-import {Button, Col, Glyphicon, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row,} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn,} from 'react-bootstrap-table'
-import Loading from 'react-loading'
 import Select from 'react-select';
-import PageContent from '../../_global/PageContent'
-import SearchBar from "../../../containers/ChainListPage/SearchBar";
+import TestInfo from "./ChainsTable/TestInfo";
 
 class ChainsTable extends React.Component {
 
   state = {
     selectedOptions: '0',
+    show: false,
+    cell: [],
   };
 
-  tagFormatter(cell) {
+  testFormatter = (cell) => {
     return (
-      <div>
-        {cell.static.length === 0 ?
-          '' :
-          'Статические теги:' + cell.static + '\n'}
-        {cell.dynamic.length === 0 ?
-          '' :
-          'Динамические теги:' + cell.dynamic + '\n'}
-      </div>
-    )
-  };
-
-  testFormatter(cell) {
-    console.log(cell)
-    return (
-      <div className='chain-component-span' onClick={(e, value) => this.handleShow(cell.test_info)}>
-        {new Array(cell.tests).join(',')}
-      </div>
+      <a className='chain-component-span' onClick={(e, value) => this.openModal(cell)}>
+        {new Array(cell).join(',')}
+      </a>
     );
   };
 
-  actionFormatter(cell) {
+  actionFormatter = (cell) => {
     const value = this.state.selectedOptions;
     const options = [{label: 'Добавить', value: 0}, {label: 'Редактировать', value: 1}, {label: 'Удалить', value: 2}];
     return (
@@ -50,8 +33,18 @@ class ChainsTable extends React.Component {
     )
   };
 
+  openModal = (cell) => {
+    this.setState(state => ({show: true, cell: cell}))
+  };
+
+  closeModal = () => {
+    this.setState({show: false})
+  };
+
+
   render() {
-    const { data } = this.props;
+    const { data, testsAll } = this.props;
+    const { show, cell } = this.state;
 
     return (
       <div>
@@ -73,7 +66,6 @@ class ChainsTable extends React.Component {
             Тесты в составе цепочки
           </TableHeaderColumn>
           <TableHeaderColumn key='id' width='10%' searchable={true} dataField='tag_names'
-            // dataFormat={this.tagFormatter}
           >
             Теги
           </TableHeaderColumn>
@@ -89,7 +81,7 @@ class ChainsTable extends React.Component {
             Доступные действия
           </TableHeaderColumn>
         </BootstrapTable>
-        {modalTestInfo}
+        <TestInfo show={show} testsData={testsAll} tests={cell} close={this.closeModal}/>
       </div>
     )
   }

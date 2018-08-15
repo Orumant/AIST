@@ -1,23 +1,12 @@
 import React from 'react'
-import './style.css'
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css'
-import {forceLogin} from '../../../globalFunc';
 import {Button, Col, Glyphicon, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row,} from 'react-bootstrap'
-import {BootstrapTable, TableHeaderColumn,} from 'react-bootstrap-table'
-import Loading from 'react-loading'
-import Select from 'react-select';
-import PageContent from '../../_global/PageContent'
-import SearchBar from "../../../containers/ChainListPage/SearchBar";
 
-class ChainsTable extends React.Component {
 
-  state = {
-    selectedOptions: '0',
-  };
-
+class TestInfo extends React.Component {
 
   render() {
-    const { show } = this.props;
+    const { show, tests, testsData, close } = this.props;
 
     return (
       <Modal show={show}>
@@ -25,19 +14,19 @@ class ChainsTable extends React.Component {
           <ModalTitle>Информация по цепочке тестов</ModalTitle>
         </ModalHeader>
         <ModalBody>
-          {Object.keys(this.state.test_info).map((idx) => {
-            return (<Row key={idx}>
-              <Col md={1} style={{fontWeight: 'bold'}}>{JSON.parse(this.state.test_info[idx]).id}</Col>
-              <Col md={10}>{JSON.parse(this.state.test_info[idx]).info}</Col>
+          {tests.map((test, ind) => {
+            return (<Row key={ind}>
+              <Col md={1} style={{fontWeight: 'bold'}}>{test}</Col>
+              <Col md={10}>{testsData[test]}</Col>
             </Row>)
           })}
         </ModalBody>
         <ModalFooter className='chain-component-modal-footer'>
-          <Button className='chain-component-btn' onClick={(e) => this.handleClose(e)}>Закрыть</Button>
+          <Button className='chain-component-btn' onClick={close}>Закрыть</Button>
         </ModalFooter>
       </Modal>
     )
   }
 }
 
-export default ChainsTable;
+export default TestInfo;

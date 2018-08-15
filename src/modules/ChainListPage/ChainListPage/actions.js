@@ -1,8 +1,13 @@
 import types from './types'
 
-const chainsFetchSucceed = (payload) => ({
+const chainsFetchSucceed = (chains) => ({
   type: types.CHAINS_FETCH_SUCCEED,
-  payload,
+  chains,
+});
+
+const testsFetchSucceed = (testsAll) => ({
+  type: types.TESTS_FETCH_SUCCEED,
+  testsAll,
 });
 
 const startFetching = () => ({
@@ -16,6 +21,7 @@ const endFetching = () => ({
 
 export default {
   chainsFetchSucceed,
+  testsFetchSucceed,
   startFetching,
   endFetching,
 }
