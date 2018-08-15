@@ -41,18 +41,18 @@ class FilterSidebar extends React.Component {
   };
 
   render ()  {
-    const {classes, isOpen, content, request, submit, close, updateFilterRequest} = this.props;
+    const {classes, isOpen, content, request, submit, close, updateFilterRequest, isLoad} = this.props;
+    console.log(request)
 
     const SubmitButton = <Button color="primary" onClick={() => submit(request)}>Отфильтровать</Button>;
     const CancelButton = <Button onClick={this.resetFilters}>Сбросить</Button>;
     const sidebarContent =
         <div>
-          {content.map(filter => {console.log(request[filter.props.name]); return React.cloneElement(filter, {onChange: updateFilterRequest, value: request[filter.props.name]})})}
+          {content.map(filter => React.cloneElement(filter, {onChange: updateFilterRequest, value: request[filter.props.name]}))}
           <br/>
           {SubmitButton}
           {CancelButton}
         </div>;
-
 
     return (
       <Drawer
@@ -73,11 +73,7 @@ class FilterSidebar extends React.Component {
             </IconButton>
           </div>
           <div>
-            {request? sidebarContent :
-              <div className='chain-component-loading'>
-                <Loading type='spin' color='#457A8C' height='30%' width='30%'/>
-              </div>
-            }
+            {sidebarContent}
             {/*{item("Название цепочки", <FilterChains chains={chains} {...others}/>)}*/}
             {/*{item("Дата", <DateForm {...others}/>)}*/}
             {/*{item("Система", <FilterAS  key={'system-filter'} tests={tests} {...others}/>)}*/}

@@ -1,5 +1,5 @@
 import React from 'react';
-import PagePattern from '../PagePattern';
+import PagePattern from '../global/PagePattern';
 import ChainEditorHelp from "../ChainEditorPage/help";
 import ChainList from "../../containers/ChainsListPage";
 

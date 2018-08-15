@@ -17,6 +17,7 @@ class FilterStand extends React.Component {
       <FilterForm
         name={name}
         label="Контур"
+        placeholder="Название контура"
         options={options}
         onChange={onChange}
         value={value}

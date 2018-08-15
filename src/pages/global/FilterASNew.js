@@ -19,6 +19,7 @@ class FilterAS extends React.Component {
       <FilterForm
         name={name}
         label="Система"
+        placeholder="Название системы"
         options={options}
         onChange={this.handleChange}
         value={value}

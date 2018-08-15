@@ -67,6 +67,16 @@
   border-radius: 0px;
 }
 
+.DateRangePickerInput_clearDates__hide {
+  visibility: visible;
+}
+
+.loading {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  z-index: 9999;
+}
 
 html {
   font-size: 100%;

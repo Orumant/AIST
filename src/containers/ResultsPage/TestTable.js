@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {fetchOrderDetails, restartChain} from "../../modules/Results/TestTable/operations";
+import {fetchOrderDetails, restartChain} from "../../modules/ResultsPage/TestTable/operations";
 import TestTable from "../../pages/ResultsPage/index/Results/TestsTable";
 
 

@@ -13,15 +13,14 @@ import dataDirectory from './dataDirectory'
 import dataAuthorization from './dataAuthorization'
 import dataPersonal from "./dataPersonal";
 import testList from "./testList";
-import ResultsReducer from "../modules/Results/Results/index";
+import ResultsReducer from "../modules/ResultsPage/Results/index";
 import ordersTable from "../modules/DataDirectoryTest/OrdersTable/index"
 import filterStandReducer from "../modules/global/FilterStand";
 import filterFormReducer from "../modules/global/FilterForm";
 import dataDirectoryTestReducer from "../modules/DataDirectoryTest/DataDirectoryTest/index";
-import searchBarReducer from "../modules/Results/SearchBar/index";
-import actionsBarReducer from "../modules/Results/ActionsBar/reducer";
+import searchBarReducer from "../modules/ResultsPage/SearchBar/index";
 import searchBarReducerDD from "../modules/DataDirectoryTest/SearchBar/index";
-import TestTableReducer from "../modules/Results/TestTable/reducer";
+import TestTableReducer from "../modules/ResultsPage/TestTable/reducer";
 import chainTemplateList from "./chainTemplateList";
 import filterSidebarReducer from "../modules/global/FilterSidebar";
 
@@ -48,7 +47,6 @@ const rootReducer = combineReducers({
   filterStandReducer,
   filterFormReducer,
   searchBarReducer,
-  actionsBarReducer,
   searchBarReducerDD,
   TestTableReducer,
   chainTemplateList,

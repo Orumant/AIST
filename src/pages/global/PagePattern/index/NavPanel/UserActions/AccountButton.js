@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import {onUserLogOut, forceLogin, getUserName, getPersonalPage} from '../../../../../globalFunc';
+import {onUserLogOut, forceLogin, getUserName, getPersonalPage} from '../../../../../../globalFunc';
 import {styles} from "./style";
 import ExitDialog from "./AccountButton/ExitDialog";
 

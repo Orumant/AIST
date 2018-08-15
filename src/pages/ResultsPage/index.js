@@ -1,6 +1,6 @@
 import React from 'react';
-import PagePattern from '../PagePattern';
-import Results from "../../containers/Results/Results";
+import PagePattern from '../global/PagePattern';
+import Results from "../../containers/ResultsPage/Results";
 import Help from "./index/Help";
 
 class ResultsPage extends React.Component {

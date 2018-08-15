@@ -1,64 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import DateForm from "../../../global/DateForm";
-import FilterAS from "../../../global/FilterAS";
-import FilterStand from "../../../../containers/global/FilterStand";
-import FilterTag from "../../../global/FilterTag";
+import FilterAS from "../../../global/FilterASNew";
+import FilterStand from "../../../../containers/global/FilterStandNew";
+import FilterTag from "../../../global/FilterTagsNew";
 import FilterChains from "../../../global/FilterChains";
+import FilterSidebar from "../../../../containers/global/FilterSidebar";
+import FilterDate from "../../../global/FilterDate";
 
-import Drawer from '@material-ui/core/Drawer';
-import Typography from '@material-ui/core/Typography';
-
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-
-import { withStyles } from '@material-ui/core/styles';
-import {styles} from "./style";
-import FilterStandNew from "../../../../containers/global/FilterStandNew";
 
 class SearchBar extends React.Component {
 
   componentDidMount() {
-    this.props.fetchChainsTests();
+    const {isNewPage} = this.props;
+    if (isNewPage) this.props.fetchChainsTests();
   }
 
   render () {
-    const {classes, tests, chains, isOpen, close,  ...others} = this.props;
+    const {tests, chains, ...others} = this.props;
 
-    const item = (name, elem) => <div className={'filter-item'}>{name}{elem}</div>;
+    const content = [
+      <FilterChains name='chain' chains={chains}/>,
+      <FilterDate />,
+      <FilterAS name='asystems' key={'system-filter'} tests={tests}/>,
+      <FilterStand name='stand' key={'stand-filter'}/>,
+      <FilterTag name='tags' key={'tag-filter'} tests={tests} />,
+    ];
+
     return (
-      <Drawer
-        variant="persistent"
-        anchor="right"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        open={isOpen}
-        onClose={close}>
-        <div className={"sidebar-content"}>
-          <div className={classes.drawerHeader}>
-            <Typography variant="title" className={classes.drawerTitle}>
-              Фильтры
-            </Typography>
-            <IconButton onClick={close}>
-              <CloseIcon />
-            </IconButton>
-          </div>
-          <div>
-            {item("Название цепочки", <FilterChains chains={chains} {...others}/>)}
-            {item("Дата", <DateForm {...others}/>)}
-            {item("Система", <FilterAS  key={'system-filter'} tests={tests} {...others}/>)}
-            {item("Контур", <FilterStand  key={'stand-filter'} tests={tests} {...others}/>)}
-            {item("Контур2", <FilterStandNew  key={'stand-filter'} tests={tests} {...others}/>)}
-            {item("Теги", <FilterTag key={'tag-filter'} tests={tests} {...others}/>)}
-          </div>
-        </div>
-      </Drawer>
+      <FilterSidebar
+        content={content}
+        {...others}
+      />
     )
   }
 }
-SearchBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles, { withTheme: true })(SearchBar);
+export default SearchBar;

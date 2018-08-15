@@ -1,5 +1,5 @@
 import React from 'react';
-import PagePattern from '../PagePattern';
+import PagePattern from '../global/PagePattern';
 import TestBuilderHelp from "./help";
 import TestBuilder from "../../containers/TestBuilder";
 

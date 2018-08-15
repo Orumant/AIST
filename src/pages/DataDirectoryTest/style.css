@@ -12,8 +12,8 @@
   float: left;
 }
 .info-button {
-  height: 4vw;
-  border-width: 0px 0px 0px 1px !important;
+  height: 3vw;
+  border-width: 0px 1px 0px 0px !important;
   border-radius: 0 !important;
 }
 .nav.nav-tabs::after {
@@ -51,6 +51,7 @@
 
 .DateRangePicker_picker {
   z-index: 10;
+  padding-right: 100px;
 }
 .DateRangePicker_picker:hover {
   z-index: 11;

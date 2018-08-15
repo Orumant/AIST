@@ -7,7 +7,7 @@ export const arrayToOptions = (array) => {
 };
 
 export const filterPropertyFromObjects = (objects, property) => {
-  return objects.map((object) => object[property]).filter((val, ind, array) => array.indexOf(val) === ind)
+  return objects.map((object) => object[property]).filter((val, ind, array) => array.indexOf(val) === ind && val)
 };
 
 export const filterTagsFromTests = (tests) => {

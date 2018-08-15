@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {fetchChainsTests} from "../../modules/Results/operations";
+import { Operations} from "../../modules/ResultsPage/SearchBar";
 import SearchBar from "../../pages/ResultsPage/index/Results/SearchBar";
 
 
@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchChainsTests: () => dispatch(fetchChainsTests()),
+    fetchChainsTests: () => dispatch(Operations.fetchChainsTests()),
   }
 }
 

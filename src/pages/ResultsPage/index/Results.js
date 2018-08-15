@@ -1,8 +1,8 @@
 import React from 'react'
 import Notifications from 'react-notification-system-redux';
 import Button from '@material-ui/core/Button';
-import TestsTable from "../../../containers/Results/TestTable";
-import SearchBar from "../../../containers/Results/SearchBar";
+import TestsTable from "../../../containers/ResultsPage/TestTable";
+import SearchBar from "../../../containers/ResultsPage/SearchBar";
 import Paper from '@material-ui/core/Paper';
 import FilterList from '@material-ui/icons/FilterList';
 import './style.css'
@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
-import FilterSidebar from '../../../containers/global/FilterSidebar'
 import FilterStand from "../../../containers/global/FilterStandNew";
 import FilterAS from "../../global/FilterASNew";
 import Loading from 'react-loading';
@@ -25,10 +24,9 @@ class Results extends React.Component {
   request = {};
 
   componentDidMount() {
-    const {updateRequestAndOrders, fetchChainsTests} = this.props;
+    const {fetchOrders} = this.props;
     this.setState({isNewPage: true});
-    updateRequestAndOrders({}, this.request);
-    fetchChainsTests();
+    fetchOrders(this.request);
   }
 
   handleClickFilter = () => {
@@ -41,7 +39,7 @@ class Results extends React.Component {
 
 
   render() {
-    const {classes, fetchOrders, orders, notifications, tests, isFetching} = this.props;
+    const {classes, fetchOrders, orders, notifications, isFetching} = this.props;
     const {showFilter, isNewPage} = this.state;
 
     const FilterButton = <Button onClick={this.handleClickFilter}>
@@ -49,14 +47,9 @@ class Results extends React.Component {
       Фильтры
     </Button>;
 
-    const spinner = <div className='chain-component-loading'>
-      <Loading type='spin' color='#457A8C' height='30%' width='30%'/>
-    </div>
-
-    const content = [
-      <FilterStand name='stand' key={'stand-filter'}/>,
-      <FilterAS name='asystems' key={'system-filter'} tests={tests}/>
-    ];
+    const spinner = <div className='loading'>
+      <Loading type='spin' color='rgb(67, 136, 204)' height='100px' width='100px'/>
+    </div>;
 
     return (
       <Paper
@@ -64,36 +57,30 @@ class Results extends React.Component {
           [classes.contentShift]: showFilter,
           [classes[`contentShift-right`]]: showFilter,
         })}
+
       >
-        <div className="table-toolbar">
-          <Button onClick={this.handleClickFilter}>
-            <FilterList style={{marginRight: '8px'}}/>
-            Фильтры
-          </Button>
+        {isFetching? spinner: null}
+        <div style={{opacity: isFetching? 0.5 : 1}}>
+          <div className="table-toolbar">
+            <Button onClick={this.handleClickFilter}>
+              <FilterList style={{marginRight: '8px'}}/>
+              Фильтры
+            </Button>
+          </div>
+          <SearchBar
+            submit={fetchOrders}
+            startRequest={this.request}
+            close={this.handleClickFilter}
+            isOpen={showFilter}
+            isNewPage={isNewPage}
+            resetFilters={this.resetFilters}
+            updateFilter={this.updateFilterRequest}
+          />
+          <Paper>
+            <TestsTable orders={orders} FilterButton={FilterButton}/>
+            <Notifications notifications={notifications}/>
+          </Paper>
         </div>
-        {showFilter?
- //         <SearchBar onChange={fetchOrders}
- //                               dataLength={orders.length}
- //                               request={request}
- //                               updateRequestAndOrders={updateRequestAndOrders}
- //                               close={this.handleClickFilter}
- //                               isOpen={showFilter}
- //       />
-        <FilterSidebar
-          submit={fetchOrders}
-          startRequest={this.request}
-          content={content}
-          close={this.handleClickFilter}
-          isOpen={showFilter}
-          isNewPage={isNewPage}
-          resetFilters={this.resetFilters}
-          updateFilter={this.updateFilterRequest}
-        />
-          : null}
-        <Paper>
-          <TestsTable orders={orders} FilterButton={FilterButton}/>
-          <Notifications notifications={notifications}/>
-        </Paper>
       </Paper>
     )
   }

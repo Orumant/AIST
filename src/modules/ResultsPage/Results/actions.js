@@ -5,18 +5,17 @@ const ordersFetchSucceed = (payload) => ({
   payload,
 });
 
-const updateRequest = (request) => ({
-  type: types.UPDATE_REQUEST,
-  request,
+const startFetching = () => ({
+  type: types.START_FETCHING,
 });
 
-const startFetching = () => ({
-  type: types.START_FETCHING
+const endFetching = () => ({
+  type: types.END_FETCHING,
 });
 
 
 export default {
   ordersFetchSucceed,
-  updateRequest,
   startFetching,
+  endFetching,
 }

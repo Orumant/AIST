@@ -3,15 +3,6 @@
   position: relative;
 }
 
-.test-filter{
-  z-index: 6;
-  position: relative;
-}
-.test-filter:hover {
-  z-index: 7;
-  position: relative;
-}
-
 .Select-input input[fixcaret="fixcaret"] {
   margin-left: 0;
 }
