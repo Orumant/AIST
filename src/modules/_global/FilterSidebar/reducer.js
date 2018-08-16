@@ -9,7 +9,6 @@ const filterSidebarReducer = (state = initialState, action) => {
     case types.UPDATE_FILTER_REQUEST: {
       let new_request = {...state.request};
       const part = action.request;
-
       Object.keys(part).forEach(key => {
         if (part[key] === null || part[key].length === 0) {
           const {[key]: value, ...withoutKey} = new_request;

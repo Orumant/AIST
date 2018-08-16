@@ -6,6 +6,7 @@ function mapStateToProps(state) {
   return {
     chains: state.chainsListReducer.chains,
     testsAll: state.chainsListReducer.testsAll,
+    isFetching: state.chainsListReducer.isFetching,
   }
 }
 

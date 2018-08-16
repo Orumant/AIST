@@ -1,8 +1,6 @@
 const drawerWidth = 350;
 
-export const styles = theme => {
-  console.log(theme)
-  return({
+export const styles = theme => ({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -33,4 +31,4 @@ export const styles = theme => {
   'contentShift-right': {
     marginRight: 0,
   }
-})};
+});

@@ -16,7 +16,7 @@ class ChainsList extends React.Component {
   }
 
   render() {
-    const { chains, fetchChains, testsAll } = this.props;
+    const { chains, fetchChains, testsAll, isFetching } = this.props;
 
     const FilterBar = <SearchBar
       key='chain-list-sidebar'
@@ -24,10 +24,10 @@ class ChainsList extends React.Component {
       startRequest={this.request}
     />;
 
-    const table = <ChainsTable data={chains} testsAll={testsAll}/>;
+    const table = [<ChainsTable key='chains-table' data={chains} testsAll={testsAll}/>];
 
     return (
-          <PageContent isFilter={true} FilterBar={FilterBar} content={table}/>
+          <PageContent isFilter={true} isLoading={isFetching} FilterBar={FilterBar} content={table}/>
       );
 }
 }

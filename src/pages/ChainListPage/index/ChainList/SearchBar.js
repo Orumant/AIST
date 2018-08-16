@@ -9,17 +9,17 @@ import FilterMarker from "../../../_global/filters/FilterMarker";
 class SearchBar extends React.Component {
 
   componentDidMount() {
-    const {isNewPage, fetchChainsTests} = this.props;
-    if (isNewPage) fetchChainsTests();
+    const {fetchChainsTests} = this.props;
+    fetchChainsTests();
   }
 
   render () {
     const {tests, chains, ...others} = this.props;
 
     const content = [
-      <FilterChains name='name' chains={chains}/>,
+      <FilterChains name='name' key={'chain-name-filter'} chains={chains}/>,
       <FilterTag name='tag_names' key={'tag-filter'} tests={tests} />,
-      <FilterMarker name='marker' chains={chains}/>,
+      <FilterMarker name='marker' key={'marker-filter'} chains={chains}/>,
       <FilterStand name='stand' key={'stand-filter'}/>,
     ];
 

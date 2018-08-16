@@ -5,9 +5,9 @@ export const ordersFetchSucceed = (payload) => ({
   payload,
 });
 
-export const updateRequest = (request) => ({
-  type: types.UPDATE_REQUEST,
-  request
+export const excludeOrder = (id_order) => ({
+  type: types.ORDER_EXCLUDED,
+  id_order
 });
 
 const startFetching = () => ({
@@ -20,7 +20,7 @@ const endFetching = () => ({
 
 export default {
   ordersFetchSucceed,
-  updateRequest,
   startFetching,
   endFetching,
+  excludeOrder,
 }

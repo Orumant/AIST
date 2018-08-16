@@ -10,16 +10,16 @@ import FilterDate from "../../../_global/filters/FilterDate";
 class SearchBar extends React.Component {
 
   componentDidMount() {
-    const {isNewPage} = this.props;
-    if (isNewPage) this.props.fetchChainsTests();
+    const {fetchChainsTests} = this.props;
+    fetchChainsTests();
   }
 
   render () {
     const {tests, chains, ...others} = this.props;
 
     const content = [
-      <FilterChains name='chain' chains={chains}/>,
-      <FilterDate />,
+      <FilterChains key={'chain-name-filter'} name='chain' chains={chains}/>,
+      <FilterDate key={'date-filter'}/>,
       <FilterAS name='asystems' key={'system-filter'} tests={tests}/>,
       <FilterStand name='stand' key={'stand-filter'}/>,
       <FilterTag name='tags' key={'tag-filter'} tests={tests} />,

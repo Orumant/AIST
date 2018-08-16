@@ -14,7 +14,7 @@ class ChainsTable extends React.Component {
 
   testFormatter = (cell) => {
     return (
-      <a className='chain-component-span' onClick={(e, value) => this.openModal(cell)}>
+      <a className='chain-component-span' onClick={() => this.openModal(cell)}>
         {new Array(cell).join(',')}
       </a>
     );
@@ -41,7 +41,6 @@ class ChainsTable extends React.Component {
     this.setState({show: false})
   };
 
-
   render() {
     const { data, testsAll } = this.props;
     const { show, cell } = this.state;
@@ -50,38 +49,39 @@ class ChainsTable extends React.Component {
       <div>
         <BootstrapTable keyField='id' striped hover pagination
                         data={data} ignoreSinglePage trClassName='chain-component-col'>
-          <TableHeaderColumn key='id' width='15%' dataField='name' dataSort={true}>
+          <TableHeaderColumn className='custom-header' key='id' width='15%' dataField='name' dataSort={true}>
             Имя цепочки
           </TableHeaderColumn>
-          <TableHeaderColumn key='id' width='12%' searchable={false} dataField='description'>
+          <TableHeaderColumn className='custom-header' key='id' width='12%' searchable={false} dataField='description'>
             Описание цепочки
           </TableHeaderColumn>
-          <TableHeaderColumn key='id' width='12%' dataField='marker' dataSort={true}>
+          <TableHeaderColumn className='custom-header' key='id' width='12%' dataField='marker' dataSort={true}>
             Маркер
           </TableHeaderColumn>
-          <TableHeaderColumn key='id' width='15%' dataField='templates'>
+          <TableHeaderColumn className='custom-header' key='id' width='15%' dataField='templates'>
             Применимые шаблоны
           </TableHeaderColumn>
-          <TableHeaderColumn key='id' width='9%' searchable={true} dataField='tests' dataFormat={this.testFormatter}>
+          <TableHeaderColumn className='custom-header' key='id' width='9%' searchable={true} dataField='tests'
+                             dataFormat={this.testFormatter}>
             Тесты в составе цепочки
           </TableHeaderColumn>
-          <TableHeaderColumn key='id' width='10%' searchable={true} dataField='tag_names'
+          <TableHeaderColumn className='custom-header' key='id' width='10%' searchable={true} dataField='tag_names'
           >
             Теги
           </TableHeaderColumn>
-          <TableHeaderColumn key='id' width='6%' dataField='stand' dataSort={true}>
+          <TableHeaderColumn className='custom-header' key='id' width='6%' dataField='stand' dataSort={true}>
             Контур
           </TableHeaderColumn>
-          <TableHeaderColumn key='id' width='6%' dataField='groups'>
+          <TableHeaderColumn className='custom-header' key='id' width='6%' dataField='groups'>
             Доступы
           </TableHeaderColumn>
-          <TableHeaderColumn key='id' width='15%' dataFormat={this.actionFormatter}
+          <TableHeaderColumn className='custom-header' key='id' width='15%' dataFormat={this.actionFormatter}
                              columnClassName='chain-component-col-select'
                              searchable={false} dataField='id'>
             Доступные действия
           </TableHeaderColumn>
         </BootstrapTable>
-        <TestInfo show={show} testsData={testsAll} tests={cell} close={this.closeModal}/>
+        <TestInfo show={show} testsData={testsAll} tests={cell}  close={this.closeModal}/>
       </div>
     )
   }

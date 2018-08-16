@@ -7,7 +7,7 @@ class FilterAS extends React.Component {
   handleChange = (request) => {
     const {onChange, name} = this.props;
     const val = request[name];
-    request[name] = [val];
+    request[name] = val? [val]: val;
     onChange(request);
   };
 

@@ -14,12 +14,11 @@ class SearchBar extends React.Component {
 
   render () {
     const {tests, chains, ...others} = this.props;
-    console.log(this.props.startRequest)
 
     const content = [
-      <FilterMarker name='marker' chains={chains}/>,
-      <FilterTag name='tags' key={'tag-filter'} tests={tests} />,
-      <FilterDate />,
+      <FilterMarker name='marker' key={'marker-filter'} chains={chains}/>,
+      <FilterTag name='tags' key={'tags-filter'} tests={tests} />,
+      <FilterDate key={'date-filter'} />,
       <FilterAS name='asystems' key={'system-filter'} tests={tests}/>,
       <FilterStand name='stand' key={'stand-filter'}/>,
     ];

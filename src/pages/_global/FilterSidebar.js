@@ -16,12 +16,17 @@ import './style.css'
 class FilterSidebar extends React.Component {
 
   componentDidMount() {
-    const {isNewPage, startRequest, getStartFilterRequest, changePageFlag} = this.props;
-    if (isNewPage) {
-      getStartFilterRequest(startRequest);
-      changePageFlag();
-    }
+    const {startRequest, getStartFilterRequest} = this.props;
+    getStartFilterRequest(startRequest);
   };
+
+  componentDidUpdate() {
+    const {startRequest, request, updateFilterRequest} = this.props;
+    const isKeysChanged = Object.keys(startRequest).every(prop => prop in request);
+    const isValuesChanged = Object.keys(startRequest).every(prop => startRequest[prop] === request[prop]);
+    const isChanged = !(isKeysChanged && isValuesChanged);
+    if (isChanged) updateFilterRequest(startRequest);
+  }
 
   resetFilters = () => {
     const {getStartFilterRequest, startRequest, submit} = this.props;
@@ -31,6 +36,7 @@ class FilterSidebar extends React.Component {
 
   render ()  {
     const {classes, isOpen, content, request, submit, close, updateFilterRequest, dataLength} = this.props;
+
 
     const SubmitButton = <Button color="primary" onClick={() => submit(request)}>Отфильтровать</Button>;
     const CancelButton = <Button onClick={this.resetFilters}>Сбросить</Button>;
@@ -42,7 +48,10 @@ class FilterSidebar extends React.Component {
           {CancelButton}
         </div>;
 
-    const resultsLength = [<Divider/>, <div className={'results-length'}>Найдено записей: <b>{dataLength}</b></div>];
+    const resultsLength = [
+      <Divider key="results-divider"/>,
+      <div key="results-length" className={'results-length'}>Найдено записей: <b>{dataLength}</b></div>
+    ];
 
     return (
       <Drawer
@@ -52,7 +61,7 @@ class FilterSidebar extends React.Component {
           paper: classes.drawerPaper,
         }}
         open={isOpen}
-      >
+        onClose={close}>
         <div className={"sidebar-content"}>
           <div className={classes.drawerHeader}>
             <Typography variant="title" className={classes.drawerTitle}>
@@ -74,7 +83,6 @@ class FilterSidebar extends React.Component {
 
 FilterSidebar.propTypes = {
   submit: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(FilterSidebar);

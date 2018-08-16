@@ -20,7 +20,6 @@ import "./style.css"
 class PageContent extends React.Component{
 
   state = {
-    isNewPage: true,
     showFilter: false,
   };
 
@@ -28,20 +27,15 @@ class PageContent extends React.Component{
     this.setState(state => ({showFilter: !state.showFilter}));
   };
 
-  changePageFlag = () => {
-    this.setState({isNewPage: false});
-  };
-
   render() {
 
     const {classes, isFilter, isLoading, FilterBar, content} = this.props;
-    const {isNewPage, showFilter} = this.state;
+    const {showFilter} = this.state;
 
     const Sidebar = React.cloneElement(FilterBar, {
       close: this.handleClickFilter,
-      isOpen: showFilter,
-      isNewPage: isNewPage,
-      changePageFlag: this.changePageFlag});
+      isOpen: showFilter
+    });
 
     const Spinner = <div className='loading'>
       <Loading key='page-content-loading' type='spin' color='rgb(67, 136, 204)' height='100px' width='100px'/>

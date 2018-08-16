@@ -27,10 +27,15 @@ const dataDirectoryTestReducer = (state = initialState, action) => {
         isFetching: false,
       }
     }
-    case types.UPDATE_REQUEST: {
+    case types.ORDER_EXCLUDED: {
+      let new_data = [...state.data];
+      let index = -1;
+      new_data.forEach((order, ind) => order.id_order === action.id_order? index=ind : null);
+      if (index >= 0) new_data.splice(index, 1);
+
       return {
         ...state,
-        request: action.request
+        data: new_data
       }
     }
     default:

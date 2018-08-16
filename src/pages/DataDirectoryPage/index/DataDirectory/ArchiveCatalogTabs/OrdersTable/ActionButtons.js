@@ -12,11 +12,11 @@ export const ActionButtons = (request, lockOrder, unlockOrder, openWindow) => (c
 }
 
 const useButton = (request, lockOrder, unlockOrder, id_order) => {
-  if (!request.locked) return lockOrderButton(lockOrder, id_order, request);
-  return unlockOrderButton(unlockOrder, id_order, request)
+  if (!request.locked) return lockOrderButton(lockOrder, id_order);
+  return unlockOrderButton(unlockOrder, id_order)
 }
 
-const lockOrderButton = (lock, id_order, request) => {
+const lockOrderButton = (lock, id_order) => {
   return (
     <span>
           <Button
@@ -25,14 +25,14 @@ const lockOrderButton = (lock, id_order, request) => {
             bsSize="sm"
             className="action"
             title="Получение данных по заявке"
-            onClick={() => lock(id_order, request)}
+            onClick={() => lock(id_order)}
           >Использовать
         </Button>
     </span>
   )
 };
 
-const unlockOrderButton = (unlock, id_order, request) => {
+const unlockOrderButton = (unlock, id_order) => {
   return (
     <span>
           <Button
@@ -40,7 +40,7 @@ const unlockOrderButton = (unlock, id_order, request) => {
             bsSize="sm"
             className="action"
             title="Вернуть в реестр"
-            onClick={() => unlock(id_order, request)}
+            onClick={() => unlock(id_order)}
           >Вернуть в реестр
         </Button>
     </span>

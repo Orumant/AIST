@@ -4,6 +4,7 @@ import {error, success} from "react-notification-system-redux";
 import {getToken} from '../../../globalFunc';
 import actions from "./actions";
 import {fetchOrders} from "../DataDirectoryTest/operations";
+import {Actions} from "../DataDirectoryTest";
 
 
 export const getOrderJSON = (id_order) => (dispatch) => {
@@ -16,25 +17,30 @@ export const getOrderJSON = (id_order) => (dispatch) => {
   });
 };
 
-export const lockOrder = (orderId, request) => (dispatch, getState) => {
+export const lockOrder = (id_order) => (dispatch, getState) => {
   const header = {headers: {SessionID: getToken()}};
-  const url = `${BACKEND_URL}/orders/${orderId}/lock`;
-
+  const url = `${BACKEND_URL}/orders/${id_order}/lock`;
   axios.post(url, header).then(function (response) {
     dispatch(success({message: "Запись успешно заблокирована!"}));
-    dispatch(fetchOrders(request))
+    dispatch(Actions.excludeOrder(id_order))
   }).catch(function (response) {
     dispatch(error({message: "Произошла ошибка!" + response}));
   });
 };
 
-export const unlockOrder = (orderId, request) => (dispatch, getState) => {
+export const unlockOrder = (id_order) => (dispatch, getState) => {
   const header = {headers: {SessionID: getToken()}};
-  const url = `${BACKEND_URL}/orders/${orderId}/unlock`;
+  const url = `${BACKEND_URL}/orders/${id_order}/unlock`;
   axios.post(url, header).then(function (response) {
     dispatch(success({message: "Запись успешно разблокирована!"}));
-    dispatch(fetchOrders(request))
+    dispatch(Actions.excludeOrder(id_order))
   }).catch(function (response) {
     dispatch(error({message: "Произошла ошибка!" + response}));
   });
 };
+
+export default {
+  getOrderJSON,
+  lockOrder,
+  unlockOrder,
+}
