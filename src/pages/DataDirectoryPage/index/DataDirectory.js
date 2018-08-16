@@ -9,7 +9,19 @@ import "./style.css"
 class DataDirectoryTest extends React.Component{
 
   state = {
-    request: {locked: false, status: "SUCCESS"}
+    request: {locked: false, status: "SUCCESS"},
+    isFirstChange: true,
+  };
+
+  infoPopup = {
+    title: 'Не нашли что искали?',
+    message: 'В таблице отображаются только успешно прошедшие тесты. Вы можете запустить нужную цепочку',
+    position: 'bl',
+    autoDismiss: 0,
+    action: {
+      label: 'Здесь',
+      callback: () => {window.open("#/launcher", "_self"); this.props.clearPopup()},
+    }
   };
 
   componentDidMount() {
@@ -18,11 +30,15 @@ class DataDirectoryTest extends React.Component{
   }
 
   updateRequest = (val) => {
-    const {fetchOrders} = this.props;
-    const {request} = this.state;
+    const {fetchOrders, showPopup} = this.props;
+    const {request, isFirstChange} = this.state;
     const new_request = {...request, locked: val };
     this.setState({request: new_request});
     fetchOrders(new_request);
+    if (isFirstChange) {
+      showPopup(this.infoPopup)
+      this.setState({isFirstChange: false});
+    }
   };
 
   render() {
