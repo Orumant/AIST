@@ -1,6 +1,8 @@
 const drawerWidth = 350;
 
-export const styles = theme => ({
+export const styles = theme => {
+  console.log(theme)
+  return({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -10,11 +12,10 @@ export const styles = theme => ({
   },
   content: {
     width: '100%',
-    height: '100%',
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: '0px',
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -31,5 +32,5 @@ export const styles = theme => ({
   },
   'contentShift-right': {
     marginRight: 0,
-  },
-});
+  }
+})};

@@ -62,7 +62,7 @@ class PageContent extends React.Component{
               Фильтры
             </Button>
           </div>: null}
-          {showFilter? Sidebar : null}
+          {Sidebar}
           <Paper>
             {content}
           </Paper>

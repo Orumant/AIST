@@ -52,7 +52,7 @@ class FilterSidebar extends React.Component {
           paper: classes.drawerPaper,
         }}
         open={isOpen}
-        onClose={close}>
+      >
         <div className={"sidebar-content"}>
           <div className={classes.drawerHeader}>
             <Typography variant="title" className={classes.drawerTitle}>
@@ -74,6 +74,7 @@ class FilterSidebar extends React.Component {
 
 FilterSidebar.propTypes = {
   submit: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(FilterSidebar);

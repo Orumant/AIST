@@ -12,9 +12,8 @@ class PagePattern extends React.Component {
   };
 
   handleDrawerClick = () => {
-    const { open } = this.state;
-    if (open) this.setState({ open:  false});
-    else this.setState({ open:  true});
+    const {open} = this.state;
+    this.setState({ open:  !open});
   };
 
   render() {
