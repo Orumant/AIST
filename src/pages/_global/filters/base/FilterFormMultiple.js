@@ -18,7 +18,7 @@ class FilterFormMultiple extends React.Component {
 
   componentDidMount() {
     const {value, options} = this.props;
-    const option = {label: value, value: options.indexOf(value)}
+    const option = {label: value, value: options.indexOf(value)};
     this.setState({selectedOption: option})
   }
 

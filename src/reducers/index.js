@@ -24,6 +24,7 @@ import chainTemplateList from "./chainTemplateList";
 import filterSidebarReducer from "../modules/_global/FilterSidebar";
 import searchBarReducerChainList from "../modules/ChainListPage/SearchBar";
 import chainsListReducer from "../modules/ChainListPage/ChainListPage";
+import chainMasterReducer from "../modules/ChainsCreatePage/ChainMaster";
 
 
 
@@ -53,6 +54,7 @@ const rootReducer = combineReducers({
   filterSidebarReducer,
   searchBarReducerChainList,
   chainsListReducer,
+  chainMasterReducer,
 });
 
 export default rootReducer

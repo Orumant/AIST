@@ -26,6 +26,7 @@ import ResultsPage from "./pages/ResultsPage";
 import LauncherPage from "./pages/Launcher/index";
 import TestBuilderPage from "./pages/TestBuilderPage/index";
 import './style.css'
+import ChainsCreatePage from "./pages/ChainsCreatePage/index";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -53,6 +54,7 @@ ReactDOM.render((
             <Route exact path="/datadirectory" component={DataDirectoryPage}/>
             <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesBuilderPage}/>
             <Route exact path='/chainTemplateList' component={ChainsListPage}/>
+            <Route exact path='/chains/create' component={ChainsCreatePage}/>
             <Route exact path="/datatemplates" component={DataTemplatesBuilderPage}/>
             <Route path="/homepage" component={HomePage}/>
             <Route path="/TDME2E" component={TDME2E}/>

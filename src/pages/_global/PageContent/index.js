@@ -9,13 +9,9 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import FilterList from '@material-ui/icons/FilterList';
 
-
 import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
 import "./style.css"
-
-
-
 
 class PageContent extends React.Component{
 
@@ -32,10 +28,10 @@ class PageContent extends React.Component{
     const {classes, isFilter, isLoading, FilterBar, content} = this.props;
     const {showFilter} = this.state;
 
-    const Sidebar = React.cloneElement(FilterBar, {
+    const Sidebar = isFilter? React.cloneElement(FilterBar, {
       close: this.handleClickFilter,
       isOpen: showFilter
-    });
+    }) : null;
 
     const Spinner = <div className='loading'>
       <Loading key='page-content-loading' type='spin' color='rgb(67, 136, 204)' height='100px' width='100px'/>
