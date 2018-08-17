@@ -1,9 +1,9 @@
 import axios from 'axios';
 import {BACKEND_URL} from "../../../constants/endpoints";
-import {error, success} from "react-notification-system-redux";
-// import {getToken} from '../../../globalFunc';
 import actions from './actions'
-import {getToken} from "../../../globalFunc";
+import {error, success} from "react-notification-system-redux";
+import {getToken} from '../../../globalFunc';
+import {showError} from "../../common_api";
 
 
 export const fetchOrderDetails = (id_order) => (dispatch) => {
@@ -13,7 +13,7 @@ export const fetchOrderDetails = (id_order) => (dispatch) => {
   axios.get(url).then(response => {
     dispatch(actions.orderDetailsFetchSucceed(response.data));
   }).catch(response => {
-    dispatch(error({message: "Fetch failed with error!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -23,7 +23,7 @@ export const restartChain = (id_order) => (dispatch) => {
   axios.post(url, header).then(() => {
     dispatch(success({message: "Тест успешно перезапущен"}));
   }).catch(response => {
-    dispatch(error({message: "Fetch failed with error!" + response}));
+    dispatch(showError(response));
   });
 };
 

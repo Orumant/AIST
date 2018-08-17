@@ -3,6 +3,7 @@ import {BACKEND_URL} from "../../../constants/endpoints";
 import {error} from "react-notification-system-redux";
 import {getToken} from '../../../globalFunc';
 import actions from './actions'
+import {showError} from "../../common_api";
 
 const fetchChains = (request) => (dispatch) => {
   const url = `${BACKEND_URL}/chain_templates/filter`;
@@ -12,7 +13,7 @@ const fetchChains = (request) => (dispatch) => {
     dispatch(actions.chainsFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(actions.endFetching());
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -22,7 +23,7 @@ export const fetchTestsData = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(actions.testsFetchSucceed(response.data));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 

@@ -31,6 +31,7 @@ import {
 import axios from 'axios';
 import {BACKEND_URL} from "./constants/endpoints";
 import {getToken, isObjectEmpty, setCurrentUser} from './globalFunc';
+import {showError} from "./modules/common_api";
 
 
 export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch, getState) => {
@@ -41,7 +42,7 @@ export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch, get
     dispatch(ordersFetchSucceed(response.data));
   }).catch(function (response) {
     //dispatch(ordersFetchFail());
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -68,7 +69,7 @@ export const getCSVbyOrderID = (orderID) => (dispatch) => {
     dispatch(ordersCSVFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(ordersCSVFetchFail());
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -111,7 +112,7 @@ export const updatePersonalForm = (payload) => (dispatch) => {
   axios.put(url, [requestBody], header).then(function (response) {
     dispatch(success({message: "Группа создана"}));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
   payload.groupName = "";
 
@@ -136,7 +137,7 @@ export const getPublicKeyRegistration = (payload) => (dispatch) => {
   axios.get(url).then(function (response) {
     dispatch(updateRegistrationForm(payload, response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -165,7 +166,7 @@ export const updateRegistrationForm = (payload, publicKey) => (dispatch) => {
   axios.put(url, payload).then(function (response) {
     window.location.hash = '#/';
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 
 };
@@ -183,7 +184,7 @@ export const getPublicKeyLogin = (payload) => (dispatch) => {
   axios.get(url).then(function (response) {
     dispatch(updateLoginForm(payload, response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -196,6 +197,7 @@ export const updateLoginForm = (payload, publicKey) => (dispatch) => {
   let a = payload.password;
   encryptPassword(payload, publicKey);
   const url = `${BACKEND_URL}/owners/login`;
+  console.log(payload, publicKey)
   axios.post(url, payload).then(function (response) {
     payload.token = response.data.token;
     setCurrentUser(payload.login, response.data);
@@ -203,7 +205,7 @@ export const updateLoginForm = (payload, publicKey) => (dispatch) => {
 
   }).catch(function (response) {
     payload.password = a;
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -215,7 +217,7 @@ export const fetchDataTemplatesList = () => (dispatch, getState) => {
     dispatch(dataTemplateFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(dataTemplateFetchFail());
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -230,7 +232,7 @@ export const fetchFormTemplate = (formName) => (dispatch) => {
     }));
   }).catch(function (response) {
     dispatch(formTemplateFetchFail());
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -244,7 +246,7 @@ export const fetchTests = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(testsListTemplateFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -258,7 +260,7 @@ export const fetchChainTemplates = () => (dispatch, getState) => {
   axios.get(url, header).then(function (response) {
     dispatch(allChainEditorTemplateFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -307,7 +309,7 @@ export const fetchBuilderChains = () => (dispatch, getState) => {
   axios.get(url, header).then(function (response) {
     dispatch(formBuilderChainsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -320,7 +322,7 @@ export const fetchGroups = () => (dispatch, getState) => {
   axios.get(url, header).then(function (response) {
     dispatch(formGroupsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -333,7 +335,7 @@ export const fetchGroupsForMembers = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(formGroupsForMembersFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -428,7 +430,7 @@ export const testBuilderDataFetch = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(testBuilderTestsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -443,7 +445,7 @@ export const testListDataFetch = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(testListTestsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -509,7 +511,7 @@ export const fetchDataTemplates = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(dataTemplatesFetchSuccess(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -579,7 +581,7 @@ export const filterDirectoryData = (filterData) => (dispatch) => {
   axios.post(url, filterData).then(function () {
     //  TODO обработка полученных данных тое диспач
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -625,7 +627,7 @@ export const getDictionaryData = (dictionary, onSuccess) => (dispatch) => {
   axios.get(url).then(function (response) {
     dispatch(onSuccess(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -640,7 +642,7 @@ export const getUsersGroups = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(launcherUserGroupsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -684,7 +686,7 @@ export const fetchFullChainTemplateList = () => (dispatch, getState) => {
   axios.get(url, header).then(function (response) {
     dispatch(testChainTemplateFetchSucceed(response.data));
   }).catch(function (response) {
-    dispatch(error({message: "Fetch failed with error!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -694,7 +696,7 @@ export const fetchAllChainTemplates = () => (dispatch, getState) => {
   axios.get(url, header).then(function (response) {
     dispatch(allChainTemplateFetchSucceed(response.data));
   }).catch(function (response) {
-    dispatch(error({message: "Fetch failed with error!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -704,7 +706,7 @@ export const fetchStands = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(standsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Fetch failed with error!" + response}));
+    dispatch(showError(response));
   });
 };
 

@@ -1,9 +1,10 @@
 import axios from 'axios';
 import {BACKEND_URL} from "../../../constants/endpoints";
-import {error, success} from "react-notification-system-redux";
+import {success} from "react-notification-system-redux";
 import {getToken} from '../../../globalFunc';
 import actions from "./actions";
 import {Actions} from "../DataDirectoryTest";
+import {showError} from "../../common_api";
 
 
 export const getOrderJSON = (id_order) => (dispatch) => {
@@ -12,7 +13,7 @@ export const getOrderJSON = (id_order) => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(actions.getOrderDataJSON(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Fetch failed with error!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -23,7 +24,7 @@ export const lockOrder = (id_order) => (dispatch, getState) => {
     dispatch(success({message: "Запись успешно заблокирована!"}));
     dispatch(Actions.excludeOrder(id_order))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -34,7 +35,7 @@ export const unlockOrder = (id_order) => (dispatch, getState) => {
     dispatch(success({message: "Запись успешно разблокирована!"}));
     dispatch(Actions.excludeOrder(id_order))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 

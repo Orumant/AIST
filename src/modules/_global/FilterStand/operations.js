@@ -3,6 +3,7 @@ import {BACKEND_URL} from "../../../constants/endpoints";
 import {error} from "react-notification-system-redux";
 import {getToken} from '../../../globalFunc';
 import actions from './actions'
+import {showError} from "../../common_api";
 
 export const getAllStands = () => (dispatch) => {
   const url = `${BACKEND_URL}/stands`;
@@ -10,7 +11,7 @@ export const getAllStands = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(actions.getStands(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Fetch failed with error!" + response}));
+    dispatch(showError(response));
   });
 };
 
