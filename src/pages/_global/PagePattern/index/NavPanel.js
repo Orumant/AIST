@@ -11,7 +11,6 @@ import HomeIcon from '@material-ui/icons/Home';
 
 import {styles} from "./style";
 import UserActions from "./NavPanel/UserActions";
-import {Link} from "react-router-dom";
 
 class NavPanel extends React.Component {
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import FilterForm from "./base/FilterForm";
-import Select from 'react-select'
-import {arrayToOptions, filterPropertyFromObjects} from "../../../utils/filters/index";
+import {filterPropertyFromObjects} from "../../../utils/filters/index";
 
 class FilterChains extends React.Component {
 

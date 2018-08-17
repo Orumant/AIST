@@ -1,6 +1,6 @@
 import React from 'react'
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css'
-import {Button, Col, Glyphicon, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row,} from 'react-bootstrap'
+import {Button, Col, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row,} from 'react-bootstrap'
 
 
 class TestInfo extends React.Component {

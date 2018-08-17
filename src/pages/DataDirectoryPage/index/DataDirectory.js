@@ -36,7 +36,7 @@ class DataDirectoryTest extends React.Component{
     this.setState({request: new_request});
     fetchOrders(new_request);
     if (isFirstChange) {
-      showPopup(this.infoPopup)
+      showPopup(this.infoPopup);
       this.setState({isFirstChange: false});
     }
   };

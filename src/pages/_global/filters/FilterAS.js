@@ -12,7 +12,7 @@ class FilterAS extends React.Component {
   };
 
   render ()  {
-    const {tests, onChange, name, value} = this.props;
+    const {tests, name, value} = this.props;
     const options = filterPropertyFromObjects(tests, 'a_system');
 
     return (

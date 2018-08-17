@@ -3,7 +3,6 @@ import {BACKEND_URL} from "../../../constants/endpoints";
 import {error, success} from "react-notification-system-redux";
 import {getToken} from '../../../globalFunc';
 import actions from "./actions";
-import {fetchOrders} from "../DataDirectoryTest/operations";
 import {Actions} from "../DataDirectoryTest";
 
 

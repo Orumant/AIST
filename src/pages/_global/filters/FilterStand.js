@@ -1,6 +1,5 @@
 import React from 'react'
-import Select from 'react-select'
-import {arrayToOptions, filterPropertyFromObjects} from "../../../utils/filters/index";
+import {filterPropertyFromObjects} from "../../../utils/filters/index";
 import FilterForm from "./base/FilterForm";
 
 class FilterStand extends React.Component {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const filterDrawerWidth = 350;
 
 export const styles = theme => ({
