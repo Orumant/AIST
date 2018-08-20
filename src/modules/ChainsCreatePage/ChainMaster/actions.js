@@ -1,10 +1,15 @@
 import types from './types'
 
-const dataFetchSucceed = (templates, tests, groups) => ({
+const dataFetchSucceed = (templatesAll, testsAll, groupsAll) => ({
   type: types.DATA_FETCH_SUCCEED,
-  templates,
-  tests,
-  groups
+  templatesAll,
+  testsAll,
+  groupsAll
+});
+
+const dataUpdated = (chain_data) => ({
+  type: types.CHAIN_DATA_UPDATED,
+  chain_data
 });
 
 const startFetching = () => ({
@@ -20,4 +25,5 @@ export default {
   dataFetchSucceed,
   startFetching,
   endFetching,
+  dataUpdated,
 }

@@ -1,29 +1,38 @@
-import React from 'react'
-import PageContent from '../../../_global/PageContent'
+import React from 'react';
 import {FormControl, InputGroup} from "react-bootstrap";
-import FilterForm from "../../../_global/filters/base/FilterForm";
 import Select from 'react-select';
-import {arrayToOptions, filterPropertyFromObjects} from "../../../../utils/filters/index";
+import {arrayToOptions, filterPropertyFromObjects, optionsToArray} from "../../../../utils/filters/index";
+import PageNavigation from "./PageNavigation";
 
 class CommonData extends React.Component {
 
   state = {
     name: null,
     marker: null,
-    template: [],
-    group: [],
+    templates: [],
+    groups: [],
   };
 
   changeInput = (prop, val) => {
     this.setState({[prop]: val})
   };
 
+  getChainData = () => {
+    const {name, marker, templates, groups} = this.state;
+    return {
+      name,
+      marker,
+      templates: optionsToArray(templates),
+      groups: optionsToArray(groups)
+    }
+  };
+
   render() {
-    const {name, marker, template, group} = this.state;
-    const {templates, groups} = this.props;
+    const {name, marker, templates, groups} = this.state;
+    const {templatesAll, groupsAll, ...handleNavigation} = this.props;
     const item = (label, form) => <div className="input-item-form">{label}{form}</div>;
-    const templateList = arrayToOptions(filterPropertyFromObjects(templates, 'name'));
-    const groupList = arrayToOptions(filterPropertyFromObjects(groups, 'name'));
+    const templateList = arrayToOptions(filterPropertyFromObjects(templatesAll, 'name'));
+    const groupList = arrayToOptions(filterPropertyFromObjects(groupsAll, 'name'));
 
     return [
       <div>
@@ -41,17 +50,18 @@ class CommonData extends React.Component {
             multi
             options={templateList}
             placeholder={"Список шаблонов"}
-            onChange={option => this.changeInput("template", option)}
-            value={template}
+            onChange={option => this.changeInput("templates", option)}
+            value={templates}
         /> )}
         {item("Группы",  <Select
           multi
           options={groupList}
           placeholder={"Список групп"}
-          onChange={option => this.changeInput("group", option)}
-          value={group}
+          onChange={option => this.changeInput("groups", option)}
+          value={groups}
         /> )}
       </div>,
+      <PageNavigation chain_data={this.getChainData()} {...handleNavigation}/>
     ]
   }
 }

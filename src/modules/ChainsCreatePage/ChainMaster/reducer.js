@@ -1,9 +1,10 @@
 import types from './types'
 
 const initialState = {
-  templates: [],
-  tests: [],
-  groups: [],
+  chain_data: {},
+  templatesAll: [],
+  testsAll: [],
+  groupsAll: [],
   isFetching: false,
 };
 
@@ -24,10 +25,18 @@ const chainMasterReducer = (state = initialState, action) => {
     case types.DATA_FETCH_SUCCEED: {
       return {
         ...state,
-        templates: action.templates,
-        tests: action.tests,
-        groups: action.groups,
+        templatesAll: action.templatesAll,
+        testsAll: action.testsAll,
+        groupsAll: action.groupsAll,
         isFetching: false,
+      }
+    }
+    case types.CHAIN_DATA_UPDATED: {
+      let new_chain_data = {...state.chain_data};
+      Object.keys(action.chain_data).forEach(prop => new_chain_data[prop] = action.chain_data[prop])
+      return {
+        ...state,
+        chain_data: new_chain_data,
       }
     }
     default:

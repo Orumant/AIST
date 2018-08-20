@@ -12,26 +12,34 @@ import FilterList from '@material-ui/icons/FilterList';
 import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
 import "./style.css"
+import Typography from "@material-ui/core/Typography";
 
 class PageContent extends React.Component{
 
   state = {
     showFilter: false,
+    selectedNum: 0,
   };
 
   handleClickFilter = () => {
     this.setState(state => ({showFilter: !state.showFilter}));
   };
 
+  handleSelection = (selectedNum) => {
+    this.setState({selectedNum})
+  };
+
   render() {
 
     const {classes, isFilter, isLoading, FilterBar, content} = this.props;
-    const {showFilter} = this.state;
+    const {showFilter, selectedNum} = this.state;
 
     const Sidebar = isFilter? React.cloneElement(FilterBar, {
       close: this.handleClickFilter,
       isOpen: showFilter
     }) : null;
+
+    const PageContent = React.cloneElement(content[0], {handleSelection: this.handleSelection});
 
     const Spinner = <div className='loading'>
       <Loading key='page-content-loading' type='spin' color='rgb(67, 136, 204)' height='100px' width='100px'/>
@@ -47,6 +55,9 @@ class PageContent extends React.Component{
         {isLoading? Spinner: null}
         <div style={{opacity: isLoading? 0.5 : 1}}>
           {isFilter? <div className="table-toolbar">
+            {selectedNum? <Typography color="inherit">
+              Выбрано: {selectedNum}
+            </Typography> : null}
             <Button onClick={this.handleClickFilter}>
               <FilterList style={{marginRight: '8px'}}/>
               Фильтры
@@ -54,7 +65,7 @@ class PageContent extends React.Component{
           </div>: null}
           {Sidebar}
           <Paper>
-            {content}
+            {PageContent}
           </Paper>
         </div>
       </Paper>

@@ -2,19 +2,30 @@ import React from 'react'
 import Notifications from 'react-notification-system-redux';
 import PageContent from '../../../_global/PageContent'
 import SearchBar from "./TestTable/SearchBar";
+import PageNavigation from "./PageNavigation";
+import ContentTable from "./TestTable/ContentTable";
 
 class TestTable extends React.Component {
 
+  state = {
+    selectedTest: [],
+  };
+
   request = {};
 
-  componentDidMount() {
-    // const {fetchOrders} = this.props;
-    // fetchOrders(this.request);
-  }
+  onSelectTest = (selectedTest) => {
+    this.setState({selectedTest})
+  };
+
+  getChainData = () => {
+    const {selectedTest} = this.state;
+    const {testsAll}  = this.props;
+    return {tests: selectedTest.map(selectedId => testsAll[selectedId])}
+  };
 
 
   render() {
-    const {fetchOrders, notifications} = this.props;
+    const {fetchOrders, notifications, testsAll, ...handleNavigation} = this.props;
 
     const FilterBar = <SearchBar
       key='results-sidebar'
@@ -23,16 +34,17 @@ class TestTable extends React.Component {
     />;
 
     const Content = [
-      <div>Page 2</div>,
+      <ContentTable testsAll={testsAll} onSelectTest={this.onSelectTest}/>,
       <Notifications key='results-notification' notifications={notifications}/>];
 
-    return (
+    return [
       <PageContent
         isFilter={true}
         FilterBar={FilterBar}
         content={Content}
-      />
-    )
+      />,
+      <PageNavigation chain_data={this.getChainData()} {...handleNavigation}/>
+    ]
   }
 }
 

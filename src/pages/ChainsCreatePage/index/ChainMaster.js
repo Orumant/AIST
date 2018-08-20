@@ -13,6 +13,7 @@ import './style.css'
 import TestTable from "./ChainMaster/TestTable";
 import Notifications from 'react-notification-system-redux';
 import Loading from 'react-loading';
+import ReorderTest from "./ChainMaster/ReorderTest";
 
 
 class ChainMaster extends React.Component {
@@ -21,11 +22,13 @@ class ChainMaster extends React.Component {
     activeStep: 0,
   };
 
-  handleNext = () => {
+  handleNext = (chain_data) => {
     const { activeStep } = this.state;
+    const { updateData } = this.props;
     this.setState({
       activeStep: activeStep + 1,
     });
+    updateData(chain_data);
   };
 
   handleBack = () => {
@@ -35,11 +38,10 @@ class ChainMaster extends React.Component {
     });
   };
 
-  handleReset = () => {
-    this.setState({
-      activeStep: 0,
-    });
-  };
+  submit = (chain_data) => {
+    const { updateData } = this.props;
+    updateData(chain_data);
+  }
 
   componentDidMount() {
     const {fetchAllData} = this.props;
@@ -47,31 +49,37 @@ class ChainMaster extends React.Component {
   }
 
   getStepContent = (step) => {
-    const { templates, tests, groups} = this.props;
-    console.log(templates)
+    const { templatesAll, testsAll, groupsAll, chain_data} = this.props;
     switch (step) {
       case 0:
-        return <CommonData templates={templates} groups={groups}/>;
+        return <CommonData templatesAll={templatesAll} groupsAll={groupsAll}/>;
       case 1:
-        return <TestTable/>;
+        return <TestTable testsAll={testsAll}/>;
       case 2:
-        return 'This is the bit I really care about!';
+        return <ReorderTest tests={chain_data.tests}/>;
       default:
-        return 'Unknown step';
+        return 'Произошла ошибка';
     }
   }
 
 
 
   render() {
-    const { classes, templates, tests, groups, isFetching,  notifications } = this.props;
-    console.log(templates, tests, groups)
+    const { classes, isFetching, chain_data,  notifications } = this.props;
     const steps = ['Общие данные', 'Выбор тестов', 'Порядок запуска тестов'];
     const { activeStep } = this.state;
+    console.log(chain_data)
 
     const Spinner = <div className='loading'>
       <Loading key='page-content-loading' type='spin' color='rgb(67, 136, 204)' height='100px' width='100px'/>
     </div>;
+
+    const getStepPage = () => React.cloneElement(this.getStepContent(activeStep),
+      {handleNext: this.handleNext,
+        handleBack:this.handleBack,
+        submit: this.submit,
+        isFirstPage: activeStep === 0,
+        isLastPage: activeStep === steps.length - 1});
 
     return (
       <div>
@@ -85,39 +93,7 @@ class ChainMaster extends React.Component {
                 </Step>
               )}
             </Stepper>
-            <div>
-              {activeStep === steps.length ? (
-                <div>
-                  <Typography className={classes.stepContent}>
-                    All steps completed - you&quot;re finished
-                  </Typography>
-                  <Button onClick={this.handleReset} className={classes.button}>
-                    Reset
-                  </Button>
-                </div>
-              ) : (
-                <div>
-                  <Paper className={classes.stepContent}>{this.getStepContent(activeStep)}</Paper>
-                  <div>
-                    <Button
-                      disabled={activeStep === 0}
-                      onClick={this.handleBack}
-                      className={classes.button}
-                    >
-                      Назад
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleNext}
-                      className={classes.button}
-                    >
-                      {activeStep === steps.length - 1 ? 'Завершить' : 'Вперед'}
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </div>
+            <Paper className={classes.stepContent}>{getStepPage()}</Paper>
             <Notifications key='results-notification' notifications={notifications}/>
           </div>
         </div>

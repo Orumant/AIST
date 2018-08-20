@@ -1,12 +1,13 @@
 import {connect} from 'react-redux'
-import {Operations} from "../../modules/ChainsCreatePage/ChainMaster";
+import {Operations, Actions} from "../../modules/ChainsCreatePage/ChainMaster";
 import ChainMaster from "../../pages/ChainsCreatePage/index/ChainMaster";
 
 function mapStateToProps(state) {
   return {
-    tests: state.chainMasterReducer.tests,
-    templates: state.chainMasterReducer.templates,
-    groups: state.chainMasterReducer.groups,
+    chain_data: state.chainMasterReducer.chain_data,
+    testsAll: state.chainMasterReducer.testsAll,
+    templatesAll: state.chainMasterReducer.templatesAll,
+    groupsAll: state.chainMasterReducer.groupsAll,
     isFetching: state.chainMasterReducer.isFetching,
     notifications: state.notifications,
   }
@@ -14,7 +15,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchAllData: () => dispatch(Operations.fetchAllData())
+    fetchAllData: () => dispatch(Operations.fetchAllData()),
+    updateData: (chain_data)  => dispatch(Actions.dataUpdated(chain_data))
   }
 }
 
