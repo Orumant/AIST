@@ -39,7 +39,7 @@ class PageContent extends React.Component{
       isOpen: showFilter
     }) : null;
 
-    const PageContent = React.cloneElement(content[0], {handleSelection: this.handleSelection});
+    const PageContent = content.map(elem => React.cloneElement(elem, {handleSelection: this.handleSelection}));
 
     const Spinner = <div className='loading'>
       <Loading key='page-content-loading' type='spin' color='rgb(67, 136, 204)' height='100px' width='100px'/>

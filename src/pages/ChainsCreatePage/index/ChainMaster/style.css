@@ -1,0 +1,12 @@
+.reorderForm {
+  width: 400px;
+  position: absolute;
+  /*float: left;*/
+  overflow: auto;
+  height: 70%;
+}
+
+.tableForm {
+  width: calc(100% - 400px);
+  margin-left: 400px;
+}

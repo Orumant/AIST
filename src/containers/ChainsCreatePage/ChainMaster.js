@@ -5,9 +5,7 @@ import ChainMaster from "../../pages/ChainsCreatePage/index/ChainMaster";
 function mapStateToProps(state) {
   return {
     chain_data: state.chainMasterReducer.chain_data,
-    testsAll: state.chainMasterReducer.testsAll,
-    templatesAll: state.chainMasterReducer.templatesAll,
-    groupsAll: state.chainMasterReducer.groupsAll,
+    dataAll: state.chainMasterReducer.dataAll,
     isFetching: state.chainMasterReducer.isFetching,
     notifications: state.notifications,
   }

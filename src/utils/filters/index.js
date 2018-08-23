@@ -26,7 +26,7 @@ export const addObjectToObject = (obg_to_add, main_obj) => {
 export const getCommonValues = (list, property) => {
   const uniqueArray = getAllValuesProperty(list, property);
   return uniqueArray.filter((value) => list.every((unit) => unit? unit[property].indexOf(value) !== -1 : false));
-}
+};
 
 const getAllValuesProperty = (list, property) => {
   let uniqueArray = [];
@@ -36,7 +36,7 @@ const getAllValuesProperty = (list, property) => {
     ) : (uniqueArray.indexOf(unit[property]) === -1 ? uniqueArray.push(unit[property]) : null))
     : null);
   return uniqueArray
-}
+};
 
 export const getChainTests = (chain, tests) => {
   if (tests.length > 0) {
@@ -47,9 +47,15 @@ export const getChainTests = (chain, tests) => {
     const a_system = getAllValuesProperty(test_new, 'a_system')
     return {...chain, stands, a_system}
   }
-}
+};
 
 export const  JSONwithoutBrakets = (JSON) => {
   let string = JSON.replace(']', '')
   return string.replace('[', '')
-}
+};
+
+export const getOptionByLabel= (label, objects) => {
+  let option = null;
+  objects.forEach(object => object.label === label? option=object: null);
+  return option
+};

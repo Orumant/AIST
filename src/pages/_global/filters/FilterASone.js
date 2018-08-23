@@ -1,16 +1,15 @@
 import React from 'react'
 import {filterPropertyFromObjects} from "../../../utils/filters/index";
 import FilterForm from "./base/FilterForm";
-import FilterFormMultiple from "./base/FilterFormMultiple";
 
-class FilterAS extends React.Component {
-  
+class FilterASone extends React.Component {
+
   render ()  {
     const {tests, onChange, name, value} = this.props;
     const options = filterPropertyFromObjects(tests, 'a_system');
 
     return (
-      <FilterFormMultiple
+      <FilterForm
         name={name}
         label="Система"
         placeholder="Название системы"
@@ -18,10 +17,9 @@ class FilterAS extends React.Component {
         onChange={onChange}
         value={value}
       />
-
     )
   }
 }
 
-export default FilterAS
+export default FilterASone
 

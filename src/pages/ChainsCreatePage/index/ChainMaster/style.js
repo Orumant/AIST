@@ -4,9 +4,29 @@ export const styles = theme => ({
   },
   testCard: {
     width: '100%',
-    maxWidth: '300px',
+    maxWidth: '350px',
     maxHeight: '400px',
-    marginTop: theme.spacing.unit*3,
-    marginBottom: theme.spacing.unit*3,
+    margin: theme.spacing.unit*2,
+    zIndex: '1',
+  },
+  testCardContent: {
+    paddingTop: theme.spacing.unit*2,
+    paddingBottom: theme.spacing.unit*2 + 'px !important',
+  },
+  cardNumber: {
+    position: 'absolute',
+    width: theme.spacing.unit*2,
+  },
+  cardContent: {
+    marginLeft: theme.spacing.unit*2,
+  },
+  emptyReorderForm: {
+    backgroundColor: 'black',
+    opacity: '0.35',
+    borderRadius: '10px',
+    height: 'calc(100% - 48px)',
+    textAlign: 'center',
+    margin: '24px',
+    paddingTop: '50%'
   },
 });

@@ -12,16 +12,18 @@ import {
   PagingPanel
 } from '@devexpress/dx-react-grid-material-ui';
 
-class ContentTable extends React.Component {
+class TestTable extends React.Component {
   state = {
     columns: [
-      { name: 'test_id', title: 'ID', getCellValue: row => parseInt(row.test_id)},
+      // { name: 'test_id', title: 'ID', getCellValue: row => parseInt(row.test_id)},
       { name: 'test_name', title: 'Название' },
       { name: 'a_system', title: 'АС' },
       { name: 'stands', title: 'Стенды', getCellValue: row => row.stands.join(', ')},
       { name: 'static_tags', title: 'Теги', getCellValue: row => row.static_tags ? row.static_tags.join(', ') : []},
     ],
     selection: [],
+    selectedTest: [],
+    tests: [],
   };
 
   tableColumnExtensions = [
@@ -29,23 +31,27 @@ class ContentTable extends React.Component {
   ];
 
   changeSelection = selection => {
-    const {handleSelection, onSelectTest} = this.props;
-    console.log(selection)
-    this.setState({selection});
-    handleSelection(selection.length);
+    const {tests, onSelectTest} = this.props;
+    this.setState({selection, selectedTest: selection.map(id => tests[id])});
     onSelectTest(selection)
   };
 
+  // componentDidUpdate() {
+  //   const {tests} = this.props;
+  //   if (this.state.tests !== tests) {
+  //
+  //   }
+  // };
 
   render() {
     const { columns, selection } = this.state;
-    const {testsAll} = this.props;
+    const {tests} = this.props;
     const pageSizes = [5, 10, 15, 0];
 
     return (
       <Paper>
         <Grid
-          rows={testsAll}
+          rows={tests}
           columns={columns}
         >
 
@@ -86,4 +92,4 @@ class ContentTable extends React.Component {
   }
 }
 
-export default ContentTable;
+export default TestTable;

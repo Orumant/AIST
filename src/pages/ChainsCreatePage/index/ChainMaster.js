@@ -4,16 +4,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { styles } from "./style";
 import CommonData from "./ChainMaster/CommonData";
 import Paper from '@material-ui/core/Paper';
 import './style.css'
-import TestTable from "./ChainMaster/TestTable";
 import Notifications from 'react-notification-system-redux';
 import Loading from 'react-loading';
-import ReorderTest from "./ChainMaster/ReorderTest";
+import PageNavigation from "./ChainMaster/PageNavigation";
+import SelectTest from "../../../containers/ChainsCreatePage/SelectTest";
 
 
 class ChainMaster extends React.Component {
@@ -41,7 +39,7 @@ class ChainMaster extends React.Component {
   submit = (chain_data) => {
     const { updateData } = this.props;
     updateData(chain_data);
-  }
+  };
 
   componentDidMount() {
     const {fetchAllData} = this.props;
@@ -49,14 +47,14 @@ class ChainMaster extends React.Component {
   }
 
   getStepContent = (step) => {
-    const { templatesAll, testsAll, groupsAll, chain_data} = this.props;
+    const { dataAll, chain_data} = this.props;
     switch (step) {
       case 0:
-        return <CommonData templatesAll={templatesAll} groupsAll={groupsAll}/>;
+        return <CommonData data={chain_data} templatesAll={dataAll.templates} groupsAll={dataAll.groups}/>;
       case 1:
-        return <TestTable testsAll={testsAll}/>;
+        return <SelectTest testsAll={dataAll.tests}/>;
       case 2:
-        return <ReorderTest tests={chain_data.tests}/>;
+        return <PageNavigation />;
       default:
         return 'Произошла ошибка';
     }
@@ -66,7 +64,7 @@ class ChainMaster extends React.Component {
 
   render() {
     const { classes, isFetching, chain_data,  notifications } = this.props;
-    const steps = ['Общие данные', 'Выбор тестов', 'Порядок запуска тестов'];
+    const steps = ['Общие данные', 'Выбор тестов', 'Создание формы'];
     const { activeStep } = this.state;
     console.log(chain_data)
 

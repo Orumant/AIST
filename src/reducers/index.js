@@ -25,6 +25,8 @@ import filterSidebarReducer from "../modules/_global/FilterSidebar";
 import searchBarReducerChainList from "../modules/ChainListPage/SearchBar";
 import chainsListReducer from "../modules/ChainListPage/ChainListPage";
 import chainMasterReducer from "../modules/ChainsCreatePage/ChainMaster";
+import selectTestReducer from "../modules/ChainsCreatePage/SelectTest";
+import filterStandMultiReducer from "../modules/_global/FilterStandMulti";
 
 
 
@@ -55,6 +57,9 @@ const rootReducer = combineReducers({
   searchBarReducerChainList,
   chainsListReducer,
   chainMasterReducer,
+  selectTestReducer,
+  filterStandMultiReducer,
+
 });
 
 export default rootReducer
