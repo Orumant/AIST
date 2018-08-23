@@ -197,7 +197,6 @@ export const updateLoginForm = (payload, publicKey) => (dispatch) => {
   let a = payload.password;
   encryptPassword(payload, publicKey);
   const url = `${BACKEND_URL}/owners/login`;
-  console.log(payload, publicKey)
   axios.post(url, payload).then(function (response) {
     payload.token = response.data.token;
     setCurrentUser(payload.login, response.data);
@@ -273,11 +272,12 @@ export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
   const requestBody = {
     name: chainTemplate.value.name,
     marker: chainTemplate.value.marker,
-    fields: chainTemplate.value.fields,
+    form: chainTemplate.value.form,
     tests: chainTemplate.value.tests,
     templates: chainTemplate.value.templates.map(t => t.value),
     groups: chainTemplate.value.groups.map(t => t.label),
   };
+
   const header = {headers: {SessionID: getToken()}};
   if (chainTemplate.value.modified) {
     const url = `${BACKEND_URL}/chain_templates/${chainTemplate.name}`;

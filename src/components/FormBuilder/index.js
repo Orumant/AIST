@@ -19,11 +19,10 @@ import {
 import Select from 'react-select';
 import Notifications from 'react-notification-system-redux'
 import FieldPicker from "../FieldPicker";
-import Header from "../Header";
 import {forceLogin} from '../../globalFunc';
 import './style.css';
 
-class FormBuilderPage extends Component {
+class FormBuilder extends Component {
   constructor(props, context) {
     super(props, context);
     this.props.clearNotifications();
@@ -333,7 +332,6 @@ class FormBuilderPage extends Component {
     ];
     return (
       <div>
-        <Header/>
         <Panel style={{marginTop: '1%', position: 'relative'}}
                header={formBuilderChains.length > 0 ? chainDropDown : null} footer={submitBtn}
                bsStyle="default">
@@ -347,4 +345,4 @@ class FormBuilderPage extends Component {
   }
 }
 
-export default FormBuilderPage
+export default FormBuilder

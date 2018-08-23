@@ -11,7 +11,7 @@ class NavMenu extends React.Component {
   render() {
 
     const links = {
-      chains: { name: 'Цепочки', link: '/chainTemplateList'},
+      chains: { name: 'Цепочки', link: '/chaineditor'},
       tests: { name: 'Тесты', link: '/testbuilder'},
       results: { name: 'Результаты', link: '/results'},
       dataDirectory: { name: 'Справочник данных', link: '/datadirectory'},

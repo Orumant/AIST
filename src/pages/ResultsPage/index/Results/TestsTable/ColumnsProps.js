@@ -3,7 +3,7 @@ export const columns = [
   {
     name: "chain_name",
     title: "Имя цепочки",
-    getCellValue: row => (row.chain_name? row.chain_name: "Нетиповая заявка"),
+    getCellValue: row => (row.chain_name? row.chain_name: "<Нетиповая заявка>"),
   },
   {
     name: "marker",

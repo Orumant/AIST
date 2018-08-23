@@ -92,7 +92,7 @@ class TestBuilder extends React.Component {
     const {testBuilderTests, selectedTestIndex, testNamesForDropdown, systems, submitCurrentTest} = this.props;
     let test = {...testBuilderTests[selectedTestIndex]};
     let id = testNamesForDropdown[selectedTestIndex].test_id;
-    let currentStands = test.stands.map(stand => stand.label);
+    let currentStands = test.stands? test.stands.map(stand => stand.label) : test.stands;
     test.a_system = systems[this.state.selectedSystem].code;
     test.stands = currentStands;
     submitCurrentTest({test, id});

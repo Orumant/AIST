@@ -9,7 +9,7 @@ import rootReducer from './reducers';
 import HomePage from './containers/HomePage';
 import TDME2E from './containers/TDME2E';
 import ChainEditorPage from './pages/ChainEditorPage';
-import FormBuilderPage from "./containers/FormBuilderPage";
+import FormBuilderPage from "./pages/FormBuilderPage/index";
 
 import DataDirectoryPage from "./pages/DataDirectoryPage";
 import ChainsListPage from "./pages/ChainListPage";
@@ -26,6 +26,7 @@ import ResultsPage from "./pages/ResultsPage";
 import LauncherPage from "./pages/Launcher/index";
 import TestBuilderPage from "./pages/TestBuilderPage/index";
 import './style.css'
+import FormBuilder from "./containers/FormBuilder";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

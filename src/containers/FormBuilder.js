@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import FormBuilderPage from '../components/FormBuilderPage'
+import FormBuilder from '../components/FormBuilder'
 import {fetchBuilderChains, updateChainForm, validateForm} from "../api"
 import {
   newFieldAdded,
@@ -27,4 +27,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormBuilderPage)
+export default connect(mapStateToProps, mapDispatchToProps)(FormBuilder)
