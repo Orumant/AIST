@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react'
 import PageContent from '../../../_global/PageContent'
 import SearchBar from "./SelectTest/SearchBar";
 import PageNavigation from "./PageNavigation";
@@ -33,6 +34,8 @@ class SelectTest extends React.Component {
   render() {
     const {fetchFilterTests, testsAll, tests, isFetching, notifications, ...handleNavigation} = this.props;
     const {selectedTest} = this.state;
+    console.log(selectedTest)
+
 
     const FilterBar = <SearchBar
       key='results-sidebar'
@@ -53,13 +56,16 @@ class SelectTest extends React.Component {
       content={TestTableContent}
     />;
 
+
     const Content = [
-      <div className="reorderForm"> <ReorderTest tests={selectedTest.map(selectedId => tests[selectedId])}/></div>,
+      <div className="reorderForm">
+        <div style={{height: '100%', overflow: 'auto'}}><ReorderTest tests={selectedTest}/></div>
+        <PageNavigation chain_data={this.getChainData()} {...handleNavigation}/>
+      </div>,
       <div className="tableForm">{SelectTestTable}</div>];
 
     return [
       Content,
-      <PageNavigation chain_data={this.getChainData()} {...handleNavigation}/>
     ]
   }
 }

@@ -2,6 +2,13 @@ export const styles = theme => ({
   button: {
     marginRight: theme.spacing.unit,
   },
+  stepContent: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
+    padding: theme.spacing.unit * 3,
+    borderRadius: '0px',
+    height: '70%',
+  },
   testCard: {
     width: '100%',
     maxWidth: '350px',
@@ -14,8 +21,8 @@ export const styles = theme => ({
     paddingBottom: theme.spacing.unit*2 + 'px !important',
   },
   cardNumber: {
-    position: 'absolute',
-    width: theme.spacing.unit*2,
+    float: 'left',
+    width: theme.spacing.unit*3,
   },
   cardContent: {
     marginLeft: theme.spacing.unit*2,

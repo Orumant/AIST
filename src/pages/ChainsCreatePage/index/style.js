@@ -7,5 +7,6 @@ export const styles = theme => ({
     marginBottom: theme.spacing.unit,
     padding: theme.spacing.unit * 3,
     borderRadius: '0px',
+    height: '70%',
   },
 });

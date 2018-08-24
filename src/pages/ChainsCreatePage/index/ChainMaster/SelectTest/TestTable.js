@@ -32,19 +32,33 @@ class TestTable extends React.Component {
 
   changeSelection = selection => {
     const {tests, onSelectTest} = this.props;
-    this.setState({selection, selectedTest: selection.map(id => tests[id])});
-    onSelectTest(selection)
+    const {selectedTest} = this.state;
+    let new_selected = [...selectedTest];
+    // Удаляем те тесты, которые есть в общем списке тестов, но отсутствуют в списке выбранных
+    selectedTest.forEach((selected, ind) =>
+      tests.some((test, index) => test.test_id === selected.test_id && selection.indexOf(index) === -1)  ?
+        new_selected.splice(ind, 1) : null);
+    //Добавляем тесты, которые есть в списке выбранных и которых еще нет в сохраненном списке тестов
+    selection.forEach(id =>
+      selectedTest.some(selected => tests[id].test_id === selected.test_id) ?  null: new_selected.push(tests[id]));
+    this.setState({selection, selectedTest: new_selected});
+    onSelectTest(new_selected)
   };
 
-  // componentDidUpdate() {
-  //   const {tests} = this.props;
-  //   if (this.state.tests !== tests) {
-  //
-  //   }
-  // };
+  componentDidUpdate() {
+    const {tests} = this.props;
+    const {selectedTest} = this.state;
+    if (this.state.tests !== tests) {
+      let new_selection = [];
+      // Получаем индексы уже выбранных тестов в новом общем списке тестов
+      selectedTest.forEach(selected => tests.forEach((test, ind) => test.test_id === selected.test_id? new_selection.push(ind): null));
+      this.setState({tests: tests, selection: new_selection})
+    }
+  };
 
   render() {
     const { columns, selection } = this.state;
+
     const {tests} = this.props;
     const pageSizes = [5, 10, 15, 0];
 
