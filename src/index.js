@@ -27,6 +27,7 @@ import LauncherPage from "./pages/Launcher/index";
 import TestBuilderPage from "./pages/TestBuilderPage/index";
 import './style.css'
 import ChainsCreatePage from "./pages/ChainsCreatePage/index";
+import 'babel-polyfill'
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

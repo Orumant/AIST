@@ -17,7 +17,7 @@ class PageNavigation extends React.Component {
                                  onClick={() => submit(chain_data)} className={classes.button}>Сохранить</Button>;
 
     return (
-      <div>
+      <div className={classes.navPanel}>
         {backButton}
         {isLastPage? submitButton : nextButton}
       </div>

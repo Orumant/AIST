@@ -36,4 +36,7 @@ export const styles = theme => ({
     margin: '24px',
     paddingTop: '50%'
   },
+  navPanel: {
+    marginTop: theme.spacing.unit*3,
+  }
 });

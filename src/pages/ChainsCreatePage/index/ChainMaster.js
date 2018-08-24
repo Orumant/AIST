@@ -91,7 +91,7 @@ class ChainMaster extends React.Component {
                 </Step>
               )}
             </Stepper>
-            <div className={classes.stepContent}>{getStepPage()}</div>
+            <Paper className={classes.stepContent}>{getStepPage()}</Paper>
             <Notifications key='results-notification' notifications={notifications}/>
           </div>
         </div>
