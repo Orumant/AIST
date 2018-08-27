@@ -77,10 +77,10 @@ class ReorderTest extends React.Component {
 
 
     return [
-      <Typography variant="headline" style={{textAlign: 'center'}}>Порядок тестов</Typography>,
       tests.length > 0?
         <div style={{overflow: 'auto', height: 'calc(100% - 24px)'}}>
           <div>
+            {/*<Typography variant="headline" style={{textAlign: 'center'}}>Порядок тестов</Typography>*/}
             <SortableList items={tests} onSortEnd={this.onSortEnd} helperClass="sortableHelper"/>
           </div>
         </div> :

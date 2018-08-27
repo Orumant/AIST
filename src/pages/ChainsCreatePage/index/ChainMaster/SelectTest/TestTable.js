@@ -93,7 +93,6 @@ class TestTable extends React.Component {
           <TableHeaderRow showSortingControls/>
           <TableSelection
             selectByRowClick
-            showSelectAll
           />
 
           <PagingPanel

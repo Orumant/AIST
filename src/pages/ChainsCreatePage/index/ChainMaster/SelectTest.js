@@ -46,7 +46,10 @@ class SelectTest extends React.Component {
     />;
 
     const TestTableContent = [
-      <ContentTable tests={tests} onSelectTest={this.onSelectTest}/>,
+      <div style={{display: 'flex'}}>
+        <div className="reorderForm"><ReorderTest tests={selectedTest}/></div>
+        <div className="tableForm"><ContentTable tests={tests} onSelectTest={this.onSelectTest}/></div>
+      </div>,
       <Notifications key='results-notification' notifications={notifications}/>
     ];
 
@@ -59,11 +62,9 @@ class SelectTest extends React.Component {
 
 
     const Content = [
-      <div className="reorderForm">
-        <ReorderTest tests={selectedTest}/>
-        <PageNavigation chain_data={this.getChainData()} {...handleNavigation}/>
-      </div>,
-      <div className="tableForm">{SelectTestTable}</div>];
+      <div>{SelectTestTable}</div>,
+      <PageNavigation chain_data={this.getChainData()} {...handleNavigation}/>
+    ];
 
     return [
       Content,

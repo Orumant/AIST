@@ -1,6 +1,13 @@
 .table-toolbar {
-  text-align: right;
+  /*text-align: right;*/
   padding: 12px;
+  display: flex;
+}
+.table-name {
+  flex-grow: 1;
+}
+.tools {
+  text-align: right;
 }
 
 .loading {

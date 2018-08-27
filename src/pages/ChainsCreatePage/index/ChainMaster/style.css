@@ -1,6 +1,7 @@
 .reorderForm {
   width: 400px;
-  position: absolute;
+  /*position: absolute;*/
+  flex-grow: 1;
   /*float: left;*/
   /*overflow: auto;*/
   height: 70%;
@@ -8,5 +9,6 @@
 
 .tableForm {
   width: calc(100% - 400px);
-  margin-left: 400px;
+  /*margin-left: 400px;*/
+  display: inline-flex;
 }
