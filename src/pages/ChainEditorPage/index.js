@@ -6,9 +6,10 @@ import ChainEditorHelp from "./help";
 class ChainEditorPage extends React.Component {
 
   render() {
+    const {match} = this.props;
 
     return (
-      <PagePattern title="Конструктор цепочек" content={<ChainEditor/>} help={<ChainEditorHelp/>}/>
+      <PagePattern title="Конструктор цепочек" content={<ChainEditor match={match}/>} help={<ChainEditorHelp/>}/>
     );
   }
 }

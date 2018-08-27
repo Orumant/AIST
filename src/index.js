@@ -13,7 +13,6 @@ import FormBuilderPage from "./pages/FormBuilderPage/index";
 
 import DataDirectoryPage from "./pages/DataDirectoryPage";
 import ChainsListPage from "./pages/ChainListPage";
-import DataTemplatesBuilderPage from "./containers/DataTemplates";
 import AuthorizationPage from "./containers/AuthorizationPage"
 import RegistrationPage from "./containers/RegistrationPage"
 
@@ -26,7 +25,8 @@ import ResultsPage from "./pages/ResultsPage";
 import LauncherPage from "./pages/Launcher/index";
 import TestBuilderPage from "./pages/TestBuilderPage/index";
 import './style.css'
-import FormBuilder from "./containers/FormBuilder";
+import DataTemplatesPage from "./pages/DataTemplatesPage/index";
+import 'babel-polyfill';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -52,9 +52,9 @@ ReactDOM.render((
             <Route path="/formbuilder/:chainIndex" component={FormBuilderPage}/>
             <Route exact path="/datadirectory/:chainName" component={DataDirectoryPage}/>
             <Route exact path="/datadirectory" component={DataDirectoryPage}/>
-            <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesBuilderPage}/>
+            <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesPage}/>
             <Route exact path='/chainTemplateList' component={ChainsListPage}/>
-            <Route exact path="/datatemplates" component={DataTemplatesBuilderPage}/>
+            <Route exact path="/datatemplates" component={DataTemplatesPage}/>
             <Route path="/homepage" component={HomePage}/>
             <Route path="/TDME2E" component={TDME2E}/>
             <Route path="/registration" component={RegistrationPage}/>
