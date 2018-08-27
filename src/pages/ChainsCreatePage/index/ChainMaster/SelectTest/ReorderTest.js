@@ -75,16 +75,20 @@ class ReorderTest extends React.Component {
       );
     });
 
-    return [ tests.length > 0?
-      <div>
-        <Typography variant="headline" style={{textAlign: 'center'}}>Порядок тестов</Typography>
-        <SortableList items={tests} onSortEnd={this.onSortEnd} helperClass="sortableHelper"/>
-      </div> :
-      <div className={classes.emptyReorderForm}>
-        <Typography variant={"headline"} style={{color: 'white'}}>Ни одного теста не выбрано</Typography>
-        <br/>
-        <span style={{color: 'white'}}>Для измения порядка тестов сначала выберите тесты в таблице справа</span>
-      </div>
+
+    return [
+      <Typography variant="headline" style={{textAlign: 'center'}}>Порядок тестов</Typography>,
+      tests.length > 0?
+        <div style={{overflow: 'auto', height: 'calc(100% - 24px)'}}>
+          <div>
+            <SortableList items={tests} onSortEnd={this.onSortEnd} helperClass="sortableHelper"/>
+          </div>
+        </div> :
+        <div className={classes.emptyReorderForm}>
+          <Typography variant={"headline"} style={{color: 'white'}}>Ни одного теста не выбрано</Typography>
+          <br/>
+          <span style={{color: 'white'}}>Для измения порядка тестов сначала выберите тесты в таблице справа</span>
+        </div>
     ]
   }
 }

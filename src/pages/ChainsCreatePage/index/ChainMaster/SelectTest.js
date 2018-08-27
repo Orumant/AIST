@@ -6,6 +6,7 @@ import PageNavigation from "./PageNavigation";
 import ContentTable from "./SelectTest/TestTable";
 import ReorderTest from "./SelectTest/ReorderTest";
 import Notifications from 'react-notification-system-redux';
+import Typography from "@material-ui/core/Typography";
 
 class SelectTest extends React.Component {
 
@@ -59,7 +60,7 @@ class SelectTest extends React.Component {
 
     const Content = [
       <div className="reorderForm">
-        <div style={{height: '100%', overflow: 'auto'}}><ReorderTest tests={selectedTest}/></div>
+        <ReorderTest tests={selectedTest}/>
         <PageNavigation chain_data={this.getChainData()} {...handleNavigation}/>
       </div>,
       <div className="tableForm">{SelectTestTable}</div>];
