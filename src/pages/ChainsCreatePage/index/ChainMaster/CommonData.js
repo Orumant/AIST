@@ -1,11 +1,13 @@
 import React from 'react';
-import {FormControl, InputGroup} from "react-bootstrap";
-import Select from 'react-select';
 import {
   arrayToOptions, filterPropertyFromObjects, getOptionByLabel,
   optionsToArray
 } from "../../../../utils/filters/index";
 import PageNavigation from "./PageNavigation";
+import ChainName from "./CommonData/ChainName";
+import ChainMarker from "./CommonData/ChainMarker";
+import ChainGroups from "./CommonData/ChainGroups";
+
 
 class CommonData extends React.Component {
 
@@ -13,6 +15,7 @@ class CommonData extends React.Component {
     name: '',
     marker: '',
     groups: [],
+    isError: false,
   };
 
   changeInput = (prop, val) => {
@@ -40,37 +43,33 @@ class CommonData extends React.Component {
     })
   }
 
+  onNext = (data) => {
+    const {handleNext} = this.props;
+    if (this.state.name.length === 0) {this.setState({isError: true})}
+    else {
+      this.setState({isError: false});
+      handleNext(data)
+    }
+  };
+
   render() {
-    const {name, marker, groups} = this.state;
-    const {templatesAll, groupsAll, ...handleNavigation} = this.props;
+    const {name, marker, groups, isError} = this.state;
+    const {templatesAll, groupsAll, handleNext, ...handleNavigation} = this.props;
     const item = (label, form) => <div className="input-item-form">{label}{form}</div>;
-    const markerList = arrayToOptions(filterPropertyFromObjects(templatesAll, 'marker'));
-    const groupList = arrayToOptions(filterPropertyFromObjects(groupsAll, 'name'));
 
     return [
       <div key="commonData">
-        {item("Название", <FormControl
-          type="text"
-          value={name}
-          placeholder="Название цепочки"
-          onChange={e => this.changeInput("name", e.target.value)}/> )}
-        {item("Маркер", <Select.Creatable
-            options={markerList}
-            placeholder={"Выберите маркер или создайте свой"}
-            onChange={option => this.changeInput("marker", option)}
-            promptTextCreator={(label) => 'Создать ' + label}
-            value={marker}
-          />
-         )}
-        {item("Группы", <Select
-          multi
-          options={groupList}
-          placeholder={"Цепочка будет доступна выбранным группам"}
-          onChange={option => this.changeInput("groups", option)}
-          value={groups}
+        {item("Название*", <ChainName value={name} onChange={e => this.changeInput("name", e.target.value)} isError={isError}/> )}
+        {item("Маркер", <ChainMarker marker={marker}
+                                     templatesAll={templatesAll}
+                                     onChange={option => this.changeInput("marker", option)} />)}
+
+        {item("Группы", <ChainGroups groups={groups}
+                                     groupsAll={groupsAll}
+                                     onChange={option => this.changeInput("groups", option)}
         /> )}
       </div>,
-      <PageNavigation key="navigation-common-data" chain_data={this.getChainData()} {...handleNavigation}/>
+      <PageNavigation key="navigation-common-data" chain_data={this.getChainData()} handleNext={this.onNext} {...handleNavigation}/>
     ]
   }
 }

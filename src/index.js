@@ -28,6 +28,7 @@ import TestBuilderPage from "./pages/TestBuilderPage/index";
 import './style.css'
 import ChainsCreatePage from "./pages/ChainsCreatePage/index";
 import 'babel-polyfill'
+import SelectSingle from "./pages/_global/select/SelectSimple";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -62,6 +63,7 @@ ReactDOM.render((
             <Route path="/registration" component={RegistrationPage}/>
             <Route path="/personaldata" component={PersonalPage}/>
             <Route path="/results" component={ResultsPage}/>
+            <Route path="/test" component={SelectSingle}/>
             <Route exact path="/" component={AuthorizationPage}/>
           </Switch>
         </HashRouter>

@@ -5,6 +5,13 @@ const fieldAdded = (typeField) => ({
   typeField,
 });
 
+const fieldUpdated = (index) =>  (name, content) => ({
+  type: types.FIELD_UPDATED,
+  index,
+  name,
+  content,
+});
+
 const fieldDeleted = (index) => ({
   type: types.FIELD_DELETED,
   index
@@ -13,5 +20,6 @@ const fieldDeleted = (index) => ({
 
 export default {
   fieldAdded,
+  fieldUpdated,
   fieldDeleted,
 }

@@ -22,20 +22,20 @@ class SelectTest extends React.Component {
 
   getChainData = () => {
     const {selectedTest} = this.state;
-    const {tests}  = this.props;
-    return {tests: selectedTest.map(selectedId => tests[selectedId])}
+    return {tests: selectedTest}
   };
 
   componentDidMount() {
-    const {fetchFilterTests} = this.props;
-    fetchFilterTests(this.request)
+    const {fetchFilterTests, data} = this.props;
+    fetchFilterTests(this.request);
+    this.setState({selectedTest: data.tests || []});
   }
 
 
   render() {
     const {fetchFilterTests, testsAll, tests, isFetching, notifications, ...handleNavigation} = this.props;
     const {selectedTest} = this.state;
-    // console.log(selectedTest)
+    console.log(selectedTest)
 
 
     const FilterBar = <SearchBar

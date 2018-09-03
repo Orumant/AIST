@@ -49,9 +49,9 @@ class AddButton extends React.Component {
           horizontal: 'left',
         }}
       >
-        <MenuItem key="text-option" onClick={() => addField("text")}>Текстовое поле</MenuItem>
-        <MenuItem key="date-option" onClick={() => addField("date")}>Дата</MenuItem>
-        <MenuItem key="dropdown-option" onClick={() => addField("dropdown")}>Выпадающее меню</MenuItem>
+        <MenuItem key="text-option" onClick={() => addField("Input")}>Текстовое поле</MenuItem>
+        <MenuItem key="date-option" onClick={() => addField("Date")}>Дата</MenuItem>
+        <MenuItem key="dropdown-option" onClick={() => addField("DropDown")}>Выпадающее меню</MenuItem>
       </Menu>
     ];
   }

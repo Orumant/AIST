@@ -10,25 +10,29 @@ class CreateForm extends React.Component {
   };
 
   getChainData = () => {
+    const {fields} = this.props;
+    return ({form: fields})
   };
-
-  componentDidMount() {
-  }
 
   submitData = (data) => {
     console.log(data);
     this.setState({isChecking: true});
   };
 
-  getData = (data) => {console.log(data) ; return data};
-
   render() {
-    const { fields, addField, deleteField, submit, ...handleNavigation} = this.props;
+    const { fields, addField, updateField, deleteField, submit, ...handleNavigation} = this.props;
     const { isChecking} = this.state;
-    console.log(fields);
 
     const formFields = fields.map((field, ind) => <div>
-      <Field key={field.type} name={field.name} param={field.param} type={field.type} deleteField={() => deleteField(ind)} isChecking={isChecking} getData={this.getData}/>
+      <Field key={field.type}
+             label={field.label}
+             paramName={field.paramName}
+             regEx={field.regEx}
+             dropDownOptions={field.dropDownOptions}
+             type={field.type}
+             deleteField={() => deleteField(ind)}
+             isChecking={isChecking}
+             updateField={updateField(ind)}/>
     </div>);
 
     return [

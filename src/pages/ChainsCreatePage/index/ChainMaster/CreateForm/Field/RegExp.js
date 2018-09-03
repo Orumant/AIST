@@ -13,7 +13,7 @@ class RegExp extends React.Component {
   }
 
   render() {
-    const {error, errorMessage, value, onChange} = this.props;
+    const {error, errorMessage, value, onChange, onBlur } = this.props;
 
     return (
       <FormControl fullWidth
@@ -21,7 +21,9 @@ class RegExp extends React.Component {
       >
         <InputLabel>Регулярное выражение</InputLabel>
         <Input value={value}
-               onChange={onChange}/>
+               onChange={onChange}
+               onBlur={onBlur}
+        />
         <FormHelperText>{error ? errorMessage : null}</FormHelperText>
       </FormControl>
     )

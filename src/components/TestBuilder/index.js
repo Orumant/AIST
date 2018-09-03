@@ -16,7 +16,7 @@ import {
   ToggleButton,
   ButtonGroup,
 } from 'react-bootstrap'
-import 'react-select/dist/react-select.css'
+// import 'react-select/dist/react-select.css'
 import Select from 'react-select'
 import Notifications from 'react-notification-system-redux'
 import SearchBar from "../SearchBar";

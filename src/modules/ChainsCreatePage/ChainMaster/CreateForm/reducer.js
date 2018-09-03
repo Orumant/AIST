@@ -8,7 +8,16 @@ const createFormReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.FIELD_ADDED: {
       let new_fields = [...state.fields];
-      new_fields.push({name: '', param: '', type: action.typeField});
+      new_fields.push({label: '', paramName: '', type: action.typeField});
+      return {
+        ...state,
+        fields: new_fields,
+      }
+    }
+    case types.FIELD_UPDATED: {
+      let new_fields = [...state.fields];
+      const { index, name, content } = action;
+      new_fields[index][name]= content;
       return {
         ...state,
         fields: new_fields,

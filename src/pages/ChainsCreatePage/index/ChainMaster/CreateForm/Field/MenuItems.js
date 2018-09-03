@@ -20,7 +20,7 @@ class MenuItems extends React.Component {
   };
 
   addMenuItem = (e) => {
-    const {items, onChange} = this.props;
+    const {items, onChange, updateField} = this.props;
     if (!e.key || e.key === 'Enter') {
       let error = this.checkInput();
       if (!error) {
@@ -28,16 +28,18 @@ class MenuItems extends React.Component {
         new_items.push(this.state.val);
         onChange(new_items);
         this.setState({val: ''});
+        updateField("dropDownOptions", new_items);
       }
       this.setState({error});
     }
   };
 
   deleteMenuItem = (index) => {
-    const {items, onChange} = this.props;
+    const {items, onChange, updateField} = this.props;
     let new_items = [...items];
     new_items.splice(index, 1);
     onChange(new_items);
+    updateField("dropDownOptions", new_items);
   };
 
   handleInput = (event) => {

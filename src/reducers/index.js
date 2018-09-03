@@ -27,7 +27,7 @@ import chainsListReducer from "../modules/ChainListPage/ChainListPage";
 import chainMasterReducer from "../modules/ChainsCreatePage/ChainMaster";
 import selectTestReducer from "../modules/ChainsCreatePage/ChainMaster/SelectTest";
 import filterStandMultiReducer from "../modules/_global/FilterStandMulti";
-import regExpReducer from "../modules/ChainsCreatePage/RegExp";
+import regExpReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm/RegExp";
 import createFormReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm";
 
 

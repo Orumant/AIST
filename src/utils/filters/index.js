@@ -3,7 +3,7 @@ export const optionsToArray = (options) => {
 };
 
 export const arrayToOptions = (array) => {
-  return array.map((value, index) => {return {label: value, value: index}})
+  return array.map((value, index) => {return {label: value, value: index.toString()}})
 };
 
 export const filterPropertyFromObjects = (objects, property) => {

@@ -30,13 +30,11 @@ class ChainMaster extends React.Component {
     updateData(chain_data);
   };
 
-  handleBack = (chain_data) => {
+  handleBack = () => {
     const { activeStep } = this.state;
-    const { updateData } = this.props;
     this.setState({
       activeStep: activeStep - 1,
     });
-    updateData(chain_data);
   };
 
   submit = (chain_data) => {
@@ -55,7 +53,7 @@ class ChainMaster extends React.Component {
       case 0:
         return <CommonData data={chain_data} templatesAll={dataAll.templates} groupsAll={dataAll.groups}/>;
       case 1:
-        return <SelectTest testsAll={dataAll.tests}/>;
+        return <SelectTest data={chain_data}  testsAll={dataAll.tests}/>;
       case 2:
         return <CreateForm />;
       default:
@@ -76,11 +74,13 @@ class ChainMaster extends React.Component {
     </div>;
 
     const getStepPage = () => React.cloneElement(this.getStepContent(activeStep),
-      {handleNext: this.handleNext,
+      {
+        handleNext: this.handleNext,
         handleBack:this.handleBack,
         submit: this.submit,
         isFirstPage: activeStep === 0,
-        isLastPage: activeStep === steps.length - 1});
+        isLastPage: activeStep === steps.length - 1
+      });
 
     return (
       <div>

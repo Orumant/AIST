@@ -15,49 +15,48 @@ class Field extends React.Component {
 
   state = {
     type: "text",
-    nameField: '',
-    nameParam: '',
-    regExp: '',
-    menuItems: [],
+    label: '',
+    paramName: '',
+    regEx: '',
+    dropDownOptions: [],
   };
 
   componentDidMount() {
-    const {type, name, param, regExp, menuItems} = this.props;
-    type ? this.setState({type, nameField: name, nameParam: param, regExp: regExp || '', menuItems: menuItems || []}) : null;
-  }
-
-  componentDidUpdate() {
-    const {getData} = this.props;
-    let data = {};
-    Object.keys(this.state).forEach(key => this.state[key].length > 0 ? data[key] = this.state[key] : null );
-    getData(data);
+    const {type, label, paramName, regEx, dropDownOptions} = this.props;
+    console.log(this.props)
+    type ? this.setState({type, label, paramName, regEx: regEx || '', dropDownOptions: dropDownOptions || []}) : null;
   }
 
   changeInput = (prop) => (e) => {
     this.setState({[prop]: e.target.value})
   };
 
-  handleChangeItems = (menuItems) => {
-    this.setState({menuItems});
+  handleChangeItems = (dropDownOptions) => {
+    this.setState({dropDownOptions});
   };
 
   render() {
-    const {deleteField, isChecking} = this.props;
-    const {type, nameField, nameParam, menuItems, regExp} = this.state;
+    const {updateField, deleteField, isChecking} = this.props;
+    const {type, label, paramName, regEx, dropDownOptions} = this.state;
+    console.log(dropDownOptions)
 
     const typeNames = {
-      text: "Текстовове поле",
-      date: "Дата",
-      dropdown: "Выпадающее меню",
+      Input: "Текстовове поле",
+      Date: "Дата",
+      DropDown: "Выпадающее меню",
     };
-    const colors = {text: blue[700], date: green[700], dropdown: indigo[700]};
+    const colors = {Input: blue[700], Date: green[700], DropDown: indigo[700]};
 
     const fieldValues = [
-      <RequiredTextField label="Имя поля" value={nameField} onChange={this.changeInput("nameField")} fullWidth/>,
-      <RequiredTextField label="Имя параметра" value={nameParam} onChange={this.changeInput("nameParam")} fullWidth/>,
-      type === "text" ?
-          <RegExp value={regExp} onChange={this.changeInput("regExp")} isSubmit={isChecking}/> : null,
-      type === "dropdown" ? <div style={{display: 'flex'}}><MenuItems items={menuItems} onChange={this.handleChangeItems}/></div> : null
+      <RequiredTextField label="Имя поля" value={label}
+                         onBlur={() => {updateField("label", label)}} onChange={this.changeInput("label")} fullWidth/>,
+      <RequiredTextField label="Имя параметра" value={paramName}
+                         onBlur={() => {updateField("paramName", paramName)}} onChange={this.changeInput("paramName")} fullWidth/>,
+      type === "Input" ?
+          <RegExp value={regEx} onChange={this.changeInput("regEx")}
+                  onBlur={() => {updateField("regEx", regEx)}} isSubmit={isChecking}/> : null,
+      type === "DropDown" ? <div style={{display: 'flex'}}><MenuItems items={dropDownOptions}
+                                                                      updateField={updateField} onChange={this.handleChangeItems}/></div> : null
     ].filter(val => val);
 
     const content = fieldValues.map((val, ind) =>

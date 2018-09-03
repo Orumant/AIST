@@ -11,7 +11,7 @@ import {
   HelpBlock,
   Label,
 } from "react-bootstrap"
-import 'react-select/dist/react-select.css'
+// import 'react-select/dist/react-select.css'
 import Select from 'react-select'
 import './style.css';
 
