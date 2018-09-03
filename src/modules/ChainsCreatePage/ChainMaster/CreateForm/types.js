@@ -1,0 +1,8 @@
+const FIELD_ADDED = "FIELD_ADDED";
+const FIELD_DELETED = "FIELD_DELETED";
+
+
+export default {
+  FIELD_ADDED,
+  FIELD_DELETED,
+}
