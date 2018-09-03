@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
-import SelectTest from "../../pages/ChainsCreatePage/index/ChainMaster/SelectTest";
-import { Operations } from "../../modules/ChainsCreatePage/SelectTest";
+import SelectTest from "../../../pages/ChainsCreatePage/index/ChainMaster/SelectTest";
+import { Operations } from "../../../modules/ChainsCreatePage/ChainMaster/SelectTest/index";
 
 function mapStateToProps(state) {
   return {

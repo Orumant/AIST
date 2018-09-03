@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 import { styles } from "./style";
 
 class PageNavigation extends React.Component {
@@ -12,7 +12,7 @@ class PageNavigation extends React.Component {
     const nextButton = <Button variant="contained" color="primary"
                                onClick={() => handleNext(chain_data)} className={classes.button}> Вперед</Button>;
     const backButton = <Button disabled={isFirstPage}
-                               onClick={handleBack} className={classes.button}>Назад</Button>;
+                               onClick={() => handleBack(chain_data)} className={classes.button}>Назад</Button>;
     const submitButton = <Button variant="contained" color="primary"
                                  onClick={() => submit(chain_data)} className={classes.button}>Сохранить</Button>;
 
@@ -26,6 +26,12 @@ class PageNavigation extends React.Component {
 }
 PageNavigation.propTypes = {
   classes: PropTypes.object,
+  handleNext: PropTypes.func,
+  handleBack: PropTypes.func,
+  submit: PropTypes.func,
+  isFirstPage: PropTypes.boolean,
+  isLastPage: PropTypes.boolean,
+  chain_data: PropTypes.array,
 };
 
 export default withStyles(styles) (PageNavigation);

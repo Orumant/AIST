@@ -31,7 +31,7 @@ class PageContent extends React.Component{
 
   render() {
 
-    const {classes, isFilter, isLoading, FilterBar, content, tableName} = this.props;
+    const {classes, isFilter, isLoading, FilterBar, content, pageName} = this.props;
     const {showFilter, selectedNum} = this.state;
 
     const Sidebar = isFilter? React.cloneElement(FilterBar, {
@@ -55,7 +55,7 @@ class PageContent extends React.Component{
         {isLoading? Spinner: null}
         <div style={{opacity: isLoading? 0.5 : 1}}>
           {isFilter? <div className="table-toolbar">
-            {/*<Typography className="table-name" variant="headline">Порядок тестов</Typography>*/}
+            <Typography className="table-name" variant="headline">{pageName}</Typography>
             {selectedNum? <Typography color="inherit">
               Выбрано: {selectedNum}
             </Typography> : null}
@@ -82,6 +82,7 @@ PageContent.propTypes = {
   isFilter: PropTypes.bool,
   FilterBar: PropTypes.element,
   content: PropTypes.array,
+  pageName: PropTypes.string,
 };
 
 export default withStyles(styles, { withTheme: true })(PageContent);

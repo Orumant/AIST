@@ -1,13 +1,11 @@
 .table-toolbar {
-  /*text-align: right;*/
-  padding: 12px;
+  padding: 12px 12px 12px 24px;
   display: flex;
 }
 .table-name {
   flex-grow: 1;
 }
 .tools {
-  text-align: right;
 }
 
 .loading {

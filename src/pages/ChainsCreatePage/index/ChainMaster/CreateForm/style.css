@@ -1,0 +1,39 @@
+.card {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.form-body {
+  display: flex;
+  padding: 8px;
+}
+
+
+.content-box {
+  display: flex;
+  flex-grow: 1;
+}
+
+.form-item {
+  width: 20%;
+  max-width: 250px;
+  margin: 8px;
+}
+
+.last-item {
+  width: calc(60% - 180px);
+  /*max-width: 600px;*/
+  margin: 8px;
+}
+
+.action-box {
+  width: 180px;
+  min-width: 180px;
+  text-align: right;
+  align-self: center;
+}
+
+
+
+
+

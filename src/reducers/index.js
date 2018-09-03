@@ -25,8 +25,10 @@ import filterSidebarReducer from "../modules/_global/FilterSidebar";
 import searchBarReducerChainList from "../modules/ChainListPage/SearchBar";
 import chainsListReducer from "../modules/ChainListPage/ChainListPage";
 import chainMasterReducer from "../modules/ChainsCreatePage/ChainMaster";
-import selectTestReducer from "../modules/ChainsCreatePage/SelectTest";
+import selectTestReducer from "../modules/ChainsCreatePage/ChainMaster/SelectTest";
 import filterStandMultiReducer from "../modules/_global/FilterStandMulti";
+import regExpReducer from "../modules/ChainsCreatePage/RegExp";
+import createFormReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm";
 
 
 
@@ -59,6 +61,8 @@ const rootReducer = combineReducers({
   chainMasterReducer,
   selectTestReducer,
   filterStandMultiReducer,
+  regExpReducer,
+  createFormReducer,
 
 });
 

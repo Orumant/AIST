@@ -35,7 +35,7 @@ class SelectTest extends React.Component {
   render() {
     const {fetchFilterTests, testsAll, tests, isFetching, notifications, ...handleNavigation} = this.props;
     const {selectedTest} = this.state;
-    console.log(selectedTest)
+    // console.log(selectedTest)
 
 
     const FilterBar = <SearchBar
@@ -54,6 +54,7 @@ class SelectTest extends React.Component {
     ];
 
     const SelectTestTable =  <PageContent
+      pageName="Порядок тестов"
       isFilter={true}
       isLoading={isFetching}
       FilterBar={FilterBar}

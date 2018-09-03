@@ -96,7 +96,6 @@ class TestTable extends React.Component {
           />
 
           <PagingPanel
-            pageSizes={pageSizes}
             messages={this.Messages}
           />
         </Grid>

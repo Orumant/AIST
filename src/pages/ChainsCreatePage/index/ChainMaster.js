@@ -11,7 +11,8 @@ import './style.css'
 import Notifications from 'react-notification-system-redux';
 import Loading from 'react-loading';
 import PageNavigation from "./ChainMaster/PageNavigation";
-import SelectTest from "../../../containers/ChainsCreatePage/SelectTest";
+import SelectTest from "../../../containers/ChainsCreatePage/ChainMaster/SelectTest";
+import CreateForm from "../../../containers/ChainsCreatePage/ChainMaster/CreateForm";
 
 
 class ChainMaster extends React.Component {
@@ -29,11 +30,13 @@ class ChainMaster extends React.Component {
     updateData(chain_data);
   };
 
-  handleBack = () => {
+  handleBack = (chain_data) => {
     const { activeStep } = this.state;
+    const { updateData } = this.props;
     this.setState({
       activeStep: activeStep - 1,
     });
+    updateData(chain_data);
   };
 
   submit = (chain_data) => {
@@ -54,7 +57,7 @@ class ChainMaster extends React.Component {
       case 1:
         return <SelectTest testsAll={dataAll.tests}/>;
       case 2:
-        return <PageNavigation />;
+        return <CreateForm />;
       default:
         return 'Произошла ошибка';
     }
@@ -92,7 +95,7 @@ class ChainMaster extends React.Component {
               )}
             </Stepper>
             { activeStep === 1?
-              <div className={classes.stepContent}>{getStepPage(activeStep)}</div>:
+              <div className={classes.stepSelectContent}>{getStepPage(activeStep)}</div>:
               <Paper className={classes.stepContent}>{getStepPage(activeStep)}</Paper>
             }
             <Notifications key='results-notification' notifications={notifications}/>

@@ -37,6 +37,8 @@ const chainMasterReducer = (state = initialState, action) => {
     }
     case types.CHAIN_DATA_UPDATED: {
       let new_chain_data = {...state.chain_data};
+      // console.log(new_chain_data)
+      // console.log(action.chain_data)
       Object.keys(action.chain_data).forEach(prop => new_chain_data[prop] = action.chain_data[prop])
       return {
         ...state,

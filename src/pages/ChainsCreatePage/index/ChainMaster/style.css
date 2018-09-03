@@ -1,14 +1,11 @@
 .reorderForm {
   width: 400px;
-  /*position: absolute;*/
   flex-grow: 1;
-  /*float: left;*/
-  /*overflow: auto;*/
-  height: 70%;
+  overflow: auto;
+  max-height: 600px;
 }
 
 .tableForm {
   width: calc(100% - 400px);
-  /*margin-left: 400px;*/
   display: inline-flex;
 }

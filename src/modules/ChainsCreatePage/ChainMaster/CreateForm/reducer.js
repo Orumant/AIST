@@ -1,42 +1,25 @@
 import types from './types'
 
 const initialState = {
-  chain_data: {},
-  dataAll: {
-    templates: [],
-    tests: [],
-    groups: [],
-  },
-  isFetching: false,
+  fields: [],
 };
 
-addField = (type) => {
-  let new_fields = [...this.state.fields];
-  new_fields.push({name: '', param: '', type});
-  this.setState({fields: new_fields});
-};
-
-deleteField = (index) => {
-  let new_fields = [...this.state.fields];
-  new_fields.splice(index, 1);
-  console.log(new_fields);
-  this.setState({fields: new_fields});
-};
-
-const chainMasterReducer = (state = initialState, action) => {
+const createFormReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.FIELD_ADDED: {
-      let new_fields = [...this.state.fields];
-      new_fields.push({name: '', param: '', type});
+      let new_fields = [...state.fields];
+      new_fields.push({name: '', param: '', type: action.typeField});
       return {
         ...state,
-        isFetching: true,
+        fields: new_fields,
       }
     }
     case types.FIELD_DELETED: {
+      let new_fields = [...state.fields];
+      new_fields.splice(action.index, 1);
       return {
         ...state,
-        isFetching: false,
+        fields: new_fields,
       }
     }
     default:
@@ -44,4 +27,4 @@ const chainMasterReducer = (state = initialState, action) => {
   }
 };
 
-export default chainMasterReducer
+export default createFormReducer
