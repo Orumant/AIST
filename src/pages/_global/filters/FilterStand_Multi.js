@@ -1,8 +1,8 @@
 import React from 'react'
 import {filterPropertyFromObjects} from "../../../utils/filters/index";
-import FilterForm from "./base/FilterForm";
+import FilterFormMultiple from "./base/FilterFormMultiple";
 
-class FilterStand extends React.Component {
+class FilterStand_Multi extends React.Component {
 
   componentDidMount() {
     this.props.getAllStands();
@@ -13,7 +13,7 @@ class FilterStand extends React.Component {
     const options = filterPropertyFromObjects(stands, 'code');
 
     return (
-      <FilterForm
+      <FilterFormMultiple
         name={name}
         label="Контур"
         placeholder="Название контура"
@@ -21,9 +21,10 @@ class FilterStand extends React.Component {
         onChange={onChange}
         value={value}
       />
+
     )
   }
 }
 
-export default FilterStand
+export default FilterStand_Multi
 

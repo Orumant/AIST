@@ -29,9 +29,9 @@ PageNavigation.propTypes = {
   handleNext: PropTypes.func,
   handleBack: PropTypes.func,
   submit: PropTypes.func,
-  isFirstPage: PropTypes.boolean,
-  isLastPage: PropTypes.boolean,
-  chain_data: PropTypes.array,
+  isFirstPage: PropTypes.bool,
+  isLastPage: PropTypes.bool,
+  chain_data: PropTypes.object,
 };
 
 export default withStyles(styles) (PageNavigation);

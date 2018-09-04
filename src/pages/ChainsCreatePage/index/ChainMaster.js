@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import './style.css'
 import Notifications from 'react-notification-system-redux';
 import Loading from 'react-loading';
-import PageNavigation from "./ChainMaster/PageNavigation";
 import SelectTest from "../../../containers/ChainsCreatePage/ChainMaster/SelectTest";
 import CreateForm from "../../../containers/ChainsCreatePage/ChainMaster/CreateForm";
 

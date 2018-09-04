@@ -59,12 +59,17 @@ class CommonData extends React.Component {
 
     return [
       <div key="commonData">
-        {item("Название*", <ChainName value={name} onChange={e => this.changeInput("name", e.target.value)} isError={isError}/> )}
-        {item("Маркер", <ChainMarker marker={marker}
+        {item("Название*", <ChainName key="chain-name-field"
+                                      value={name}
+                                      onChange={e => this.changeInput("name", e.target.value)}
+                                      isError={isError}/> )}
+        {item("Маркер", <ChainMarker key="chain-marker-field"
+                                     marker={marker}
                                      templatesAll={templatesAll}
                                      onChange={option => this.changeInput("marker", option)} />)}
 
-        {item("Группы", <ChainGroups groups={groups}
+        {item("Группы", <ChainGroups key="chain-groups-field"
+                                     groups={groups}
                                      groupsAll={groupsAll}
                                      onChange={option => this.changeInput("groups", option)}
         /> )}

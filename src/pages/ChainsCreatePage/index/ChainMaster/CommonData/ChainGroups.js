@@ -10,8 +10,8 @@ class ChainGroups extends React.Component {
 
     return (
       <SelectSimple
+        key="chain-group-select"
         isMulti
-        // label="Группы"
         options={groupList}
         onChange={onChange}
         value={groups}

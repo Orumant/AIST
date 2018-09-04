@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {Operations} from "../../modules/_global/FilterStandMulti";
-import FilterStandMulti from "../../pages/_global/filters/FilterStandMulti";
+import FilterStand_Multi from "../../pages/_global/filters/FilterStand_Multi";
 
 function mapStateToProps(state) {
   return {
@@ -14,4 +14,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterStandMulti)
+export default connect(mapStateToProps, mapDispatchToProps)(FilterStand_Multi)

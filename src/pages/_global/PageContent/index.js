@@ -9,37 +9,31 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import FilterList from '@material-ui/icons/FilterList';
 
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import {styles} from "./style";
 import "./style.css"
 import Typography from "@material-ui/core/Typography";
 
-class PageContent extends React.Component{
+class PageContent extends React.Component {
 
   state = {
     showFilter: false,
-    selectedNum: 0,
   };
 
   handleClickFilter = () => {
     this.setState(state => ({showFilter: !state.showFilter}));
   };
 
-  handleSelection = (selectedNum) => {
-    this.setState({selectedNum})
-  };
 
   render() {
 
-    const {classes, isFilter, isLoading, FilterBar, content, pageName} = this.props;
-    const {showFilter, selectedNum} = this.state;
+    const {classes, isFilter, isLoading, FilterBar, content, pageName, selectedNum, error} = this.props;
+    const {showFilter} = this.state;
 
-    const Sidebar = isFilter? React.cloneElement(FilterBar, {
+    const Sidebar = isFilter ? React.cloneElement(FilterBar, {
       close: this.handleClickFilter,
       isOpen: showFilter
     }) : null;
-
-    const PageContent = content.map(elem => React.cloneElement(elem, {handleSelection: this.handleSelection}));
 
     const Spinner = <div className='loading'>
       <Loading key='page-content-loading' type='spin' color='rgb(67, 136, 204)' height='100px' width='100px'/>
@@ -52,23 +46,30 @@ class PageContent extends React.Component{
           [classes[`contentShift-right`]]: showFilter,
         })}
       >
-        {isLoading? Spinner: null}
-        <div style={{opacity: isLoading? 0.5 : 1}}>
-          {isFilter? <div className="table-toolbar">
-            <Typography className="table-name" variant="headline">{pageName}</Typography>
-            {selectedNum? <Typography color="inherit">
-              Выбрано: {selectedNum}
-            </Typography> : null}
-            <div className="tools">
-              <Button onClick={this.handleClickFilter}>
-                <FilterList style={{marginRight: '8px'}}/>
-                Фильтры
-              </Button>
-            </div>
-          </div>: null}
+        {isLoading ? Spinner : null}
+        <div style={{opacity: isLoading ? 0.5 : 1}}>
+          {isFilter ?
+            <div className={classNames("table-toolbar", {[classes.highlight]: error})}>
+              <div className="table-name">
+                {error ?
+                  <Typography color="inherit" variant="headline">{error}</Typography> :
+                  <div>
+                    <Typography color="inherit" variant="headline">{pageName}</Typography>
+                    {selectedNum ? <Typography color="inherit">
+                      Выбрано: {selectedNum}
+                    </Typography> : null}
+                  </div>}
+              </div>
+              <div className="tools">
+                <Button onClick={this.handleClickFilter}>
+                  <FilterList style={{marginRight: '8px'}}/>
+                  Фильтры
+                </Button>
+              </div>
+            </div> : null}
           {Sidebar}
           <Paper>
-            {PageContent}
+            {content}
           </Paper>
         </div>
       </Paper>
@@ -85,4 +86,4 @@ PageContent.propTypes = {
   pageName: PropTypes.string,
 };
 
-export default withStyles(styles, { withTheme: true })(PageContent);
+export default withStyles(styles, {withTheme: true})(PageContent);

@@ -7,6 +7,7 @@ class FilterChains extends React.Component {
   render ()  {
     const {chains, onChange, name, value} = this.props;
     const options = filterPropertyFromObjects(chains, 'name');
+
     return (
       <FilterForm
         name={name}

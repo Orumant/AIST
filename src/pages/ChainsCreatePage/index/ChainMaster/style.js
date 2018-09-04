@@ -17,15 +17,15 @@ export const styles = theme => ({
     zIndex: '1',
   },
   testCardContent: {
-    paddingTop: theme.spacing.unit*2,
-    paddingBottom: theme.spacing.unit*2 + 'px !important',
-  },
-  cardNumber: {
-    float: 'left',
-    width: theme.spacing.unit*3,
+    paddingTop: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit + 'px !important',
+    paddingRight: theme.spacing.unit,
+    display: "flex",
+    alignItems: 'center',
   },
   cardContent: {
-    marginLeft: theme.spacing.unit*2,
+    flexGrow: '1',
+    marginLeft: theme.spacing.unit,
   },
   emptyReorderForm: {
     backgroundColor: 'black',

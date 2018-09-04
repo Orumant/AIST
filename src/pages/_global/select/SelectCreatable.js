@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -23,6 +23,7 @@ class SelectCreatable extends React.Component {
 
     return [
       <Creatable
+        key="select-creatable"
         isClearable
         classes={classes}
         styles={selectStyles}
@@ -41,7 +42,7 @@ class SelectCreatable extends React.Component {
         noOptionsMessage={() => "Список пуст"}
         isMulti={isMulti}
       />,
-      <FormHelperText>{helpText? helpText: null}</FormHelperText>
+      <FormHelperText key="help-text-select-creatable">{helpText? helpText: null}</FormHelperText>
 
     ];
   }

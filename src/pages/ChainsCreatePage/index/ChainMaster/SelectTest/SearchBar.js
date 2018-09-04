@@ -1,8 +1,8 @@
 import React from 'react';
 import FilterTag from "../../../../_global/filters/FilterTags";
 import FilterSidebar from "../../../../../containers/_global/FilterSidebar";
-import FilterASone from "../../../../_global/filters/FilterASone";
-import FilterStandMulti from "../../../../../containers/_global/FilterStandMulti";
+import FilterAS_Single from "../../../../_global/filters/FilterAS_Single";
+import FilterStand_Multi from "../../../../../containers/_global/FilterStand_Multi";
 
 
 class SearchBar extends React.Component {
@@ -11,8 +11,8 @@ class SearchBar extends React.Component {
     const {tests, ...others} = this.props;
 
     const content = [
-      <FilterASone name='asystem' key={'system-filter'} tests={tests}/>,
-      <FilterStandMulti name='stands' key={'stand-filter'}/>,
+      <FilterAS_Single name='asystem' key={'system-filter'} tests={tests}/>,
+      <FilterStand_Multi name='stands' key={'stand-filter'}/>,
       <FilterTag name='tags' key={'tag-filter'} tests={tests} />,
     ];
 

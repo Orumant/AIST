@@ -2,7 +2,7 @@ import React from 'react'
 import {filterPropertyFromObjects} from "../../../utils/filters/index";
 import FilterForm from "./base/FilterForm";
 
-class FilterASone extends React.Component {
+class FilterAS_Single extends React.Component {
 
   render ()  {
     const {tests, onChange, name, value} = this.props;
@@ -21,5 +21,5 @@ class FilterASone extends React.Component {
   }
 }
 
-export default FilterASone
+export default FilterAS_Single
 

@@ -11,7 +11,7 @@ class ChainName extends React.Component {
 
     return (
       <SelectCreatable
-        // label="Маркер"
+        key="chain-marker-select"
         options={markerList}
         helpText={"Выберите маркер или создайте свой"}
         onChange={onChange}

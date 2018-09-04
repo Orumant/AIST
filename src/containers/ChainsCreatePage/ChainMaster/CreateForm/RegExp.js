@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
-import { Operations } from "../../modules/ChainsCreatePage/ChainMaster/CreateForm/RegExp";
-import RegExp from "../../pages/ChainsCreatePage/index/ChainMaster/CreateForm/Field/RegExp"
+import { Operations } from "../../../../modules/ChainsCreatePage/ChainMaster/CreateForm/RegExp/index";
+import RegExp from "../../../../pages/ChainsCreatePage/index/ChainMaster/CreateForm/Field/RegExp"
 
 function mapStateToProps(state) {
   return {

@@ -9,7 +9,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import Chip from "@material-ui/core/Chip";
 import RequiredTextField from "../../../../_global/RequiredTextField";
 import MenuItems from "./Field/MenuItems";
-import RegExp from "../../../../../containers/ChainsCreatePage/RegExp";
+import RegExp from "../../../../../containers/ChainsCreatePage/ChainMaster/CreateForm/RegExp";
 
 class Field extends React.Component {
 

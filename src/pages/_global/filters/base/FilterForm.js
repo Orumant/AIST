@@ -3,6 +3,8 @@ import Select from 'react-select'
 import PropTypes from 'prop-types';
 import {arrayToOptions} from "../../../../utils/filters/index";
 import './style.css';
+import SelectSimple from "../../select/SelectSimple";
+import Typography from '@material-ui/core/Typography';
 
 class FilterForm extends React.Component {
 
@@ -29,14 +31,11 @@ class FilterForm extends React.Component {
 
     return (
       <div className={'filter-item'}>
-        {label}
-        <Select
-          options={optionsList}
-          className='test-filter'
-          placeholder={placeholder? placeholder: ""}
-          onChange={this.changeSelection}
-          value={value? selectedOption: value}
-        />
+        <Typography>{label}</Typography>
+        <SelectSimple options={optionsList}
+                      placeholder={placeholder? placeholder: ""}
+                      onChange={this.changeSelection}
+                      value={value? selectedOption: value}/>
       </div>
     )
   }

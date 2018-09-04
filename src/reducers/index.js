@@ -29,6 +29,7 @@ import selectTestReducer from "../modules/ChainsCreatePage/ChainMaster/SelectTes
 import filterStandMultiReducer from "../modules/_global/FilterStandMulti";
 import regExpReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm/RegExp";
 import createFormReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm";
+import selectedTestTableReducer from "../modules/ChainsCreatePage/ChainMaster/SelectTest/TestTable";
 
 
 
@@ -63,6 +64,7 @@ const rootReducer = combineReducers({
   filterStandMultiReducer,
   regExpReducer,
   createFormReducer,
+  selectedTestTableReducer,
 
 });
 

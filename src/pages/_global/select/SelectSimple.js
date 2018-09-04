@@ -9,13 +9,6 @@ import {styles} from './style';
 import FormHelperText from "@material-ui/core/FormHelperText";
 
 class SelectSimple extends React.Component {
-  state = {
-    value: null,
-  };
-
-  handleChange = value => {
-    this.setState({value});
-  };
 
   render() {
     const {classes, theme, isMulti, label, options, placeholder, onChange, value, helpText} = this.props;
@@ -29,6 +22,7 @@ class SelectSimple extends React.Component {
 
     return [
         <Select
+          key="select-simple"
           isClearable
           classes={classes}
           styles={selectStyles}
@@ -40,12 +34,12 @@ class SelectSimple extends React.Component {
           }}
           options={options}
           components={components}
-          value={value}
+          value={value? value: ''}
           onChange={onChange}
           placeholder={placeholder ? placeholder : ''}
           isMulti={isMulti}
         />,
-      <FormHelperText>{helpText? helpText: null}</FormHelperText>
+      <FormHelperText key="help-text-select-simple">{helpText? helpText: null}</FormHelperText>
     ];
   }
 }
@@ -53,6 +47,13 @@ class SelectSimple extends React.Component {
 SelectSimple.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  value: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  options: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+  isMulti: PropTypes.bool,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  helpText: PropTypes.string,
 };
 
 export default withStyles(styles, {withTheme: true})(SelectSimple);
