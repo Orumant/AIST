@@ -16,8 +16,7 @@ import {
 } from "react-bootstrap"
 import Notifications from 'react-notification-system-redux';
 import SearchBar from "../SearchBar";
-import Header from "../Header";
-import {forceLogin, getUserName} from '../../globalFunc';
+import {forceLogin} from '../../globalFunc';
 import './style.css';
 
 class DataTemplatesBuilderPage extends React.Component {
@@ -192,7 +191,6 @@ class DataTemplatesBuilderPage extends React.Component {
     });
     return (
       <div>
-        <Header owner={getUserName()} />
         <Panel bsStyle='primary' header={submit} className={'data-templates-builder-main'}>
           <Grid fluid={true} >
             <Row key={'bla'}>

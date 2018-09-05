@@ -1,5 +1,5 @@
 import React from 'react'
-import {Thumbnail, Grid, Col, Row, OverlayTrigger, Popover, Button, Modal, Tooltip} from 'react-bootstrap'
+import {Col, Grid, OverlayTrigger, Row, Thumbnail, Tooltip} from 'react-bootstrap'
 
 import JenkImg from '../../assets/Jenk.png';
 import BPM from '../../assets/BPM.png';
@@ -10,7 +10,7 @@ import Grafana from '../../assets/grafana.png';
 
 import Notifications from 'react-notification-system-redux';
 import Header from "../Header";
-import {getUserName, forceLogin} from '../../globalFunc';
+import {forceLogin, getUserName} from '../../globalFunc';
 import './style.css';
 import {ALPHA} from '../../constants/domains';
 
@@ -28,7 +28,7 @@ class HomePage extends React.Component {
     );
 
     const statPortalEnabled = (
-      <Col xs={4} md={4}>
+      <Col md={3}>
         <h1 align="middle">Портал статистики</h1>
         <Thumbnail href="http://sbt-ot-289.ca.sbrf.ru:8069/dashboard/db/obshchaia-statistika" alt="171x180"
                    src={Grafana} style={{border: 'none'}}/>
@@ -36,7 +36,7 @@ class HomePage extends React.Component {
     );
     const statPortalDisabled = (
       <OverlayTrigger placement='top' overlay={overlayTooltip}>
-        <Col xs={4} md={4} disabled>
+        <Col md={3} disabled>
           <h1 align="middle">Портал статистики</h1>
           <Thumbnail alt="171x180"
                      src={Grafana} style={{border: 'none'}}/>
@@ -69,15 +69,19 @@ class HomePage extends React.Component {
             </Col>
           </Row>
           <Row style={{marginTop: 5}} className={'column'}>
-            <Col xs={4} md={4}>
+            <Col md={3}>
               <h1 align="middle">Конструктор форм</h1>
               <Thumbnail href="#/formbuilder" alt="171x180" src={Mock} style={{border: 'none'}}/>
             </Col>
-            <Col xs={4} md={4}>
+            <Col md={3}>
               <h1 align="middle">Ред. шаблонов</h1>
               <Thumbnail href="#/dataTemplates" alt="171x180" src={Param} style={{border: 'none'}}/>
             </Col>
             {ALPHA ? statPortalEnabled : statPortalDisabled}
+            <Col md={3}>
+              <h1 align="middle">Реестр цепочек</h1>
+              <Thumbnail href="#/chainTemplateList" alt="171x180" src={BPM} style={{border: 'none'}}/>
+            </Col>
           </Row>
         </Grid>
         <Notifications notifications={this.props.notifications}/>

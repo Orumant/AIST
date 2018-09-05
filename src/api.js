@@ -1,34 +1,37 @@
 import {error, success} from "react-notification-system-redux";
 import {
+
   formTemplateFetchSuccseed,
-  chainEditorTemplateFetchSucceed,
   testsListTemplateFetchSucceed,
   dataTemplateFetchSucceed,
+  allChainEditorTemplateFetchSucceed,
+  allChainTemplateFetchSucceed,
   dataTemplateFetchFail,
-  formTemplateFetchFail,
-  submitChainTemplateSucceed,
-  formBuilderChainsFetchSucceed,
-  updateChainFormSucceed,
-  testBuilderTestsFetchSucceed,
-  resetModificationMarkers,
   dataTemplatesFetchSuccess,
-  updateDataTemplateSuccess,
-  orderCreated,
-  launcherUserGroupsFetchSucceed,
-  ordersFetchSucceed,
-  ordersFetchFail,
-  ordersCSVFetchSucceed,
-  ordersCSVFetchFail,
-  submitRerunOrderSucceed,
+  formBuilderChainsFetchSucceed,
   formGroupsFetchSucceed,
   formGroupsForMembersFetchSucceed,
+  formTemplateFetchFail,
   getValidationResults,
+  launcherUserGroupsFetchSucceed,
+  orderCreated,
+  ordersCSVFetchFail,
+  ordersCSVFetchSucceed,
+  ordersFetchSucceed,
+  resetModificationMarkers,
+  standsFetchSucceed,
+  submitChainTemplateSucceed,
+  submitRerunOrderSucceed,
+  testBuilderTestsFetchSucceed,
+  testChainTemplateFetchSucceed,
   testListTestsFetchSucceed,
-  allChainEditorTemplateFetchSucceed,
+  updateChainFormSucceed,
+  updateDataTemplateSuccess,
 } from './actions';
 import axios from 'axios';
 import {BACKEND_URL} from "./constants/endpoints";
 import {getToken, isObjectEmpty, setCurrentUser} from './globalFunc';
+import {showError} from "./modules/common_api";
 
 
 export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch, getState) => {
@@ -39,7 +42,7 @@ export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch, get
     dispatch(ordersFetchSucceed(response.data));
   }).catch(function (response) {
     //dispatch(ordersFetchFail());
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -66,7 +69,7 @@ export const getCSVbyOrderID = (orderID) => (dispatch) => {
     dispatch(ordersCSVFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(ordersCSVFetchFail());
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -109,7 +112,7 @@ export const updatePersonalForm = (payload) => (dispatch) => {
   axios.put(url, [requestBody], header).then(function (response) {
     dispatch(success({message: "Группа создана"}));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
   payload.groupName = "";
 
@@ -134,7 +137,7 @@ export const getPublicKeyRegistration = (payload) => (dispatch) => {
   axios.get(url).then(function (response) {
     dispatch(updateRegistrationForm(payload, response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -163,7 +166,7 @@ export const updateRegistrationForm = (payload, publicKey) => (dispatch) => {
   axios.put(url, payload).then(function (response) {
     window.location.hash = '#/';
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 
 };
@@ -181,7 +184,7 @@ export const getPublicKeyLogin = (payload) => (dispatch) => {
   axios.get(url).then(function (response) {
     dispatch(updateLoginForm(payload, response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -197,11 +200,11 @@ export const updateLoginForm = (payload, publicKey) => (dispatch) => {
   axios.post(url, payload).then(function (response) {
     payload.token = response.data.token;
     setCurrentUser(payload.login, response.data);
-    window.location.hash = '#/homepage';
+    window.location.hash = '#/launcher';
 
   }).catch(function (response) {
     payload.password = a;
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -213,7 +216,7 @@ export const fetchDataTemplatesList = () => (dispatch, getState) => {
     dispatch(dataTemplateFetchSucceed(response.data));
   }).catch(function (response) {
     dispatch(dataTemplateFetchFail());
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -228,7 +231,7 @@ export const fetchFormTemplate = (formName) => (dispatch) => {
     }));
   }).catch(function (response) {
     dispatch(formTemplateFetchFail());
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -242,7 +245,7 @@ export const fetchTests = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(testsListTemplateFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -256,7 +259,7 @@ export const fetchChainTemplates = () => (dispatch, getState) => {
   axios.get(url, header).then(function (response) {
     dispatch(allChainEditorTemplateFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -269,11 +272,12 @@ export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
   const requestBody = {
     name: chainTemplate.value.name,
     marker: chainTemplate.value.marker,
-    fields: chainTemplate.value.fields,
+    form: chainTemplate.value.form,
     tests: chainTemplate.value.tests,
     templates: chainTemplate.value.templates.map(t => t.value),
     groups: chainTemplate.value.groups.map(t => t.label),
   };
+
   const header = {headers: {SessionID: getToken()}};
   if (chainTemplate.value.modified) {
     const url = `${BACKEND_URL}/chain_templates/${chainTemplate.name}`;
@@ -305,7 +309,7 @@ export const fetchBuilderChains = () => (dispatch, getState) => {
   axios.get(url, header).then(function (response) {
     dispatch(formBuilderChainsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -318,7 +322,7 @@ export const fetchGroups = () => (dispatch, getState) => {
   axios.get(url, header).then(function (response) {
     dispatch(formGroupsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -331,7 +335,7 @@ export const fetchGroupsForMembers = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(formGroupsForMembersFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -342,8 +346,8 @@ export const fetchGroupsForMembers = () => (dispatch) => {
 export const validateForm = (chainName, chain, idx) => (dispatch) => {
   let result = true;
   let tempArr = [];
-  if (chain.fields.length > 0 && !isObjectEmpty(chain.fields)) {
-    for (let field of chain.fields) {
+  if (chain.form.length > 0 && !isObjectEmpty(chain.form)) {
+    for (let field of chain.form) {
       let validation = [];
       delete field.validation;
       let re = require( 'regex-regex' );
@@ -426,7 +430,7 @@ export const testBuilderDataFetch = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(testBuilderTestsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -441,7 +445,7 @@ export const testListDataFetch = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(testListTestsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -467,13 +471,13 @@ export const submitTest = (testObject) => (dispatch, getState) => {
   } else {
     testObject.test.job_trigger.passOrToken = testObject.test.job_trigger.password;
   }
-    const result = [{
-      test_name: testObject.test.test_name,
-      job_trigger: testObject.test.job_trigger,
-      tag_names: tags,
-      stands: testObject.test.stands,
-      a_system: testObject.test.a_system,
-    }];
+  const result = [{
+    test_name: testObject.test.test_name,
+    job_trigger: testObject.test.job_trigger,
+    tag_names: tags,
+    stands: testObject.test.stands,
+    a_system: testObject.test.a_system,
+  }];
 
   const header = {headers: {SessionID: getToken()}};
   if (testObject.test.modified) {
@@ -507,7 +511,7 @@ export const fetchDataTemplates = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(dataTemplatesFetchSuccess(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -577,7 +581,7 @@ export const filterDirectoryData = (filterData) => (dispatch) => {
   axios.post(url, filterData).then(function () {
     //  TODO обработка полученных данных тое диспач
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -620,11 +624,10 @@ export const submitFormTemplate = (params) => (dispatch) => {
 
 export const getDictionaryData = (dictionary, onSuccess) => (dispatch) => {
   const url = `${BACKEND_URL}/dictionaries/${dictionary}`;
-
   axios.get(url).then(function (response) {
     dispatch(onSuccess(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -639,7 +642,7 @@ export const getUsersGroups = () => (dispatch) => {
   axios.get(url, header).then(function (response) {
     dispatch(launcherUserGroupsFetchSucceed(response.data))
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response}));
+    dispatch(showError(response));
   });
 };
 
@@ -668,10 +671,43 @@ export const submitFormMembers = (params) => (dispatch) => {
  */
 export const filterEntityByTags = (tags, entity, callback, {...props}) => (dispatch) => {
   const url = `${BACKEND_URL}/${entity}/filter`;
-
   axios.post(url, tags).then(function (response) {
+
     dispatch(callback(response.data, props));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка!" + response.message}));
+    dispatch(callback([], props));
+    //dispatch(error({message: "Request failed with error!" + response.message}));
   });
 };
+
+export const fetchFullChainTemplateList = () => (dispatch, getState) => {
+  const url = `${BACKEND_URL}/tests`;
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
+    dispatch(testChainTemplateFetchSucceed(response.data));
+  }).catch(function (response) {
+    dispatch(showError(response));
+  });
+};
+
+export const fetchAllChainTemplates = () => (dispatch, getState) => {
+  const url = `${BACKEND_URL}/chain_templates`;
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
+    dispatch(allChainTemplateFetchSucceed(response.data));
+  }).catch(function (response) {
+    dispatch(showError(response));
+  });
+};
+
+export const fetchStands = () => (dispatch) => {
+  const url = `${BACKEND_URL}/stands`;
+  const header = {headers: {SessionID: getToken()}};
+  axios.get(url, header).then(function (response) {
+    dispatch(standsFetchSucceed(response.data))
+  }).catch(function (response) {
+    dispatch(showError(response));
+  });
+};
+
+

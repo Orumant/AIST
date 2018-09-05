@@ -1,0 +1,12 @@
+.react-bs-table table td, .react-bs-table table th {
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+.chain-component-col-select {
+  overflow: visible !important;
+}
+
+.custom-header {
+  text-align: center !important;
+}

@@ -24,10 +24,9 @@ import ConfirmationDialog from "../ConfirmationDialog"
 import SearchBar from "../SearchBar"
 import NotifyUser from "../NotifyUser/NotifyUser"
 import Select from 'react-select'
-import Header from "../Header";
-import {forceLogin, getUserName} from '../../globalFunc';
+import {forceLogin} from '../../globalFunc';
 
-class ChainEditorPage extends React.Component {
+class ChainEditor extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.props.fetchGroupsForMembers();
@@ -223,7 +222,7 @@ class ChainEditorPage extends React.Component {
   }
 
   submitChainTemplate(chainTemplate) {
-    const message = 'У выбранных тестов нет совпадающих стендов, на которых они могут быть запущены'
+    const message = 'У выбранных тестов нет совпадающих стендов, на которых они могут быть запущены';
     this.state.isAvailableStand ? this.props.updateChainTemplate(chainTemplate) : alert(message)
   }
 
@@ -264,7 +263,7 @@ class ChainEditorPage extends React.Component {
           <li type="square">(Опционально) Изменить маркер цепочки в поле Marker</li>
           <li type="square">(Опционально) Изменить список доступных для цепочки шаблонов с параметрами</li>
 
-          <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Submit</li>
+          <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Сохранить измения</li>
           <br/>
           <p>
             Чтобы создать новую цепочку, необходимо:
@@ -275,7 +274,7 @@ class ChainEditorPage extends React.Component {
           <li type="square">Изменить имя цепочки в поле Name</li>
           <li type="square">Изменить маркер цепочки в поле Marker</li>
           <li type="square">(Опционально) Изменить список доступных для цепочки шаблонов с параметрами</li>
-          <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Submit</li>
+          <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Сохранить измения</li>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.handleClose}>Close</Button>
@@ -365,7 +364,6 @@ class ChainEditorPage extends React.Component {
       return {label: test, value: index}
     });
     return [
-      <Header owner={getUserName()}/>,
       <div className='chain-editor-main'>
         <Row>
           <Col md={4}>
@@ -422,4 +420,4 @@ class ChainEditorPage extends React.Component {
   }
 }
 
-export default ChainEditorPage
+export default ChainEditor

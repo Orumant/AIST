@@ -20,7 +20,7 @@ import {
   clearChainFilter,
   filteredChainByTagsFetchSucceed,
 } from '../actions'
-import ChainEditorPage from '../components/ChainEditorPage'
+import ChainEditor from '../components/ChainEditorPage'
 
 function mapStateToProps(state) {
   return {
@@ -58,4 +58,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChainEditorPage)
+export default connect(mapStateToProps, mapDispatchToProps)(ChainEditor)

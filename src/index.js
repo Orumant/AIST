@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware, compose} from 'redux';
@@ -8,21 +9,26 @@ import {HashRouter} from 'react-router-dom';
 import rootReducer from './reducers';
 import HomePage from './containers/HomePage';
 import TDME2E from './containers/TDME2E';
-import ChainEditorPage from './containers/ChainEditorPage';
-import FormBuilderPage from "./containers/FormBuilderPage";
-import TestBuilder from "./containers/TestBuilder";
-import DataDirectoryPage from "./containers/DataDirectoryPage";
+import ChainEditorPage from './pages/ChainEditorPage';
+import FormBuilderPage from "./pages/FormBuilderPage/index";
 
-import DataTemplatesBuilderPage from "./containers/DataTemplates";
+import DataDirectoryPage from "./pages/DataDirectoryPage";
+import ChainsListPage from "./pages/ChainListPage";
 import AuthorizationPage from "./containers/AuthorizationPage"
 import RegistrationPage from "./containers/RegistrationPage"
-import Launcher from "./containers/Launcher"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'font-awesome/css/font-awesome.min.css';
 import './styles/main.css';
-import PersonalPage from "./containers/PersonalPage";
+import PersonalPage from "./pages/PersonalPage";
+import ResultsPage from "./pages/ResultsPage";
+import LauncherPage from "./pages/Launcher/index";
+import TestBuilderPage from "./pages/TestBuilderPage/index";
+import './style.css'
+import DataTemplatesPage from "./pages/DataTemplatesPage/index";
+
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -38,21 +44,23 @@ ReactDOM.render((
       <div>
         <HashRouter>
           <Switch>
-            <Route exact path='/launcher' component={Launcher}/>
-            <Route exact path="/testbuilder" component={TestBuilder}/>
-            <Route path="/testbuilder/:testName" component={TestBuilder}/>
+            <Route exact path='/launcher' component={LauncherPage}/>
+            <Route exact path="/testbuilder" component={TestBuilderPage}/>
+            <Route path="/testbuilder/:testName" component={TestBuilderPage}/>
             <Route exact path="/chaineditor" component={ChainEditorPage}/>}
             <Route path="/chaineditor/:chainName" component={ChainEditorPage}/>}
             <Route exact path="/formbuilder" component={FormBuilderPage}/>
             <Route path="/formbuilder/:chainIndex" component={FormBuilderPage}/>
             <Route exact path="/datadirectory/:chainName" component={DataDirectoryPage}/>
             <Route exact path="/datadirectory" component={DataDirectoryPage}/>
-            <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesBuilderPage}/>
-            <Route exact path="/datatemplates" component={DataTemplatesBuilderPage}/>
+            <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesPage}/>
+            <Route exact path='/chainTemplateList' component={ChainsListPage}/>
+            <Route exact path="/datatemplates" component={DataTemplatesPage}/>
             <Route path="/homepage" component={HomePage}/>
             <Route path="/TDME2E" component={TDME2E}/>
             <Route path="/registration" component={RegistrationPage}/>
             <Route path="/personaldata" component={PersonalPage}/>
+            <Route path="/results" component={ResultsPage}/>
             <Route exact path="/" component={AuthorizationPage}/>
           </Switch>
         </HashRouter>
