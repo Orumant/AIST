@@ -24,8 +24,7 @@ import chainTemplateList from "./chainTemplateList";
 import filterSidebarReducer from "../modules/_global/FilterSidebar";
 import searchBarReducerChainList from "../modules/ChainListPage/SearchBar";
 import chainsListReducer from "../modules/ChainListPage/ChainListPage";
-
-
+import {reducers} from '../modules/TestsViewer/index';
 
 const rootReducer = combineReducers({
   launcher,
@@ -53,6 +52,7 @@ const rootReducer = combineReducers({
   filterSidebarReducer,
   searchBarReducerChainList,
   chainsListReducer,
+  TestsTableReducer: reducers.TestsTableReducer,
 });
 
 export default rootReducer

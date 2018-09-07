@@ -18,6 +18,7 @@ class NavMenu extends React.Component {
       launcher: { name: 'Запуск цепочек', link: '/launcher'},
       createForm: { name: 'Создание формы', link: '/formbuilder'},
       createPattern: { name: 'Создание шаблона', link: '/datatemplates'},
+      viewTests: { name: 'Реестр тестов', link: '/tests'},
     };
 
     const item = (key, name, link) =>

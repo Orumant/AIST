@@ -27,7 +27,7 @@ import LauncherPage from "./pages/Launcher/index";
 import TestBuilderPage from "./pages/TestBuilderPage/index";
 import './style.css'
 import DataTemplatesPage from "./pages/DataTemplatesPage/index";
-
+import TestsViewer from './pages/TestsViever';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -41,7 +41,6 @@ const store = createStore(
 
 ReactDOM.render((
     <Provider store={store}>
-      <div>
         <HashRouter>
           <Switch>
             <Route exact path='/launcher' component={LauncherPage}/>
@@ -57,6 +56,7 @@ ReactDOM.render((
             <Route exact path='/chainTemplateList' component={ChainsListPage}/>
             <Route exact path="/datatemplates" component={DataTemplatesPage}/>
             <Route path="/homepage" component={HomePage}/>
+            <Route exact path='/tests' component={TestsViewer}/>
             <Route path="/TDME2E" component={TDME2E}/>
             <Route path="/registration" component={RegistrationPage}/>
             <Route path="/personaldata" component={PersonalPage}/>
@@ -64,7 +64,6 @@ ReactDOM.render((
             <Route exact path="/" component={AuthorizationPage}/>
           </Switch>
         </HashRouter>
-      </div>
     </Provider>
   ),
   document.getElementById('root'));
