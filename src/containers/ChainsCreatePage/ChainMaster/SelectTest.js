@@ -14,7 +14,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchFilterTests: (request) => dispatch(Operations.fetchFilterTests(request)),
+    fetchFilterTests: (request, data, needUpdate) => dispatch(Operations.fetchFilterTests(request, data, needUpdate)),
     onSelectTest: (selection) => dispatch(Actions.testSelected(selection)),
     onSortTest: (tests) => dispatch(Actions.testReordered(tests)),
     onDeleteTest: (index) => dispatch(Actions.testRemoved(index)),

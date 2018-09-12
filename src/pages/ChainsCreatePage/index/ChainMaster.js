@@ -12,12 +12,18 @@ import Notifications from 'react-notification-system-redux';
 import Loading from 'react-loading';
 import SelectTest from "../../../containers/ChainsCreatePage/ChainMaster/SelectTest";
 import CreateForm from "../../../containers/ChainsCreatePage/ChainMaster/CreateForm";
+import Confirmation from "./ChainMaster/Confirmation";
 
 
 class ChainMaster extends React.Component {
 
   state = {
     activeStep: 0,
+    needUpdate: {
+      commonData: false,
+      tests: false,
+      form: false,
+    },
   };
 
   handleNext = (chain_data) => {
@@ -36,37 +42,53 @@ class ChainMaster extends React.Component {
     });
   };
 
-  submit = (chain_data) => {
-    const { updateData } = this.props;
-    updateData(chain_data);
+  submit = (chain_data, history) => {
+    const {submitNewChainData, submitEditedChainData, chainName} = this.props;
+    if (chainName) submitEditedChainData(chainName, chain_data, history);
+    else submitNewChainData(chain_data, history);
+  };
+
+  dataUpdated = (page) => {
+    const update = {...this.state.needUpdate};
+    update[page] = false;
+    this.setState({needUpdate: update});
   };
 
   componentDidMount() {
-    const {fetchAllData} = this.props;
-    fetchAllData();
+    const {fetchAllData, chainName} = this.props;
+    const update = {...this.state.needUpdate};
+    for (let page in update)
+      update[page] = true;
+    fetchAllData(chainName);
+    if (chainName) this.setState({needUpdate: update});
   }
 
   getStepContent = (step) => {
     const { dataAll, chain_data} = this.props;
+    const {needUpdate} = this.state;
     switch (step) {
       case 0:
-        return <CommonData data={chain_data} templatesAll={dataAll.templates} groupsAll={dataAll.groups}/>;
+        return <CommonData needUpdate={needUpdate.commonData} dataUpdated={() => this.dataUpdated("commonData")}
+                           data={chain_data} templatesAll={dataAll.templates} groupsAll={dataAll.groups}/>;
       case 1:
-        return <SelectTest data={chain_data}  testsAll={dataAll.tests}/>;
+        return <SelectTest needUpdate={needUpdate.tests} dataUpdated={() => this.dataUpdated("tests")}
+                            data={chain_data}  testsAll={dataAll.tests}/>;
       case 2:
-        return <CreateForm />;
+        return <CreateForm needUpdate={needUpdate.form} dataUpdated={() => this.dataUpdated("form")}
+                           data={chain_data}/>;
+      case 3:
+        return <Confirmation data={chain_data} />;
       default:
         return 'Произошла ошибка';
     }
-  }
-
+  };
 
 
   render() {
-    const { classes, isFetching, chain_data,  notifications } = this.props;
-    const steps = ['Общие данные', 'Выбор тестов', 'Создание формы'];
+    const { classes, isFetching, chain_data, notifications } = this.props;
+    const steps = ['Общие данные', 'Выбор тестов', 'Создание формы', 'Подтверждение'];
     const { activeStep } = this.state;
-    console.log(chain_data)
+    console.log(chain_data, isFetching);
 
     const Spinner = <div className='loading'>
       <Loading key='page-content-loading' type='spin' color='rgb(67, 136, 204)' height='100px' width='100px'/>
@@ -87,7 +109,7 @@ class ChainMaster extends React.Component {
         <div style={{opacity: isFetching? 0.5 : 1}}>
           <div className={classes.root}>
             <Stepper activeStep={activeStep}>
-              {steps.map((label, index) =>
+              {steps.map((label) =>
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
                 </Step>

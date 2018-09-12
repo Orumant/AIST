@@ -23,9 +23,15 @@ const selectTestReducer = (state = initialState, action) => {
       }
     }
     case types.FILTER_TEST_FETCH_SUCCEED: {
+      let new_selected = [...state.selectedTest];
+      const {tests} = action.data;
+      const testsAll = action.tests;
+      if (action.needUpdate && tests) tests.forEach(test_id => testsAll.forEach(test =>
+        test.test_id === test_id.toString() ? new_selected.push(test): null));
       return {
         ...state,
-        tests: action.tests,
+        selectedTest: new_selected,
+        tests: testsAll,
         isFetching: false,
       }
     }
@@ -49,7 +55,6 @@ const selectTestReducer = (state = initialState, action) => {
     }
   }
     case types.CHAIN_MASTER_TEST_REORDERED: {
-      console.log('DELETE')
       return {
         ...state,
         selectedTest: action.tests,
@@ -57,7 +62,6 @@ const selectTestReducer = (state = initialState, action) => {
     }
     case types.CHAIN_MASTER_TEST_REMOVED: {
       let new_selected = [...state.selectedTest];
-      console.log('DELETE')
       new_selected.splice(action.index, 1);
       const error = Operations.validateTestsByStands(new_selected);
       return {

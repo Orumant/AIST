@@ -7,8 +7,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 class RequiredTextField extends React.Component {
 
   render() {
-    const {label, value, onChange, onBlur, isChecking,  fullWidth} = this.props;
-    const isError = isChecking && value.length === 0;
+    const {label, value, onChange, onBlur, fullWidth, errorMessage} = this.props;
+    const isError = Boolean(errorMessage);
 
     return (
       <FormControl required
@@ -20,7 +20,7 @@ class RequiredTextField extends React.Component {
                onChange={onChange}
                onBlur={onBlur}
         />
-        <FormHelperText>{isError ? "Поле не может быть пустым" : null}</FormHelperText>
+        <FormHelperText>{isError ? errorMessage : null}</FormHelperText>
       </FormControl>
     )
   }

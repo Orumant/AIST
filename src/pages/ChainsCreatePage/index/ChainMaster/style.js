@@ -38,5 +38,8 @@ export const styles = theme => ({
   },
   navPanel: {
     marginTop: theme.spacing.unit*2,
+  },
+  gridTitle: {
+    marginLeft: theme.spacing.unit*3,
   }
 });

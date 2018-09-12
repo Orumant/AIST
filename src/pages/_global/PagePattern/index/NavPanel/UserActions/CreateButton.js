@@ -52,7 +52,7 @@ class CreateButton extends React.Component {
           horizontal: 'left',
         }}
       >
-        <MenuItem key="create_chain_link"><Link to={"/chaineditor"}>Цепочку</Link></MenuItem>
+        <MenuItem key="create_chain_link"><Link to={"/chains/create"}>Цепочку</Link></MenuItem>
         <MenuItem key="create_test_link"><Link to={"/testbuilder"}>Тест</Link></MenuItem>
       </Menu>
     ];

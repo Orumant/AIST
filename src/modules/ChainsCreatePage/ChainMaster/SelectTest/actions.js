@@ -1,8 +1,10 @@
 import types from './types'
 
-const filterTestFetchSucceed = (tests) => ({
+const filterTestFetchSucceed = (tests, data, needUpdate) => ({
   type: types.FILTER_TEST_FETCH_SUCCEED,
-  tests
+  tests,
+  data,
+  needUpdate
 });
 
 const startFetching = () => ({

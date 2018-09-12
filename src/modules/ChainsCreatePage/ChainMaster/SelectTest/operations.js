@@ -4,13 +4,13 @@ import {getToken} from '../../../../globalFunc';
 import actions from './actions'
 import {showError} from "../../../common_api";
 
-export const fetchFilterTests = (request) => (dispatch) => {
+export const fetchFilterTests = (request, data, needUpdate) => (dispatch) => {
   const url = `${BACKEND_URL}/tests/filter`;
   const header = {headers: {SessionID: getToken()}};
   dispatch(actions.startFetching());
   axios.post(url, request, header)
   .then(response =>
-    dispatch(actions.filterTestFetchSucceed(response.data)))
+    dispatch(actions.filterTestFetchSucceed(response.data, data, needUpdate)))
   .catch(response => {
     dispatch(actions.endFetching());
     dispatch(showError(response));

@@ -5,7 +5,6 @@ import {
   SortableElement,
   arrayMove,
 } from 'react-sortable-hoc';
-import {render} from 'react-dom';
 
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -21,15 +20,12 @@ import ClearIcon from '@material-ui/icons/Clear';
 class ReorderTest extends React.Component {
 
   onSortEnd = ({oldIndex, newIndex}) => {
-    // const {onSortTest, tests} = this.props;
-    // onSortTest(arrayMove(tests, oldIndex, newIndex));
+    const {onSortTest, tests} = this.props;
+    onSortTest(arrayMove(tests, oldIndex, newIndex));
   };
 
   render() {
     const {classes, tests, onDelete} = this.props;
-    console.log(tests)
-    console.log(SortableElement)
-
 
     const SortableItem = SortableElement(({value, ind}) => {
       return (

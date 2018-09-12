@@ -7,24 +7,20 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 
 class RegExp extends React.Component {
 
-  componentDidUpdate() {
-    const {value, validateField, isSubmit} = this.props;
-    if (isSubmit) validateField(value)
-  }
-
   render() {
-    const {error, errorMessage, value, onChange, onBlur } = this.props;
+    const {errorMessage, value, onChange, onBlur } = this.props;
+    const isError = Boolean(errorMessage);
 
     return (
       <FormControl fullWidth
-                   error={error}
+                   error={isError}
       >
         <InputLabel>Регулярное выражение</InputLabel>
         <Input value={value}
                onChange={onChange}
                onBlur={onBlur}
         />
-        <FormHelperText>{error ? errorMessage : null}</FormHelperText>
+        <FormHelperText>{isError ? errorMessage : null}</FormHelperText>
       </FormControl>
     )
   }

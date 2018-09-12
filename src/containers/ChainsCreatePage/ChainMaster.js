@@ -13,8 +13,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchAllData: () => dispatch(Operations.fetchAllData()),
-    updateData: (chain_data)  => dispatch(Actions.dataUpdated(chain_data))
+    fetchAllData: (chain_name) => dispatch(Operations.fetchAllData(chain_name)),
+    updateData: (chain_data)  => dispatch(Actions.dataUpdated(chain_data)),
+    submitNewChainData: (chain_data, history) => dispatch(Operations.submitNewChainData(chain_data, history)),
+    submitEditedChainData: (chain_name, chain_data, history) => dispatch(Operations.submitEditedChainData(chain_name, chain_data, history)),
   }
 }
 

@@ -17,9 +17,20 @@ const fieldDeleted = (index) => ({
   index
 });
 
+const dataValidated = (errorMessage) => ({
+  type: types.DATA_VALIDATED,
+  errorMessage
+});
+
+const getFields = (data) => ({
+  type: types.GOT_DATA,
+  data
+});
 
 export default {
   fieldAdded,
   fieldUpdated,
   fieldDeleted,
+  dataValidated,
+  getFields,
 }

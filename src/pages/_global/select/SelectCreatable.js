@@ -1,8 +1,5 @@
-
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
 import Creatable from 'react-select/lib/Creatable';
 import {withStyles} from '@material-ui/core/styles';
 import {components} from './components'

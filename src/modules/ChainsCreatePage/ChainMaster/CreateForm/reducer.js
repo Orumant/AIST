@@ -2,6 +2,7 @@ import types from './types'
 
 const initialState = {
   fields: [],
+  errorMessage: [],
 };
 
 const createFormReducer = (state = initialState, action) => {
@@ -29,6 +30,19 @@ const createFormReducer = (state = initialState, action) => {
       return {
         ...state,
         fields: new_fields,
+      }
+    }
+    case types.DATA_VALIDATED: {
+      return {
+        ...state,
+        errorMessage: action.errorMessage,
+      }
+    }
+    case types.GOT_DATA: {
+      const { form } = action.data;
+      return {
+        ...state,
+        fields: form,
       }
     }
     default:

@@ -27,6 +27,7 @@ const chainMasterReducer = (state = initialState, action) => {
     case types.DATA_FETCH_SUCCEED: {
       return {
         ...state,
+        chain_data: action.chain_data? action.chain_data: {},
         dataAll: {
           templates: action.templatesAll,
           tests: action.testsAll,
@@ -37,12 +38,17 @@ const chainMasterReducer = (state = initialState, action) => {
     }
     case types.CHAIN_DATA_UPDATED: {
       let new_chain_data = {...state.chain_data};
-      // console.log(new_chain_data)
-      // console.log(action.chain_data)
-      Object.keys(action.chain_data).forEach(prop => new_chain_data[prop] = action.chain_data[prop])
+      Object.keys(action.chain_data).forEach(prop => new_chain_data[prop] = action.chain_data[prop]);
       return {
         ...state,
         chain_data: new_chain_data,
+      }
+    }
+    case types.CHAIN_ADDED: {
+      return {
+        ...state,
+        chain_data: {},
+        isFetching: false,
       }
     }
     default:

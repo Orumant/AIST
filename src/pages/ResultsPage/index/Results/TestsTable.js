@@ -33,6 +33,7 @@ class TestsTable extends React.Component {
     sortingHint: "Отсортировать",
     showAll: "Все",
     rowsPerPage: "Количество строк на странице",
+    info: "{from}-{to} из {count}",
   };
 
 

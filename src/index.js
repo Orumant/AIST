@@ -29,6 +29,7 @@ import './style.css'
 import ChainsCreatePage from "./pages/ChainsCreatePage/index";
 import 'babel-polyfill'
 import SelectSingle from "./pages/_global/select/SelectSimple";
+import SuccessPage from "./pages/ChainsCreatePage/index/SuccessPage";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -52,11 +53,12 @@ ReactDOM.render((
             <Route path="/chaineditor/:chainName" component={ChainEditorPage}/>}
             <Route exact path="/formbuilder" component={FormBuilderPage}/>
             <Route path="/formbuilder/:chainIndex" component={FormBuilderPage}/>
-            <Route exact path="/datadirectory/:chainName" component={DataDirectoryPage}/>
             <Route exact path="/datadirectory" component={DataDirectoryPage}/>
             <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesBuilderPage}/>
-            <Route exact path='/chainTemplateList' component={ChainsListPage}/>
+            <Route exact path='/chains' component={ChainsListPage}/>
             <Route exact path='/chains/create' component={ChainsCreatePage}/>
+            <Route path='/chains/:chainName' component={ChainsCreatePage}/>
+            <Route exact path='/success_chains' component={SuccessPage}/>
             <Route exact path="/datatemplates" component={DataTemplatesBuilderPage}/>
             <Route path="/homepage" component={HomePage}/>
             <Route path="/TDME2E" component={TDME2E}/>
@@ -65,6 +67,7 @@ ReactDOM.render((
             <Route path="/results" component={ResultsPage}/>
             <Route path="/test" component={SelectSingle}/>
             <Route exact path="/" component={AuthorizationPage}/>
+            <Route path="/empty" component={null} key="empty"/>
           </Switch>
         </HashRouter>
       </div>

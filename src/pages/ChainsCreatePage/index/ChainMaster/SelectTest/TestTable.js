@@ -29,20 +29,36 @@ class TestTable extends React.Component {
     { name: 'static_tags', title: 'Теги', getCellValue: row => row.static_tags ? row.static_tags.join(', ') : []},
     ];
 
+  Messages = {
+    noData: "Нет данных",
+    sortingHint: "Отсортировать",
+    info: "{from}-{to} из {count}",
+  };
+
   changeSelection = selection => {
     const {tests, onSelectTest} = this.props;
     onSelectTest(selection, tests);
     this.setState({selection});
   };
 
-  componentDidUpdate() {
+  getIndexes = () => {
     const {tests, selectedTest} = this.props;
-    if (this.state.tests !== tests) {
-      let new_selection = [];
-      // Получаем индексы уже выбранных тестов в новом общем списке тестов
-      selectedTest.forEach(selected => tests.forEach((test, ind) => test.test_id === selected.test_id? new_selection.push(ind): null));
-      this.setState({tests: tests, selection: new_selection})
+    let new_selection = [];
+    // Получаем индексы уже выбранных тестов в новом общем списке тестов
+    selectedTest.forEach(selected => tests.forEach((test, ind) => test.test_id === selected.test_id ? new_selection.push(ind) : null));
+    return new_selection
+  };
+
+  componentDidUpdate() {
+    const {tests, isDeleted, onDelete} = this.props;
+    if (this.state.tests !== tests) this.setState({tests: tests, selection: this.getIndexes()});
+    else {
+      if (isDeleted) {
+        this.setState({selection: this.getIndexes()});
+        onDelete();
+      }
     }
+
   };
 
   render() {
@@ -76,8 +92,9 @@ class TestTable extends React.Component {
           <IntegratedSelection />
 
 
-          <Table columnExtensions={this.tableColumnExtensions}/>
-          <TableHeaderRow showSortingControls/>
+          <Table columnExtensions={this.tableColumnExtensions}
+                 messages={this.Messages}/>
+          <TableHeaderRow showSortingControls messages={this.Messages}/>
           <TableSelection
             selectByRowClick
           />

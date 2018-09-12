@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+
+import { withRouter } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 import { styles } from "./style";
 
 class PageNavigation extends React.Component {
 
   render() {
-    const { handleNext, handleBack, submit, isFirstPage, isLastPage, chain_data, classes} = this.props;
+    const { handleNext, handleBack, submit, isFirstPage, isLastPage, chain_data, classes, history} = this.props;
 
     const nextButton = <Button variant="contained" color="primary"
                                onClick={() => handleNext(chain_data)} className={classes.button}> Вперед</Button>;
     const backButton = <Button disabled={isFirstPage}
                                onClick={() => handleBack(chain_data)} className={classes.button}>Назад</Button>;
     const submitButton = <Button variant="contained" color="primary"
-                                 onClick={() => submit(chain_data)} className={classes.button}>Сохранить</Button>;
+                                 onClick={() => submit(chain_data, history)} className={classes.button}>Сохранить</Button>;
 
     return (
       <div className={classes.navPanel}>
@@ -32,6 +34,7 @@ PageNavigation.propTypes = {
   isFirstPage: PropTypes.bool,
   isLastPage: PropTypes.bool,
   chain_data: PropTypes.object,
+  history: PropTypes.object,
 };
 
-export default withStyles(styles) (PageNavigation);
+export default withStyles(styles) (withRouter(PageNavigation));

@@ -7,8 +7,10 @@ import ChainMaster from "../../containers/ChainsCreatePage/ChainMaster";
 class ChainsCreatePage extends React.Component {
 
   render() {
+    const chainName = this.props.match.params.chainName;
+
     return (
-      <PagePattern title="Создание цепочки" content={<ChainMaster/>} help={<Help/>}/>
+      <PagePattern title="Создание цепочки" content={<ChainMaster chainName={chainName}/>} help={<Help/>}/>
     );
   }
 }
