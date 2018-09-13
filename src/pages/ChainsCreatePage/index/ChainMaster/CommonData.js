@@ -33,11 +33,11 @@ class CommonData extends React.Component {
 
   componentDidMount() {
     this.updateData();
-  };
+  }
 
   componentDidUpdate() {
-    const {data, dataUpdated, needUpdate} = this.props;
-    if (needUpdate && data.name) {
+    const {data, dataUpdated, needUpdate, isCreation} = this.props;
+    if (needUpdate && (isCreation || data.name) && data.name !== this.state.name) {
      this.updateData();
       dataUpdated();
     }
@@ -56,6 +56,7 @@ class CommonData extends React.Component {
         return option ? option : {label: group, value: group}
       }) : [],
     };
+    // console.log(initialState)
     this.setState(initialState);
   };
 

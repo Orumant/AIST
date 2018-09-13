@@ -42,7 +42,7 @@ const createFormReducer = (state = initialState, action) => {
       const { form } = action.data;
       return {
         ...state,
-        fields: form,
+        fields: form? form : initialState.fields,
       }
     }
     default:

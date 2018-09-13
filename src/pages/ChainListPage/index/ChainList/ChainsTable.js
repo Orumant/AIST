@@ -1,8 +1,8 @@
 import React from 'react'
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css'
 import {BootstrapTable, TableHeaderColumn,} from 'react-bootstrap-table'
-import Select from 'react-select';
 import TestInfo from "./ChainsTable/TestInfo";
+import {EditButton} from "./ChainsTable/Buttons";
 
 class ChainsTable extends React.Component {
 
@@ -20,21 +20,10 @@ class ChainsTable extends React.Component {
     );
   };
 
-  actionFormatter = (cell) => {
-    const value = this.state.selectedOptions;
-    const options = [{label: 'Добавить', value: 0}, {label: 'Редактировать', value: 1}, {label: 'Удалить', value: 2}];
-    return (
-      <Select key={cell} className='chain-component-select'
-              value={value}
-              options={options}
-              clearable={false}
-              searchable={false}
-      />
-    )
-  };
+  actionFormatter = (cell, row) => { return EditButton(row.name)};
 
   openModal = (cell) => {
-    this.setState(state => ({show: true, cell: cell}))
+    this.setState({show: true, cell: cell})
   };
 
   closeModal = () => {

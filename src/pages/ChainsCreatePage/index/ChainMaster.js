@@ -19,6 +19,7 @@ class ChainMaster extends React.Component {
 
   state = {
     activeStep: 0,
+    name: '',
     needUpdate: {
       commonData: false,
       tests: false,
@@ -55,21 +56,34 @@ class ChainMaster extends React.Component {
   };
 
   componentDidMount() {
+    this.updateData();
+  }
+
+  componentDidUpdate() {
+    this.updateData();
+  }
+
+  updateData = () => {
     const {fetchAllData, chainName} = this.props;
     const update = {...this.state.needUpdate};
     for (let page in update)
       update[page] = true;
-    fetchAllData(chainName);
-    if (chainName) this.setState({needUpdate: update});
-  }
+    // console.log(chainName, this.state.name)
+    if (chainName !== this.state.name) {
+      this.setState({name: chainName, needUpdate: update});
+      fetchAllData(chainName);
+    }
+  };
 
   getStepContent = (step) => {
-    const { dataAll, chain_data} = this.props;
+    const { dataAll, chain_data, chainName} = this.props;
+    const isCreation = !Boolean(chainName);
     const {needUpdate} = this.state;
     switch (step) {
       case 0:
         return <CommonData needUpdate={needUpdate.commonData} dataUpdated={() => this.dataUpdated("commonData")}
-                           data={chain_data} templatesAll={dataAll.templates} groupsAll={dataAll.groups}/>;
+                           data={chain_data} templatesAll={dataAll.templates} groupsAll={dataAll.groups}
+                           isCreation={isCreation}/>;
       case 1:
         return <SelectTest needUpdate={needUpdate.tests} dataUpdated={() => this.dataUpdated("tests")}
                             data={chain_data}  testsAll={dataAll.tests}/>;
@@ -88,7 +102,8 @@ class ChainMaster extends React.Component {
     const { classes, isFetching, chain_data, notifications } = this.props;
     const steps = ['Общие данные', 'Выбор тестов', 'Создание формы', 'Подтверждение'];
     const { activeStep } = this.state;
-    console.log(chain_data, isFetching);
+    // console.log(chain_data);
+    // console.log(this.state.needUpdate)
 
     const Spinner = <div className='loading'>
       <Loading key='page-content-loading' type='spin' color='rgb(67, 136, 204)' height='100px' width='100px'/>
