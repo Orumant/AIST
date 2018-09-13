@@ -37,6 +37,7 @@ class TestBuilder extends React.Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSystemChanges = this.handleSystemChanges.bind(this);
+    this.handleSystemClick = this.handleSystemClick.bind(this);
 
     this.state = {
       show: false,
@@ -49,9 +50,24 @@ class TestBuilder extends React.Component {
         tags: [],
         systems: null,
         stands: null,
-      }
+      },
+      isFirstChange: true,
     };
   }
+
+  infoPopup = {
+    title: 'Не нашли нужной АС?',
+    message: 'В случае, если вы не нашли нужную АС в списке - просьба создать тикет с описанием того какую АС необходимо добавить.',
+    position: 'bl',
+    autoDismiss: 0,
+    action: {
+      label: 'Создать',
+      callback: () => {window.open("https://jira.ca.sbrf.ru/secure/" +
+        "CreateIssueDetails!init.jspa?pid=19902&issuetype=3&priority=3&" +
+        "customfield_17814=21315&components=46502&" +
+        "assignee=Kurnachenkov-MV&labels=%D0%90%D0%98%D0%A1%D0%A2", "_blank"); this.props.clearPopup()},
+    }
+  };
 
   handleClose() {
     this.setState({show: false});
@@ -86,6 +102,14 @@ class TestBuilder extends React.Component {
   handleSystemChanges(index) {
     this.setState({selectedSystem: index});
     this.props.sysIndexChanged(index);
+  }
+
+  handleSystemClick(){
+    if (this.state.isFirstChange) {
+      const {showPopup} = this.props;
+      showPopup(this.infoPopup);
+      this.setState({isFirstChange: false});
+    }
   }
 
   handleSubmitButtonClick = () => {
@@ -423,6 +447,7 @@ class TestBuilder extends React.Component {
                                    handleTagInputChange={this.handleTagInputChange}
                                    handleInputChange={this.handleInputChange}
                                    key={'CurTestParams' + selectedTestIndex}
+                                   handleSystemClick={this.handleSystemClick}
                                    {...this.props}
                 />,
                   <div style={{height: '10px'}} key={'divSpacer'}/>,

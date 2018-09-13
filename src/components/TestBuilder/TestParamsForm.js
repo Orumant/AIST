@@ -51,6 +51,7 @@ class TestParamsForm extends Component {
                           'Выберите АС для теста')}
                         selectedIndex={this.props.selectedSystem}
                         onSelect={this.props.handleSystemChanges}
+                        onClick={this.props.handleSystemClick}
                       />
                     </InputGroup.Button>
                   </InputGroup>
