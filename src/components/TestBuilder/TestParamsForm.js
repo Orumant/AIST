@@ -90,31 +90,9 @@ class TestParamsForm extends Component {
                       <Col md={12}>
                         <InputField label={'Полный URL'}
                                     value={testBuilderTests[selectedTestIndex].job_trigger.job_url}
-                                    placeholder={'Введите login Jenkins...'}
+                                    placeholder={'Введите полный Job URL...'}
                                     onChange={(event) => this.props.handleInputChange(
                                       {key: 'job_url', value: event.target.value},
-                                      'job_trigger'
-                                    )}
-                        />
-                      </Col>
-                    </Row>
-                    <Row style={{marginTop: 10}}>
-                      <Col md={6}>
-                        <InputField label={'Job name'}
-                                    value={testBuilderTests[selectedTestIndex].job_trigger.jobName}
-                                    placeholder={'Введите имя Job...'}
-                                    onChange={(event) => this.props.handleInputChange(
-                                      {key: 'jobName', value: event.target.value},
-                                      'job_trigger'
-                                    )}
-                        />
-                      </Col>
-                      <Col md={6}>
-                        <InputField label={'URL'}
-                                    value={testBuilderTests[selectedTestIndex].job_trigger.uri}
-                                    placeholder={'Введите URL Jenkins...'}
-                                    onChange={(event) => this.props.handleInputChange(
-                                      {key: 'uri', value: event.target.value},
                                       'job_trigger'
                                     )}
                         />
