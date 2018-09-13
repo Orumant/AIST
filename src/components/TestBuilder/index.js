@@ -1,20 +1,20 @@
 import React from "react"
 import {
-  Grid,
-  Button,
-  ListGroupItem,
-  ListGroup,
-  InputGroup,
-  Row,
-  Col,
-  Label,
-  Glyphicon,
-  Modal,
   Alert,
-  ButtonToolbar,
-  ToggleButtonGroup,
-  ToggleButton,
+  Button,
   ButtonGroup,
+  ButtonToolbar,
+  Col,
+  Glyphicon,
+  Grid,
+  InputGroup,
+  Label,
+  ListGroup,
+  ListGroupItem,
+  Modal,
+  Row,
+  ToggleButton,
+  ToggleButtonGroup,
 } from 'react-bootstrap'
 import 'react-select/dist/react-select.css'
 import Select from 'react-select'
@@ -92,7 +92,7 @@ class TestBuilder extends React.Component {
     const {testBuilderTests, selectedTestIndex, testNamesForDropdown, systems, submitCurrentTest} = this.props;
     let test = {...testBuilderTests[selectedTestIndex]};
     let id = testNamesForDropdown[selectedTestIndex].test_id;
-    let currentStands = test.stands? test.stands.map(stand => stand.label) : test.stands;
+    let currentStands = test.stands ? test.stands.map(stand => stand.label) : test.stands;
     test.a_system = systems[this.state.selectedSystem].code;
     test.stands = currentStands;
     submitCurrentTest({test, id});
@@ -300,7 +300,7 @@ class TestBuilder extends React.Component {
     } = this.props;
 
     const helpModal = (
-      <Modal key={'helpModal'+selectedTestIndex}
+      <Modal key={'helpModal' + selectedTestIndex}
              show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title><strong>Конструктор тестов</strong></Modal.Title>
@@ -339,7 +339,7 @@ class TestBuilder extends React.Component {
       </Modal>);
 
     return (
-      <Row key={'Toolbar'+selectedTestIndex}>
+      <Row key={'Toolbar' + selectedTestIndex}>
         {helpModal}
         <Toolbar
           key="test-builder-toolbar"
@@ -422,23 +422,28 @@ class TestBuilder extends React.Component {
                                    selectedSystem={this.state.selectedSystem}
                                    handleTagInputChange={this.handleTagInputChange}
                                    handleInputChange={this.handleInputChange}
-                                   key={'CurTestParams'+selectedTestIndex}
+                                   key={'CurTestParams' + selectedTestIndex}
                                    {...this.props}
                 />,
                   <div style={{height: '10px'}} key={'divSpacer'}/>,
                   <ToolbarEdit
-                    key={'ToolbarEdit'+selectedTestIndex}
+                    key={'ToolbarEdit' + selectedTestIndex}
                     redirDisabled={true}
                     onSubmit={this.handleSubmitButtonClick}
                     setVisible={(selectedTestIndex !== null
-                      && this.state.selectedSystem !== null) ? 'visible':'hidden'}
+                      && this.state.selectedSystem !== null) ? 'visible' : 'hidden'}
                     style={{backgroundColor: '#FFF'}}
                     submitDisabled={!(selectedTestIndex !== null
                       && this.state.selectedSystem !== null
                       && (testBuilderTests[selectedTestIndex].modified
                         || testBuilderTests[selectedTestIndex].new))}
                   />]
-                : null}
+                :
+                <div style={{marginTop: '25%', textAlign: 'center', fontSize: '15px', color: 'gray'}}>
+                  Здесь появится информация о тесте, после того как Вы<br/>
+                  нажмете кнопку "Создать" или выберете тест
+                </div>
+              }
             </Col>
           </Row>
         </Grid>
