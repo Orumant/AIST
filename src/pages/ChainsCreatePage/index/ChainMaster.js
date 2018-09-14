@@ -129,10 +129,7 @@ class ChainMaster extends React.Component {
                 </Step>
               )}
             </Stepper>
-            { activeStep === 1?
-              <div className={classes.stepSelectContent}>{getStepPage(activeStep)}</div>:
-              <Paper className={classes.stepContent}>{getStepPage(activeStep)}</Paper>
-            }
+            {getStepPage(activeStep)}
             <Notifications key='results-notification' notifications={notifications}/>
           </div>
         </div>
@@ -141,7 +138,7 @@ class ChainMaster extends React.Component {
   }
 }
 
-ChainMaster.propTypes = {
+CommonData.propTypes = {
   classes: PropTypes.object,
 };
 

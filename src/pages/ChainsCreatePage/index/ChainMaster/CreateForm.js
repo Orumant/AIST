@@ -2,6 +2,9 @@ import React from 'react';
 import PageNavigation from "./PageNavigation";
 import Field from "./CreateForm/Field";
 import AddButton from "./CreateForm/AddButton";
+import {styles} from "../style";
+import {withStyles} from "@material-ui/core/styles/index";
+import Paper from "@material-ui/core/Paper";
 
 class CreateForm extends React.Component {
 
@@ -42,7 +45,8 @@ class CreateForm extends React.Component {
   }
 
   render() {
-    const { fields, addField, updateField, deleteField, errorMessage, handleNext, ...handleNavigation} = this.props;
+    const { classes, fields, addField, updateField, deleteField,
+      errorMessage, handleNext, ...handleNavigation} = this.props;
     const { isChecking} = this.state;
 
     const formFields = fields.map((field, ind) =>
@@ -60,16 +64,16 @@ class CreateForm extends React.Component {
     );
 
     return [
-      <div>
+      <Paper className={classes.stepContent}>
         <div style={{display: 'flex'}}>
           <div style={{flexGrow: '1'}} />
           <AddButton addField={addField}/>
         </div>
         {formFields}
-      </div>,
+      </Paper>,
       <PageNavigation key="navigation-common-data" chain_data={this.getChainData()} handleNext={this.onNext} {...handleNavigation}/>
     ]
   }
 }
 
-export default CreateForm;
+export default withStyles(styles) (CreateForm);

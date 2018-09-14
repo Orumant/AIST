@@ -7,6 +7,13 @@ import PageNavigation from "./PageNavigation";
 import ChainName from "./CommonData/ChainName";
 import ChainMarker from "./CommonData/ChainMarker";
 import ChainGroups from "./CommonData/ChainGroups";
+import Typography from "@material-ui/core/es/Typography/Typography";
+import blue from '@material-ui/core/colors/blue';
+import {CommonDataInfo} from "./CommonData/CommonDataInfo";
+import {styles} from "../style";
+import {withStyles} from "@material-ui/core/styles/index";
+import Paper from "@material-ui/core/Paper";
+import PropTypes from 'prop-types';
 
 
 class CommonData extends React.Component {
@@ -38,7 +45,7 @@ class CommonData extends React.Component {
   componentDidUpdate() {
     const {data, dataUpdated, needUpdate, isCreation} = this.props;
     if (needUpdate && (isCreation || data.name) && data.name !== this.state.name) {
-     this.updateData();
+      this.updateData();
       dataUpdated();
     }
   };
@@ -56,7 +63,6 @@ class CommonData extends React.Component {
         return option ? option : {label: group, value: group}
       }) : [],
     };
-    // console.log(initialState)
     this.setState(initialState);
   };
 
@@ -73,30 +79,40 @@ class CommonData extends React.Component {
 
   render() {
     const {name, marker, groups, isError} = this.state;
-    const {templatesAll, groupsAll, handleNext, ...handleNavigation} = this.props;
+    const {classes, templatesAll, groupsAll, handleNext, ...handleNavigation} = this.props;
     const item = (label, form) => <div className="input-item-form">{label}{form}</div>;
 
     return [
-      <div key="commonData">
-        {item("Название*", <ChainName key="chain-name-field"
-                                      value={name}
-                                      onChange={e => this.changeInput("name", e.target.value)}
-                                      isError={isError}/>)}
-        {item("Маркер", <ChainMarker key="chain-marker-field"
-                                     marker={marker}
-                                     templatesAll={templatesAll}
-                                     onChange={option => this.changeInput("marker", option)}/>)}
+      <Paper className={classes.stepContent} style={{maxWidth: "1000px"}}>
+        <div style={{display: "flex", justifyContent: "space-between"}}>
+          <div key="commonData" style={{width: "40%", maxWidth: "350px"}}>
 
-        {item("Группы", <ChainGroups key="chain-groups-field"
-                                     groups={groups}
-                                     groupsAll={groupsAll}
-                                     onChange={option => this.changeInput("groups", option)}
-        />)}
-      </div>,
+            {item("Название*", <ChainName key="chain-name-field"
+                                          value={name}
+                                          onChange={e => this.changeInput("name", e.target.value)}
+                                          isError={isError}/>)}
+            {item("Маркер", <ChainMarker key="chain-marker-field"
+                                         marker={marker}
+                                         templatesAll={templatesAll}
+                                         onChange={option => this.changeInput("marker", option)}/>)}
+
+            {item("Группы", <ChainGroups key="chain-groups-field"
+                                         groups={groups}
+                                         groupsAll={groupsAll}
+                                         onChange={option => this.changeInput("groups", option)}
+            />)}
+          </div>
+          {CommonDataInfo}
+        </div>
+      </Paper>,
       <PageNavigation key="navigation-common-data" chain_data={this.getChainData()}
                       handleNext={this.onNext} {...handleNavigation}/>
     ]
   }
 }
 
-export default CommonData;
+CommonData.propTypes = {
+  classes: PropTypes.object,
+};
+
+export default withStyles(styles)(CommonData);

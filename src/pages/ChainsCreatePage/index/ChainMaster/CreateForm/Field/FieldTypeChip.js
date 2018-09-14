@@ -1,7 +1,7 @@
 import React from 'react';
-import blue from '@material-ui/core/colors/blue'
-import green from '@material-ui/core/colors/green'
-import indigo from '@material-ui/core/colors/indigo'
+import blue from '@material-ui/core/colors/blue';
+import green from '@material-ui/core/colors/green';
+import indigo from '@material-ui/core/colors/indigo';
 import Chip from "@material-ui/core/Chip";
 
 

@@ -6,6 +6,8 @@ import ReorderTest from "./SelectTest/ReorderTest";
 import Notifications from 'react-notification-system-redux';
 import TestTable from "./SelectTest/TestTable";
 import AlertPopup from "./SelectTest/AlertPopup";
+import {styles} from "../style";
+import {withStyles} from "@material-ui/core/styles/index";
 
 class SelectTest extends React.Component {
 
@@ -64,7 +66,7 @@ class SelectTest extends React.Component {
   }
 
   render() {
-    const {testsAll, tests,
+    const {testsAll, tests, classes,
       isFetching, onSelectTest, onSortTest, selectedTest, error, notifications, handleNext,  ...handleNavigation} = this.props;
     const {isDeleted, isOpenPopup} = this.state;
 
@@ -95,11 +97,11 @@ class SelectTest extends React.Component {
     />;
 
     return [
-      <div key="page-container-tests">{SelectTestTable}</div>,
+      <div className={classes.stepSelectContent}><div key="page-container-tests">{SelectTestTable}</div></div>,
       <PageNavigation key="navigation-tests" chain_data={this.getChainData()} handleNext={this.onNext} {...handleNavigation}/>,
       <AlertPopup  key="alert-tests" isOpen={isOpenPopup} onClose={this.onClosePopup}/>
     ]
   }
 }
 
-export default SelectTest;
+export default withStyles(styles) (SelectTest);

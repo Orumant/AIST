@@ -1,7 +1,7 @@
 import React from 'react';
 import Help from "../../ResultsPage/index/Help";
 import PagePattern from '../../_global/PagePattern';
-import SuccessPageContent from "./ChainMaster/SuccessPageContent";
+import SuccessPageContent from "./SuccessPage/SuccessPageContent";
 
 class SuccessPage extends React.Component {
 

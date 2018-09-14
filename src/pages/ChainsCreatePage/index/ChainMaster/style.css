@@ -1,3 +1,4 @@
+
 .reorderForm {
   width: 400px;
   flex-grow: 1;
@@ -36,6 +37,17 @@
 }
 
 .success-page-title {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.info-form {
+  border-radius: 10px;
+  padding: 0px 24px;
+  margin: 0px 24px;
+  border: rgba(67, 136, 204, 0.5) 2px solid;
+}
+.info-block {
   margin-top: 24px;
   margin-bottom: 24px;
 }

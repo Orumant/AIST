@@ -4,7 +4,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import Typography from "@material-ui/core/Typography";
 import green from "@material-ui/core/colors/green";
 import { withRouter } from "react-router-dom";
-import './style.css'
+import '../ChainMaster/style.css'
 
 class SuccessPageContent extends React.Component {
 
@@ -23,7 +23,7 @@ class SuccessPageContent extends React.Component {
   timer = () => {
     const {time} = this.state;
     if (time >= 1) this.setState({time: this.state.time - 1});
-    if (time === 1) {console.log('auauuuuauauuaau'); this.props.history.push('/chains')}
+    if (time === 1) this.props.history.push('/chains')
   };
 
   render() {
