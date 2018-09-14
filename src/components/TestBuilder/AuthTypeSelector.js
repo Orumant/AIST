@@ -22,7 +22,7 @@ export default (props) => {
         <Well style={{borderRadius: '0 0px 4px 4px'}}>
           {props.children && props.children}
           <Row style={props.children ? {marginTop: 10} : {}}>
-            <Col md={6}>
+            <Col md={12}>
               <InputField label={'Job token'}
                           value={props.test.job_trigger.token}
                           placeholder={'Введите Job token...'}

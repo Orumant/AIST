@@ -23,21 +23,6 @@ class DataTemplatesBuilderPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-
-    this.state = {
-      show: false
-    };
-  }
-
-  handleClose() {
-    this.setState({show: false});
-  }
-
-  handleShow() {
-    this.setState({show: true});
   }
 
   componentWillMount(){
@@ -144,10 +129,7 @@ class DataTemplatesBuilderPage extends React.Component {
   render() {
     const {addNewTemplate, dataTemplates, selectedTemplateIndex, submitTemplate, dataTemplatesNames, onTemplateSelected} = this.props;
     const submit = (
-      [<Button className="pull-left" onClick={this.handleShow}>
-        <Glyphicon glyph='glyphicon glyphicon-question-sign'/>
-      </Button>,
-
+      [
         <Button
           bsStyle="success"
           bsSize="large"
@@ -164,25 +146,6 @@ class DataTemplatesBuilderPage extends React.Component {
         >
           Отправить
         </Button>,
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title><strong>Конструктор тестов</strong></Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>Чтобы редактировать шаблон, необходимо:</p>
-            <li type="square">Выбрать шаблон из списка слева</li>
-            <li type="square">Заполнить необходимые параметры шаблона в форме справа</li>
-            <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Отправить</li>
-            <br/>
-            <p>Чтобы создать новый параметр, необходимо:</p>
-            <li type="square">Нажать кнопку Добавить новый параметр</li>
-            <li type="square">Заполнить необходимые параметры в форме справа</li>
-            <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Отправить</li>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.handleClose}>Закрыть</Button>
-          </Modal.Footer>
-        </Modal>,
         <div className="clearfix"/>
       ]
     );
