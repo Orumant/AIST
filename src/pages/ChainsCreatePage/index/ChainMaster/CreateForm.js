@@ -5,6 +5,7 @@ import AddButton from "./CreateForm/AddButton";
 import {styles} from "../style";
 import {withStyles} from "@material-ui/core/styles/index";
 import Paper from "@material-ui/core/Paper";
+import {CreateFormInfo} from "./CreateForm/CreateFormInfo";
 
 class CreateForm extends React.Component {
 
@@ -69,7 +70,7 @@ class CreateForm extends React.Component {
           <div style={{flexGrow: '1'}} />
           <AddButton addField={addField}/>
         </div>
-        {formFields}
+        {fields.length > 0? formFields: CreateFormInfo}
       </Paper>,
       <PageNavigation key="navigation-common-data" chain_data={this.getChainData()} handleNext={this.onNext} {...handleNavigation}/>
     ]

@@ -11,7 +11,7 @@ export const styles = theme => ({
   },
   testCard: {
     width: '100%',
-    maxWidth: '350px',
+    maxWidth: '400px',
     maxHeight: '400px',
     margin: theme.spacing.unit*2,
     zIndex: '1',

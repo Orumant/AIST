@@ -22,6 +22,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import 'rc-time-picker/assets/index.css'
 import './style.css'
 import Notifications from "react-notification-system-redux";
+import SelectCreatable from "../../pages/_global/select/SelectCreatable";
 const CHAIN_PLACEHOLDER = {label: 'Выберите цепочку...', value:'Выберите цепочку...'};
 
 class Launcher extends Component {
@@ -67,6 +68,7 @@ class Launcher extends Component {
   }
 
   onChainSelected(value) {
+    console.log(value)
     if (value !== null) {
       if (this.state[this.props.chains[value.value].name]) {
         this.setState({
@@ -328,11 +330,11 @@ class Launcher extends Component {
                   overlay={setTooltip('templates', 'Задайте шаблон данных')}
                 >
                   <div key={'additionalDiv'}>
-                    <Select.Creatable
+                    <SelectCreatable
                       id={'launchDataTemplateSelectorSelect'}
                       key={'launchDataTemplateSelector'}
                       wrapperStyle={{zIndex: '3', position: 'relative'}}
-                      multi={true}
+                      isMulti={true}
                       placeholder='Задайте шаблон данных'
                       options={this.state.selectedChain !== null ? chains[this.state.selectedChain].templates : []}
                       onChange={this.dataTemplateSelected}
@@ -351,11 +353,11 @@ class Launcher extends Component {
                   overlay={setTooltip('groups', 'Выберите группы для доступа к данным')}
                 >
                   <div key={'additionalDivOne'}>
-                    <Select.Creatable
+                    <SelectCreatable
                       key={'launchGroupSelector'}
                       id={'launchGroupSelectorSelect'}
                       wrapperStyle={{zIndex: '3', position: 'relative'}}
-                      multi={true}
+                      isMulti={true}
                       placeholder='Выберите группы для доступа к данным'
                       options={this.state.selectedChain !== null ? selectGroups : []}
                       onChange={this.handleGroupsSelection}

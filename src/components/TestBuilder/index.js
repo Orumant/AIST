@@ -25,6 +25,8 @@ import Toolbar from "../toolbar/index";
 import ToolbarEdit from "../toolbarEdit/index";
 import TestParamsForm from "./TestParamsForm";
 import './style.css';
+import SelectCreatable from "../../pages/_global/select/SelectCreatable";
+import SelectSimple from "../../pages/_global/select/SelectSimple";
 
 class TestBuilder extends React.Component {
   constructor(props, context) {
@@ -210,18 +212,13 @@ class TestBuilder extends React.Component {
           switch (filters.shift()) {
             case 'tags': {
               searches.push(
-                <Select.Creatable
+                <SelectCreatable
                   key={'tags' + this.props.selectedTestIndex}
-                  multi
+                  isMulti
                   value={this.state.filters.tags}
                   placeholder={'Фильтрация тестов по тегам...'}
-                  menuStyle={{display: 'none'}}
-                  arrowRenderer={null}
                   options={[]}
-                  shouldKeyDownEventCreateNewOption={key => key.keyCode = !188}
-                  promptTextCreator={name => name}
                   onChange={this.handleSearchTagCreation}
-                  noResultsText={'Результаты не найдены'}
                 />
               );
               break;
@@ -229,7 +226,7 @@ class TestBuilder extends React.Component {
 
             case 'as': {
               searches.push(
-                <Select
+                <SelectSimple
                   key={'as' + this.props.selectedTestIndex}
                   className='test-filter'
                   options={sysToSearchThrough}
@@ -244,7 +241,7 @@ class TestBuilder extends React.Component {
 
             case 'stand': {
               searches.push(
-                <Select
+                <SelectSimple
                   key={'stand' + this.props.selectedTestIndex}
                   className='test-filter'
                   options={this.props.stands}

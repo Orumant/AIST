@@ -79,7 +79,7 @@ class SelectTest extends React.Component {
     />;
 
     const TestTableContent = [
-      <div key="chain-master-tests-content" style={{display: 'flex'}}>
+      <div key="chain-master-tests-content" style={{display: 'flex', justifyContent: "space-around"}}>
         <div className="reorderForm"><ReorderTest tests={selectedTest} onSortTest={onSortTest} onDelete={this.onDeleteStart}/></div>
         <div className="tableForm"><TestTable tests={tests} selectedTest={selectedTest} onSelectTest={onSelectTest} isDeleted={isDeleted} onDelete={this.onDeleteEnd}/></div>
       </div>,
@@ -97,7 +97,9 @@ class SelectTest extends React.Component {
     />;
 
     return [
-      <div className={classes.stepSelectContent}><div key="page-container-tests">{SelectTestTable}</div></div>,
+      <div className={classes.stepSelectContent}>
+        <div key="page-container-tests">{SelectTestTable}</div>
+      </div>,
       <PageNavigation key="navigation-tests" chain_data={this.getChainData()} handleNext={this.onNext} {...handleNavigation}/>,
       <AlertPopup  key="alert-tests" isOpen={isOpenPopup} onClose={this.onClosePopup}/>
     ]

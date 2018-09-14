@@ -83,7 +83,7 @@ class CommonData extends React.Component {
     const item = (label, form) => <div className="input-item-form">{label}{form}</div>;
 
     return [
-      <Paper className={classes.stepContent} style={{maxWidth: "1000px"}}>
+      <Paper className={classes.stepContent}>
         <div style={{display: "flex", justifyContent: "space-between"}}>
           <div key="commonData" style={{width: "40%", maxWidth: "350px"}}>
 
