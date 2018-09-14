@@ -54,12 +54,12 @@ class ReorderTest extends React.Component {
 
     return [
       tests.length > 0?
-        <div style={{overflow: 'auto', height: 'calc(100% - 24px)'}}>
+        <div key="tests-reorder-form" style={{overflow: 'auto', height: 'calc(100% - 24px)'}}>
           <div>
             <SortableList pressDelay={200} items={tests} onSortEnd={this.onSortEnd} helperClass="sortableHelper"/>
           </div>
         </div> :
-        <div className={classes.emptyReorderForm}>
+        <div key="empty-reorder-form" className={classes.emptyReorderForm}>
           <Typography variant={"headline"} style={{color: 'white'}}>Ни одного теста не выбрано</Typography>
           <span style={{color: 'white'}}>Для измения порядка тестов сначала выберите тесты в таблице справа</span>
         </div>

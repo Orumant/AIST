@@ -27,7 +27,7 @@ class PageContent extends React.Component {
 
   render() {
 
-    const {classes, isFilter, isLoading, FilterBar, content, pageName, selectedNum, error} = this.props;
+    const {classes, isFilter, isLoading, FilterBar, content, pageName, selectedNum, error, tools} = this.props;
     const {showFilter} = this.state;
 
     const Sidebar = isFilter ? React.cloneElement(FilterBar, {
@@ -61,6 +61,7 @@ class PageContent extends React.Component {
                   </div>}
               </div>
               <div className="tools">
+                {tools}
                 <Button onClick={this.handleClickFilter}>
                   <FilterList style={{marginRight: '8px'}}/>
                   Фильтры

@@ -44,8 +44,8 @@ class ChainMaster extends React.Component {
   };
 
   submit = (chain_data, history) => {
-    const {submitNewChainData, submitEditedChainData, chainName} = this.props;
-    if (chainName) submitEditedChainData(chainName, chain_data, history);
+    const {submitNewChainData, submitEditedChainData, chainName, isCopy} = this.props;
+    if (chainName && !isCopy) submitEditedChainData(chainName, chain_data, history);
     else submitNewChainData(chain_data, history);
   };
 
@@ -68,7 +68,6 @@ class ChainMaster extends React.Component {
     const update = {...this.state.needUpdate};
     for (let page in update)
       update[page] = true;
-    // console.log(chainName, this.state.name)
     if (chainName !== this.state.name) {
       this.setState({name: chainName, needUpdate: update});
       fetchAllData(chainName);
@@ -86,12 +85,12 @@ class ChainMaster extends React.Component {
                            isCreation={isCreation}/>;
       case 1:
         return <SelectTest needUpdate={needUpdate.tests} dataUpdated={() => this.dataUpdated("tests")}
-                            data={chain_data}  testsAll={dataAll.tests}/>;
+                            data={chain_data} testsAll={dataAll.tests}/>;
       case 2:
         return <CreateForm needUpdate={needUpdate.form} dataUpdated={() => this.dataUpdated("form")}
                            data={chain_data}/>;
       case 3:
-        return <Confirmation data={chain_data} />;
+        return <Confirmation data={chain_data} testsAll={dataAll.tests}/>;
       default:
         return 'Произошла ошибка';
     }
@@ -102,7 +101,7 @@ class ChainMaster extends React.Component {
     const { classes, isFetching, chain_data, notifications } = this.props;
     const steps = ['Общие данные', 'Выбор тестов', 'Создание формы', 'Подтверждение'];
     const { activeStep } = this.state;
-    // console.log(chain_data);
+    console.log(chain_data);
     // console.log(this.state.needUpdate)
 
     const Spinner = <div className='loading'>

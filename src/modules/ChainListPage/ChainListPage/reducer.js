@@ -2,6 +2,7 @@ import types from './types'
 
 const initialState = {
   chains: [],
+  chains_editable: [],
   testsAll: [],
   isFetching: false,
 };
@@ -30,11 +31,13 @@ const chainsListReducer = (state = initialState, action) => {
 
     case types.TESTS_FETCH_SUCCEED: {
       const tests = action.testsAll;
+      const chains = action.chains_editable.map(chain => chain.name);
       let testsData = {};
       tests.forEach(test => testsData={...testsData, [test.test_id] : test.test_name});
       return {
         ...state,
         testsAll: testsData,
+        chains_editable: chains,
         isFetching: false,
       }
     }

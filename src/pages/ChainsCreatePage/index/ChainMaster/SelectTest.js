@@ -10,6 +10,7 @@ import AlertPopup from "./SelectTest/AlertPopup";
 class SelectTest extends React.Component {
 
   state = {
+    name: '',
     isDeleted: false,
     isOpenPopup: false,
   };
@@ -49,7 +50,17 @@ class SelectTest extends React.Component {
   componentDidMount() {
     const {fetchFilterTests, data, dataUpdated, needUpdate} = this.props;
     fetchFilterTests(this.request, data, needUpdate);
-    if (needUpdate) dataUpdated();
+    if (needUpdate) {dataUpdated()};
+    this.setState({name: data.name});
+  }
+
+  componentDidUpdate() {
+    const {fetchFilterTests, data, dataUpdated, needUpdate} = this.props;
+    if (needUpdate && data.name !== this.state.name) {
+      fetchFilterTests(this.request, data, needUpdate);
+      this.setState({name: data.name});
+      dataUpdated();
+    }
   }
 
   render() {
@@ -66,14 +77,15 @@ class SelectTest extends React.Component {
     />;
 
     const TestTableContent = [
-      <div style={{display: 'flex'}}>
+      <div key="chain-master-tests-content" style={{display: 'flex'}}>
         <div className="reorderForm"><ReorderTest tests={selectedTest} onSortTest={onSortTest} onDelete={this.onDeleteStart}/></div>
         <div className="tableForm"><TestTable tests={tests} selectedTest={selectedTest} onSelectTest={onSelectTest} isDeleted={isDeleted} onDelete={this.onDeleteEnd}/></div>
       </div>,
-      <Notifications key='results-notification' notifications={notifications}/>
+      <Notifications key='chain-master-tests-notification' notifications={notifications}/>
     ];
 
     const SelectTestTable =  <PageContent
+      key="content-tests"
       error={error? "Выбранные тесты не имеют общего контура": ""}
       pageName="Порядок тестов"
       isFilter={true}
@@ -83,9 +95,9 @@ class SelectTest extends React.Component {
     />;
 
     return [
-      <div>{SelectTestTable}</div>,
-      <PageNavigation chain_data={this.getChainData()} handleNext={this.onNext} {...handleNavigation}/>,
-      <AlertPopup isOpen={isOpenPopup} onClose={this.onClosePopup}/>
+      <div key="page-container-tests">{SelectTestTable}</div>,
+      <PageNavigation key="navigation-tests" chain_data={this.getChainData()} handleNext={this.onNext} {...handleNavigation}/>,
+      <AlertPopup  key="alert-tests" isOpen={isOpenPopup} onClose={this.onClosePopup}/>
     ]
   }
 }

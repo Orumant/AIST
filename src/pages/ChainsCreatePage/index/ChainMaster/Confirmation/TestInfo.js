@@ -11,6 +11,14 @@ import { styles } from "./style";
 
 class TestInfo extends React.Component {
 
+  getTestName = (test_id) => {
+    const {testsAll} = this.props;
+    let test_name = '';
+    testsAll.forEach(test =>
+      test.test_id === test_id.toString() ? test_name = test.test_name : null);
+    return test_name
+  };
+
   render() {
     const {classes, data} = this.props;
     const {tests} = data;
@@ -25,7 +33,7 @@ class TestInfo extends React.Component {
                 {ind + 1}
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={test.test_name}/>
+            <ListItemText primary={test.test_name? test.test_name : this.getTestName(test)}/>
           </ListItem>) : "Тесты не выбраны"}
         </List>
       </Grid>

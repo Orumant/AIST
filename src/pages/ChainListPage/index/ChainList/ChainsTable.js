@@ -2,7 +2,7 @@ import React from 'react'
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css'
 import {BootstrapTable, TableHeaderColumn,} from 'react-bootstrap-table'
 import TestInfo from "./ChainsTable/TestInfo";
-import {EditButton} from "./ChainsTable/Buttons";
+import { EditButton, CloneButton } from "./ChainsTable/Buttons";
 
 class ChainsTable extends React.Component {
 
@@ -20,7 +20,12 @@ class ChainsTable extends React.Component {
     );
   };
 
-  actionFormatter = (cell, row) => { return EditButton(row.name)};
+  actionFormatter = (cell, row) => {
+    const { chains_editable } = this.props;
+    return <span>
+      {CloneButton(row.name)}
+      {chains_editable.indexOf(row.name) !== -1 ? EditButton(row.name) : null}
+      </span>};
 
   openModal = (cell) => {
     this.setState({show: true, cell: cell})
@@ -33,12 +38,13 @@ class ChainsTable extends React.Component {
   render() {
     const { data, testsAll } = this.props;
     const { show, cell } = this.state;
+    console.log(data)
 
     return (
       <div>
         <BootstrapTable keyField='id' striped hover pagination
                         data={data} ignoreSinglePage trClassName='chain-component-col'>
-          <TableHeaderColumn className='custom-header' key='id' width='15%' dataField='name' dataSort={true}>
+          <TableHeaderColumn className='custom-header' key='id' dataField='name' dataSort={true}>
             Имя цепочки
           </TableHeaderColumn>
           <TableHeaderColumn className='custom-header' key='id' width='12%' searchable={false} dataField='description'>
@@ -58,13 +64,13 @@ class ChainsTable extends React.Component {
           >
             Теги
           </TableHeaderColumn>
-          <TableHeaderColumn className='custom-header' key='id' width='6%' dataField='stand' dataSort={true}>
+          <TableHeaderColumn className='custom-header' key='id' width='6%' dataField='stands' dataSort={true}>
             Контур
           </TableHeaderColumn>
           <TableHeaderColumn className='custom-header' key='id' width='6%' dataField='groups'>
             Доступы
           </TableHeaderColumn>
-          <TableHeaderColumn className='custom-header' key='id' width='15%' dataFormat={this.actionFormatter}
+          <TableHeaderColumn className='custom-header' key='id' width='120px' dataFormat={this.actionFormatter}
                              columnClassName='chain-component-col-select'
                              searchable={false} dataField='id'>
             Доступные действия

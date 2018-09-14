@@ -57,6 +57,7 @@ ReactDOM.render((
             <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesBuilderPage}/>
             <Route exact path='/chains' component={ChainsListPage}/>
             <Route exact path='/chains/create' component={ChainsCreatePage}/>
+            <Route exact path='/chains/:chainName/copy' component={ChainsCreatePage}/>
             <Route path='/chains/:chainName' component={ChainsCreatePage}/>
             <Route exact path='/success_chains' component={SuccessPage}/>
             <Route exact path="/datatemplates" component={DataTemplatesBuilderPage}/>
@@ -67,7 +68,6 @@ ReactDOM.render((
             <Route path="/results" component={ResultsPage}/>
             <Route path="/test" component={SelectSingle}/>
             <Route exact path="/" component={AuthorizationPage}/>
-            <Route path="/empty" component={null} key="empty"/>
           </Switch>
         </HashRouter>
       </div>

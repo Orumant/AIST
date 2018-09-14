@@ -6,6 +6,7 @@ import AddButton from "./CreateForm/AddButton";
 class CreateForm extends React.Component {
 
   state = {
+    name: '',
     isChecking: false,
     isError: false,
   };
@@ -26,6 +27,16 @@ class CreateForm extends React.Component {
     const {getFields, data, dataUpdated, needUpdate} = this.props;
     if (needUpdate) {
       getFields(data);
+      dataUpdated();
+    }
+    this.setState({name: data.name});
+  }
+
+  componentDidUpdate() {
+    const {getFields, data, dataUpdated, needUpdate} = this.props;
+    if (needUpdate && data.name !== this.state.name) {
+      getFields(data);
+      this.setState({name: data.name})
       dataUpdated();
     }
   }

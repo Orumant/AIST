@@ -23,17 +23,17 @@ class TestInfo extends React.Component {
 
     const typeAbbr = {
       Input: "Т",
-      Date: "Д",
+      DatePicker: "Д",
       DropDown: "В",
     };
 
     const typeNames = {
       Input: "Текстовове поле",
-      Date: "Дата",
+      DatePicker: "Дата",
       DropDown: "Выпадающее меню",
     };
 
-    const colors = {Input: blue[700], Date: green[700], DropDown: indigo[700]};
+    const colors = {Input: blue[700], DatePicker: green[700], DropDown: indigo[700]};
 
     const formContent = (field) => {
       if (field.regEx) return field.regEx;

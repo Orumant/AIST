@@ -23,11 +23,10 @@ const selectTestReducer = (state = initialState, action) => {
       }
     }
     case types.FILTER_TEST_FETCH_SUCCEED: {
-      let new_selected = [...state.selectedTest];
+      let new_selected = action.needUpdate? [...initialState.selectedTest] : [...state.selectedTest];
       const {tests} = action.data;
       const testsAll = action.tests;
       if (action.needUpdate && tests) {
-        new_selected = [...initialState.selectedTest];
         tests.forEach(test_id => testsAll.forEach(test =>
           test.test_id === test_id.toString() ? new_selected.push(test) : null));
       }
