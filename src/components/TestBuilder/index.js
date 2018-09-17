@@ -395,8 +395,8 @@ class TestBuilder extends React.Component {
         key={index + (Math.random() * 10000000000).toString()}
       >
         {test.test_name}
-        {testBuilderTests[index].modified && <Label style={{marginLeft: 5}} bsStyle="warning">Modified</Label>}
-        {testBuilderTests[index].new && <Label style={{marginLeft: 5}} bsStyle="primary">New</Label>}
+        {testBuilderTests[index].modified && <Label style={{marginLeft: 5}} bsStyle="warning">Изменен</Label>}
+        {testBuilderTests[index].new && <Label style={{marginLeft: 5}} bsStyle="primary">Новый</Label>}
       </ListGroupItem>));
   };
 
