@@ -52,7 +52,7 @@ export const updateOrderRerun = (orderID) => (dispatch) => {
   const url = `${BACKEND_URL}/objects/${orderID}/restartChain`;
 
   axios.post(url).then(function () {
-    dispatch(success({message: "Успешно отправлено!"}));
+    dispatch(success({message: "Успешно сохранено!"}));
     dispatch(submitRerunOrderSucceed());
   }).catch(function (response) {
     dispatch(error({message: "Произошла ошибка при отправке!" + response}));
@@ -282,7 +282,7 @@ export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
   if (chainTemplate.value.modified) {
     const url = `${BACKEND_URL}/chain_templates/${chainTemplate.name}`;
     axios.post(url, [requestBody], header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(submitChainTemplateSucceed());
     }).catch(function (response) {
       dispatch(error({message: "Произошла ошибка при отправке!" + response}));
@@ -291,7 +291,7 @@ export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
   if (chainTemplate.value.new) {
     const url = `${BACKEND_URL}/chain_templates`;
     axios.put(url, [requestBody], header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(submitChainTemplateSucceed());
     }).catch(function (response) {
       dispatch(error({message: "Произошла ошибка при отправке!" + response}));
@@ -412,7 +412,7 @@ export const updateChainForm = (chainName, chain, idx) => (dispatch) => {
 
   const header = {headers: {SessionID: getToken()}};
   axios.post(url, [chain], header).then(function () {
-    dispatch(success({message: "Успешно отправлено!"}));
+    dispatch(success({message: "Успешно сохранено!"}));
     dispatch(updateChainFormSucceed(idx));
   }).catch(function (response) {
     dispatch(error({message: "Произошла ошибка при отправке!" + response}));
@@ -483,7 +483,7 @@ export const submitTest = (testObject) => (dispatch, getState) => {
   if (testObject.test.modified) {
     const updateTestUrl = `${BACKEND_URL}/tests/${testObject.id}`;
     axios.post(updateTestUrl, result, header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(resetModificationMarkers());
     }).catch(function (response) {
       dispatch(error({message: "Произошла ошибка при отправке!" + response}));
@@ -493,7 +493,7 @@ export const submitTest = (testObject) => (dispatch, getState) => {
     const addTestUrl = `${BACKEND_URL}/tests`;
 
     axios.put(addTestUrl, result, header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(resetModificationMarkers());
     }).catch(function (response) {
       dispatch(error({message: "Произошла ошибка при отправке!" + response}));
@@ -554,7 +554,7 @@ export const submitDataTemplates = (submitData) => (dispatch) => {
     const url = `${BACKEND_URL}/templates/${submitData.name}`;
 
     axios.post(url, [requestBody], header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(updateDataTemplateSuccess());
     }).catch(function (response) {
       dispatch(error({message: "Произошла ошибка при отправке!" + response}));
@@ -564,7 +564,7 @@ export const submitDataTemplates = (submitData) => (dispatch) => {
     const url = `${BACKEND_URL}/templates`;
 
     axios.put(url, [requestBody], header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(updateDataTemplateSuccess());
     }).catch(function (response) {
       dispatch(error({message: "Произошла ошибка при отправке" + response}));
