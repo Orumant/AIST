@@ -23,8 +23,8 @@ const ChainList = ({chainTemplates, selectedChainTemplate, chainSelected, chainN
           {chain}
           &nbsp;
           &nbsp;
-          {chainTemplates[idx].modified && <Label bsStyle='warning'>modified</Label>}
-          {chainTemplates[idx].new && <Label bsStyle='primary'>New</Label>}
+          {chainTemplates[idx].modified && <Label bsStyle='warning'>Изменен</Label>}
+          {chainTemplates[idx].new && <Label bsStyle='primary'>Новый</Label>}
         </ListGroupItem>
       })
     }
