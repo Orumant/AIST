@@ -141,6 +141,8 @@ class Launcher extends Component {
     launchParams['groups'] = this.state.groups.map(g => g.label);
     launchParams['regEx'] =  chains[this.state.selectedChain].form.map(form => form.regEx);
     launchParams['label'] = chains[this.state.selectedChain].form.map(form => form.label);
+    if (this.state.standIndex !== null && chains[this.state.selectedChain].stands.length > 0)
+      launchParams['stand'] = chains[this.state.selectedChain].stands[this.state.standIndex];
     submitFormTemplate(launchParams);
   }
 
@@ -270,6 +272,7 @@ class Launcher extends Component {
                     <DropdownButton
                       id={'standsDropdown'}
                       bsStyle='info'
+                      style={{backgroundColor: '#337ab7', color: 'white'}}
                       title={this.state.standIndex !== null
                         ? chains[this.state.selectedChain].stands[this.state.standIndex]
                         : 'Пусто'}
