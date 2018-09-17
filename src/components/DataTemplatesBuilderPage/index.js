@@ -121,7 +121,7 @@ class DataTemplatesBuilderPage extends React.Component {
         &nbsp;
         &nbsp;
         {dataTemplates[index].modified && <Label bsStyle="warning">Изменен</Label>}
-        {dataTemplates[index].new && <Label bsStyle="primary">Создан</Label>}
+        {dataTemplates[index].new && <Label bsStyle="primary">Новый</Label>}
       </ListGroupItem>
     ));
   }
