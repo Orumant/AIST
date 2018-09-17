@@ -55,7 +55,7 @@ export const updateOrderRerun = (orderID) => (dispatch) => {
     dispatch(success({message: "Успешно сохранено!"}));
     dispatch(submitRerunOrderSucceed());
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+    dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
   });
 };
 
@@ -285,7 +285,7 @@ export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
       dispatch(success({message: "Успешно сохранено!"}));
       dispatch(submitChainTemplateSucceed());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
     });
   }
   if (chainTemplate.value.new) {
@@ -294,7 +294,7 @@ export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
       dispatch(success({message: "Успешно сохранено!"}));
       dispatch(submitChainTemplateSucceed());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
     });
   }
 };
@@ -415,7 +415,7 @@ export const updateChainForm = (chainName, chain, idx) => (dispatch) => {
     dispatch(success({message: "Успешно сохранено!"}));
     dispatch(updateChainFormSucceed(idx));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+    dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
   });
 };
 
@@ -486,7 +486,7 @@ export const submitTest = (testObject) => (dispatch, getState) => {
       dispatch(success({message: "Успешно сохранено!"}));
       dispatch(resetModificationMarkers());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
     });
   }
   if (testObject.test.new) {
@@ -496,7 +496,7 @@ export const submitTest = (testObject) => (dispatch, getState) => {
       dispatch(success({message: "Успешно сохранено!"}));
       dispatch(resetModificationMarkers());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
     });
   }
 };
@@ -557,7 +557,7 @@ export const submitDataTemplates = (submitData) => (dispatch) => {
       dispatch(success({message: "Успешно сохранено!"}));
       dispatch(updateDataTemplateSuccess());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
     });
   }
   if (submitData.value.new) {
@@ -567,7 +567,7 @@ export const submitDataTemplates = (submitData) => (dispatch) => {
       dispatch(success({message: "Успешно сохранено!"}));
       dispatch(updateDataTemplateSuccess());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении" + response}));
     });
   }
 
@@ -608,7 +608,7 @@ export const submitFormTemplate = (params) => (dispatch) => {
   axios.put(url, [params], header).then(function (response) {
     dispatch(orderCreated(response.data.message));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+    dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
   });
 };
 
@@ -657,7 +657,7 @@ export const submitFormMembers = (params) => (dispatch) => {
   axios.post(url, [params], header).then(function (response) {
     dispatch(success({message: "Успешно обновлено!"}));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+    dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
   });
 };
 
