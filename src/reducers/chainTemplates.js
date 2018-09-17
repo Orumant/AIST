@@ -273,6 +273,7 @@ const chainTemplateReducer = (state = initialState, action) => {
         ...state.chainTemplates];
       const chainNames = chainTemplates.map(chain => chain.name);
       const allChainTemplates = [newTemplate,...state.allChainTemplates];
+      window.location.hash = `#/chaineditor/${newTemplate.name}`;
       return {
         ...state,
         selectedChainTemplate: 0,
@@ -348,6 +349,7 @@ const chainTemplateReducer = (state = initialState, action) => {
       const allChainTemplates = [newOne, ...state.allChainTemplates];
       const chainNamesForDropdownUnmodified = [newOne.name, ...state.chainNamesForDropdownUnmodified];
       const chainNames = chainTemplates.map(chain => chain.name);
+      window.location.hash = `#/chaineditor/${newOne.name}`;
       return {
         ...state,
         chainTemplates,
