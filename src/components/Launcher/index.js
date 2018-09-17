@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {forceLogin} from "../../globalFunc";
 import {
   Alert,
-  Button,
+  Button, ButtonGroup,
   Col,
   Form,
   FormControl,
@@ -22,6 +22,8 @@ import 'react-datepicker/dist/react-datepicker.css'
 import 'rc-time-picker/assets/index.css'
 import './style.css'
 import Notifications from "react-notification-system-redux";
+import DropdownButton from "react-bootstrap/es/DropdownButton";
+import MenuItem from "react-bootstrap/es/MenuItem";
 const CHAIN_PLACEHOLDER = {label: 'Выберите цепочку...', value:'Выберите цепочку...'};
 
 class Launcher extends Component {
@@ -48,7 +50,7 @@ class Launcher extends Component {
       reqNumber: 1,
       startDate: null,
       formReady: false,
-      standIndex: null,
+      standIndex: 0,
       groups: [],
       chain: CHAIN_PLACEHOLDER,
     }
@@ -255,23 +257,45 @@ class Launcher extends Component {
         <Col md={4} key={'column-placeholder'}/>
         {this.state.selectedChain !== null
         && chains[this.state.selectedChain].form.length > 0 ? [
-          <Col md={1} key={'StandsSelectorColumn'}>
-            {/*<DropdownList
-              key={'StandsDropdown'}
-              id={'standsDropdown'}
-              options={this.props.stands}
-              tooltip={setTooltip('standSelect', 'Выберите тестовый контур')}
-              onSelect={this.handleStandSelection}
-              selectedIndex={this.state.standIndex}
-              labelKey='code'
-              bsStyle='info'
-              selLabel={this.state.standIndex !== null ? this.props.stands[this.state.standIndex].code : 'Пусто'}
-            />
-            &nbsp;*/}
-            <Button style={{color: '#FFF', width: '11em', fontWeight:'bold'}} key={'LaunchButton'} bsStyle='success' /*disabled={this.state.standIndex === null}*/
-                    onClick={this.launch}>Запуск <Glyphicon key={'launchGlyph'} glyph='glyphicon glyphicon-play'/>
-            </Button>
-          </Col>] : null}
+          <Col md={6}>
+            {this.state.selectedChain !== null
+            && chains[this.state.selectedChain].fields.length > 0 ?
+              chains[this.state.selectedChain].stands !== undefined
+              && chains[this.state.selectedChain].stands.length > 0 ?
+                <ButtonGroup className={'pull-right'}>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={setTooltip('standSelect', 'Выберите тестовый контур')}
+                  >
+                    <DropdownButton
+                      id={'standsDropdown'}
+                      bsStyle='info'
+                      title={this.state.standIndex !== null
+                        ? chains[this.state.selectedChain].stands[this.state.standIndex]
+                        : 'Пусто'}
+                      onSelect={this.handleStandSelection}
+                    >
+                      {chains[this.state.selectedChain].stands && chains[this.state.selectedChain].stands.map((stand, index) => {
+                        return (
+                          <MenuItem active={this.state.standIndex === index} key={stand + 'MenuItem'} eventKey={index}>
+                            {stand}
+                          </MenuItem>
+                        )
+                      })}
+                    </DropdownButton>
+                  </OverlayTrigger>
+                  <Button style={{color: '#FFF', width: '11em', fontWeight: 'bold'}} key={'LaunchButton'} bsStyle='success'
+                          disabled={this.state.standIndex === null}
+                          onClick={this.launch}>Запуск <Glyphicon key={'launchGlyph'} glyph='glyphicon glyphicon-play'/>
+                  </Button>
+                </ButtonGroup>
+                : <Button className={'pull-right'} style={{color: '#FFF', width: '11em', fontWeight: 'bold'}} key={'LaunchButton'} bsStyle='success'
+                          onClick={this.launch}>Запуск <Glyphicon key={'launchGlyph'} glyph='glyphicon glyphicon-play'/>
+                </Button>
+              : null
+            }
+          </Col>
+        ] : null}
       </Row>
     );
 
