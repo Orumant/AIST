@@ -31,8 +31,6 @@ class ChainEditor extends React.Component {
     super(props, context);
     this.props.fetchGroupsForMembers();
     this.props.fetchBuilderChains();
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
     this.handleGroupChange = this.handleGroupChange.bind(this);
     this.props.fetchChainTemplates();
     this.props.getAllDataTemplates();
@@ -40,7 +38,6 @@ class ChainEditor extends React.Component {
 
     this.state = {
       groups: [],
-      show: false,
       selectedFilter: [],
       filters: {
         tags: [],
@@ -107,14 +104,6 @@ class ChainEditor extends React.Component {
 
   componentWillMount() {
     forceLogin();
-  }
-
-  handleClose() {
-    this.setState({show: false});
-  }
-
-  handleShow() {
-    this.setState({show: true});
   }
 
   clearSearchInputs = (filter) => {
@@ -249,38 +238,6 @@ class ChainEditor extends React.Component {
           })
       }
     };
-    const modalTooltip = (
-      <Modal show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title><strong>Конструктор цепочек</strong></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Чтобы редактировать существующую цепочку, необходимо:</p>
-          <li type="square">Выбрать цепочку из списка слева</li>
-          <li type="square">Выбрать необходимые тесты справа</li>
-          <li type="square">(Опционально) Поменять порядок тестов, перетащив нужный элемент на нужную позицию</li>
-          <li type="square">(Опционально) Изменить имя цепочки в поле Name</li>
-          <li type="square">(Опционально) Изменить маркер цепочки в поле Marker</li>
-          <li type="square">(Опционально) Изменить список доступных для цепочки шаблонов с параметрами</li>
-
-          <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Сохранить измения</li>
-          <br/>
-          <p>
-            Чтобы создать новую цепочку, необходимо:
-          </p>
-          <li type="square">Нажать кнопку Add new chain template</li>
-          <li type="square">Выбрать необходимые тесты справа</li>
-          <li type="square">Поменять порядок тестов, перетащив нужный элемент на нужную позицию</li>
-          <li type="square">Изменить имя цепочки в поле Name</li>
-          <li type="square">Изменить маркер цепочки в поле Marker</li>
-          <li type="square">(Опционально) Изменить список доступных для цепочки шаблонов с параметрами</li>
-          <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Сохранить измения</li>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.handleClose}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
     const options = dataTemplatesNames.map((name) => {
       return {label: name, value: name};
     });
@@ -377,12 +334,10 @@ class ChainEditor extends React.Component {
               <Col md={12}>
                 <Toolbar
                   onNewEntryAdded={() => addChainTemplate(owner)}
-                  help={this.handleShow}
                   onDuplicate={() => duplicate()}
                   duplicateDisabled={this.props.chainSelected === null}
                   additionalElement={this.props.chainSelected !== null ? chainParamsInput : null}
                 />
-                {modalTooltip}
               </Col>
             </Row>
             <Row>

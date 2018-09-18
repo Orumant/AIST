@@ -27,15 +27,12 @@ class FormBuilder extends Component {
     super(props, context);
     this.props.clearNotifications();
     this.props.fetchBuilderChains();
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
 
     forceLogin();
 
     this.state = {
       noFormChecked: false,
       chainIndex: null,
-      show: false,
       inputTypeIndex: 0,
       inputTypes: [
         'Input',
@@ -43,14 +40,6 @@ class FormBuilder extends Component {
         'DatePicker',
       ],
     };
-  }
-
-  handleClose() {
-    this.setState({show: false});
-  }
-
-  handleShow() {
-    this.setState({show: true});
   }
 
   componentWillUpdate(nextProps, prevProps) {
@@ -295,26 +284,8 @@ class FormBuilder extends Component {
             }}
           />}
         </Col>
-        <Button className="pull-right" style={{marginRight: '1%'}} onClick={this.handleShow}>
-          <Glyphicon glyph='glyphicon glyphicon-question-sign'/>
-        </Button>
         <div className="clearfix"/>
       </Row>,
-      <Modal show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title><strong>Конструктор форм</strong></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Чтобы редактировать форму существующей цепочки, необходимо:</p>
-          <li type="square">Выбрать цепочку из выпающего списка вверху слева</li>
-          <li type="square">Выбрать тип поля в выпадающем списке снизу слева и нажать кнопку +</li>
-          <li type="square">Ввести необходимые для данного поля параметры</li>
-          <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Отправить</li>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.handleClose}>Закрыть</Button>
-        </Modal.Footer>
-      </Modal>
     ];
     const submitBtn = [
       formBuilderChains.length > 0 && <Button

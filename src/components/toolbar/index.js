@@ -6,17 +6,12 @@ class Toolbar extends React.Component {
     const {
       onNewEntryAdded,
       onDelete,
-      help,
       style,
       onDuplicate,
       duplicateDisabled,
       additionalElement,
     } = this.props;
 
-    const infoBtn = (
-      <Button key={'infoBtn'} bsStyle={'info'} onClick={help}><Glyphicon
-        glyph='glyphicon glyphicon-info-sign'/></Button>
-    );
     const addNewBtn = (
       <Button key={'addNewBtn'} bsStyle={'primary'} onClick={onNewEntryAdded}>
         <Glyphicon glyph='glyphicon glyphicon-plus-sign'/> Создать
@@ -61,7 +56,6 @@ class Toolbar extends React.Component {
                 position: 'relative',
                 float: 'right',
               }}>
-                {help && infoBtn}
               </ButtonGroup>
             </ButtonToolbar>
           </Col>

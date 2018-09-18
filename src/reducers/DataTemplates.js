@@ -85,6 +85,7 @@ const dataTemplatesBuilderReducer = (state = initialState, action) => {
         modified: false,
         new: true,
       };
+      window.location.hash = `#/datatemplates/${newEntry.name}`;
       return {
         ...state,
         selectedTemplateIndex: 0,

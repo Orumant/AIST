@@ -1,20 +1,20 @@
 import React from "react"
 import {
-  Grid,
-  Button,
-  ListGroupItem,
-  ListGroup,
-  InputGroup,
-  Row,
-  Col,
-  Label,
-  Glyphicon,
-  Modal,
   Alert,
-  ButtonToolbar,
-  ToggleButtonGroup,
-  ToggleButton,
+  Button,
   ButtonGroup,
+  ButtonToolbar,
+  Col,
+  Glyphicon,
+  Grid,
+  InputGroup,
+  Label,
+  ListGroup,
+  ListGroupItem,
+  Modal,
+  Row,
+  ToggleButton,
+  ToggleButtonGroup,
 } from 'react-bootstrap'
 import 'react-select/dist/react-select.css'
 import Select from 'react-select'
@@ -37,6 +37,7 @@ class TestBuilder extends React.Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSystemChanges = this.handleSystemChanges.bind(this);
+    this.handleSystemClick = this.handleSystemClick.bind(this);
 
     this.state = {
       show: false,
@@ -49,9 +50,24 @@ class TestBuilder extends React.Component {
         tags: [],
         systems: null,
         stands: null,
-      }
+      },
+      isFirstChange: true,
     };
   }
+
+  infoPopup = {
+    title: 'Не нашли нужной АС?',
+    message: 'В случае, если вы не нашли нужную АС в списке - просьба создать тикет с описанием того какую АС необходимо добавить.',
+    position: 'bl',
+    autoDismiss: 0,
+    action: {
+      label: 'Создать',
+      callback: () => {window.open("https://jira.ca.sbrf.ru/secure/" +
+        "CreateIssueDetails!init.jspa?pid=19902&issuetype=3&priority=3&" +
+        "customfield_17814=21315&components=46502&" +
+        "assignee=Kurnachenkov-MV&labels=%D0%90%D0%98%D0%A1%D0%A2", "_blank"); this.props.clearPopup()},
+    }
+  };
 
   handleClose() {
     this.setState({show: false});
@@ -88,11 +104,19 @@ class TestBuilder extends React.Component {
     this.props.sysIndexChanged(index);
   }
 
+  handleSystemClick(){
+    if (this.state.isFirstChange) {
+      const {showPopup} = this.props;
+      showPopup(this.infoPopup);
+      this.setState({isFirstChange: false});
+    }
+  }
+
   handleSubmitButtonClick = () => {
     const {testBuilderTests, selectedTestIndex, testNamesForDropdown, systems, submitCurrentTest} = this.props;
     let test = {...testBuilderTests[selectedTestIndex]};
     let id = testNamesForDropdown[selectedTestIndex].test_id;
-    let currentStands = test.stands? test.stands.map(stand => stand.label) : test.stands;
+    let currentStands = test.stands ? test.stands.map(stand => stand.label) : test.stands;
     test.a_system = systems[this.state.selectedSystem].code;
     test.stands = currentStands;
     submitCurrentTest({test, id});
@@ -300,7 +324,7 @@ class TestBuilder extends React.Component {
     } = this.props;
 
     const helpModal = (
-      <Modal key={'helpModal'+selectedTestIndex}
+      <Modal key={'helpModal' + selectedTestIndex}
              show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title><strong>Конструктор тестов</strong></Modal.Title>
@@ -339,7 +363,7 @@ class TestBuilder extends React.Component {
       </Modal>);
 
     return (
-      <Row key={'Toolbar'+selectedTestIndex}>
+      <Row key={'Toolbar' + selectedTestIndex}>
         {helpModal}
         <Toolbar
           key="test-builder-toolbar"
@@ -371,8 +395,8 @@ class TestBuilder extends React.Component {
         key={index + (Math.random() * 10000000000).toString()}
       >
         {test.test_name}
-        {testBuilderTests[index].modified && <Label style={{marginLeft: 5}} bsStyle="warning">Modified</Label>}
-        {testBuilderTests[index].new && <Label style={{marginLeft: 5}} bsStyle="primary">New</Label>}
+        {testBuilderTests[index].modified && <Label style={{marginLeft: 5}} bsStyle="warning">Изменен</Label>}
+        {testBuilderTests[index].new && <Label style={{marginLeft: 5}} bsStyle="primary">Новый</Label>}
       </ListGroupItem>));
   };
 
@@ -422,23 +446,29 @@ class TestBuilder extends React.Component {
                                    selectedSystem={this.state.selectedSystem}
                                    handleTagInputChange={this.handleTagInputChange}
                                    handleInputChange={this.handleInputChange}
-                                   key={'CurTestParams'+selectedTestIndex}
+                                   key={'CurTestParams' + selectedTestIndex}
+                                   handleSystemClick={this.handleSystemClick}
                                    {...this.props}
                 />,
                   <div style={{height: '10px'}} key={'divSpacer'}/>,
                   <ToolbarEdit
-                    key={'ToolbarEdit'+selectedTestIndex}
+                    key={'ToolbarEdit' + selectedTestIndex}
                     redirDisabled={true}
                     onSubmit={this.handleSubmitButtonClick}
                     setVisible={(selectedTestIndex !== null
-                      && this.state.selectedSystem !== null) ? 'visible':'hidden'}
+                      && this.state.selectedSystem !== null) ? 'visible' : 'hidden'}
                     style={{backgroundColor: '#FFF'}}
                     submitDisabled={!(selectedTestIndex !== null
                       && this.state.selectedSystem !== null
                       && (testBuilderTests[selectedTestIndex].modified
                         || testBuilderTests[selectedTestIndex].new))}
                   />]
-                : null}
+                :
+                <div style={{marginTop: '25%', textAlign: 'center', fontSize: '15px', color: 'gray'}}>
+                  Здесь появится информация о тесте, после того как Вы<br/>
+                  нажмете кнопку "Создать" или выберете тест
+                </div>
+              }
             </Col>
           </Row>
         </Grid>
