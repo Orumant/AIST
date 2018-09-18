@@ -38,7 +38,6 @@ class ChainsTable extends React.Component {
   render() {
     const { data, testsAll } = this.props;
     const { show, cell } = this.state;
-    console.log(data)
 
     return (
       <div>

@@ -40,7 +40,7 @@ class CreateForm extends React.Component {
     const {getFields, data, dataUpdated, needUpdate} = this.props;
     if (needUpdate && data.name !== this.state.name) {
       getFields(data);
-      this.setState({name: data.name})
+      this.setState({name: data.name});
       dataUpdated();
     }
   }
@@ -51,7 +51,7 @@ class CreateForm extends React.Component {
     const { isChecking} = this.state;
 
     const formFields = fields.map((field, ind) =>
-      <Field key={field.type+ind}
+      <Field key={ind + "of" + fields.length }
              label={field.label}
              paramName={field.paramName}
              regEx={field.regEx}
@@ -65,7 +65,7 @@ class CreateForm extends React.Component {
     );
 
     return [
-      <Paper className={classes.stepContent}>
+      <Paper className={classes.stepContent} key="create-form-page">
         <div style={{display: 'flex'}}>
           <div style={{flexGrow: '1'}} />
           <AddButton addField={addField}/>

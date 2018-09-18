@@ -18,7 +18,6 @@ class ChainsList extends React.Component {
 
   render() {
     const { chains, chains_editable, fetchChains, testsAll, isFetching } = this.props;
-    console.log(chains_editable)
 
     const FilterBar = <SearchBar
       key='chain-list-sidebar'

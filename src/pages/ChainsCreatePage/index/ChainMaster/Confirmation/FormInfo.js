@@ -42,11 +42,11 @@ class TestInfo extends React.Component {
     };
 
     return (
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} key="confirmation-form-block">
         <Typography variant="title" className={classes.gridTitle}>Форма</Typography>
         <List>
           {form && form.length > 0 ?
-            form.map((field) => <ListItem>
+            form.map((field, ind) => <ListItem key={"confirmation-form-"+ind}>
               <ListItemAvatar>
                 <Tooltip title={typeNames[field.type]} placement="left">
                   <Avatar style={{backgroundColor: colors[field.type]}}>

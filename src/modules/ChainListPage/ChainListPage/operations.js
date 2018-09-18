@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {BACKEND_URL} from "../../../constants/endpoints";
-import {error} from "react-notification-system-redux";
 import {getToken} from '../../../globalFunc';
 import actions from './actions'
 import {showError} from "../../common_api";
@@ -9,7 +8,6 @@ const fetchChains = (request) => (dispatch) => {
   const url = `${BACKEND_URL}/chain_templates/filter`;
   const header = {headers: {SessionID: getToken()}};
   dispatch(actions.startFetching());
-  console.log(request)
   axios.post(url, request, header).then(function (response) {
     dispatch(actions.chainsFetchSucceed(response.data));
   }).catch(function (response) {

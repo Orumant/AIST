@@ -1,4 +1,4 @@
-import types from './types'
+import types from './types';
 import Operations from "./operations";
 
 const initialState = {

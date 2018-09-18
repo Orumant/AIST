@@ -15,7 +15,7 @@ class Confirmation extends React.Component {
     const {classes, data, testsAll, ...handleNavigation} = this.props;
 
     return [
-      <Paper className={classes.stepContent}>
+      <Paper className={classes.stepContent} key="chains-master-confirmation-page">
         <Grid container>
           <CommonInfo data={data}/>
           <TestInfo data={data} testsAll={testsAll}/>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Select from 'react-select';
 import {arrayToOptions, filterPropertyFromObjects} from "../../../../../utils/filters/index";
 import SelectCreatable from "../../../../_global/select/SelectCreatable";
 

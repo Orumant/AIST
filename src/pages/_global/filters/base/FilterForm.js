@@ -1,5 +1,4 @@
-import React from 'react'
-import Select from 'react-select'
+import React from 'react';
 import PropTypes from 'prop-types';
 import {arrayToOptions} from "../../../../utils/filters/index";
 import './style.css';
@@ -20,7 +19,7 @@ class FilterForm extends React.Component {
 
   componentDidMount() {
     const {value, options} = this.props;
-    const option = {label: value, value: options.indexOf(value)}
+    const option = {label: value, value: options.indexOf(value)};
     this.setState({selectedOption: option})
   }
 

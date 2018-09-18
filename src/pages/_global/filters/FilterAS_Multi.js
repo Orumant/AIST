@@ -1,9 +1,10 @@
 import React from 'react'
 import {filterPropertyFromObjects} from "../../../utils/filters/index";
-import FilterForm from "./base/FilterForm";
 import FilterFormMultiple from "./base/FilterFormMultiple";
 
 class FilterAS_Multi extends React.Component {
+
+  //TODO: Сделать один элемент для single/multiple choice
 
   render ()  {
     const {tests, onChange, name, value} = this.props;

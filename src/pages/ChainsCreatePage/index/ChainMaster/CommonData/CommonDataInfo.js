@@ -1,5 +1,4 @@
 import React from 'react';
-import deepPurple from "@material-ui/core/colors/deepPurple";
 import Typography from "@material-ui/core/Typography";
 
 export const CommonDataInfo =
@@ -20,4 +19,4 @@ export const CommonDataInfo =
       <span>Группы пользователей, которые смогут просматривать и копировать созданную цепочку</span>
       <div style={{color: "#f50057"}}>В списке отображаются только группы, в которые вы входите</div>
     </div>
-  </div>
+  </div>;

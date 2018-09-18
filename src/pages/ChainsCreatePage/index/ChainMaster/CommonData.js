@@ -7,8 +7,6 @@ import PageNavigation from "./PageNavigation";
 import ChainName from "./CommonData/ChainName";
 import ChainMarker from "./CommonData/ChainMarker";
 import ChainGroups from "./CommonData/ChainGroups";
-import Typography from "@material-ui/core/es/Typography/Typography";
-import blue from '@material-ui/core/colors/blue';
 import {CommonDataInfo} from "./CommonData/CommonDataInfo";
 import {styles} from "../style";
 import {withStyles} from "@material-ui/core/styles/index";
@@ -83,7 +81,7 @@ class CommonData extends React.Component {
     const item = (label, form) => <div className="input-item-form">{label}{form}</div>;
 
     return [
-      <Paper className={classes.stepContent}>
+      <Paper className={classes.stepContent} key="common-data-page">
         <div style={{display: "flex", justifyContent: "space-between"}}>
           <div key="commonData" style={{width: "40%", maxWidth: "350px"}}>
 

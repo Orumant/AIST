@@ -1,5 +1,4 @@
-import React from 'react'
-import Select from 'react-select'
+import React from 'react';
 import PropTypes from 'prop-types';
 import {arrayToOptions, optionsToArray} from "../../../../utils/filters/index";
 import './style.css';

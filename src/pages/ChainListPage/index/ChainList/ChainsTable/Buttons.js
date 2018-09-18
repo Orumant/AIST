@@ -10,8 +10,7 @@ import {Link} from "react-router-dom";
 export const CreateButton = () =>
   <Button component={Link}
           to={'/chains/create'}
-          title="Создать"
-          linkButton>
+          title="Создать">
     <AddIcon style={{marginRight: '8px'}}/>
     Создать
   </Button>;

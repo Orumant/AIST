@@ -1,7 +1,6 @@
 import React from 'react';
 import IconButton from "@material-ui/core/IconButton";
 import Chip from "@material-ui/core/Chip";
-import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import AddIcon from '@material-ui/icons/Add';
 
@@ -65,16 +64,18 @@ class MenuItems extends React.Component {
 
     const itemList = items.map((val, ind) =>
       <Chip
+        key={"dropDown-value-"+ind}
         style={{margin: '8px'}}
         onDelete={() => this.deleteMenuItem(ind)}
         label={val}/>);
 
     const emptyItemList = <div className="empty-item-list"> Список значений не указан</div>;
+    const isError = Boolean(error);
 
     return [
-      <div style={{width: "150px"}}>
+      <div style={{width: "150px"}} key="dropDown-input">
         <FormControl fullWidth
-                     error={error}
+                     error={isError}
         >
           <InputLabel>Значение</InputLabel>
           <Input value={val}
@@ -91,7 +92,7 @@ class MenuItems extends React.Component {
           <FormHelperText>{error ? messages[error] : null}</FormHelperText>
         </FormControl>
       </div>,
-      <div style={{alignSelf: 'center', padding: '8px'}}>
+      <div style={{alignSelf: 'center', padding: '8px'}} key="dropDown-values">
         {items.length > 0 ? itemList : emptyItemList}
       </div>
     ]

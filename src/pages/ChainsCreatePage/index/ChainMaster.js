@@ -6,7 +6,6 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import { styles } from "./style";
 import CommonData from "./ChainMaster/CommonData";
-import Paper from '@material-ui/core/Paper';
 import './style.css'
 import Notifications from 'react-notification-system-redux';
 import Loading from 'react-loading';
@@ -98,11 +97,9 @@ class ChainMaster extends React.Component {
 
 
   render() {
-    const { classes, isFetching, chain_data, notifications } = this.props;
+    const { classes, isFetching, notifications } = this.props;
     const steps = ['Общие данные', 'Выбор тестов', 'Создание формы', 'Подтверждение'];
     const { activeStep } = this.state;
-    console.log(chain_data);
-    // console.log(this.state.needUpdate)
 
     const Spinner = <div className='loading'>
       <Loading key='page-content-loading' type='spin' color='rgb(67, 136, 204)' height='100px' width='100px'/>

@@ -34,7 +34,7 @@ import {getToken, isObjectEmpty, setCurrentUser} from './globalFunc';
 import {showError} from "./modules/common_api";
 
 
-export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch, getState) => {
+export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch) => {
   const header = {headers: {SessionID: getToken()}};
   const url = `${BACKEND_URL}/orders/?chainName=${chainName}&start=${dateFrom}&end=${dateTo + ' 23:59:59'}`;
 
@@ -197,7 +197,6 @@ export const updateLoginForm = (payload, publicKey) => (dispatch) => {
   let a = payload.password;
   encryptPassword(payload, publicKey);
   const url = `${BACKEND_URL}/owners/login`;
-  console.log(payload, publicKey)
   axios.post(url, payload).then(function (response) {
     payload.token = response.data.token;
     setCurrentUser(payload.login, response.data);

@@ -1,5 +1,4 @@
 import React from 'react';
-import deepPurple from "@material-ui/core/colors/deepPurple";
 import Typography from "@material-ui/core/Typography";
 
 export const CreateFormInfo =

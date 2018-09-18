@@ -17,7 +17,7 @@ class CommonInfo extends React.Component {
     </div>;
 
     return (
-      <Grid item xs={12} md={12}>
+      <Grid item xs={12} md={12} key="confirmation-common-data-block">
         <Typography variant="title" className={classes.gridTitle}>Общая информация</Typography>
         <div style={{display: "flex"}}>
           {field("Название", name)}

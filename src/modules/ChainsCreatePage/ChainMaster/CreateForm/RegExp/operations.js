@@ -1,8 +1,3 @@
-import axios from 'axios';
-import {BACKEND_URL} from "../../../../../constants/endpoints";
-import {getToken} from '../../../../../globalFunc';
-import actions from './actions'
-import {showError} from "../../../../common_api";
 import Actions from "./actions";
 
 

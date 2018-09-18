@@ -52,7 +52,7 @@ class SelectTest extends React.Component {
   componentDidMount() {
     const {fetchFilterTests, data, dataUpdated, needUpdate} = this.props;
     fetchFilterTests(this.request, data, needUpdate);
-    if (needUpdate) {dataUpdated()};
+    if (needUpdate) {dataUpdated()}
     this.setState({name: data.name});
   }
 
@@ -97,7 +97,7 @@ class SelectTest extends React.Component {
     />;
 
     return [
-      <div className={classes.stepSelectContent}>
+      <div className={classes.stepSelectContent} key="tests-content-page">
         <div key="page-container-tests">{SelectTestTable}</div>
       </div>,
       <PageNavigation key="navigation-tests" chain_data={this.getChainData()} handleNext={this.onNext} {...handleNavigation}/>,

@@ -68,7 +68,6 @@ class Launcher extends Component {
   }
 
   onChainSelected(value) {
-    console.log(value)
     if (value !== null) {
       if (this.state[this.props.chains[value.value].name]) {
         this.setState({

@@ -1,4 +1,4 @@
-import {error, info} from "react-notification-system-redux";
+import {error} from "react-notification-system-redux";
 import {forceLogin, onUserLogOut} from "../globalFunc";
 
 export const showError = (response) => (dispatch) => {

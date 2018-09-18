@@ -24,10 +24,10 @@ class TestInfo extends React.Component {
     const {tests} = data;
 
     return (
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} key="confirmation-tests-block">
         <Typography variant="title" className={classes.gridTitle}>Тесты</Typography>
         <List>
-          {tests ? tests.map((test, ind) => <ListItem>
+          {tests ? tests.map((test, ind) => <ListItem key={"confirmation-test-"+ind}>
             <ListItemAvatar>
               <Avatar>
                 {ind + 1}
