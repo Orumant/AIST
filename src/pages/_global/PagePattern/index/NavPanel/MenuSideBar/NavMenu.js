@@ -11,11 +11,13 @@ class NavMenu extends React.Component {
   render() {
 
     const links = {
+
       chains: { name: 'Цепочки', link: '/chains'},
       tests: { name: 'Тесты', link: '/testbuilder'},
       results: { name: 'Результаты', link: '/results'},
       dataDirectory: { name: 'Справочник данных', link: '/datadirectory'},
       launcher: { name: 'Запуск цепочек', link: '/launcher'},
+      createPattern: { name: 'Создание шаблона', link: '/datatemplates'},
     };
 
     const item = (key, name, link) =>

@@ -19,24 +19,20 @@ import {
 import Select from 'react-select';
 import Notifications from 'react-notification-system-redux'
 import FieldPicker from "../FieldPicker";
-import Header from "../Header";
 import {forceLogin} from '../../globalFunc';
 import './style.css';
 
-class FormBuilderPage extends Component {
+class FormBuilder extends Component {
   constructor(props, context) {
     super(props, context);
     this.props.clearNotifications();
     this.props.fetchBuilderChains();
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
 
     forceLogin();
 
     this.state = {
       noFormChecked: false,
       chainIndex: null,
-      show: false,
       inputTypeIndex: 0,
       inputTypes: [
         'Input',
@@ -44,14 +40,6 @@ class FormBuilderPage extends Component {
         'DatePicker',
       ],
     };
-  }
-
-  handleClose() {
-    this.setState({show: false});
-  }
-
-  handleShow() {
-    this.setState({show: true});
   }
 
   componentWillUpdate(nextProps, prevProps) {
@@ -296,26 +284,8 @@ class FormBuilderPage extends Component {
             }}
           />}
         </Col>
-        <Button className="pull-right" style={{marginRight: '1%'}} onClick={this.handleShow}>
-          <Glyphicon glyph='glyphicon glyphicon-question-sign'/>
-        </Button>
         <div className="clearfix"/>
       </Row>,
-      <Modal show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title><strong>Конструктор форм</strong></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Чтобы редактировать форму существующей цепочки, необходимо:</p>
-          <li type="square">Выбрать цепочку из выпающего списка вверху слева</li>
-          <li type="square">Выбрать тип поля в выпадающем списке снизу слева и нажать кнопку +</li>
-          <li type="square">Ввести необходимые для данного поля параметры</li>
-          <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Отправить</li>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.handleClose}>Закрыть</Button>
-        </Modal.Footer>
-      </Modal>
     ];
     const submitBtn = [
       formBuilderChains.length > 0 && <Button
@@ -333,7 +303,6 @@ class FormBuilderPage extends Component {
     ];
     return (
       <div>
-        <Header/>
         <Panel style={{marginTop: '1%', position: 'relative'}}
                header={formBuilderChains.length > 0 ? chainDropDown : null} footer={submitBtn}
                bsStyle="default">
@@ -347,4 +316,4 @@ class FormBuilderPage extends Component {
   }
 }
 
-export default FormBuilderPage
+export default FormBuilder

@@ -51,7 +51,7 @@ const formBuilderReducer = (state = initialState, action) => {
     case ON_FIELDS_VALUES_UPDATE: {
       const formBuilderChains = [...state.formBuilderChains];
       const updatedChain = {...state.formBuilderChains[action.payload.idx]};
-      updatedChain.fields = action.payload.fields;
+      updatedChain.form = action.payload.fields;
       updatedChain.modified = true;
       formBuilderChains[action.payload.idx] = updatedChain;
       return {
@@ -61,7 +61,7 @@ const formBuilderReducer = (state = initialState, action) => {
     }
     case FIELD_WAS_REMOVED: {
       const formBuilderChains = [...state.formBuilderChains];
-      formBuilderChains[action.payload.chainIdx].fields.splice(action.payload.fieldIdx,1);
+      formBuilderChains[action.payload.chainIdx].form.splice(action.payload.fieldIdx,1);
       formBuilderChains[action.payload.chainIdx].modified = true;
       return{
         ...state,

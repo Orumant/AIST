@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware, compose} from 'redux';
@@ -9,11 +10,10 @@ import rootReducer from './reducers';
 import HomePage from './containers/HomePage';
 import TDME2E from './containers/TDME2E';
 import ChainEditorPage from './pages/ChainEditorPage';
-import FormBuilderPage from "./containers/FormBuilderPage";
+import FormBuilderPage from "./pages/FormBuilderPage/index";
 
 import DataDirectoryPage from "./pages/DataDirectoryPage";
 import ChainsListPage from "./pages/ChainListPage";
-import DataTemplatesBuilderPage from "./containers/DataTemplates";
 import AuthorizationPage from "./containers/AuthorizationPage"
 import RegistrationPage from "./containers/RegistrationPage"
 
@@ -30,6 +30,8 @@ import ChainsCreatePage from "./pages/ChainsCreatePage/index";
 import 'babel-polyfill'
 import SelectSingle from "./pages/_global/select/SelectSimple";
 import SuccessPage from "./pages/ChainsCreatePage/index/SuccessPage";
+import DataTemplatesPage from "./pages/DataTemplatesPage/index";
+
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -54,13 +56,14 @@ ReactDOM.render((
             <Route exact path="/formbuilder" component={FormBuilderPage}/>
             <Route path="/formbuilder/:chainIndex" component={FormBuilderPage}/>
             <Route exact path="/datadirectory" component={DataDirectoryPage}/>
-            <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesBuilderPage}/>
             <Route exact path='/chains' component={ChainsListPage}/>
             <Route exact path='/chains/create' component={ChainsCreatePage}/>
             <Route exact path='/chains/:chainName/copy' component={ChainsCreatePage}/>
             <Route path='/chains/:chainName' component={ChainsCreatePage}/>
             <Route exact path='/success_chains' component={SuccessPage}/>
-            <Route exact path="/datatemplates" component={DataTemplatesBuilderPage}/>
+            <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesPage}/>
+            <Route exact path='/chainTemplateList' component={ChainsListPage}/>
+            <Route exact path="/datatemplates" component={DataTemplatesPage}/>
             <Route path="/homepage" component={HomePage}/>
             <Route path="/TDME2E" component={TDME2E}/>
             <Route path="/registration" component={RegistrationPage}/>

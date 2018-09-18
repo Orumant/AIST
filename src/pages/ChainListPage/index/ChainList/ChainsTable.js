@@ -59,7 +59,7 @@ class ChainsTable extends React.Component {
                              dataFormat={this.testFormatter}>
             Тесты в составе цепочки
           </TableHeaderColumn>
-          <TableHeaderColumn className='custom-header' key='id' width='10%' searchable={true} dataField='tag_names'
+          <TableHeaderColumn className='custom-header' key='id' width='10%' searchable={true} dataField='tags'
           >
             Теги
           </TableHeaderColumn>

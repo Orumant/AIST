@@ -1,6 +1,7 @@
 .react-bs-table table td, .react-bs-table table th {
   word-wrap: break-word !important;
   white-space: pre-wrap !important;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 .chain-component-col-select {
@@ -9,4 +10,49 @@
 
 .custom-header {
   text-align: center !important;
+}
+
+.chain-component-span {
+  cursor: pointer;
+  color: rgb(67, 136, 204);
+}
+
+.chain-component-modal-header {
+  background-color: rgb(67, 136, 204);
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+
+.chain-component-modal-footer {
+  border-top: 1px solid rgb(67, 136, 204) !important;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+}
+
+.chain-component-btn {
+  color: #FFFFFF !important;
+  background-color: rgb(67, 136, 204) !important;
+  border-color: rgb(67, 136, 204) !important;
+  outline: none !important;
+}
+
+.chain-component-btn:focus {
+  border-color: rgb(67, 136, 204) !important;
+}
+
+.chain-component-btn:hover {
+  border-color: rgb(50, 74, 125) !important;
+  background-color: rgb(50, 74, 125) !important;
+}
+
+.modal-dialog {
+  top: 25% !important;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover,
+.pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+  background-color: rgb(67, 136, 204) !important;
+  border-color: rgb(67, 136, 204) !important;
+  color: #fff !important;
 }
