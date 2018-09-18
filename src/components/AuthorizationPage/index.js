@@ -71,10 +71,11 @@ class AuthorizationPage extends React.Component {
   };
 
   HandleLoginButtonCLick() {
-    const {loginPasswordChange, loginButtonClicked, notifications} = this.props;
+    const {loginPasswordChange, loginButtonClicked, history, notifications} = this.props;
+    const goBack = history.length > 1? history.goBack: () => window.location.hash = '#/launcher';
     loginPasswordChange({value: this.state.login, key: "name"});
     loginPasswordChange({value: this.state.password, key: "password"});
-    loginButtonClicked(this.state)
+    loginButtonClicked(this.state, goBack);
   }
 
   render() {

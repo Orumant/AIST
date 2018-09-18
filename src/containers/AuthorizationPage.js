@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loginButtonClicked : (payload) => dispatch(getPublicKeyLogin(payload)),
+    loginButtonClicked : (payload, goBack) => dispatch(getPublicKeyLogin(payload, goBack)),
     loginPasswordChange : (payload) => dispatch(loginPasswordChange(payload)),
   }
 }

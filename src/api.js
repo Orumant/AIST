@@ -175,14 +175,15 @@ export const updateRegistrationForm = (payload, publicKey) => (dispatch) => {
  * Public key request
  */
 
-export const getPublicKeyLogin = (payload) => (dispatch) => {
+export const getPublicKeyLogin = (payload, goBack) => (dispatch) => {
+
   if (payload.login === "" || payload.password === "") {
     dispatch(error({message: "Ошибка: Не все поля заполнены"}));
     return;
   }
   const url = `${BACKEND_URL}/owners/login`;
   axios.get(url).then(function (response) {
-    dispatch(updateLoginForm(payload, response.data))
+    dispatch(updateLoginForm(payload, response.data, goBack))
   }).catch(function (response) {
     dispatch(showError(response));
   });
@@ -193,14 +194,14 @@ export const getPublicKeyLogin = (payload) => (dispatch) => {
  * If all OK go to homepage
  */
 
-export const updateLoginForm = (payload, publicKey) => (dispatch) => {
+export const updateLoginForm = (payload, publicKey, goBack) => (dispatch) => {
   let a = payload.password;
   encryptPassword(payload, publicKey);
   const url = `${BACKEND_URL}/owners/login`;
   axios.post(url, payload).then(function (response) {
     payload.token = response.data.token;
     setCurrentUser(payload.login, response.data);
-    window.location.hash = '#/launcher';
+    goBack();
 
   }).catch(function (response) {
     payload.password = a;
