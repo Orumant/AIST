@@ -37,12 +37,12 @@ class BrowserAlert extends React.Component {
   alertForm() {
     const browser = detect();
     const version = browser.version.split('.')[0];
-    if (browser.name !== 'chrome') {
+    if (browser.name !== 'chrome' && browser.name !== 'yandexbrowser') {
       const message = `Уважаемый пользователь, рекомендуемым бразером для использования АИСТ является Google Chrome `+
       `(версии 61+). В других браузерах некоторые функции могут быть недоступны или работать некорректно`;
       return (this.alertTemplate(message));
     }
-    if (version < 61) {
+    if (browser.name === 'chrome' && version < 61) {
       const message = `Уважаемый пользователь, рекомендуемая версия Google Chrome: 61+. Ваша версия ` +
         `${browser.version}. В более ранних версиях Google Chrome некоторые функции могут быть недоступны или ` +
         `работать некорректно`;
