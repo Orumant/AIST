@@ -1,7 +1,6 @@
 import {
   ORDER_CREATED,
   CLEAR_ID_ORDER_ALERT,
-  LAUNCHER_STANDS_FETCH_SUCCEED,
   LAUNCHER_USER_GROUPS_FETCH_SUCCEED,
 } from "../constants";
 
@@ -27,13 +26,6 @@ const launcher = (state = initialState, action) => {
       return {
         ...state,
         orderId: null,
-      }
-    }
-
-    case LAUNCHER_STANDS_FETCH_SUCCEED: {
-      return {
-        ...state,
-        stands: action.stands,
       }
     }
 

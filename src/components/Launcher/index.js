@@ -24,14 +24,13 @@ import './style.css'
 import Notifications from "react-notification-system-redux";
 import DropdownButton from "react-bootstrap/es/DropdownButton";
 import MenuItem from "react-bootstrap/es/MenuItem";
-const CHAIN_PLACEHOLDER = {label: 'Выберите цепочку...', value:'Выберите цепочку...'};
+const CHAIN_PLACEHOLDER = {label: 'Выберите цепочку...', value: 'Выберите цепочку...'};
 
 class Launcher extends Component {
   constructor(props, context) {
     super(props, context);
     forceLogin();
     this.props.fetchChainTemplates();
-    this.props.fetchStands();
     this.props.fetchGroups();
     this.dataTemplateSelected = this.dataTemplateSelected.bind(this);
     this.onChainSelected = this.onChainSelected.bind(this);
@@ -75,6 +74,7 @@ class Launcher extends Component {
           chain: value,
           selectedChain: value.value,
           selectedTemplates: [],
+          standIndex: 0,
         });
       } else {
         this.setState({
@@ -82,6 +82,7 @@ class Launcher extends Component {
           chain: value,
           formReady: false,
           selectedChain: value.value,
+          standIndex: 0,
         });
         this.fillFormData(value.value);
       }
@@ -139,7 +140,7 @@ class Launcher extends Component {
       launchParams['start_time'] = this.state.startDate.format('YYYY.MM.DD HH:mm:00');
     launchParams['templateNames'] = this.state.selectedTemplates.map(t => t.value);
     launchParams['groups'] = this.state.groups.map(g => g.label);
-    launchParams['regEx'] =  chains[this.state.selectedChain].form.map(form => form.regEx);
+    launchParams['regEx'] = chains[this.state.selectedChain].form.map(form => form.regEx);
     launchParams['label'] = chains[this.state.selectedChain].form.map(form => form.label);
     if (this.state.standIndex !== null && chains[this.state.selectedChain].stands.length > 0)
       launchParams['stand'] = chains[this.state.selectedChain].stands[this.state.standIndex];
@@ -204,7 +205,9 @@ class Launcher extends Component {
                          controlId={field.paramName + index}>
                 <InputGroup key={chains[this.state.selectedChain].name + field.paramName + 'InputGroup' + index}>
                   <InputGroup.Addon
-                    key={chains[this.state.selectedChain].name + field.paramName + 'InputGroupAddon' + index}>{field.label}</InputGroup.Addon>
+                    key={chains[this.state.selectedChain].name + field.paramName + 'InputGroupAddon' + index}>
+                    {field.label}
+                  </InputGroup.Addon>
                   <FormControl key={chains[this.state.selectedChain].name + field.paramName + 'FormControl' + index}
                                value={this.getFieldValueByKey(field.paramName)}
                                type="input"
@@ -278,7 +281,8 @@ class Launcher extends Component {
                         : 'Пусто'}
                       onSelect={this.handleStandSelection}
                     >
-                      {chains[this.state.selectedChain].stands && chains[this.state.selectedChain].stands.map((stand, index) => {
+                      {chains[this.state.selectedChain].stands
+                        && chains[this.state.selectedChain].stands.map((stand, index) => {
                         return (
                           <MenuItem active={this.state.standIndex === index} key={stand + 'MenuItem'} eventKey={index}>
                             {stand}
@@ -287,12 +291,14 @@ class Launcher extends Component {
                       })}
                     </DropdownButton>
                   </OverlayTrigger>
-                  <Button style={{color: '#FFF', width: '11em', fontWeight: 'bold'}} key={'LaunchButton'} bsStyle='success'
+                  <Button style={{color: '#FFF', width: '11em', fontWeight: 'bold'}} key={'LaunchButton'}
+                          bsStyle='success'
                           disabled={this.state.standIndex === null}
                           onClick={this.launch}>Запуск <Glyphicon key={'launchGlyph'} glyph='glyphicon glyphicon-play'/>
                   </Button>
                 </ButtonGroup>
-                : <Button className={'pull-right'} style={{color: '#FFF', width: '11em', fontWeight: 'bold'}} key={'LaunchButton'} bsStyle='success'
+                : <Button className={'pull-right'} style={{color: '#FFF', width: '11em', fontWeight: 'bold'}}
+                          key={'LaunchButton'} bsStyle='success'
                           onClick={this.launch}>Запуск <Glyphicon key={'launchGlyph'} glyph='glyphicon glyphicon-play'/>
                 </Button>
               : null
@@ -306,7 +312,8 @@ class Launcher extends Component {
       if (this.props.orderId !== null) {
         return (
           <Alert onDismiss={this.props.clearIdOrderAlert} key={'orderCreatedAlert'} bsStyle="success">
-            <a href={'#/datadirectory/'+this.props.chains[this.state.selectedChain].name} target={'_blank'}>{this.props.orderId}</a>
+            <a href={'#/datadirectory/' + this.props.chains[this.state.selectedChain].name}
+               target={'_blank'}>{this.props.orderId}</a>
           </Alert>)
       }
       return null;
