@@ -12,6 +12,7 @@ import Loading from 'react-loading';
 import SelectTest from "../../../containers/ChainsCreatePage/ChainMaster/SelectTest";
 import CreateForm from "../../../containers/ChainsCreatePage/ChainMaster/CreateForm";
 import Confirmation from "./ChainMaster/Confirmation";
+import StepContent from "@material-ui/core/es/StepContent/StepContent";
 
 
 class ChainMaster extends React.Component {
@@ -73,6 +74,15 @@ class ChainMaster extends React.Component {
     }
   };
 
+  getStepDiscription = (step) => {
+    switch (step) {
+      case 1:
+        return "Для изменения порядка тестов удерживайте элемент секунду, а потом перетащите на нужное место";
+      default:
+        return '';
+    }
+  };
+
   getStepContent = (step) => {
     const { dataAll, chain_data, chainName} = this.props;
     const isCreation = !Boolean(chainName);
@@ -119,14 +129,17 @@ class ChainMaster extends React.Component {
         {isFetching? Spinner: null}
         <div style={{opacity: isFetching? 0.5 : 1}}>
           <div className={classes.root}>
-            <Stepper activeStep={activeStep}>
+            <Stepper className={classes.stepperRoot} activeStep={activeStep} orientation={"vertical"}>
               {steps.map((label) =>
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
+                  <StepContent>{this.getStepDiscription(activeStep)}</StepContent>
                 </Step>
               )}
             </Stepper>
-            {getStepPage(activeStep)}
+            <div>
+              {getStepPage(activeStep)}
+            </div>
             <Notifications key='results-notification' notifications={notifications}/>
           </div>
         </div>
@@ -139,4 +152,4 @@ CommonData.propTypes = {
   classes: PropTypes.object,
 };
 
-export default withStyles(styles) (ChainMaster);
+export default withStyles(styles, { withTheme: true }) (ChainMaster);
