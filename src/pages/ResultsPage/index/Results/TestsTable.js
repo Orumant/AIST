@@ -11,7 +11,7 @@ import {
 } from "@devexpress/dx-react-grid-material-ui";
 
 import DetailsTable from "./TestsTable/DetailsTable";
-import {columns, tableColumnExtensions} from "./TestsTable/ColumnsProps";
+import {columns, groupingColumnExtensions, tableColumnExtensions} from "./TestsTable/ColumnsProps";
 import {Cell} from './TestsTable/Cell';
 
 
@@ -36,6 +36,8 @@ class TestsTable extends React.Component {
   };
 
 
+
+
   RowDetails = ({row}) => {
     const {test_details} = this.props;
     if (test_details[row.id_order]) return <DetailsTable test_details={test_details[row.id_order]}/>;
@@ -56,6 +58,7 @@ class TestsTable extends React.Component {
           />
           <GroupingState
             defaultGrouping={[{columnName: 'chain_name',}]}
+            columnExtensions={groupingColumnExtensions}
           />
           <PagingState
             defaultCurrentPage={0}
