@@ -23,7 +23,6 @@ class DataTemplatesBuilderPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-
     this.props.fetchDataTemplates();
     forceLogin();
   }
@@ -62,7 +61,7 @@ class DataTemplatesBuilderPage extends React.Component {
           <FormGroup>
             <Panel header={'Параметры шаблона:'}>
               <Row>
-                <Col md={9}>
+                <Col md={12}>
                   <InputGroup>
                     <InputGroup.Addon>Название</InputGroup.Addon>
                     <FormControl value={dataTemplates[selectedTemplateIndex].name}
@@ -76,7 +75,6 @@ class DataTemplatesBuilderPage extends React.Component {
                 dataTemplates[selectedTemplateIndex].data.map((entry, index) => [
                   <Row>
                     <Col md={6}>
-                      {/*<Label bsStyle="primary">{entry.key}</Label>*/}
                       <InputGroup>
                         <InputGroup.Addon>Ключ</InputGroup.Addon>
                         <FormControl value={entry.key}
@@ -85,13 +83,12 @@ class DataTemplatesBuilderPage extends React.Component {
                                        value: val.target.value,
                                        index
                                      })}
-                                     type="text"
-                        />
+                                     type="text"/>
                       </InputGroup>
                     </Col>
                     <Col md={6}>
                       <InputGroup>
-                        <InputGroup.Addon data-vegetable="liqiud">Значение</InputGroup.Addon>
+                        <InputGroup.Addon>Значение</InputGroup.Addon>
                         <FormControl value={entry.value}
                                      onChange={(val) => onDataTemplatesInputChange({
                                        name: 'value',
@@ -138,15 +135,6 @@ class DataTemplatesBuilderPage extends React.Component {
 
   renderTemplatesList() {
     const {dataTemplatesNames, dataTemplates, selectedTemplateIndex, onTemplateSelected} = this.props;
-    dataTemplatesNames.map((template, index) => {
-      if (this.props.match.params.datatemplatesName === template) {
-        //onTemplateSelected(index);
-        console.log("template  = ", template);
-        console.log("datatemplatesName  = ", this.props.match.params.datatemplatesName);
-
-      }
-
-    });
     return (dataTemplatesNames.map((template, index) =>
       <ListGroupItem
         onClick={() => onTemplateSelected(index)}
