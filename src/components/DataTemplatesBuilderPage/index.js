@@ -134,7 +134,6 @@ class DataTemplatesBuilderPage extends React.Component {
     return (dataTemplatesNames.map((template, index) =>
       <ListGroupItem
         onClick={() => onTemplateSelected(index)}
-        href={'/#/datatemplates/' + template}
         active={index === selectedTemplateIndex}
         key={index}
       >
