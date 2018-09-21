@@ -51,10 +51,6 @@ class DataTemplatesBuilderPage extends React.Component {
       submitTemplate
     } = this.props;
 
-    const searchOpt = dataTemplatesNames.map((dt, idx) => {
-      return {label: dt, value: idx};
-    });
-
     return (
       <Form>
         <ListGroupItem bsStyle="success" style={{maxHeight: '800px', overflow: 'auto'}}>
