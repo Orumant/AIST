@@ -152,53 +152,7 @@ class DataTemplatesBuilderPage extends React.Component {
   }
 
   render() {
-    const {addNewTemplate, dataTemplates, selectedTemplateIndex, submitTemplate, dataTemplatesNames, onTemplateSelected} = this.props;
-    const submit = (
-      [<Button className="pull-left" onClick={this.handleShow}>
-        <Glyphicon glyph='glyphicon glyphicon-question-sign'/>
-      </Button>,
-
-        <Button
-          bsStyle="success"
-          bsSize="large"
-          className="pull-right"
-          disabled={!(selectedTemplateIndex !== null
-            && (dataTemplates[selectedTemplateIndex].modified
-              || dataTemplates[selectedTemplateIndex].new))}
-          onClick={() => {
-            submitTemplate({
-              value: dataTemplates[selectedTemplateIndex],
-              name: dataTemplatesNames[selectedTemplateIndex],
-            })
-          }}
-        >
-          Отправить
-        </Button>,
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title><strong>Конструктор тестов</strong></Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>Чтобы редактировать шаблон, необходимо:</p>
-            <li type="square">Выбрать шаблон из списка слева</li>
-            <li type="square">Заполнить необходимые параметры шаблона в форме справа</li>
-            <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Отправить</li>
-            <br/>
-            <p>Чтобы создать новый параметр, необходимо:</p>
-            <li type="square">Нажать кнопку Добавить новый параметр</li>
-            <li type="square">Заполнить необходимые параметры в форме справа</li>
-            <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Отправить</li>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.handleClose}>Закрыть</Button>
-          </Modal.Footer>
-        </Modal>,
-        <div className="clearfix"/>
-      ]
-    );
-    const searchOpt = dataTemplatesNames.map((dt, idx) => {
-      return {label: dt, value: idx};
-    });
+    const {addNewTemplate} = this.props;
     return (
       <div>
           <Grid fluid={true} >
