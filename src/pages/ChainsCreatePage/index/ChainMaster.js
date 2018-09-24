@@ -137,7 +137,7 @@ class ChainMaster extends React.Component {
                 </Step>
               )}
             </Stepper>
-            <div>
+            <div style={{flexGrow: '1'}}>
               {getStepPage(activeStep)}
             </div>
             <Notifications key='results-notification' notifications={notifications}/>

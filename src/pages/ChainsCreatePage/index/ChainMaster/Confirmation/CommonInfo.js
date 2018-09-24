@@ -13,13 +13,13 @@ class CommonInfo extends React.Component {
 
     const field = (label, val) => <div style={{margin: '24px'}}>
       <Typography variant="subheading">{label}:</Typography>
-      <Typography variant="subheading" color="primary">{val}</Typography>
+      <Typography variant="subheading" className={classes.dataVal}>{val}</Typography>
     </div>;
 
     return (
       <Grid item xs={12} md={12} key="confirmation-common-data-block">
         <Typography variant="title" className={classes.gridTitle}>Общая информация</Typography>
-        <div style={{display: "flex"}}>
+        <div>
           {field("Название", name)}
           {field("Маркер", marker? marker: "Не указан")}
           {field("Группы", groups? (groups.length > 0? new Array(groups).join(", ") : "Не выбраны") : null)}
@@ -29,4 +29,4 @@ class CommonInfo extends React.Component {
   }
 }
 
-export default withStyles(styles) (CommonInfo);
+export default withStyles(styles, {withTheme: true}) (CommonInfo);

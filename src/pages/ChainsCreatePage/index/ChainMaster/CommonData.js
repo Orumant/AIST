@@ -83,7 +83,7 @@ class CommonData extends React.Component {
     return [
       <Paper className={classes.stepContent} key="common-data-page">
         <div style={{display: "flex", justifyContent: "space-between"}}>
-          <div key="commonData" style={{width: "40%", maxWidth: "350px"}}>
+          <div key="commonData" style={{width: "40%", maxWidth: "450px"}}>
 
             {item("Название*", <ChainName key="chain-name-field"
                                           value={name}
