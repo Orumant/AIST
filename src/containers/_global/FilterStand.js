@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import FilterStand_Single from "../../pages/_global/filters/FilterStand_Single";
+import FilterStand from "../../pages/_global/filters/FilterStand";
 import {Operations} from "../../modules/_global/FilterStand";
 
 function mapStateToProps(state) {
@@ -14,4 +14,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterStand_Single)
+export default connect(mapStateToProps, mapDispatchToProps)(FilterStand)

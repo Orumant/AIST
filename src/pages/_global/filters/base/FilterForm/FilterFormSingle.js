@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {arrayToOptions, optionsToArray} from "../../../../utils/filters/index";
-import './style.css';
-import SelectSimple from "../../select/SelectSimple";
+import {arrayToOptions} from "../../../../../utils/filters/index";
+import '../style.css';
+import SelectSimple from "../../../select/SelectSimple";
 import Typography from '@material-ui/core/Typography';
 
-class FilterFormMultiple extends React.Component {
+class FilterFormSingle extends React.Component {
 
   state = {
     selectedOption : null,
@@ -14,7 +14,7 @@ class FilterFormMultiple extends React.Component {
   changeSelection = (option) => {
     const {onChange, name} = this.props;
     this.setState({selectedOption: option});
-    onChange({[name]: option? optionsToArray(option): option});
+    onChange({[name]: option? option.label: option});
   };
 
   componentDidMount() {
@@ -31,8 +31,7 @@ class FilterFormMultiple extends React.Component {
     return (
       <div className={'filter-item'}>
         <Typography>{label}</Typography>
-        <SelectSimple isMulti
-                      options={optionsList}
+        <SelectSimple options={optionsList}
                       placeholder={placeholder? placeholder: ""}
                       onChange={this.changeSelection}
                       value={value? selectedOption: value}/>
@@ -41,7 +40,7 @@ class FilterFormMultiple extends React.Component {
   }
 }
 
-FilterFormMultiple.propTypes = {
+FilterFormSingle.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
@@ -49,5 +48,5 @@ FilterFormMultiple.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default FilterFormMultiple
+export default FilterFormSingle
 

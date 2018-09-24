@@ -1,5 +1,5 @@
 import React from 'react'
-import FilterForm from "./base/FilterForm";
+import FilterForm from "./base/FilterForm/FilterFormSingle";
 import {filterPropertyFromObjects} from "../../../utils/filters/index";
 
 class FilterChains extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react'
 import {filterPropertyFromObjects} from "../../../utils/filters/index";
-import FilterForm from "./base/FilterForm";
+import FilterForm from "./base/FilterForm/FilterFormSingle";
 
 class FilterMarker extends React.Component {
 

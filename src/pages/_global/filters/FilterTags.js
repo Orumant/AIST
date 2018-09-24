@@ -1,5 +1,5 @@
 import React from 'react'
-import FilterFormMultiple from "./base/FilterFormMultiple";
+import FilterFormMultiple from "./base/FilterForm/FilterFormMultiple";
 import {filterTagsFromTests} from "../../../utils/filters/index";
 
 class FilterTag extends React.Component {

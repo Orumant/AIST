@@ -1,6 +1,6 @@
 import React from 'react'
-import FilterAS from "../../../_global/filters/FilterAS_Multi";
-import FilterStand from "../../../../containers/_global/FilterStand_Single";
+import FilterAS from "../../../_global/filters/FilterAS";
+import FilterStand from "../../../../containers/_global/FilterStand";
 import FilterMarker from "../../../_global/filters/FilterMarker";
 import FilterTag from "../../../_global/filters/FilterTags";
 import FilterDate from "../../../_global/filters/FilterDate";
@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
       <FilterMarker name='marker' key={'marker-filter'} chains={chains}/>,
       <FilterTag name='tags' key={'tags-filter'} tests={tests} />,
       <FilterDate key={'date-filter'} />,
-      <FilterAS name='asystems' key={'system-filter'} tests={tests}/>,
+      <FilterAS isMulti name='asystems' key={'system-filter'} tests={tests}/>,
       <FilterStand name='stand' key={'stand-filter'}/>,
     ];
 

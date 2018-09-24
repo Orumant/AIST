@@ -1,5 +1,5 @@
 import React from 'react';
-import FilterStand from "../../../../containers/_global/FilterStand_Single";
+import FilterStand from "../../../../containers/_global/FilterStand";
 import FilterTag from "../../../_global/filters/FilterTags";
 import FilterChains from "../../../_global/filters/FilterChains";
 import FilterSidebar from "../../../../containers/_global/FilterSidebar";
