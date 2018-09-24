@@ -26,8 +26,7 @@ const validateParam = (index, form, errors) => {
   return errors
 };
 
-const updateMessage = (messages, name, res) => {
-  if (!messages) messages = {};
+const updateMessage = (messages = {}, name, res) => {
   messages[name] = res;
   return messages;
 };
