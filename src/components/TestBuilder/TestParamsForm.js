@@ -7,6 +7,7 @@ import {setTooltip} from "../../globalFunc";
 import InputField from "./InputField";
 import AuthTypeSelector from "./AuthTypeSelector";
 import './style.css';
+import SelectCreatable from "../../pages/_global/select/SelectCreatable";
 
 class TestParamsForm extends Component {
   constructor(p, c) {
@@ -108,9 +109,9 @@ class TestParamsForm extends Component {
                 <Col md={12}>
                   <InputGroup>
                     <InputGroup.Addon>Статические теги</InputGroup.Addon>
-                    <Select.Creatable
+                    <SelectCreatable
                       id={'static'}
-                      multi={true}
+                      isMulti
                       options={[]}
                       arrowRenderer={null}
                       menuRenderer={() => null}
@@ -132,9 +133,9 @@ class TestParamsForm extends Component {
                 <Col md={12}>
                   <InputGroup>
                     <InputGroup.Addon>Динамические теги</InputGroup.Addon>
-                    <Select.Creatable
+                    <SelectCreatable
                       id={'dynamic'}
-                      multi={true}
+                      isMulti={true}
                       options={[]}
                       menuStyle={{display: 'none'}}
                       arrowRenderer={null}

@@ -25,6 +25,7 @@ import SearchBar from "../SearchBar"
 import NotifyUser from "../NotifyUser/NotifyUser"
 import Select from 'react-select'
 import {forceLogin} from '../../globalFunc';
+import SelectCreatable from "../../pages/_global/select/SelectCreatable";
 
 class ChainEditor extends React.Component {
   constructor(props, context) {
@@ -278,8 +279,8 @@ class ChainEditor extends React.Component {
           <FormGroup>
             <InputGroup>
               <InputGroup.Addon>Шаблоны</InputGroup.Addon>
-              <Select.Creatable
-                multi={true}
+              <SelectCreatable
+                isMulti={true}
                 options={options}
                 onChange={dt => this.props.addDTToChain(dt)}
                 value={chainTemplate.templates}
@@ -298,8 +299,8 @@ class ChainEditor extends React.Component {
           <FormGroup>
             <InputGroup>
               <InputGroup.Addon>Группы</InputGroup.Addon>
-              <Select.Creatable
-                multi={true}
+              <SelectCreatable
+                isMulti={true}
                 options={groups}
                 onChange = {this.handleGroupChange}
                 value = {chainTemplate.groups}

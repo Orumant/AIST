@@ -1,7 +1,7 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import FileDownloadIcon from '@material-ui/icons/FileDownload';
-import {BACKEND_URL} from "../../../../../constants/endpoints";
+import {BACKEND_URL} from "../../../../../../constants/endpoints";
 
 
 export const DownloadButton = (id_order) =>

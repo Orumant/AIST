@@ -21,7 +21,6 @@ class Results extends React.Component {
   render() {
     const {fetchOrders, orders, notifications, isFetching} = this.props;
     const browser = detect();
-    console.log(browser)
 
     const FilterBar = <SearchBar
       key='results-sidebar'

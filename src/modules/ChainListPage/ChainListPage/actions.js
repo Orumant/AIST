@@ -5,9 +5,10 @@ const chainsFetchSucceed = (chains) => ({
   chains,
 });
 
-const testsFetchSucceed = (testsAll) => ({
+const testsFetchSucceed = (testsAll, chains_editable) => ({
   type: types.TESTS_FETCH_SUCCEED,
   testsAll,
+  chains_editable,
 });
 
 const startFetching = () => ({

@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
     const content = [
       <FilterChains key={'chain-name-filter'} name='chain' chains={chains}/>,
       <FilterDate key={'date-filter'}/>,
-      <FilterAS name='asystems' key={'system-filter'} tests={tests}/>,
+      <FilterAS isMulti name='asystems' key={'system-filter'} tests={tests}/>,
       <FilterStand name='stand' key={'stand-filter'}/>,
       <FilterTag name='tags' key={'tag-filter'} tests={tests} />,
     ];

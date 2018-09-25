@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {BACKEND_URL} from "../../../constants/endpoints";
-import {error} from "react-notification-system-redux";
 import {getToken} from '../../../globalFunc';
 import actions from './actions'
 import {showError} from "../../common_api";
@@ -18,11 +17,16 @@ const fetchChains = (request) => (dispatch) => {
 };
 
 export const fetchTestsData = () => (dispatch) => {
-  const url = `${BACKEND_URL}/tests`;
+  const urlTests = `${BACKEND_URL}/tests`;
+  const urlChains = `${BACKEND_URL}/chain_templates/filter`;
+  const request = {access: "write"};
   const header = {headers: {SessionID: getToken()}};
-  axios.get(url, header).then(function (response) {
-    dispatch(actions.testsFetchSucceed(response.data));
-  }).catch(function (response) {
+  Promise.all([
+    axios.get(urlTests, header),
+    axios.post(urlChains, request, header)
+  ]).then(([tests, chains]) => {
+    dispatch(actions.testsFetchSucceed(tests.data, chains.data));
+  }).catch(response => {
     dispatch(showError(response));
   });
 };

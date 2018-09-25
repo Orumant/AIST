@@ -4,8 +4,8 @@ import {Table} from "@devexpress/dx-react-grid-material-ui";
 import {StatusLabel} from "./StatusLabel";
 import {Progress} from "./Progress";
 import {ULAdecision} from "./ULAdecision";
-import {DownloadButton} from "./DownloadButton";
-import {ReplayButton} from "./ReplayButton";
+import {DownloadButton} from "./Cell/DownloadButton";
+import {ReplayButton} from "./Cell/ReplayButton";
 
 export const Cell = (props, restartChain) => {
   const {column} = props;

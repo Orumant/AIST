@@ -1,3 +1,5 @@
+import {lighten} from "@material-ui/core/styles/colorManipulator";
+
 const drawerWidth = 350;
 
 export const styles = theme => ({
@@ -30,5 +32,16 @@ export const styles = theme => ({
   },
   'contentShift-right': {
     marginRight: 0,
-  }
+  },
+  highlight:
+    theme.palette.type === "light" ?
+      {
+        color: theme.palette.secondary.main,
+        backgroundColor: lighten(theme.palette.secondary.light, 0.85)
+      } :
+      {
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.secondary.dark,
+      }
+
 });
