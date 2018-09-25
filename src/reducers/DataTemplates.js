@@ -45,6 +45,7 @@ const dataTemplatesBuilderReducer = (state = initialState, action) => {
     }
 
     case DATA_TEMPLATE_SELECTED: {
+
       return{
         ...state,
         selectedTemplateIndex: action.payload,
