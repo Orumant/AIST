@@ -34,7 +34,7 @@ import {getToken, isObjectEmpty, setCurrentUser} from './globalFunc';
 import {showError} from "./modules/common_api";
 
 
-export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch, getState) => {
+export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch) => {
   const header = {headers: {SessionID: getToken()}};
   const url = `${BACKEND_URL}/orders/?chainName=${chainName}&start=${dateFrom}&end=${dateTo + ' 23:59:59'}`;
 

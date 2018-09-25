@@ -1,6 +1,10 @@
 .table-toolbar {
-  text-align: right;
-  padding: 12px;
+  padding: 12px 12px 12px 24px;
+  display: flex;
+}
+
+.table-name {
+  flex-grow: 1;
 }
 
 .loading {
@@ -8,4 +12,8 @@
   top: 40%;
   left: 50%;
   z-index: 9999;
+}
+
+.form-control {
+  border-radius: 0px !important;
 }

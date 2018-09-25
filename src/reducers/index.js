@@ -24,7 +24,10 @@ import chainTemplateList from "./chainTemplateList";
 import filterSidebarReducer from "../modules/_global/FilterSidebar";
 import searchBarReducerChainList from "../modules/ChainListPage/SearchBar";
 import chainsListReducer from "../modules/ChainListPage/ChainListPage";
-
+import chainMasterReducer from "../modules/ChainsCreatePage/ChainMaster";
+import selectTestReducer from "../modules/ChainsCreatePage/ChainMaster/SelectTest";
+import regExpReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm/RegExp";
+import createFormReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm";
 
 
 const rootReducer = combineReducers({
@@ -53,6 +56,11 @@ const rootReducer = combineReducers({
   filterSidebarReducer,
   searchBarReducerChainList,
   chainsListReducer,
+  chainMasterReducer,
+  selectTestReducer,
+  regExpReducer,
+  createFormReducer,
+
 });
 
 export default rootReducer

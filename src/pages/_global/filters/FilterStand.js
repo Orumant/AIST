@@ -9,11 +9,12 @@ class FilterStand extends React.Component {
   }
 
   render ()  {
-    const {stands, onChange, name, value} = this.props;
+    const {stands, onChange, name, value, isMulti} = this.props;
     const options = filterPropertyFromObjects(stands, 'code');
 
     return (
       <FilterForm
+        isMulti={isMulti}
         name={name}
         label="Контур"
         placeholder="Название контура"

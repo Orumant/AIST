@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {BACKEND_URL} from "../../../constants/endpoints";
 import actions from './actions'
-import {error, success} from "react-notification-system-redux";
+import { success } from "react-notification-system-redux";
 import {getToken} from '../../../globalFunc';
 import {showError} from "../../common_api";
 
