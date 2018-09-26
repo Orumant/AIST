@@ -53,7 +53,7 @@ class CreateButton extends React.Component {
         }}
       >
         <MenuItem key="create_chain_link"><Link to={"/chains/create"}>Цепочку</Link></MenuItem>
-        <MenuItem key="create_test_link"><Link to={"/testbuilder"}>Тест</Link></MenuItem>
+        <MenuItem key="create_test_link"><Link to={"/test/create"}>Тест</Link></MenuItem>
         <MenuItem key="create_pattern_link"><Link to={"/datatemplates"}>Шаблон</Link></MenuItem>
       </Menu>
     ];
