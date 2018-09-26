@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {forceLogin} from "../../globalFunc";
 import {
   Alert,
-  Button, ButtonGroup,
+  Button,
+  ButtonGroup,
   Col,
   Form,
   FormControl,
