@@ -42,7 +42,6 @@ import {
   GROUP_ADDED,
   GROUP_NAME_CHANGE,
   GROUP_SELECTED,
-  LAUNCHER_STANDS_FETCH_SUCCEED,
   LAUNCHER_USER_GROUPS_FETCH_SUCCEED,
   LOGIN_BUTTON_CLICKED,
   LOGIN_PASSWORD_CHANGE,
@@ -367,11 +366,6 @@ export const orderCreated = (id) => ({
 
 export const clearIdOrderAlert = () => ({
   type: CLEAR_ID_ORDER_ALERT,
-});
-
-export const standsFetchSuccess = (stands) => ({
-  type: LAUNCHER_STANDS_FETCH_SUCCEED,
-  stands,
 });
 
 export const launcherUserGroupsFetchSucceed = (groups) => ({
