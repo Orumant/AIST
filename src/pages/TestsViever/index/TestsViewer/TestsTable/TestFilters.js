@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import InputField from "./TestFilters/InputField";
 import SelectInput from "./TestFilters/SelectInput";
 import Button from "@material-ui/core/es/Button/Button";
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import DoneIcon from '@material-ui/icons/Done';
 
 class TestFilters extends Component {
@@ -65,7 +64,7 @@ class TestFilters extends Component {
                        multi={true}
                        onChange={this.onInputChange('tags')}/>
           <Button color={'primary'} variant={'contained'} onClick={this.submitFilters}><DoneIcon/>Применить</Button>
-          <Button color={'primary'} variant={'contained'} onClick={this.clearFilters}><DeleteOutlineIcon/>Очистить</Button>
+          <Button color={'primary'} variant={'contained'} onClick={this.clearFilters}>Очистить</Button>
         </form>
     )
   }

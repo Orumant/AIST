@@ -6,6 +6,8 @@ import FilterTestsSidebar from "./TestsViewer/TestsTable/FilterTestsSidebar";
 import TestFilters from "./TestsViewer/TestsTable/TestFilters";
 import Loading from "react-loading";
 import './style.css';
+import PageContent from "../../_global/PageContent";
+import SearchBar from "./TestsViewer/SearchBar";
 
 //TODO Вставить сюда глоб. фильтры
 class TestsViewer extends Component {
@@ -27,11 +29,25 @@ class TestsViewer extends Component {
 
   render() {
     const {isLoading, tests, systems, stands, tags, submitFilters, clearFilters} = this.props;
-    const drawerProps = {
+/*    const drawerProps = {
       open: this.state.sidebarOpen,
       onClose: this.handleSidebarOpening,
-    };
-    return (
+    };*/
+
+
+//TODO Вкорячить фильтр по имени (tools);
+//TODO реализовать запрос в test/filter
+    return(
+      <PageContent isLoading={isLoading}
+                   isFilter
+                   FilterBar={
+                     <SearchBar tests={tests} submit={(stuff) => console.log(stuff)} startRequest={{}}/>
+                   }
+                   content={[
+                     <TestsTable tests={tests} submitFilters={submitFilters}/>
+                   ]}/>
+    )
+/*    return (
           <Paper elevation={2}>
             {isLoading ?
               <div className='loading'>
@@ -47,7 +63,7 @@ class TestsViewer extends Component {
             </FilterTestsSidebar>
             <TestsTable tests={tests} submitFilters={submitFilters}/>
           </Paper>
-    )
+    )*/
   }
 }
 
