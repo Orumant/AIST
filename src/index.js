@@ -31,6 +31,8 @@ import 'babel-polyfill'
 import SelectSingle from "./pages/_global/select/SelectSimple";
 import SuccessPage from "./pages/ChainsCreatePage/index/SuccessPage";
 import DataTemplatesPage from "./pages/DataTemplatesPage/index";
+import MainMenu from "./pages/MainPage/index/MainMenu";
+import MainPage from "./pages/MainPage";
 
 
 
@@ -64,6 +66,7 @@ ReactDOM.render((
             <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesPage}/>
             <Route exact path='/chainTemplateList' component={ChainsListPage}/>
             <Route exact path="/datatemplates" component={DataTemplatesPage}/>
+            <Route path="/main" component={MainMenu}/>
             <Route path="/homepage" component={HomePage}/>
             <Route path="/TDME2E" component={TDME2E}/>
             <Route path="/registration" component={RegistrationPage}/>
