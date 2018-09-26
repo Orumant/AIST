@@ -11,9 +11,8 @@ import {
   HelpBlock,
   Label,
 } from "react-bootstrap"
-import 'react-select/dist/react-select.css'
-import Select from 'react-select'
 import './style.css';
+import SelectCreatable from "../../pages/_global/select/SelectCreatable";
 
 class DropdownRow extends React.Component {
   componentWillMount() {
@@ -116,8 +115,8 @@ class DropdownRow extends React.Component {
             <InputGroup>
               <InputGroup.Addon>Список опций</InputGroup.Addon>
 
-              <Select.Creatable
-                multi={true}
+              <SelectCreatable
+                isMulti={true}
                 options={field.dropDownOptions.map((name) => ({
                   label: name,
                   value: name,

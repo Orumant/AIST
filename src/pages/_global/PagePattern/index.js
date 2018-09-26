@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import {styles} from "./style";
 import MenuSideBar from "./index/NavPanel/MenuSideBar";
-import NavPanel from "./index/NavPanel"
+import NavPanel from "./index/NavPanel";
+import {forceLogin} from '../../../globalFunc';
 
 class PagePattern extends React.Component {
   state = {
@@ -15,6 +16,10 @@ class PagePattern extends React.Component {
     const {open} = this.state;
     this.setState({ open:  !open});
   };
+
+  componentWillMount() {
+    forceLogin();
+  }
 
   render() {
     const { classes, title, content, help } = this.props;
