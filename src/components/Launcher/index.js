@@ -18,7 +18,6 @@ import {
 } from "react-bootstrap";
 import Select from 'react-select';
 import DatePicker from "react-datepicker";
-import 'react-select/dist/react-select.css';
 import 'react-datepicker/dist/react-datepicker.css'
 import 'rc-time-picker/assets/index.css'
 import './style.css'
@@ -266,7 +265,7 @@ class Launcher extends Component {
         && chains[this.state.selectedChain].form.length > 0 ? [
           <Col md={6}>
             {this.state.selectedChain !== null
-            && chains[this.state.selectedChain].fields.length > 0 ?
+            && chains[this.state.selectedChain].form.length > 0 ?
               chains[this.state.selectedChain].stands !== undefined
               && chains[this.state.selectedChain].stands.length > 0 ?
                 <ButtonGroup className={'pull-right'}>
