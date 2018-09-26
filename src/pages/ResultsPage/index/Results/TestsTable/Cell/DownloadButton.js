@@ -1,7 +1,7 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import {BACKEND_URL} from "../../../../../constants/endpoints";
+import FileDownloadIcon from '@material-ui/icons/FileDownload';
+import {BACKEND_URL} from "../../../../../../constants/endpoints";
 
 
 export const DownloadButton = (id_order) =>
@@ -9,5 +9,5 @@ export const DownloadButton = (id_order) =>
     href={`${BACKEND_URL}/objects/${id_order}/csv`}
     title="Скачать CSV"
     download>
-    <SaveAltIcon/>
+    <FileDownloadIcon/>
   </IconButton>;

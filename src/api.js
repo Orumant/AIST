@@ -34,7 +34,7 @@ import {getToken, isObjectEmpty, setCurrentUser} from './globalFunc';
 import {showError} from "./modules/common_api";
 
 
-export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch, getState) => {
+export const fetchOrdersByName = (chainName, dateFrom, dateTo) => (dispatch) => {
   const header = {headers: {SessionID: getToken()}};
   const url = `${BACKEND_URL}/orders/?chainName=${chainName}&start=${dateFrom}&end=${dateTo + ' 23:59:59'}`;
 
@@ -52,10 +52,10 @@ export const updateOrderRerun = (orderID) => (dispatch) => {
   const url = `${BACKEND_URL}/objects/${orderID}/restartChain`;
 
   axios.post(url).then(function () {
-    dispatch(success({message: "Успешно отправлено!"}));
+    dispatch(success({message: "Успешно сохранено!"}));
     dispatch(submitRerunOrderSucceed());
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+    dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
   });
 };
 
@@ -175,14 +175,15 @@ export const updateRegistrationForm = (payload, publicKey) => (dispatch) => {
  * Public key request
  */
 
-export const getPublicKeyLogin = (payload) => (dispatch) => {
+export const getPublicKeyLogin = (payload, goBack) => (dispatch) => {
+
   if (payload.login === "" || payload.password === "") {
     dispatch(error({message: "Ошибка: Не все поля заполнены"}));
     return;
   }
   const url = `${BACKEND_URL}/owners/login`;
   axios.get(url).then(function (response) {
-    dispatch(updateLoginForm(payload, response.data))
+    dispatch(updateLoginForm(payload, response.data, goBack))
   }).catch(function (response) {
     dispatch(showError(response));
   });
@@ -193,14 +194,14 @@ export const getPublicKeyLogin = (payload) => (dispatch) => {
  * If all OK go to homepage
  */
 
-export const updateLoginForm = (payload, publicKey) => (dispatch) => {
+export const updateLoginForm = (payload, publicKey, goBack) => (dispatch) => {
   let a = payload.password;
   encryptPassword(payload, publicKey);
   const url = `${BACKEND_URL}/owners/login`;
   axios.post(url, payload).then(function (response) {
     payload.token = response.data.token;
     setCurrentUser(payload.login, response.data);
-    window.location.hash = '#/launcher';
+    goBack();
 
   }).catch(function (response) {
     payload.password = a;
@@ -282,19 +283,19 @@ export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
   if (chainTemplate.value.modified) {
     const url = `${BACKEND_URL}/chain_templates/${chainTemplate.name}`;
     axios.post(url, [requestBody], header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(submitChainTemplateSucceed());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
     });
   }
   if (chainTemplate.value.new) {
     const url = `${BACKEND_URL}/chain_templates`;
     axios.put(url, [requestBody], header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(submitChainTemplateSucceed());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
     });
   }
 };
@@ -412,10 +413,10 @@ export const updateChainForm = (chainName, chain, idx) => (dispatch) => {
 
   const header = {headers: {SessionID: getToken()}};
   axios.post(url, [chain], header).then(function () {
-    dispatch(success({message: "Успешно отправлено!"}));
+    dispatch(success({message: "Успешно сохранено!"}));
     dispatch(updateChainFormSucceed(idx));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+    dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
   });
 };
 
@@ -483,20 +484,20 @@ export const submitTest = (testObject) => (dispatch, getState) => {
   if (testObject.test.modified) {
     const updateTestUrl = `${BACKEND_URL}/tests/${testObject.id}`;
     axios.post(updateTestUrl, result, header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(resetModificationMarkers());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
     });
   }
   if (testObject.test.new) {
     const addTestUrl = `${BACKEND_URL}/tests`;
 
     axios.put(addTestUrl, result, header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(resetModificationMarkers());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
     });
   }
 };
@@ -554,20 +555,20 @@ export const submitDataTemplates = (submitData) => (dispatch) => {
     const url = `${BACKEND_URL}/templates/${submitData.name}`;
 
     axios.post(url, [requestBody], header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(updateDataTemplateSuccess());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
     });
   }
   if (submitData.value.new) {
     const url = `${BACKEND_URL}/templates`;
 
     axios.put(url, [requestBody], header).then(function () {
-      dispatch(success({message: "Успешно отправлено!"}));
+      dispatch(success({message: "Успешно сохранено!"}));
       dispatch(updateDataTemplateSuccess());
     }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при отправке" + response}));
+      dispatch(error({message: "Произошла ошибка при сохранении" + response}));
     });
   }
 
@@ -608,7 +609,7 @@ export const submitFormTemplate = (params) => (dispatch) => {
   axios.put(url, [params], header).then(function (response) {
     dispatch(orderCreated(response.data.message));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+    dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
   });
 };
 
@@ -657,7 +658,7 @@ export const submitFormMembers = (params) => (dispatch) => {
   axios.post(url, [params], header).then(function (response) {
     dispatch(success({message: "Успешно обновлено!"}));
   }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка при отправке!" + response}));
+    dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
   });
 };
 

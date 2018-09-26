@@ -12,41 +12,33 @@ import {
   ListGroupItem,
   Panel,
   Row,
-  Modal,
 } from "react-bootstrap"
 import Notifications from 'react-notification-system-redux';
 import SearchBar from "../SearchBar";
 import {forceLogin} from '../../globalFunc';
 import './style.css';
+import Toolbar from "../toolbar";
 
 class DataTemplatesBuilderPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-
-    this.state = {
-      show: false
-    };
-  }
-
-  handleClose() {
-    this.setState({show: false});
-  }
-
-  handleShow() {
-    this.setState({show: true});
-  }
-
-  componentWillMount(){
+    this.props.fetchDataTemplates();
     forceLogin();
   }
 
-  componentDidMount() {
-    this.props.fetchDataTemplates();
-  }
+  renderSearch = () => {
+    const {dataTemplatesNames,onTemplateSelected } = this.props;
+
+    const searchOpt = dataTemplatesNames.map((dt, idx) => {
+      return {label: dt, value: idx};
+    });
+
+    return [
+      <SearchBar options={searchOpt} placeholder={'Поиск ...'}
+                 onOptionClick={onTemplateSelected}/>
+    ];
+  };
 
   renderTemplateBulder = () => {
     const {
@@ -55,13 +47,15 @@ class DataTemplatesBuilderPage extends React.Component {
       onDataTemplatesInputChange,
       templateNameChanged,
       addNewParam,
+      dataTemplatesNames,
+      submitTemplate
     } = this.props;
 
     return (
       <Form>
         <ListGroupItem bsStyle="success" style={{maxHeight: '800px', overflow: 'auto'}}>
           <FormGroup>
-            <Panel header={'Шаблон:'}>
+            <Panel header={'Параметры шаблона:'}>
               <Row>
                 <Col md={12}>
                   <InputGroup>
@@ -113,41 +107,7 @@ class DataTemplatesBuilderPage extends React.Component {
             </Panel>
           </FormGroup>
         </ListGroupItem>
-      </Form>
-    )
-  };
-
-  renderTemplatesList() {
-    const {dataTemplatesNames, dataTemplates, selectedTemplateIndex, onTemplateSelected} = this.props;
-    dataTemplatesNames.map((template, index) => {
-      if (this.props.match.params.datatemplatesName === template) {
-        onTemplateSelected(index);
-      }
-
-    });
-    return (dataTemplatesNames.map((template, index) =>
-      <ListGroupItem
-        onClick={() => onTemplateSelected(index)}
-        href={'/#/datatemplates/' + template}
-        active={index === selectedTemplateIndex}
-        key={index}
-      >
-        {template}
-        &nbsp;
-        &nbsp;
-        {dataTemplates[index].modified && <Label bsStyle="warning">Изменен</Label>}
-        {dataTemplates[index].new && <Label bsStyle="primary">Создан</Label>}
-      </ListGroupItem>
-    ));
-  }
-
-  render() {
-    const {addNewTemplate, dataTemplates, selectedTemplateIndex, submitTemplate, dataTemplatesNames, onTemplateSelected} = this.props;
-    const submit = (
-      [<Button className="pull-left" onClick={this.handleShow}>
-        <Glyphicon glyph='glyphicon glyphicon-question-sign'/>
-      </Button>,
-
+        <div className='spacer'/>
         <Button
           bsStyle="success"
           bsSize="large"
@@ -162,51 +122,42 @@ class DataTemplatesBuilderPage extends React.Component {
             })
           }}
         >
-          Отправить
-        </Button>,
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title><strong>Конструктор тестов</strong></Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>Чтобы редактировать шаблон, необходимо:</p>
-            <li type="square">Выбрать шаблон из списка слева</li>
-            <li type="square">Заполнить необходимые параметры шаблона в форме справа</li>
-            <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Отправить</li>
-            <br/>
-            <p>Чтобы создать новый параметр, необходимо:</p>
-            <li type="square">Нажать кнопку Добавить новый параметр</li>
-            <li type="square">Заполнить необходимые параметры в форме справа</li>
-            <li type="square">После того, как все изменения внесены, необходимо нажать кнопку Отправить</li>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.handleClose}>Закрыть</Button>
-          </Modal.Footer>
-        </Modal>,
-        <div className="clearfix"/>
-      ]
-    );
-    const searchOpt = dataTemplatesNames.map((dt, idx) => {
-      return {label: dt, value: idx};
-    });
+          <Glyphicon glyph='glyphicon glyphicon-floppy-disk'/>
+          Сохранить изменения
+        </Button>
+      </Form>
+    )
+  };
+
+  renderTemplatesList() {
+    const {dataTemplatesNames, dataTemplates, selectedTemplateIndex, onTemplateSelected} = this.props;
+    return (dataTemplatesNames.map((template, index) =>
+      <ListGroupItem
+        onClick={() => onTemplateSelected(index)}
+        active={index === selectedTemplateIndex}
+        key={index}
+      >
+        {template}
+        &nbsp;
+        &nbsp;
+        {dataTemplates[index].modified && <Label bsStyle="warning">Изменен</Label>}
+        {dataTemplates[index].new && <Label bsStyle="primary">Новый</Label>}
+      </ListGroupItem>
+    ));
+  }
+
+  render() {
+    const {addNewTemplate} = this.props;
     return (
       <div>
-        <Panel bsStyle='primary' header={submit} className={'data-templates-builder-main'}>
           <Grid fluid={true} >
             <Row key={'bla'}>
               <Col md={3}>
-                <Row>
-                  <SearchBar options={searchOpt} onOptionClick={onTemplateSelected} placeholder={'Поиск...'}/>
-                </Row>
-                <Row>
-                  <Button
-                    bsStyle="primary"
-                    className='btn-block'
-                    onClick={() => addNewTemplate()}
-                    key={'addNewTemplate'}
-                  >
-                    <Glyphicon glyph='glyphicon glyphicon-plus'/> Добавить новый шаблон...
-                  </Button>
+                <Toolbar
+                  onNewEntryAdded = {() => addNewTemplate()}
+                  additionalElement = {this.renderSearch()}
+                />
+                <Row style={{marginLeft: 0, marginRight: 0}}>
                   {this.renderTemplatesList()}
                 </Row>
               </Col>
@@ -215,7 +166,6 @@ class DataTemplatesBuilderPage extends React.Component {
               </Col>
             </Row>
           </Grid>
-        </Panel>
         <Notifications notifications={this.props.notifications}/>
       </div>
     )

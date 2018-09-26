@@ -20,6 +20,8 @@ import {
   clearTestFilter,
   applyTestsFilters,
 } from "../actions"
+import {info} from "react-notification-system-redux";
+import * as Notifications from "react-notification-system-redux";
 
 function mapStateToProps(state) {
   return {
@@ -36,6 +38,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    showPopup: (popup) => dispatch(info(popup)),
+    clearPopup: () => dispatch(Notifications.removeAll()),
     getTests: () => dispatch(testBuilderDataFetch()),
     setSelectedTestIndex: (index) => dispatch(testSelected(index)),
     testBuilderFormInputChanged: (newValue) => dispatch(testBuilderFormInputChanged(newValue)),

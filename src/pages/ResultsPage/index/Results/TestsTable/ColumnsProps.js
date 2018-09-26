@@ -31,3 +31,10 @@ export const tableColumnExtensions = [
   { columnName: 'status', width: 100, align: 'center'},
   { columnName: 'actions', width: 120, align: 'center'},
 ];
+
+export const groupingColumnExtensions = [
+  { columnName: 'id_order', groupingEnabled: false},
+  { columnName: 'start_time', groupingEnabled: false},
+  { columnName: 'progress', groupingEnabled: false},
+  { columnName: 'actions', groupingEnabled: false},
+];

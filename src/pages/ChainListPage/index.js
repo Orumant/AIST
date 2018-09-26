@@ -8,7 +8,7 @@ class ChainListPage extends React.Component {
   render() {
 
     return (
-      <PagePattern title="Реестр цепочек" content={<ChainList/>} help={<ChainEditorHelp/>}/>
+      <PagePattern title="Цепочки" content={<ChainList/>} help={<ChainEditorHelp/>}/>
     );
   }
 }

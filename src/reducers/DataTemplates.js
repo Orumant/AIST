@@ -45,6 +45,7 @@ const dataTemplatesBuilderReducer = (state = initialState, action) => {
     }
 
     case DATA_TEMPLATE_SELECTED: {
+
       return{
         ...state,
         selectedTemplateIndex: action.payload,
@@ -83,6 +84,7 @@ const dataTemplatesBuilderReducer = (state = initialState, action) => {
         modified: false,
         new: true,
       };
+      window.location.hash = `#/datatemplates/${newEntry.name}`;
       return {
         ...state,
         selectedTemplateIndex: 0,

@@ -3,8 +3,8 @@ import filterFactory from "react-bootstrap-table2-filter";
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
 import TestProgress from "./TestsTable/TestProgress";
-import {DownloadButton} from "./TestsTable/DownloadButton";
-import {ReplayButton} from "./TestsTable/ReplayButton";
+import {DownloadButton} from "./TestsTable/Cell/DownloadButton";
+import {ReplayButton} from "./TestsTable/Cell/ReplayButton";
 
 
 class TestsTableIE extends React.Component {
