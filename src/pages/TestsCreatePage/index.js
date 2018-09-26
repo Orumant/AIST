@@ -6,7 +6,7 @@ import TestMaster from "../../containers/TestsCreatePage/TestMaster";
 class TestsCreatePage extends React.Component {
 
   render() {
-    const testId = 116;//this.props.match.params.testId;
+    const testId = this.props.match.params.testId;
 
     return (
       <PagePattern title="Создание теста"
