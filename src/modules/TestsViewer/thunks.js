@@ -5,24 +5,32 @@ import {getToken} from "../../globalFunc";
 import {showError} from "../common_api";
 
 const header = {headers: {SessionID: getToken()}};
+const tests = `${BACKEND_URL}/tests`;
+const testsFilter = `${BACKEND_URL}/tests/filter`;
 
-const fetchAllDataNeeded = () => (dispatch) => {
-  const tests = `${BACKEND_URL}/tests`;
-  const systems = `${BACKEND_URL}/dictionaries/systems`;
-  const stands = `${BACKEND_URL}/dictionaries/stands`;
+const fetchTestsViewerTests = () => async (dispatch) => {
   dispatch(actions.dataLoadingStarted());
-
-  Promise.all([
-    axios.get(tests, header),
-    axios.get(systems, header),
-    axios.get(stands, header),
-  ]).then(function (data) {
-    dispatch(actions.fetchSucceed(data));
-  }).catch(function (response) {
+  try {
+    let response = await axios.get(tests, header);
+    dispatch(actions.fetchSucceed(response.data));
+  } catch (response) {
     dispatch(showError(response));
-  });
+    dispatch(actions.dataLoadingEnded());
+  }
+};
+
+const filterTests = (request) => async (dispatch) => {
+  dispatch(actions.dataLoadingStarted());
+  try {
+    let response = await axios.post(testsFilter, request, header);
+    dispatch(actions.fetchSucceed(response.data));
+  } catch (response) {
+    dispatch(showError(response));
+    dispatch(actions.dataLoadingEnded());
+  }
 };
 
 export default {
-  fetchAllDataNeeded,
+  fetchTestsViewerTests,
+  filterTests,
 }

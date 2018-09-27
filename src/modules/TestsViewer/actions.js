@@ -1,30 +1,26 @@
 import types from './types';
 
-const fetchSucceed = (data) => ({
-  type: types.TESTS_TABLE_FETCH_SUCCEED,
-  payload: {
-    tests: data[0].data,
-    systems: data[1].data,
-    stands: data[2].data,
-  }
-});
-
 const dataLoadingStarted = () => ({
   type: types.TESTS_TABLE_DATA_LOADING_STARTED,
 });
 
-const submitFilters = (filters) => ({
-  type: types.TESTS_TABLE_SUBMIT_FILTERS,
-  payload: filters,
+const dataLoadingEnded = () => ({
+  type: types.TESTS_TABLE_DATA_LOADING_ENDED,
 });
 
-const clearFilters = () => ({
-  type: types.TESTS_TABLE_CLEAR_FILTERS,
+const fetchSucceed = (payload) => ({
+  type: types.TESTS_TABLE_TESTS_FETCH_SUCCEED,
+  payload,
+});
+
+const filterByName = (name) => ({
+  type: types.TESTS_TABLE_FILTER_BY_NAME_TRIGGERED,
+  name,
 });
 
 export default {
-  fetchSucceed,
   dataLoadingStarted,
-  submitFilters,
-  clearFilters,
+  fetchSucceed,
+  dataLoadingEnded,
+  filterByName,
 }

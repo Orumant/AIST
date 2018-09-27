@@ -8,8 +8,8 @@ class SearchBar extends Component {
   render() {
     const {tests, ...others} = this.props;
     const filters = [
-      <FilterAS name='asystems' key={'system-filter'} tests={tests}/>,
-      <FilterStand name='stand' key={'stand-filter'}/>,
+      <FilterAS  name='asystem' key={'system-filter'} tests={tests}/>,
+      <FilterStand isMulti name='stands' key={'stand-filter'}/>,
       <FilterTag name='tags' key={'tag-filter'} tests={tests} />,
     ];
 

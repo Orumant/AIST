@@ -1,8 +1,8 @@
 import React from 'react';
-import TableCell from "@material-ui/core/es/TableCell/TableCell";
-import Tooltip from "@material-ui/core/es/Tooltip/Tooltip";
-import Typography from "@material-ui/core/es/Typography/Typography";
-import TableSortLabel from "@material-ui/core/es/TableSortLabel/TableSortLabel";
+import TableCell from "@material-ui/core/TableCell/TableCell";
+import Tooltip from "@material-ui/core/Tooltip/Tooltip";
+import Typography from "@material-ui/core/Typography/Typography";
+import TableSortLabel from "@material-ui/core/TableSortLabel/TableSortLabel";
 import {withStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Modal} from "react-bootstrap";
-import Typography from "@material-ui/core/es/Typography/Typography";
+import Typography from "@material-ui/core/Typography/Typography";
 import tBody from '../../assets/tBody.PNG';
 
 export default function TestsViewerHelp ({close}) {

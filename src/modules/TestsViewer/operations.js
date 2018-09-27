@@ -65,16 +65,7 @@ function getSortFunc(order, orderBy) {
  * @returns {string} - "1, 2, 3, 4"
  */
 const arrayToString = (arr) => {
-  let str = '';
-  arr.map((entity, index) => {
-    if (arr.length - 1 > index) {
-      str += `${entity}, `;
-    } else {
-      str += entity;
-    }
-    return null;
-  });
-  return str;
+  return arr.join(', ');
 };
 
 export default {

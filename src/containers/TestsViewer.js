@@ -6,17 +6,15 @@ function mapStateToProps(state) {
   return {
     isLoading: state.TestsTableReducer.isLoading,
     tests: state.TestsTableReducer.tests,
-    systems: state.TestsTableReducer.systems,
-    stands: state.TestsTableReducer.stands,
-    tags: state.TestsTableReducer.tags,
+    notifications: state.notifications,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchAllDataNeeded: () => dispatch(thunks.fetchAllDataNeeded()),
-    submitFilters: (filters) => dispatch(actions.submitFilters(filters)),
-    clearFilters: () => dispatch(actions.clearFilters()),
+    fetchTestsViewerTests: () => dispatch(thunks.fetchTestsViewerTests()),
+    filterTests: (filters) => dispatch(thunks.filterTests(filters)),
+    filterByName: (name) => dispatch(actions.filterByName(name)),
   }
 }
 
