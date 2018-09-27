@@ -9,7 +9,7 @@ class MainPage extends React.Component {
   render() {
 
     return (
-      <PagePattern title="Запуск цепочек" content={<MainMenu/>} help={<LauncherHelp/>}/>
+      <PagePattern title="" content={<MainMenu/>} help={<LauncherHelp/>}/>
     );
   }
 }

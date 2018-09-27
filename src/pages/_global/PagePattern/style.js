@@ -12,7 +12,7 @@ export const styles = theme => ({
     width: '100%',
   },
   drawerHeader: {
-    display: 'flex',
+    display: 'none',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
@@ -21,7 +21,7 @@ export const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
+    // padding: theme.spacing.unit * 3,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

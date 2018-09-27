@@ -20,8 +20,10 @@ class NavPanel extends React.Component {
     return (
           <AppBar
             className={classNames(classes.appBar)}
+            style={{    backgroundColor: 'transparent !important',
+              position: 'fixed',}}
           >
-            <Toolbar>
+            <Toolbar style={{backgroundColor: 'transparent !important', position: 'fixed', width: '100%'}}>
               <IconButton
                 color="inherit"
                 aria-label="Open drawer"
