@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 
 import {styles} from "./style";
-import SnackbarContent from "@material-ui/core/es/SnackbarContent/SnackbarContent";
+import SnackbarContent from "@material-ui/core/SnackbarContent/SnackbarContent";
 
 
 class AlertPopup extends React.Component {
