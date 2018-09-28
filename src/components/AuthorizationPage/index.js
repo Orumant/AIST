@@ -81,7 +81,7 @@ class AuthorizationPage extends React.Component {
   render() {
     return (
       <div onKeyDown={this.handleEnterKeyPress} className="form">
-          <Modal.Dialog>
+          <Modal.Dialog className={"image-background"}>
             <Modal.Header>
               <Modal.Title>
                 Авторизация

@@ -1,3 +1,8 @@
 html {
   font-size: 100%;
 }
+
+.image-background {
+  background-image: url(./assets/trianglify_full.svg);
+  background-size: cover;
+}

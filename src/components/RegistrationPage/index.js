@@ -34,7 +34,7 @@ class RegistrationPage extends React.Component {
     return (
 
       <div className="form">
-          <Modal.Dialog>
+          <Modal.Dialog className={"image-background"}>
             <Modal.Header>
               <Modal.Title>
                 Создать пользователя
