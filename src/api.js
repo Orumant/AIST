@@ -160,16 +160,13 @@ export const encryptPassword = (payload, publicKey) => {
  */
 
 export const updateRegistrationForm = (payload, publicKey, history) => (dispatch) => {
-  let a = payload.password;
   encryptPassword(payload, publicKey);
-  history.push({pathname: '/', state: {from: 'registration'}});
-  // const url = `${BACKEND_URL}/owners/registration`;
-  // axios.put(url, payload).then(function (response) {
-  //   history.push({pathname: '/', state: {from: 'registration'}});
-  //   // window.location.hash = '#/';
-  // }).catch(function (response) {
-  //   dispatch(showError(response));
-  // });
+  const url = `${BACKEND_URL}/owners/registration`;
+  axios.put(url, payload).then(function (response) {
+    history.push({pathname: '/', state: {from: 'registration'}});
+  }).catch(function (response) {
+    dispatch(showError(response));
+  });
 
 };
 /**

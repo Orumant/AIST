@@ -11,8 +11,7 @@ import {
 } from 'react-bootstrap'
 import Notifications, {error} from 'react-notification-system-redux';
 import {isUserLoggedIn} from '../../globalFunc';
-import BrowserAlert from '../../containers/BrowserAlert'
-import TrianglifyFull from '../../assets/trianglify_full.svg'
+import BrowserAlert from '../../containers/BrowserAlert';
 
 const divAlert=(<p>Напишите запрос по электронной почте на адрес <a href="mailto:SBT-Ogoltcov-AA1@mail.ca.sbrf.ru">Огольцова Андрея Алексеевича</a></p>);
 
@@ -83,7 +82,7 @@ class AuthorizationPage extends React.Component {
   render() {
     return (
       <div onKeyDown={this.handleEnterKeyPress} className="form">
-          <Modal.Dialog style={{backgroundImage: `url(${TrianglifyFull})`, backgroundSize: 'cover'}}>
+          <Modal.Dialog className={"image-background"}>
             <Modal.Header>
               <Modal.Title>
                 Авторизация

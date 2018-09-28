@@ -35,7 +35,7 @@ class RegistrationPage extends React.Component {
     return (
 
       <div className="form">
-          <Modal.Dialog style={{backgroundImage: `url(${TrianglifyFull})`, backgroundSize: 'cover'}}>
+          <Modal.Dialog className={"image-background"}>
             <Modal.Header>
               <Modal.Title>
                 Создать пользователя
