@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
-import {thunks, actions} from '../modules/TestsViewer/index'
-import TestsViewer from "../pages/TestsViever/index/TestsViewer";
+import {thunks, actions} from '../../modules/TestsViewer/index'
+import TestsViewer from "../../pages/TestsViever/index/TestsViewer";
 
 function mapStateToProps(state) {
   return {

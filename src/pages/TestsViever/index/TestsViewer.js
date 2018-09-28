@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TestsTable from "./TestsViewer/TestsTable";
 import PageContent from "../../_global/PageContent";
-import SearchBar from "./TestsViewer/SearchBar";
+import SearchBar from "../../../containers/TestViewer/SearchBar";
 import Notifications from "react-notification-system-redux";
 import FilterByName from "./TestsViewer/FilterByName";
 
@@ -30,7 +30,7 @@ class TestsViewer extends Component {
                    isFilter
                    tools={<FilterByName style={{width: '50%'}} id={1} onChange={this.handleNameSearching} value={this.state.name}/>}
                    FilterBar={
-                     <SearchBar tests={tests} submit={filterTests} startRequest={{}}/>
+                     <SearchBar submit={filterTests} startRequest={{}}/>
                    }
                    content={[
                      <TestsTable tests={tests}/>,

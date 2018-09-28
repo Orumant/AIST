@@ -5,6 +5,12 @@ import FilterStand from "../../../../containers/_global/FilterStand";
 import FilterTag from "../../../_global/filters/FilterTags";
 
 class SearchBar extends Component {
+
+  componentDidMount() {
+    const {fetchTests} = this.props;
+    fetchTests();
+  }
+
   render() {
     const {tests, ...others} = this.props;
     const filters = [
