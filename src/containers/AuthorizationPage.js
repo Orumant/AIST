@@ -4,6 +4,7 @@ import {loginPasswordChange} from "../actions";
 import {getPublicKeyLogin} from "../api";
 
 function mapStateToProps(state) {
+  // console.log(state)
   return {
     paramNames: state.dataAuthorization.paramNames,
     notifications: state.notifications,

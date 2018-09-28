@@ -12,6 +12,7 @@ import {
 import Notifications, {error} from 'react-notification-system-redux';
 import {isUserLoggedIn} from '../../globalFunc';
 import BrowserAlert from '../../containers/BrowserAlert'
+import TrianglifyFull from '../../assets/trianglify_full.svg'
 
 const divAlert=(<p>Напишите запрос по электронной почте на адрес <a href="mailto:SBT-Ogoltcov-AA1@mail.ca.sbrf.ru">Огольцова Андрея Алексеевича</a></p>);
 
@@ -72,7 +73,8 @@ class AuthorizationPage extends React.Component {
 
   HandleLoginButtonCLick() {
     const {loginPasswordChange, loginButtonClicked, history, notifications} = this.props;
-    const goBack = history.length > 1? history.goBack: () => window.location.hash = '#/launcher';
+    const fromRegister = history && history.location.state && history.location.state.from === "registration";
+    const goBack = !fromRegister && history.length > 1  ? history.goBack: () => window.location.hash = '#/launcher';
     loginPasswordChange({value: this.state.login, key: "name"});
     loginPasswordChange({value: this.state.password, key: "password"});
     loginButtonClicked(this.state, goBack);
@@ -81,7 +83,7 @@ class AuthorizationPage extends React.Component {
   render() {
     return (
       <div onKeyDown={this.handleEnterKeyPress} className="form">
-          <Modal.Dialog>
+          <Modal.Dialog style={{backgroundImage: `url(${TrianglifyFull})`, backgroundSize: 'cover'}}>
             <Modal.Header>
               <Modal.Title>
                 Авторизация

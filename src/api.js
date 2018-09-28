@@ -123,7 +123,7 @@ export const updatePersonalForm = (payload) => (dispatch) => {
  * Public key request for create account
  */
 
-export const getPublicKeyRegistration = (payload) => (dispatch) => {
+export const getPublicKeyRegistration = (payload, history) => (dispatch) => {
   if (payload.login === "" || payload.password === "" || payload.confirmPassword === "") {
     dispatch(error({message: "Ошибка: Не все поля заполнены"}));
     return;
@@ -135,7 +135,7 @@ export const getPublicKeyRegistration = (payload) => (dispatch) => {
 
   const url = `${BACKEND_URL}/owners/registration`;
   axios.get(url).then(function (response) {
-    dispatch(updateRegistrationForm(payload, response.data))
+    dispatch(updateRegistrationForm(payload, response.data, history))
   }).catch(function (response) {
     dispatch(showError(response));
   });
@@ -159,15 +159,17 @@ export const encryptPassword = (payload, publicKey) => {
  * If all OK create account
  */
 
-export const updateRegistrationForm = (payload, publicKey) => (dispatch) => {
+export const updateRegistrationForm = (payload, publicKey, history) => (dispatch) => {
   let a = payload.password;
   encryptPassword(payload, publicKey);
-  const url = `${BACKEND_URL}/owners/registration`;
-  axios.put(url, payload).then(function (response) {
-    window.location.hash = '#/';
-  }).catch(function (response) {
-    dispatch(showError(response));
-  });
+  history.push({pathname: '/', state: {from: 'registration'}});
+  // const url = `${BACKEND_URL}/owners/registration`;
+  // axios.put(url, payload).then(function (response) {
+  //   history.push({pathname: '/', state: {from: 'registration'}});
+  //   // window.location.hash = '#/';
+  // }).catch(function (response) {
+  //   dispatch(showError(response));
+  // });
 
 };
 /**
