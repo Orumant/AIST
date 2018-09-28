@@ -3,8 +3,8 @@ const drawerWidth = 240;
 export const styles = theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    // backgroundColor: 'rgb(67, 136, 204)',
-    // position: 'absolute',
+    backgroundColor: 'rgb(67, 136, 204)',
+    position: 'absolute',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

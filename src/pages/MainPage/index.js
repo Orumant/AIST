@@ -1,15 +1,21 @@
 import React from 'react';
-import Launcher from "../../containers/Launcher";
-import PagePattern from '../_global/PagePattern';
 import LauncherHelp from "./help";
 import MainMenu from "./index/MainMenu";
+import NavPanel from "./index/MainMenu/NavPanel";
+import Grid from "@material-ui/core/es/Grid/Grid";
+import MainTitle from "./index/MainTitle";
 
 class MainPage extends React.Component {
 
   render() {
-
     return (
-      <PagePattern title="" content={<MainMenu/>} help={<LauncherHelp/>}/>
+      <div className="image-background">
+        <NavPanel help={<LauncherHelp/>} />
+        <Grid container style={{ height: '100%'}}>
+          <MainTitle/>
+          <MainMenu/>
+        </Grid>
+      </div>
     );
   }
 }
