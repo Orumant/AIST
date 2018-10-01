@@ -9,9 +9,9 @@ class MainPage extends React.Component {
 
   render() {
     return (
-      <div className="image-background">
+      <div className="image-background" style={{minHeight: '100vh'}}>
         <NavPanel help={<MainHelp/>} />
-        <Grid container style={{ height: '100%'}}>
+        <Grid container>
           <MainTitle/>
           <MainMenu/>
         </Grid>

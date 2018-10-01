@@ -19,7 +19,7 @@ export const styles = theme => ({
   menuPaper: {
     display: 'flex',
     justifyContent: 'center',
-    margin: '24px 0px 10%',
+    margin: '24px 0px',
 },
   menuContent: {
     padding: "70px 0px",
