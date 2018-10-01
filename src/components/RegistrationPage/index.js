@@ -2,6 +2,7 @@ import React from 'react'
 import {Button, Col, ControlLabel, FormControl, Form, FormGroup, Modal} from "react-bootstrap";
 import Notifications from "react-notification-system-redux";
 
+
 class RegistrationPage extends React.Component {
 
   state = {
@@ -23,11 +24,11 @@ class RegistrationPage extends React.Component {
   }
 
   CreateAccount() {
-    const {loginPasswordChange, ReqistrationButtonClick} = this.props;
+    const {loginPasswordChange, ReqistrationButtonClick, history} = this.props;
     loginPasswordChange({value: this.state.login, key: "name"});
     loginPasswordChange({value: this.state.password, key: "password"});
     loginPasswordChange({value: this.state.confirmPassword, key: "confirmPassword"});
-    ReqistrationButtonClick(this.state);
+    ReqistrationButtonClick(this.state, history);
   }
 
   render() {
