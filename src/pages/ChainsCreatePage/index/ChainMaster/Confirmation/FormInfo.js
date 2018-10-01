@@ -2,8 +2,7 @@ import React from 'react';
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/es/ListItemAvatar/ListItemAvatar";
-import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
+import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 
@@ -13,7 +12,8 @@ import indigo from '@material-ui/core/colors/indigo'
 
 import {withStyles} from "@material-ui/core/styles";
 import {styles} from "./style";
-import Tooltip from "@material-ui/core/es/Tooltip/Tooltip";
+import Tooltip from "@material-ui/core/Tooltip/Tooltip";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar/ListItemAvatar";
 
 class TestInfo extends React.Component {
 

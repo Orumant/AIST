@@ -50,7 +50,7 @@ class Launcher extends Component {
       reqNumber: 1,
       startDate: null,
       formReady: false,
-      standIndex: 0,
+      standIndex: null,
       groups: [],
       chain: CHAIN_PLACEHOLDER,
     }
@@ -75,7 +75,7 @@ class Launcher extends Component {
           chain: value,
           selectedChain: value.value,
           selectedTemplates: [],
-          standIndex: 0,
+          standIndex: null,
         });
       } else {
         this.setState({
@@ -83,7 +83,7 @@ class Launcher extends Component {
           chain: value,
           formReady: false,
           selectedChain: value.value,
-          standIndex: 0,
+          standIndex: null,
         });
         this.fillFormData(value.value);
       }
@@ -268,6 +268,7 @@ class Launcher extends Component {
             && chains[this.state.selectedChain].form.length > 0 ?
               chains[this.state.selectedChain].stands !== undefined
               && chains[this.state.selectedChain].stands.length > 0 ?
+
                 <ButtonGroup className={'pull-right'}>
                   <OverlayTrigger
                     placement="top"
@@ -279,7 +280,7 @@ class Launcher extends Component {
                       style={{backgroundColor: '#337ab7', color: 'white'}}
                       title={this.state.standIndex !== null
                         ? chains[this.state.selectedChain].stands[this.state.standIndex]
-                        : 'Пусто'}
+                        : 'Выберите контур'}
                       onSelect={this.handleStandSelection}
                     >
                       {chains[this.state.selectedChain].stands
