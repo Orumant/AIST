@@ -264,14 +264,12 @@ class Launcher extends Component {
         {this.state.selectedChain !== null
         && chains[this.state.selectedChain].form.length > 0 ? [
           <Col md={6}>
-            {console.log(chains[this.state.selectedChain])}
             {this.state.selectedChain !== null
             && chains[this.state.selectedChain].form.length > 0 ?
               chains[this.state.selectedChain].stands !== undefined
               && chains[this.state.selectedChain].stands.length > 0 ?
 
                 <ButtonGroup className={'pull-right'}>
-                  {console.log(this.state.standIndex)}
                   <OverlayTrigger
                     placement="top"
                     overlay={setTooltip('standSelect', 'Выберите тестовый контур')}
