@@ -31,8 +31,18 @@
   height: 5vh;
   width: 100%;
 }
-.bla {
-  color: #868e96;
+
+.table-body > td:not(:first-child) {
+  border-right: #CCCCCC solid 1px;
+}
+
+.table-header > th:not(:first-child) {
+  border-right: #CCCCCC solid 1px;
+  vertical-align: middle;
+}
+
+.table-header > th:nth-child(n+3) {
+  text-align: center;
 }
 
 .btn-column-content {
@@ -44,6 +54,6 @@
   text-align: center !important;
 }
 
-.table-cell{
+.table-cell {
   vertical-align: middle !important;
 }

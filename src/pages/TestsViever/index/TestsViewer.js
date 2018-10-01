@@ -4,6 +4,14 @@ import PageContent from "../../_global/PageContent";
 import SearchBar from "../../../containers/TestViewer/SearchBar";
 import Notifications from "react-notification-system-redux";
 import FilterByName from "./TestsViewer/FilterByName";
+import ClearIcon from '@material-ui/icons/Clear';
+
+const style = {
+  position: 'absolute',
+  left: 40,
+  top: 88,
+  width: '40%'
+};
 
 class TestsViewer extends Component {
   constructor(props) {
@@ -25,17 +33,28 @@ class TestsViewer extends Component {
   render() {
     const {isLoading, tests, notifications, filterTests} = this.props;
 
-    return(
+    const tools =
+      <div style={style}>
+        <FilterByName id={'searchTestsByNameInputField'}
+                      onChange={this.handleNameSearching}
+                      value={this.state.name} style={{width: '90%'}}/>
+        {this.state.name.length > 0 &&
+        <ClearIcon onClick={() => this.handleNameSearching('')}
+                   style={{width: '10px !important', cursor: 'pointer'}}/>}
+      </div>;
+    const filterBar = <SearchBar tests={tests} submit={filterTests} startRequest={{}}/>;
+
+    const content = [
+      <TestsTable tests={tests}/>,
+      <Notifications key='results-notification' notifications={notifications}/>,
+    ];
+
+    return (
       <PageContent isLoading={isLoading}
                    isFilter
-                   tools={<FilterByName style={{width: '50%'}} id={1} onChange={this.handleNameSearching} value={this.state.name}/>}
-                   FilterBar={
-                     <SearchBar submit={filterTests} startRequest={{}}/>
-                   }
-                   content={[
-                     <TestsTable tests={tests}/>,
-                     <Notifications key='results-notification' notifications={notifications}/>
-                   ]}/>
+                   tools={tools}
+                   FilterBar={filterBar}
+                   content={content}/>
     )
   }
 }

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import FormControl from "@material-ui/core/es/FormControl/FormControl";
-import InputLabel from "@material-ui/core/es/InputLabel/InputLabel";
-import Input from "@material-ui/core/es/Input/Input";
+import FormControl from "@material-ui/core/FormControl/FormControl";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import Input from "@material-ui/core/Input/Input";
 
-class FilterByName extends Component{
+class FilterByName extends Component {
   render() {
-    return(
-      <FormControl margin={'dense'} style={{width: '50%'}}>
+    return (
+      <FormControl margin={'dense'} style={this.props.style || {}}>
         <InputLabel>Поиск по имени</InputLabel>
         <Input id={this.props.id}
                onChange={(event) => this.props.onChange(event.target.value)}
@@ -18,4 +18,5 @@ class FilterByName extends Component{
     )
   }
 }
+
 export default FilterByName;

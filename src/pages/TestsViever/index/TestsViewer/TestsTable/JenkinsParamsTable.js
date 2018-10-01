@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow/TableRow";
 import TableCell from "@material-ui/core/TableCell/TableCell";
 import TableBody from "@material-ui/core/TableBody/TableBody";
 import DialogActions from "@material-ui/core/DialogActions/DialogActions";
+import Typography from "@material-ui/core/Typography/Typography";
 
 const fields = [
   {
@@ -47,8 +48,8 @@ export default function ({...props}) {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Параметр</TableCell>
-              <TableCell>Значение</TableCell>
+              <TableCell><Typography variant={"subheading"}>Параметр</Typography></TableCell>
+              <TableCell><Typography variant={"subheading"}>Значение</Typography></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

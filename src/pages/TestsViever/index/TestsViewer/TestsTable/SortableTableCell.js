@@ -17,16 +17,16 @@ const styles = theme => ({
 
 class SortableTableCell extends React.Component {
   render() {
-    const {tooltipTitle, cellWidth, classes, isActive, order, onClick, columnLabel} = this.props;
+    const {tooltipTitle, cellWidth, classes, isActive, order, onClick, columnLabel, placement = 'top'} = this.props;
     return (
       <TableCell style={{width: cellWidth}}>
         <Tooltip title={<Typography style={{color: 'white'}} variant={"body2"}>{tooltipTitle}</Typography>}
-                 placement={"top"}
+                 placement={placement}
                  classes={{tooltip: classes.tooltip}}>
           <TableSortLabel active={isActive}
                           direction={order} classes={{icon: classes.icon}}
                           onClick={onClick}>
-            <Typography variant={"title"} >{columnLabel}</Typography>
+            <Typography variant={"title"}>{columnLabel}</Typography>
           </TableSortLabel>
         </Tooltip>
       </TableCell>
@@ -44,6 +44,7 @@ SortableTableCell.propTypes = {
   order: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   columnLabel: PropTypes.string,
+  placement: PropTypes.string,
 };
 
 export default withStyles(styles)(SortableTableCell)

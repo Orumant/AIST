@@ -18,8 +18,15 @@ import {isObjectEmpty} from "../../../../globalFunc";
 
 
 const styles = theme => ({
-  tooltip: {
-    backgroundColor: 'rgb(67, 136, 204)'
+  button: {
+    '&:hover': {
+      background: 'rgb(58, 101, 160)',
+      color: 'white',
+      border: 'none'
+    },
+    background: 'rgb(67, 136, 204)',
+    color: 'white',
+    border: 'none'
   }
 });
 
@@ -58,102 +65,114 @@ class TestsExpandableList extends Component {
     const {page, rowsPerPage, dialogOpen, order, orderBy} = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tests.length - page * rowsPerPage);
     return (
-        <Table className={'table'}>
-          <TableHead>
+      <Table className={'table'}>
+        <TableHead>
+          <TableRow className={'table-header'}>
+            <TableCell padding={"checkbox"}/>
+            <SortableTableCell order={order}
+                               onClick={this.handleSortDirectionChange('test_name')}
+                               columnLabel={'Наименование'}
+                               placement={'right'}
+                               isActive={orderBy === 'test_name'}
+                               tooltipTitle={'Сортировать по наименованию'}
+                               cellWidth={'30vw'}/>
+            <SortableTableCell order={order}
+                               onClick={this.handleSortDirectionChange('stands')}
+                               columnLabel={'Стенды'}
+                               isActive={orderBy === 'stands'}
+                               tooltipTitle={'Сортировать по стендам'}/>
+            <SortableTableCell order={order}
+                               onClick={this.handleSortDirectionChange('a_system')}
+                               columnLabel={'АС'}
+                               isActive={orderBy === 'a_system'}
+                               tooltipTitle={'Сортировать по АС'}/>
+            <TableCell>
+              <Typography variant={"title"}>
+                Статические теги
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant={"title"}>
+                Динамические теги
+              </Typography>
+            </TableCell>
+            <TableCell className={'btn-column-header'}>
+              <Typography variant={"title"}>
+                Параметры Jenkins
+              </Typography>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        {tests.length > 0 ?
+          <TableBody>
+            {tests.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map(test =>
+                <TableRow hover key={test.test_id} className={'table-body'}>
+                  <TableCell padding={"checkbox"}>
+                    <IconButton>
+                      <EditIcon/>
+                    </IconButton>
+                  </TableCell>
+                  <TableCell className={'table-cell'}>
+                    <Typography variant={"subheading"}>
+                      {test.test_name}
+                    </Typography>
+                  </TableCell>
+                  <TableCell className={'table-cell'}>
+                    <Typography variant={"subheading"}>
+                      {operations.arrayToString(test.stands)}
+                    </Typography>
+                  </TableCell>
+                  <TableCell className={'table-cell'}>
+                    <Typography variant={"subheading"}>
+                      {test.a_system}
+                    </Typography>
+                  </TableCell>
+                  <TableCell className={'table-cell'}>
+                    <Typography variant={"subheading"}>
+                      {operations.arrayToString(test.tag_names.static)}
+                    </Typography>
+                  </TableCell>
+                  <TableCell className={'table-cell'}>
+                    <Typography variant={"subheading"}>
+                      {operations.arrayToString(test.tag_names.dynamic)}
+                    </Typography>
+                  </TableCell>
+                  <TableCell className={'btn-column-content'}>
+                    {!isObjectEmpty(test.job_trigger) ?
+                      <Button onClick={() => this.setState({dialogOpen: test.test_id})}
+                              classes={{root: this.props.classes.button}} variant={"outlined"}>Показать</Button>
+                      : null
+                    }
+                    <JenkinsParamsTable isOpen={dialogOpen === test.test_id}
+                                        onClose={this.handleModalTableClosed}
+                                        jobTrigger={test.job_trigger}/>
+                  </TableCell>
+                </TableRow>
+              )}
+            {emptyRows > 0 && <TableRow style={{height: 65 * emptyRows}}><TableCell colSpan={7}/></TableRow>}
             <TableRow>
-              <TableCell padding={"checkbox"}/>
-              <SortableTableCell order={order}
-                                 onClick={this.handleSortDirectionChange('test_name')}
-                                 columnLabel={'Наименование'}
-                                 isActive={orderBy === 'test_name'}
-                                 tooltipTitle={'Сортировать по наименованию'}
-                                 cellWidth={'30vw'}/>
-              <SortableTableCell order={order}
-                                 onClick={this.handleSortDirectionChange('stands')}
-                                 columnLabel={'Стенды'}
-                                 isActive={orderBy === 'stands'}
-                                 tooltipTitle={'Сортировать по стендам'}/>
-              <SortableTableCell order={order}
-                                 onClick={this.handleSortDirectionChange('a_system')}
-                                 columnLabel={'АС'}
-                                 isActive={orderBy === 'a_system'}
-                                 tooltipTitle={'Сортировать по АС'}/>
-              <TableCell>
-                <Typography variant={"title"}>
-                  Статические теги
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant={"title"}>
-                  Динамические теги
-                </Typography>
-              </TableCell>
-              <TableCell className={'btn-column-header'}>
-                <Typography variant={"title"}>
-                  Параметры Jenkins
-                </Typography>
+              <TablePagination className={'pagination'}
+                               count={tests.length}
+                               labelRowsPerPage={'Элементов на странице'}
+                               rowsPerPage={rowsPerPage}
+                               labelDisplayedRows={({from, to, count}) => `${from} - ${to} из ${count}`}
+                               onChangeRowsPerPage={(event) => this.setState({rowsPerPage: event.target.value})}
+                               page={page}
+                               variant={'footer'}
+                               onChangePage={this.handlePageChange}/>
+            </TableRow>
+          </TableBody>
+          :
+          <TableBody>
+            <TableRow style={{height: 65 * rowsPerPage}}>
+              <TableCell colSpan={7} style={{verticalAlign: 'middle', textAlign: 'center'}}>
+                <Typography variant={"display1"}>Результаты не найдены</Typography>
               </TableCell>
             </TableRow>
-          </TableHead>
-          {tests.length > 0 ?
-            <TableBody>
-              {tests.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(test =>
-                  <TableRow hover key={test.test_id} className={'table-body'}>
-                    <TableCell padding={"checkbox"}>
-                      <IconButton>
-                        <EditIcon style={{fill: 'rgb(67, 136, 204)'}}/>
-                      </IconButton>
-                    </TableCell>
-                    <TableCell className={'table-cell'}>
-                      <Typography variant={"subheading"}>
-                        {test.test_name}
-                      </Typography>
-                    </TableCell>
-                    <TableCell className={'table-cell'}>
-                      {operations.arrayToString(test.stands)}
-                    </TableCell>
-                    <TableCell className={'table-cell'}>
-                      {test.a_system}
-                    </TableCell>
-                    <TableCell className={'table-cell'}>
-                      {operations.arrayToString(test.tag_names.static)}
-                    </TableCell>
-                    <TableCell className={'table-cell'}>
-                      {operations.arrayToString(test.tag_names.dynamic)}
-                    </TableCell>
-                    <TableCell className={'btn-column-content'}>
-                      {!isObjectEmpty(test.job_trigger) ?
-                        <Button onClick={() => this.setState({dialogOpen: test.test_id})}>Показать</Button>
-                        : null
-                      }
-                      <JenkinsParamsTable isOpen={dialogOpen === test.test_id}
-                                          onClose={this.handleModalTableClosed}
-                                          jobTrigger={test.job_trigger}/>
-                    </TableCell>
-                  </TableRow>
-                )}
-              {emptyRows > 0 && <TableRow style={{height: 65 * emptyRows}}><TableCell colSpan={7}/></TableRow>}
-              <TableRow>
-                <TablePagination className={'pagination'}
-                                 count={tests.length}
-                                 rowsPerPage={rowsPerPage}
-                                 onChangeRowsPerPage={(event) => this.setState({rowsPerPage: event.target.value})}
-                                 page={page}
-                                 variant={'footer'}
-                                 onChangePage={this.handlePageChange}/>
-              </TableRow>
-            </TableBody>
-            :
-            <TableBody>
-              <TableRow style={{height: 65 * rowsPerPage}}>
-                <TableCell colSpan={7} style={{verticalAlign: 'middle', textAlign: 'center'}}>
-                  <Typography variant={"display1"}>Результаты не найдены</Typography>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          }
-        </Table>
+          </TableBody>
+        }
+      </Table>
     )
   }
 }
