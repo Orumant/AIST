@@ -2,16 +2,13 @@ import React from 'react'
 import {Button, Modal} from "react-bootstrap";
 
 
-class LauncherHelp extends React.Component {
+class MainHelp extends React.Component {
 
   render() {
     const {close} = this.props;
 
     const content = [
-      <p>Для запуска цепочки:</p>,
-      <li type="square">Выбрать цепочку из списка</li>,
-      <li type="square">Заполнить параметры запуска</li>,
-      <li type="square">Нажать кнопку Запуск</li>,
+      <p>Для перехода в нужный модуль просто кликните по его иконке</p>,
     ];
 
     return (
@@ -33,5 +30,5 @@ class LauncherHelp extends React.Component {
   }
 }
 
-export default LauncherHelp
+export default MainHelp
 

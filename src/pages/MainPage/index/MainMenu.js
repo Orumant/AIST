@@ -6,13 +6,14 @@ import MenuItem from "./MainMenu/MenuItem";
 import Chain from '../../../assets/link.svg';
 import DataDir from '../../../assets/archives.svg';
 import Test from '../../../assets/puzzle.svg';
-import Pattern from '../../../assets/atom.svg';
+import Template from '../../../assets/atom.svg';
 import Grafana from '../../../assets/pie-chart.svg';
 import Result from '../../../assets/trophy.svg';
 import Start from '../../../assets/startup.svg';
 import {withStyles} from '@material-ui/core/styles';
 import {styles} from "./style";
 import './style.css';
+import Descriptions from "./MainMenu/Descriptions";
 
 class MainMenu extends React.Component {
 
@@ -20,14 +21,14 @@ class MainMenu extends React.Component {
     const {classes} = this.props;
 
     const Items = [
-      {name: "Цепочки", description: "Что-то там про цепочки", icon: Chain, link: '/chains'},
-      {name: "Тесты", description: "Что-то там про цепочки", icon: Test, link: '/testbuilder'},
-      {name: "Шаблоны", description: "Что-то там про цепочки", icon: Pattern, link: '/datatemplates'},
-      {name: "Запуск", description: "Что-то там про цепочки", icon: Start, link: '/launcher'},
-      {name: "Результаты", description: "Что-то там про цепочки", icon: Result, link: '/results'},
-      {name: "Справочник", description: "Что-то там про цепочки", icon: DataDir, link: '/datadirectory'},
+      {name: "Тесты", description: Descriptions.tests, icon: Test, link: '/testbuilder'},
+      {name: "Цепочки", description: Descriptions.chains, icon: Chain, link: '/chains'},
+      {name: "Шаблоны", description: Descriptions.template, icon: Template, link: '/datatemplates'},
+      {name: "Запуск", description: Descriptions.start, icon: Start, link: '/launcher'},
+      {name: "Результаты запусков", description: Descriptions.results, icon: Result, link: '/results'},
+      {name: "Тестовые данные", description: Descriptions.datadirectory, icon: DataDir, link: '/datadirectory'},
       {
-        name: "Статистика", description: "Что-то там про цепочки", icon: Grafana,
+        name: "Статистика", description: Descriptions.grafana, icon: Grafana,
         link: 'http://sbt-ot-289.ca.sbrf.ru:8069/dashboard/db/obshchaia-statistika'
       },
     ];
