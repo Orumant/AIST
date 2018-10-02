@@ -65,7 +65,6 @@ class ChainMaster extends React.Component {
 
   updateData = () => {
     const {fetchAllData, chainId, chain_data} = this.props;
-    console.log(chain_data)
     const update = {...this.state.needUpdate};
     for (let page in update)
       update[page] = true;
