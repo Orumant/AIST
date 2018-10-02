@@ -32,7 +32,6 @@ import SelectSingle from "./pages/_global/select/SelectSimple";
 import SuccessPage from "./pages/ChainsCreatePage/index/SuccessPage";
 import DataTemplatesPage from "./pages/DataTemplatesPage/index";
 import TestsViewer from './pages/TestsViever';
-import MainMenu from "./pages/MainPage/index/MainMenu";
 import MainPage from "./pages/MainPage";
 
 
