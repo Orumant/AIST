@@ -10,6 +10,7 @@ class TestStands extends React.Component {
 
     return (
       <SelectSimple
+        key={'select-stand-test'}
         isMulti
         options={standList}
         onChange={onChange}

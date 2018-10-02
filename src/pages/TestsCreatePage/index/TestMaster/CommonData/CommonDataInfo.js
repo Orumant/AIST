@@ -9,16 +9,16 @@ class CommonDataInfo extends React.Component {
   render() {
     const{classes} = this.props;
     return [
-      <Grid item xs={6}>
-        <div className={'info-form'}>
-          <div style={{marginTop: '24px', textAlign: 'right'}}>
+      <Grid key={'grid-common-data-info'} item xs={6}>
+        <div key={'div-common-data-info'} className={'info-form'}>
+          <div key={'div-common-data-info-title'} style={{marginTop: '24px', textAlign: 'right'}}>
             <Typography variant={'title'} style={{color: 'rgba(67, 136, 204, 0.7)'}}>Инфо</Typography>
           </div>
-          <div className={'info-block'} style={{marginTop: '12px'}}>
+          <div key={'div-common-data-info-subheading'} className={'info-block'} style={{marginTop: '12px'}}>
             <Typography variant={'subheading'}>Название</Typography>
             <span>Название теста</span>
           </div>
-          <div className={'info-block'} style={{marginTop: '12px'}}>
+          <div key={'div-common-data-info-subheading2'} className={'info-block'} style={{marginTop: '12px'}}>
             <Typography variant={'subheading'}>АС</Typography>
             <span>Название АС</span><br/>
             <span>В случае, если вы не нашли нужную АС в списке - просьба создать
@@ -31,10 +31,10 @@ class CommonDataInfo extends React.Component {
                     className={classes.button}>Создать
               тикет</Button><br/>
           </div>
-          <div className={'info-block'} style={{marginTop: '12px'}}>
+          <div key={'div-common-data-info-subheading3'} className={'info-block'} style={{marginTop: '12px'}}>
             <Typography variant={'subheading'}>Контур</Typography>
             <span>Контуры, на которых будет выполняться тест</span>
-            <div style={{color: '#f50057'}}>В списке отображаются контуры, доступные в АИСТ</div>
+            <div key={'div-common-data-info-hint'} style={{color: '#f50057'}}>В списке отображаются контуры, доступные в АИСТ</div>
           </div>
         </div>
       </Grid>

@@ -15,11 +15,11 @@ class Confirmation extends React.Component {
     const {classes, data, ...handleNavigation} = this.props;
 
     return [
-      <Paper className={classes.stepContent}>
-        <Grid key={'info-grid-container'} container>
-          <CommonInfo key={'common-info'} data={data}/>
-          <JenkinsInfo key={'jenkins-info'} data={data}/>
-          <TagsInfo key={'tags-info'} data={data}/>
+      <Paper className={classes.stepContent} key={'confirmation-paper'}>
+        <Grid key={'confirmation-grid-container'} container>
+          <CommonInfo key={'common-info-grid-item'} data={data}/>
+          <JenkinsInfo key={'jenkins--grid-info'} data={data}/>
+          <TagsInfo key={'tags-grid-info'} data={data}/>
         </Grid>
       </Paper>,
       <PageNavigation key={'navigation-common-data'} test_data={data} {...handleNavigation}/>

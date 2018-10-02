@@ -78,20 +78,28 @@ class TestMaster extends React.Component {
     const {needUpdate} = this.state;
     switch (step) {
       case 0:
-        return <CommonData needUpdate={needUpdate.commonData}
-                           dataUpdated={() => this.dataUpdated('commonData')}
-                           data={test_data} asAll={dataAll.as} standsAll={dataAll.stands}
-                           isCreation={isCreation}/>;
+        return <CommonData
+          key={'test-master-page-commom-data'}
+          needUpdate={needUpdate.commonData}
+          dataUpdated={() => this.dataUpdated('commonData')}
+          data={test_data} asAll={dataAll.as} standsAll={dataAll.stands}
+          isCreation={isCreation}/>;
       case 1:
-        return <JenkinsParams needUpdate={needUpdate.job_trigger}
-                              dataUpdated={() => this.dataUpdated('job_trigger')}
-                              data={test_data}/>;
+        return <JenkinsParams
+          key={'test-master-page-jenkins-params'}
+          needUpdate={needUpdate.job_trigger}
+          dataUpdated={() => this.dataUpdated('job_trigger')}
+          data={test_data}/>;
       case 2:
-        return <TagParams needUpdate={needUpdate.tag_names}
-                          dataUpdated={() => this.dataUpdated('tag_names')}
-                          data={test_data}/>;
+        return <TagParams
+          key={'test-master-page-tag-params'}
+          needUpdate={needUpdate.tag_names}
+          dataUpdated={() => this.dataUpdated('tag_names')}
+          data={test_data}/>;
       case 3:
-        return <Confirmation data={test_data}/>;
+        return <Confirmation
+          key={'test-master-page-confirmation'}
+          data={test_data}/>;
       default:
         return 'Произошла ошибка';
     }
@@ -116,9 +124,9 @@ class TestMaster extends React.Component {
       });
 
     return [
-      <div key={'test-master-main-div'}>
-        {isFetching ? Spinner : <div key={'test-master-common-data-div'}>
-          <div key={'test-master-root-div'} className={classes.root}>
+      <div key={'test-master-page-main-div'}>
+        {isFetching ? Spinner : <div key={'test-master-page-form-div'}>
+          <div key={'test-master-page-root-div'} className={classes.root}>
             <Stepper activeStep={activeStep} orientation={'vertical'} className={classes.stepperRoot}>
               {steps.map((label) =>
                 <Step key={label}>
@@ -126,7 +134,7 @@ class TestMaster extends React.Component {
                 </Step>
               )}
             </Stepper>
-            <div key={'test-master-step-page-div'} style={{flexGrow: '1'}}>
+            <div key={'test-master-page-step-div'} style={{flexGrow: '1'}}>
               {getStepPage(activeStep)}
             </div>
             <Notifications key={'results-notification'} notifications={notifications}/>

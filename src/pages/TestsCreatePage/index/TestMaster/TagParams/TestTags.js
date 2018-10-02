@@ -7,6 +7,7 @@ class TestAs extends React.Component {
     const {tags, onChange, helpText} = this.props;
     return (
       <SelectCreatable
+        key={'tag-params-select'}
         isMulti
         options={[]}
         helpText={helpText}

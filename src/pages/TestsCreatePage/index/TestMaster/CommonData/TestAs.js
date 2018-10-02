@@ -14,6 +14,7 @@ class TestAs extends React.Component {
                    error={isError}
       >
       <SelectSimple
+        key={'select-as-test'}
         options={asList}
         helpText={'Выберите АС для теста. Параметр обязателен'}
         onChange={onChange}

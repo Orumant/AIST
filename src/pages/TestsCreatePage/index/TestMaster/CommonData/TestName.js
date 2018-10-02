@@ -10,9 +10,11 @@ class TestName extends React.Component {
 
     return (
       <FormControl fullWidth
+                   key={'input-test-name-form-control'}
                    error={isError}
       >
-        <Input value={value}
+        <Input key={'input-test-name'}
+               value={value}
                onChange={onChange}
         />
         <FormHelperText>Название не может быть пустым</FormHelperText>

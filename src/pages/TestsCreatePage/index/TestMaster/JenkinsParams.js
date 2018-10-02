@@ -65,7 +65,7 @@ class JenkinsParams extends React.Component {
         this.setJobTrigger(job_trigger) : {
           'job_url': '',
           'login': '',
-          'password': '',
+          'passOrToken': '',
         },
     };
     this.setState(initialState);
@@ -75,10 +75,18 @@ class JenkinsParams extends React.Component {
     const {handleNext} = this.props;
     if (this.state.authType === 0 &&
       (this.state.job_trigger.login.length === 0 ||
-        this.state.job_trigger.password.length === 0)) {
+        this.state.job_trigger.passOrToken.length === 0)) {
       this.setState({isError: true})
     }
     else {
+      if (this.state.authType === 1) {
+        const url = this.state.job_trigger.job_url;
+        data.job_trigger = {
+            'job_url': url,
+            'login': '',
+            'passOrToken': '',
+          };
+      }
       this.setState({isError: false});
       handleNext(data)
     }
@@ -88,14 +96,16 @@ class JenkinsParams extends React.Component {
     const {job_trigger, isError, authType} = this.state;
     const {classes, handleNext, ...handleNavigation} = this.props;
     return [
-      <Paper className={classes.stepContent}>
+      <Paper className={classes.stepContent} key={'jenkins-params-paper'}>
         <Grid key={'jenkins-params-grid-container'} container>
           <Grid key={'jenkins-params-grid-item'} item xs={6}>
-            <TestJobParams data={job_trigger}
-                           authType={authType}
-                           handleChange={this.handleChange}
-                           onChange={this.changeInput}
-                           isError={isError}/>
+            <TestJobParams
+              key={'jenkins-params-job'}
+              data={job_trigger}
+              authType={authType}
+              handleChange={this.handleChange}
+              onChange={this.changeInput}
+              isError={isError}/>
           </Grid>
           {JenkinsParamsInfo}
         </Grid>

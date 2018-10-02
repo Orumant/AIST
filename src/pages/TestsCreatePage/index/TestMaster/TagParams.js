@@ -71,16 +71,20 @@ class TagParams extends React.Component {
     const item = (label, form) => <div className={'input-item-form'}>{label}{form}</div>;
 
     return [
-      <Paper className={classes.stepContent}>
-        <Grid key={'tag-grid-container'} container>
-          <Grid key={'tag-grid-item'} item xs={6}>
-            {item('Статические теги', <TestTags tags={static_tags}
-                                                helpText={'Введите статические теги через enter...'}
-                                                onChange={option => this.changeInput('static_tags', option)}/>)}
+      <Paper className={classes.stepContent} key={'tag-params-paper'}>
+        <Grid key={'tag-params-grid-container'} container>
+          <Grid key={'tag-params-grid-item'} item xs={6}>
+            {item('Статические теги', <TestTags
+              key={'tag-params-static'}
+              tags={static_tags}
+              helpText={'Введите статические теги через enter...'}
+              onChange={option => this.changeInput('static_tags', option)}/>)}
 
-            {item('Динамические теги', <TestTags tags={dynamic_tags}
-                                                 helpText={'Введите динамические теги через enter...'}
-                                                 onChange={option => this.changeInput('dynamic_tags', option)}/>)}
+            {item('Динамические теги', <TestTags
+              key={'tag-params-dynamic'}
+              tags={dynamic_tags}
+              helpText={'Введите динамические теги через enter...'}
+              onChange={option => this.changeInput('dynamic_tags', option)}/>)}
           </Grid>
           {TagParamsInfo}
         </Grid>

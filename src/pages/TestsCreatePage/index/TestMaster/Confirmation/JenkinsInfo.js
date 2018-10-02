@@ -22,8 +22,9 @@ class TestInfo extends React.Component {
         <Typography variant="title" className={classes.gridTitle}>Параметры Jenkins</Typography>
         <div key={'jenkins-div-info'} style={{display: 'flex'}} className={classes.confirmForm}>
           {field('URL Job', job_trigger.job_url)}
-          {field('Логин Jenkins', job_trigger.login)}
-          {field('Пароль Jenkins', job_trigger.password)}
+          {job_trigger.login ? field( 'Логин Jenkins', job_trigger.login) :
+            field('Авторизация', 'Авторизация по токену')}
+          {job_trigger.passOrToken ? field('Пароль Jenkins', '************'): null}
         </div>
       </Grid>
     )

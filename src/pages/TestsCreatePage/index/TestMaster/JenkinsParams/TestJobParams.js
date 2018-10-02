@@ -10,33 +10,41 @@ class TestJobParams extends React.Component {
     const {data, authType, onChange, handleChange, isError} = this.props;
     const item = (label, form) => <div className={'input-item-form'}>{label}{form}</div>;
     return (
-      <FormControl fullWidth error={isError}>
-        <Tabs value={authType}
-              onChange={handleChange}
-              indicatorColor={'primary'}
-              textColor={'primary'}
+      <FormControl fullWidth error={isError} key={'jenkins-params-job-form-control'}>
+        <Tabs
+          key={'jenkins-params-job-tabs'}
+          value={authType}
+          onChange={handleChange}
+          indicatorColor={'primary'}
+          textColor={'primary'}
         >
-          <Tab label={'Авторизация по логину/паролю'}>
+          <Tab key={'jenkins-params-job-tab1'} label={'Авторизация по логину/паролю'}>
           </Tab>
-          <Tab label={'Авторизация по токену'}>
+          <Tab key={'jenkins-params-job-tab2'} label={'Авторизация по токену'}>
           </Tab>
         </Tabs>
-        {item('URL Job', <TestInputJobParam value={data.job_url}
-                                            help={'URL адрес должен быть валидным'}
-                                            onChange={e => onChange('job_url', e.target.value)}/>)}
+        {item('URL Job', <TestInputJobParam
+          key={'jenkins-params-job-url-job'}
+          value={data.job_url}
+          help={'URL адрес должен быть валидным'}
+          onChange={e => onChange('job_url', e.target.value)}/>)}
         {authType === 0 &&
         item('Логин Jenkins*',
-          <TestInputJobParam value={data.login}
-                             help={'Логин не может быть пустым'}
-                             onChange={e => onChange('login', e.target.value)}
-                             isError={isError}/>)}
+          <TestInputJobParam
+            key={'jenkins-params-job-login'}
+            value={data.login}
+            help={'Логин не может быть пустым'}
+            onChange={e => onChange('login', e.target.value)}
+            isError={isError}/>)}
         {authType === 0 &&
         item('Пароль Jenkins*',
-          <TestInputJobParam value={data.password}
-                             help={'Пароль не может быть пустым'}
-                             onChange={e => onChange('password', e.target.value)}
-                             type={'password'}
-                             isError={isError}/>)}
+          <TestInputJobParam
+            key={'jenkins-params-job-paassword'}
+            value={data.passOrToken}
+            help={'Пароль не может быть пустым'}
+            onChange={e => onChange('passOrToken', e.target.value)}
+            type={'password'}
+            isError={isError}/>)}
       </FormControl>
     )
   }

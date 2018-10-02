@@ -87,20 +87,26 @@ class CommonData extends React.Component {
     const item = (label, form) => <div className={'input-item-form'}>{label}{form}</div>;
 
     return [
-      <Paper className={classes.stepContent}>
-        <Grid key={'common-grid-container'} container>
-          <Grid key={'common-grid-item'} item xs={6}>
-            {item('Название*', <TestName value={test_name}
-                                         onChange={e => this.changeInput('test_name', e.target.value)}
-                                         isError={isError}/>)}
-            {item('АС*', <TestAs as={a_system}
-                                 asAll={asAll}
-                                 isError={isError}
-                                 onChange={option => this.changeInput('a_system', option)}/>)}
+      <Paper className={classes.stepContent} key={'common-data-page'}>
+        <Grid container>
+          <Grid item xs={6}>
+            {item('Название*', <TestName
+              key={'common-data-test-name-field'}
+              value={test_name}
+              onChange={e => this.changeInput('test_name', e.target.value)}
+              isError={isError}/>)}
+            {item('АС*', <TestAs
+              key={'common-data-test-as-field'}
+              as={a_system}
+              asAll={asAll}
+              isError={isError}
+              onChange={option => this.changeInput('a_system', option)}/>)}
 
-            {item('Контур', <TestStands stands={stands}
-                                        standsAll={standsAll}
-                                        onChange={option => this.changeInput('stands', option)}/>)}
+            {item('Контур', <TestStands
+              key={'common-data-test-stand-field'}
+              stands={stands}
+              standsAll={standsAll}
+              onChange={option => this.changeInput('stands', option)}/>)}
           </Grid>
           <CommonDataInfo key={'common-data-info'} classes={classes}/>
         </Grid>
