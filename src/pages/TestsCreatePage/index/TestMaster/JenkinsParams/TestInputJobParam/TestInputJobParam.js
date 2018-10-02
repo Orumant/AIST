@@ -6,12 +6,11 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 class TestInputJobParam extends React.Component {
 
   render() {
-    const {value, onChange, isError, type, help} = this.props;
-
+    const {value, onChange, isError, type, help, keyIn} = this.props;
     return (
-      <FormControl fullWidth error={isError}
-      >
+      <FormControl fullWidth error={isError} key={keyIn+'-form-control'}>
         <Input
+          key={keyIn}
           type={type}
           value={value}
           onChange={onChange}

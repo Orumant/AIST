@@ -98,7 +98,7 @@ class AuthorizationPage extends React.Component {
                   <Col sm={10}>
                     <FormControl className="form-control"
                                  type="text"
-                                 value={this.state.login}
+                                 value={this.state.login ? this.state.login : ''}
                                  onChange={e => this.ChangeLP({value: e.target.value, key: "name"})}
                                  label="Логин"
                                  placeholder="Введите логин"/>
@@ -113,7 +113,7 @@ class AuthorizationPage extends React.Component {
                   <Col sm={10}>
                     <FormControl className="form-control"
                                  type="password"
-                                 value={this.state.password}
+                                 value={this.state.password ? this.state.password : ''}
                                  onChange={e => this.ChangeLP({value: e.target.value, key: "password"})}
                                  label="Пароль"
                                  placeholder="Введите пароль"/>

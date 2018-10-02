@@ -1,5 +1,6 @@
 import React from 'react';
 import TestInputJobParam from './TestInputJobParam/TestInputJobParam'
+import TestInputJobParamPassword from './TestInputJobParam/TestInputJobParamPassword'
 import FormControl from "@material-ui/core/FormControl";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -24,26 +25,25 @@ class TestJobParams extends React.Component {
           </Tab>
         </Tabs>
         {item('URL Job', <TestInputJobParam
-          key={'jenkins-params-job-url-job'}
+          keyIn={'jenkins-params-job-url-job'}
           value={data.job_url}
           help={'URL адрес должен быть валидным'}
           onChange={e => onChange('job_url', e.target.value)}/>)}
         {authType === 0 &&
         item('Логин Jenkins*',
           <TestInputJobParam
-            key={'jenkins-params-job-login'}
+            keyIn={'jenkins-params-job-login'}
             value={data.login}
             help={'Логин не может быть пустым'}
             onChange={e => onChange('login', e.target.value)}
             isError={isError}/>)}
         {authType === 0 &&
         item('Пароль Jenkins*',
-          <TestInputJobParam
-            key={'jenkins-params-job-paassword'}
+          <TestInputJobParamPassword
+            keyIn={'jenkins-params-job-password'}
             value={data.passOrToken}
             help={'Пароль не может быть пустым'}
             onChange={e => onChange('passOrToken', e.target.value)}
-            type={'password'}
             isError={isError}/>)}
       </FormControl>
     )
