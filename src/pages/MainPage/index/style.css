@@ -1,0 +1,39 @@
+.item-card {
+  margin: 0px 15px;
+  max-width: 360px;
+  padding: 32px 0px 16px;
+  text-align: center;
+  border: solid 2px #fff;
+  flex-grow: 1;
+  border-radius: 20px;
+}
+.item-card:hover {
+  border: solid 2px #d3d3d3;
+  cursor: pointer;
+}
+
+.info-title {
+  margin: 1.75rem 0 0.875rem !important;
+}
+
+.info {
+  font-size: 16px !important;
+  line-height: 1.6em !important;
+  color: #999 !important;
+}
+.info-row {
+  display: flex;
+  justify-content: center;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+}
+
+.page-title-block {
+  padding-top: 70px;
+  width: 100%;
+  text-align: center;
+}
+

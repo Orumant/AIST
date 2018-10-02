@@ -18,9 +18,7 @@ class NavPanel extends React.Component {
     const { classes, title, handleClick, help} = this.props;
 
     return (
-          <AppBar
-            className={classNames(classes.appBar)}
-          >
+          <AppBar className={classNames(classes.appBar, "image-background")}>
             <Toolbar>
               <IconButton
                 color="inherit"
@@ -33,7 +31,7 @@ class NavPanel extends React.Component {
                 color="inherit"
                 aria-label="Open drawer"
                 className={classNames(classes.homeButton)}
-                onClick={()=> window.location.hash = '#/launcher'}
+                onClick={()=> window.location.hash = '#/main'}
               >
                 <HomeIcon />
               </IconButton>

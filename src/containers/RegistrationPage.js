@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    ReqistrationButtonClick : (payload) => dispatch(getPublicKeyRegistration(payload)),
+    ReqistrationButtonClick : (payload, history) => dispatch(getPublicKeyRegistration(payload, history)),
     loginPasswordChange : (payload) => dispatch(loginPasswordChange(payload))
   }
 }
