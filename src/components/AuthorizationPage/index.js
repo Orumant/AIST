@@ -46,7 +46,7 @@ class AuthorizationPage extends React.Component {
 
   componentWillMount(){
     if (isUserLoggedIn()){
-      window.location.hash = '#/launcher';
+      window.location.hash = '#/main';
     }
   }
 
