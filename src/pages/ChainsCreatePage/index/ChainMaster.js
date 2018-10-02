@@ -19,7 +19,7 @@ class ChainMaster extends React.Component {
 
   state = {
     activeStep: 0,
-    name: '',
+    id: '',
     needUpdate: {
       commonData: false,
       tests: false,
@@ -44,8 +44,8 @@ class ChainMaster extends React.Component {
   };
 
   submit = (chain_data, history) => {
-    const {submitNewChainData, submitEditedChainData, chainName, isCopy} = this.props;
-    if (chainName && !isCopy) submitEditedChainData(chainName, chain_data, history);
+    const {submitNewChainData, submitEditedChainData, chainId, isCopy} = this.props;
+    if (chainId && !isCopy) submitEditedChainData(chainId, chain_data, history);
     else submitNewChainData(chain_data, history);
   };
 
@@ -64,13 +64,14 @@ class ChainMaster extends React.Component {
   }
 
   updateData = () => {
-    const {fetchAllData, chainName} = this.props;
+    const {fetchAllData, chainId, chain_data} = this.props;
+    console.log(chain_data)
     const update = {...this.state.needUpdate};
     for (let page in update)
       update[page] = true;
-    if (chainName !== this.state.name) {
-      this.setState({name: chainName, needUpdate: update});
-      fetchAllData(chainName);
+    if (chainId !== this.state.id) {
+      this.setState({id: chainId, needUpdate: update});
+      fetchAllData(chainId);
     }
   };
 
@@ -84,8 +85,8 @@ class ChainMaster extends React.Component {
   };
 
   getStepContent = (step) => {
-    const { dataAll, chain_data, chainName} = this.props;
-    const isCreation = !Boolean(chainName);
+    const { dataAll, chain_data, chainId} = this.props;
+    const isCreation = !Boolean(chainId);
     const {needUpdate} = this.state;
     switch (step) {
       case 0:

@@ -4,8 +4,8 @@ import {getToken} from '../../../globalFunc';
 import actions from './actions'
 import {showError} from "../../common_api";
 
-export const fetchAllData = (chain_name) => (dispatch) => {
-  const urlChain = `${BACKEND_URL}/chain_templates/${chain_name}`;
+export const fetchAllData = (chain_id) => (dispatch) => {
+  const urlChain = `${BACKEND_URL}/chain_templates/${chain_id}`;
   const urlTests = `${BACKEND_URL}/tests`;
   const urlTemplates = `${BACKEND_URL}/chain_templates`;
   const urlGroups = `${BACKEND_URL}/owners/personal/getGroups`;
@@ -15,7 +15,7 @@ export const fetchAllData = (chain_name) => (dispatch) => {
     axios.get(urlTemplates, header),
     axios.get(urlTests, header),
     axios.get(urlGroups, header),
-    chain_name ? axios.get(urlChain, header) : null,
+    chain_id ? axios.get(urlChain, header) : null,
   ])
     .then(([templates, tests, groups, chain_data]) =>
       dispatch(actions.dataFetchSucceed(templates.data, tests.data, groups.data, chain_data? chain_data.data: null)))
@@ -51,8 +51,8 @@ export const submitNewChainData = (chain_data, history) => (dispatch) => {
     });
 };
 
-export const submitEditedChainData = (chain_name, chain_data, history) => (dispatch) => {
-  const url = `${BACKEND_URL}/chain_templates/${chain_name}`;
+export const submitEditedChainData = (chain_id, chain_data, history) => (dispatch) => {
+  const url = `${BACKEND_URL}/chain_templates/${chain_id}`;
   const header = {headers: {SessionID: getToken()}};
   dispatch(actions.startFetching());
   const data = dataToRequest(chain_data);

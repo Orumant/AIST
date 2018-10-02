@@ -15,18 +15,18 @@ export const CreateButton = () =>
     Создать
   </Button>;
 
-export const EditButton = (chain_name) =>
+export const EditButton = (chain_id) =>
   <IconButton
     component={Link}
-    to={`/chains/${chain_name}`}
+    to={`/chains/${chain_id}`}
     title="Редактировать">
     <EditIcon/>
   </IconButton>;
 
-export const CloneButton = (chain_name) =>
+export const CloneButton = (chain_id) =>
   <IconButton
     component={Link}
-    to={`/chains/${chain_name}/copy`}
+    to={`/chains/${chain_id}/copy`}
     title="Копировать">
     <ContentCopyIcon/>
   </IconButton>;

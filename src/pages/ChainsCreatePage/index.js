@@ -7,12 +7,12 @@ import ChainMaster from "../../containers/ChainsCreatePage/ChainMaster";
 class ChainsCreatePage extends React.Component {
 
   render() {
-    const chainName = this.props.match.params.chainName;
+    const chainId = this.props.match.params.chainId;
     const isCopy = this.props.match.path.indexOf("/copy") !== -1;
 
     return (
       <PagePattern title="Создание цепочки"
-                   content={<ChainMaster isCopy={isCopy} chainName={chainName}/>}
+                   content={<ChainMaster isCopy={isCopy} chainId={chainId}/>}
                    help={<Help/>}/>
     );
   }
