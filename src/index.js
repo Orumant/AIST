@@ -32,6 +32,9 @@ import SelectSingle from "./pages/_global/select/SelectSimple";
 import SuccessPage from "./pages/ChainsCreatePage/index/SuccessPage";
 import DataTemplatesPage from "./pages/DataTemplatesPage/index";
 import TestsViewer from './pages/TestsViever';
+import MainMenu from "./pages/MainPage/index/MainMenu";
+import MainPage from "./pages/MainPage";
+
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -63,6 +66,7 @@ ReactDOM.render((
             <Route path="/datatemplates/:datatemplatesName" component={DataTemplatesPage}/>
             <Route exact path='/chainTemplateList' component={ChainsListPage}/>
             <Route exact path="/datatemplates" component={DataTemplatesPage}/>
+            <Route path="/main" component={MainPage}/>
             <Route path="/homepage" component={HomePage}/>
             <Route exact path='/tests' component={TestsViewer}/>
             <Route path="/TDME2E" component={TDME2E}/>

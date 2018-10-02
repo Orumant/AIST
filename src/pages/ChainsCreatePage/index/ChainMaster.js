@@ -12,7 +12,7 @@ import Loading from 'react-loading';
 import SelectTest from "../../../containers/ChainsCreatePage/ChainMaster/SelectTest";
 import CreateForm from "../../../containers/ChainsCreatePage/ChainMaster/CreateForm";
 import Confirmation from "./ChainMaster/Confirmation";
-import StepContent from "@material-ui/core/es/StepContent/StepContent";
+import StepContent from "@material-ui/core/StepContent/StepContent";
 
 
 class ChainMaster extends React.Component {
