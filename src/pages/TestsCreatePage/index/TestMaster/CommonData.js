@@ -39,7 +39,7 @@ class CommonData extends React.Component {
     }
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.updateData();
   }
 
@@ -53,19 +53,21 @@ class CommonData extends React.Component {
 
   updateData = () => {
     const {data, asAll, standsAll} = this.props;
-    const {test_name, a_system, stands} = data;
-    const standList = arrayToOptions(filterPropertyFromObjects(standsAll, 'code'));
-    const asList = arrayToOptions(filterPropertyFromObjects(asAll, 'code'));
+    if (data && asAll && standsAll) {
+      const {test_name, a_system, stands} = data;
+      const standList = arrayToOptions(filterPropertyFromObjects(standsAll, 'code'));
+      const asList = arrayToOptions(filterPropertyFromObjects(asAll, 'code'));
 
-    const initialState = {
-      test_name: test_name ? test_name : '',
-      a_system: a_system ? getOptionByLabel(a_system, asList) : '',
-      stands: stands ? stands.map(stand => {
-        const option = getOptionByLabel(stand, standList);
-        return option ? option : {label: stand, value: stand}
-      }) : [],
-    };
-    this.setState(initialState);
+      const initialState = {
+        test_name: test_name ? test_name : '',
+        a_system: a_system ? getOptionByLabel(a_system, asList) : '',
+        stands: stands ? stands.map(stand => {
+          const option = getOptionByLabel(stand, standList);
+          return option ? option : {label: stand, value: stand}
+        }) : [],
+      };
+      this.setState(initialState);
+    }
   };
 
   onNext = (data) => {

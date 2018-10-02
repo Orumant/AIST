@@ -6,7 +6,7 @@ class TestStands extends React.Component {
 
   render() {
     const {stands, standsAll, onChange} = this.props;
-    const standList = arrayToOptions(filterPropertyFromObjects(standsAll, 'code'));
+    const standList = standsAll? arrayToOptions(filterPropertyFromObjects(standsAll, 'code')) : [];
 
     return (
       <SelectSimple

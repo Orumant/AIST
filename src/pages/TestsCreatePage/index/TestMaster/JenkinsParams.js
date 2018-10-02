@@ -37,7 +37,7 @@ class JenkinsParams extends React.Component {
     }
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.updateData();
   }
 

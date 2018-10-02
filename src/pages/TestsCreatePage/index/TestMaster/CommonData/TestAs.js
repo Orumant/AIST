@@ -7,7 +7,7 @@ class TestAs extends React.Component {
 
   render() {
     const {as, asAll, onChange, isError} = this.props;
-    const asList = arrayToOptions(filterPropertyFromObjects(asAll, 'code'));
+    const asList = asAll? arrayToOptions(filterPropertyFromObjects(asAll, 'code')) : [];
 
     return (
       <FormControl fullWidth

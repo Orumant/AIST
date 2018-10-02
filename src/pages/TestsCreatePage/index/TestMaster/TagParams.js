@@ -29,7 +29,7 @@ class TagParams extends React.Component {
     }
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.updateData();
   }
 
