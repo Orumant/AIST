@@ -24,7 +24,7 @@ class ChainsTable extends React.Component {
     const { chains_editable } = this.props;
     return <span>
       {CloneButton(row.id)}
-      {chains_editable.indexOf(row.name) !== -1 ? EditButton(row.id) : null}
+      {chains_editable.indexOf(row.id) !== -1 ? EditButton(row.id) : null}
       </span>};
 
   openModal = (cell) => {
