@@ -7,10 +7,9 @@ import FilterByName from "./TestsViewer/FilterByName";
 import ClearIcon from '@material-ui/icons/Clear';
 
 const style = {
-  position: 'absolute',
-  left: 40,
-  top: 88,
-  width: '40%'
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
 };
 
 class TestsViewer extends Component {
@@ -34,7 +33,7 @@ class TestsViewer extends Component {
     const {isLoading, tests, notifications, filterTests} = this.props;
 
     const tools =
-      <div style={style}>
+      <div style={{width: '50%'}} key={'SearchByNameField'}>
         <FilterByName id={'searchTestsByNameInputField'}
                       onChange={this.handleNameSearching}
                       value={this.state.name} style={{width: '90%'}}/>
@@ -45,7 +44,7 @@ class TestsViewer extends Component {
     const filterBar = <SearchBar tests={tests} submit={filterTests} startRequest={{}}/>;
 
     const content = [
-      <TestsTable tests={tests}/>,
+      <TestsTable key={'TestsViewerTable'} tests={tests}/>,
       <Notifications key='results-notification' notifications={notifications}/>,
     ];
 
@@ -54,7 +53,8 @@ class TestsViewer extends Component {
                    isFilter
                    tools={tools}
                    FilterBar={filterBar}
-                   content={content}/>
+                   content={content}
+                   toolbarStyle={style}/>
     )
   }
 }
