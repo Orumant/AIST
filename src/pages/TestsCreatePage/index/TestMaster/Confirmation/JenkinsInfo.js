@@ -24,7 +24,8 @@ class TestInfo extends React.Component {
           {field('URL Job', job_trigger.job_url)}
           {job_trigger.login ? field( 'Логин Jenkins', job_trigger.login) :
             field('Авторизация', 'Авторизация по токену')}
-          {job_trigger.passOrToken ? field('Пароль Jenkins', '************'): null}
+          {job_trigger.passOrToken ?
+            field(job_trigger.login ? 'Пароль Jenkins' : 'Токен Jenkins', '************'): null}
         </div>
       </Grid>
     )

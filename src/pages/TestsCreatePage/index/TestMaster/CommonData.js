@@ -73,7 +73,7 @@ class CommonData extends React.Component {
   onNext = (data) => {
     const {handleNext} = this.props;
     if (this.state.test_name === null || this.state.a_system === null ||
-      this.state.test_name.length === 0 || this.state.a_system.length === 0
+      this.state.test_name.length === 0 || this.state.a_system.length === 0 || this.state.stands.length === 0
     ) {
       this.setState({isError: true})
     }
@@ -108,6 +108,7 @@ class CommonData extends React.Component {
               key={'common-data-test-stand-field'}
               stands={stands}
               standsAll={standsAll}
+              isError={isError}
               onChange={option => this.changeInput('stands', option)}/>)}
           </Grid>
           <CommonDataInfo key={'common-data-info'} classes={classes}/>

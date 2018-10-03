@@ -5,7 +5,7 @@ import actions from './actions'
 import {showError} from "../../common_api";
 
 export const fetchAllData = (test_id) => (dispatch) => {
-  const urlTest= `${BACKEND_URL}/tests/${test_id}`;
+  const urlTest = `${BACKEND_URL}/tests/${test_id}`;
   const urlStands = `${BACKEND_URL}/dictionaries/stands`;
   const urlAs = `${BACKEND_URL}/dictionaries/systems`;
   const header = {headers: {SessionID: getToken()}};
@@ -15,8 +15,9 @@ export const fetchAllData = (test_id) => (dispatch) => {
     axios.get(urlStands, header),
     test_id ? axios.get(urlTest, header) : null,
   ])
-    .then(([as, stands, test_data]) =>{
-      dispatch(actions.dataFetchSucceed(as.data, stands.data, test_data? test_data.data[0]: null));})
+    .then(([as, stands, test_data]) => {
+      dispatch(actions.dataFetchSucceed(as.data, stands.data, test_data ? test_data.data[0] : null));
+    })
     .catch(response => {
       dispatch(actions.endFetching());
       dispatch(showError(response));

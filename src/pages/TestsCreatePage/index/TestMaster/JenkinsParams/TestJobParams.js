@@ -27,6 +27,7 @@ class TestJobParams extends React.Component {
         {item('URL Job', <TestInputJobParam
           keyIn={'jenkins-params-job-url-job'}
           value={data.job_url}
+          isError={isError}
           help={'URL адрес должен быть валидным'}
           onChange={e => onChange('job_url', e.target.value)}/>)}
         {authType === 0 &&
@@ -43,6 +44,14 @@ class TestJobParams extends React.Component {
             keyIn={'jenkins-params-job-password'}
             value={data.passOrToken}
             help={'Пароль не может быть пустым'}
+            onChange={e => onChange('passOrToken', e.target.value)}
+            isError={isError}/>)}
+        {authType === 1 &&
+        item('Токен Jenkins*',
+          <TestInputJobParamPassword
+            keyIn={'jenkins-params-job-token'}
+            value={data.passOrToken}
+            help={'Токен не может быть пустым'}
             onChange={e => onChange('passOrToken', e.target.value)}
             isError={isError}/>)}
       </FormControl>

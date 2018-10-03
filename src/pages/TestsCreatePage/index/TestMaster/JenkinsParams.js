@@ -14,7 +14,7 @@ class JenkinsParams extends React.Component {
     job_trigger: {
       'job_url': '',
       'login': '',
-      'password': '',
+      'passOrToken': '',
     },
     authType: 0,
     isError: false,
@@ -52,8 +52,8 @@ class JenkinsParams extends React.Component {
   setJobTrigger = (job_trigger) => {
     if (job_trigger.login === undefined)
       job_trigger.login = '';
-    if (job_trigger.password === undefined)
-      job_trigger.password = '';
+    if (job_trigger.passOrToken === undefined)
+      job_trigger.passOrToken = '';
     return job_trigger;
   };
 
@@ -73,28 +73,31 @@ class JenkinsParams extends React.Component {
 
   onNext = (data) => {
     const {handleNext} = this.props;
-    if (this.state.authType === 0 &&
+    if (this.state.job_trigger.job_url.length === 0 || (this.state.authType === 0 &&
       (this.state.job_trigger.login.length === 0 ||
-        this.state.job_trigger.passOrToken.length === 0)) {
-      this.setState({isError: true})
+        this.state.job_trigger.passOrToken.length === 0)) ||
+      (this.state.authType === 1 && this.state.job_trigger.passOrToken.length === 0)) {
+      this.setState({isError: true});
     }
     else {
       if (this.state.authType === 1) {
         const url = this.state.job_trigger.job_url;
+        const passOrToken = this.state.job_trigger.passOrToken;
         data.job_trigger = {
-            'job_url': url,
-            'login': '',
-            'passOrToken': '',
-          };
+          'job_url': url,
+          'login': '',
+          'passOrToken': passOrToken,
+        };
       }
       this.setState({isError: false});
-      handleNext(data)
+      handleNext(data);
     }
   };
 
   render() {
     const {job_trigger, isError, authType} = this.state;
     const {classes, handleNext, ...handleNavigation} = this.props;
+
     return [
       <Paper className={classes.stepContent} key={'jenkins-params-paper'}>
         <Grid key={'jenkins-params-grid-container'} container>
