@@ -1,6 +1,6 @@
 {
-  "name": "tdm-fe",
-  "version": "0.1.0",
+  "name": "aist",
+  "version": "3.0.0",
   "private": true,
   "dependencies": {
     "@devexpress/dx-react-core": "^1.5.0",
@@ -65,11 +65,14 @@
   "scripts": {
     "start-mocks": "nodemon mockserver.js",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:prod": "react-scripts build",
+    "build:sigma": "env-cmd .env.sigma npm run build",
+    "build:stage": "env-cmd .env.stage npm run build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "env-cmd": "^8.0.2",
     "react-autocomplete-cli": "0.0.3"
   }
 }
