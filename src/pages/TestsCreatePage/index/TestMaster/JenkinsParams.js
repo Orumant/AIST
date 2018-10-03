@@ -17,7 +17,9 @@ class JenkinsParams extends React.Component {
       'passOrToken': '',
     },
     authType: 0,
-    isError: false,
+    isErrorJob: false,
+    isErrorLogin: false,
+    isErrorPassOrToken: false,
   };
 
   changeInput = (prop, val) => {
@@ -73,12 +75,18 @@ class JenkinsParams extends React.Component {
 
   onNext = (data) => {
     const {handleNext} = this.props;
-    if (this.state.job_trigger.job_url.length === 0 || (this.state.authType === 0 &&
-      (this.state.job_trigger.login.length === 0 ||
-        this.state.job_trigger.passOrToken.length === 0)) ||
-      (this.state.authType === 1 && this.state.job_trigger.passOrToken.length === 0)) {
-      this.setState({isError: true});
-    }
+    if (this.state.job_trigger.job_url.length === 0)
+      this.setState({isErrorJob: true, isErrorLogin: false, isErrorPassOrToken: false});
+    else
+      if(this.state.authType === 0){
+        if (this.state.job_trigger.login.length === 0)
+          this.setState({isErrorJob: false, isErrorLogin: true, isErrorPassOrToken: false});
+        else if (this.state.job_trigger.passOrToken.length === 0)
+          this.setState({isErrorJob: false, isErrorLogin: false, isErrorPassOrToken: true});
+      }
+      else if(this.state.authType === 1 && this.state.job_trigger.passOrToken.length === 0){
+        this.setState({isErrorJob: false, isErrorLogin: false, isErrorPassOrToken: true});
+      }
     else {
       if (this.state.authType === 1) {
         const url = this.state.job_trigger.job_url;
@@ -95,7 +103,7 @@ class JenkinsParams extends React.Component {
   };
 
   render() {
-    const {job_trigger, isError, authType} = this.state;
+    const {job_trigger, isErrorJob, isErrorLogin, isErrorPassOrToken, authType} = this.state;
     const {classes, handleNext, ...handleNavigation} = this.props;
 
     return [
@@ -108,7 +116,9 @@ class JenkinsParams extends React.Component {
               authType={authType}
               handleChange={this.handleChange}
               onChange={this.changeInput}
-              isError={isError}/>
+              isErrorJob={isErrorJob}
+              isErrorLogin={isErrorLogin}
+              isErrorPassOrToken={isErrorPassOrToken}/>
           </Grid>
           {JenkinsParamsInfo}
         </Grid>

@@ -23,7 +23,9 @@ class CommonData extends React.Component {
     test_name: '',
     a_system: '',
     stands: [],
-    isError: false,
+    isErrorName: false,
+    isErrorStand: false,
+    isErrorAs: false,
   };
 
   changeInput = (prop, val) => {
@@ -72,19 +74,20 @@ class CommonData extends React.Component {
 
   onNext = (data) => {
     const {handleNext} = this.props;
-    if (this.state.test_name === null || this.state.a_system === null ||
-      this.state.test_name.length === 0 || this.state.a_system.length === 0 || this.state.stands.length === 0
-    ) {
-      this.setState({isError: true})
-    }
+    if (this.state.test_name === null || this.state.test_name.length === 0)
+      this.setState({isErrorName: true,isErrorStand: false, isErrorAs: false});
+    else if (this.state.a_system === null || this.state.a_system.length === 0)
+      this.setState({isErrorAs: true, isErrorName: false, isErrorStand: false});
+    else if (this.state.stands.length === 0)
+      this.setState({isErrorStand: true,isErrorName: false, isErrorAs: false});
     else {
-      this.setState({isError: false});
+      this.setState({isErrorName: false, isErrorStand: false, isErrorAs: false});
       handleNext(data)
     }
   };
 
   render() {
-    const {test_name, a_system, stands, isError} = this.state;
+    const {test_name, a_system, stands, isErrorName, isErrorAs, isErrorStand} = this.state;
     const {classes, asAll, standsAll, handleNext, ...handleNavigation} = this.props;
     const item = (label, form) => <div className={'input-item-form'}>{label}{form}</div>;
 
@@ -96,19 +99,19 @@ class CommonData extends React.Component {
               key={'common-data-test-name-field'}
               value={test_name}
               onChange={e => this.changeInput('test_name', e.target.value)}
-              isError={isError}/>)}
+              isError={isErrorName}/>)}
             {item('АС*', <TestAs
               key={'common-data-test-as-field'}
               as={a_system}
               asAll={asAll}
-              isError={isError}
+              isError={isErrorAs}
               onChange={option => this.changeInput('a_system', option)}/>)}
 
-            {item('Контур', <TestStands
+            {item('Контур*', <TestStands
               key={'common-data-test-stand-field'}
               stands={stands}
               standsAll={standsAll}
-              isError={isError}
+              isError={isErrorStand}
               onChange={option => this.changeInput('stands', option)}/>)}
           </Grid>
           <CommonDataInfo key={'common-data-info'} classes={classes}/>
