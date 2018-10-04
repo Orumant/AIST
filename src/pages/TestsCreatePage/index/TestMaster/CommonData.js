@@ -61,7 +61,7 @@ class CommonData extends React.Component {
       const asList = arrayToOptions(filterPropertyFromObjects(asAll, 'code'));
 
       const initialState = {
-        test_name: test_name ? test_name : '',
+        test_name: test_name ? test_name : (this.state.test_name ? this.state.test_name : ''),
         a_system: a_system ? getOptionByLabel(a_system, asList) : '',
         stands: stands ? stands.map(stand => {
           const option = getOptionByLabel(stand, standList);
@@ -74,12 +74,13 @@ class CommonData extends React.Component {
 
   onNext = (data) => {
     const {handleNext} = this.props;
+    this.setState({isErrorName: false, isErrorStand: false, isErrorAs: false});
     if (this.state.test_name === null || this.state.test_name.length === 0)
-      this.setState({isErrorName: true,isErrorStand: false, isErrorAs: false});
+      this.setState({isErrorName: true});
     else if (this.state.a_system === null || this.state.a_system.length === 0)
-      this.setState({isErrorAs: true, isErrorName: false, isErrorStand: false});
+      this.setState({isErrorAs: true});
     else if (this.state.stands.length === 0)
-      this.setState({isErrorStand: true,isErrorName: false, isErrorAs: false});
+      this.setState({isErrorStand: true});
     else {
       this.setState({isErrorName: false, isErrorStand: false, isErrorAs: false});
       handleNext(data)
