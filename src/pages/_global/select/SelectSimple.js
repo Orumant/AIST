@@ -47,7 +47,7 @@ class SelectSimple extends React.Component {
 SelectSimple.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  value: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  value: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
   options: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
   isMulti: PropTypes.bool,

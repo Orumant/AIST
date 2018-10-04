@@ -67,7 +67,7 @@ class CreateButton extends React.Component {
           <AddIcon className={classes.accountIcon}/>
           Цепочку
         </MenuItem>
-        <MenuItem key="create_test_link" onClick={() => this.onClick("/testbuilder")}>
+        <MenuItem key="create_test_link" onClick={() => this.onClick("/test/create")}>
           <AddIcon className={classes.accountIcon}/>
           Тест
         </MenuItem>
