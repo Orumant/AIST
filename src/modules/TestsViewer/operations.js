@@ -25,22 +25,6 @@ function sortByField(a, b, field) {
       if (a[field].length < b[field].length) {
         return 1;
       }
-      if (a[field].length === b[field].length && a[field].length > 1) {
-        if (a[field] < b[field]) {
-          return -1;
-        }
-        if (a[field] > b[field]) {
-          return 1;
-        }
-      }
-      if (a[field].length === b[field].length && a[field].length === 1) {
-        if (a[field][0] > b[field][0]) {
-          return 1;
-        }
-        if (a[field][0] < b[field][0]) {
-          return -1;
-        }
-      }
       return 0;
     }
 
