@@ -15,6 +15,7 @@ import SortableTableCell from "./TestsTable/SortableTableCell";
 import {operations} from '../../../../modules/TestsViewer/index';
 import JenkinsParamsTable from "./TestsTable/JenkinsParamsTable";
 import {isObjectEmpty} from "../../../../globalFunc";
+import {Link} from "react-router-dom";
 
 
 const styles = theme => ({
@@ -109,7 +110,9 @@ class TestsExpandableList extends Component {
               .map(test =>
                 <TableRow hover key={test.test_id} className={'table-body'}>
                   <TableCell padding={"checkbox"}>
-                    <IconButton>
+                    <IconButton component={Link}
+                                to={`/test/edit/${test.test_id}`}
+                                title="Редактировать">
                       <EditIcon/>
                     </IconButton>
                   </TableCell>

@@ -33,7 +33,6 @@ import SuccessPage from "./pages/ChainsCreatePage/index/SuccessPage";
 import DataTemplatesPage from "./pages/DataTemplatesPage/index";
 import TestsCreatePage from "./pages/TestsCreatePage/index";
 import TestSuccessPage from "./pages/TestsCreatePage/index/TestSuccessPage";
-import MainMenu from "./pages/MainPage/index/MainMenu";
 import TestsViewer from './pages/TestsViever';
 import MainPage from "./pages/MainPage";
 
@@ -55,6 +54,7 @@ ReactDOM.render((
             <Route exact path="/testbuilder" component={TestBuilderPage}/>
             <Route path="/testbuilder/:testName" component={TestBuilderPage}/>
             <Route exact path="/test/create" component={TestsCreatePage}/>
+            <Route exact path='/test/edit/:testId' component={TestsCreatePage}/>
             <Route exact path='/success_test' component={TestSuccessPage}/>
             <Route exact path="/chaineditor" component={ChainEditorPage}/>}
             <Route path="/chaineditor/:chainName" component={ChainEditorPage}/>}
