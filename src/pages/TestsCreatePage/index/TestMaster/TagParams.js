@@ -35,7 +35,8 @@ class TagParams extends React.Component {
 
   componentDidUpdate() {
     const {data, dataUpdated, needUpdate, isCreation} = this.props;
-    if (needUpdate && (isCreation || data.test_name) && data.test_name !== this.state.test_name) {
+    if (needUpdate && (isCreation || data.static_tags || data.dynamic_tags)
+      && (data.static_tags !== this.state.static_tags || data.dynamic_tags !== this.state.dynamic_tags)) {
       this.updateData();
       dataUpdated();
     }
@@ -50,11 +51,17 @@ class TagParams extends React.Component {
       static_tags: static_tags ? static_tags.map(item => {
         const option = getOptionByLabel(item, staticTagsList);
         return option ? option : {label: item, value: item}
-      }) : [],
+      }) : (this.state.static_tags ? this.state.static_tags.map(item => {
+        const option = getOptionByLabel(item, staticTagsList);
+        return option ? option : {label: item, value: item}
+      }) : []),
       dynamic_tags: dynamic_tags ? dynamic_tags.map(item => {
         const option = getOptionByLabel(item, dynamicTagsList);
         return option ? option : {label: item, value: item}
-      }) : [],
+      }) : (this.state.dynamic_tags ? this.state.dynamic_tags.map(item => {
+        const option = getOptionByLabel(item, dynamicTagsList);
+        return option ? option : {label: item, value: item}
+      }) : []),
     };
     this.setState(initialState);
   };
