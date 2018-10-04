@@ -29,7 +29,7 @@ import chainMasterReducer from "../modules/ChainsCreatePage/ChainMaster";
 import selectTestReducer from "../modules/ChainsCreatePage/ChainMaster/SelectTest";
 import regExpReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm/RegExp";
 import createFormReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm";
-
+import testMasterReducer from "../modules/TestsCreatePage/TestMaster";
 
 const rootReducer = combineReducers({
   launcher,
@@ -62,7 +62,7 @@ const rootReducer = combineReducers({
   selectTestReducer,
   regExpReducer,
   createFormReducer,
-
+  testMasterReducer,
 });
 
 export default rootReducer

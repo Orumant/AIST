@@ -2,7 +2,8 @@ import React from 'react'
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css'
 import {BootstrapTable, TableHeaderColumn,} from 'react-bootstrap-table'
 import TestInfo from "./ChainsTable/TestInfo";
-import { EditButton, CloneButton } from "./ChainsTable/Buttons";
+import {CloneButton, EditButton} from "./ChainsTable/Buttons";
+import {Button} from "react-bootstrap";
 
 class ChainsTable extends React.Component {
 
@@ -12,20 +13,24 @@ class ChainsTable extends React.Component {
     cell: [],
   };
 
-  testFormatter = (cell) => {
+  chainsFormatter = (cell) => {
     return (
-      <a className='chain-component-span' onClick={() => this.openModal(cell)}>
-        {new Array(cell).join(',')}
-      </a>
+      <Button
+        bsStyle="primary"
+        bsSize="sm"
+        className="action"
+        title="Посмотреть"
+        onClick={() => this.openModal(cell)}>Посмотреть</Button>
     );
   };
 
   actionFormatter = (cell, row) => {
-    const { chains_editable } = this.props;
+    const {chains_editable} = this.props;
     return <span>
       {CloneButton(row.name)}
       {chains_editable.indexOf(row.name) !== -1 ? EditButton(row.name) : null}
-      </span>};
+      </span>
+  };
 
   openModal = (cell) => {
     this.setState({show: true, cell: cell})
@@ -36,8 +41,8 @@ class ChainsTable extends React.Component {
   };
 
   render() {
-    const { data, testsAll } = this.props;
-    const { show, cell } = this.state;
+    const {data, testsAll} = this.props;
+    const {show, cell} = this.state;
 
     return (
       <div>
@@ -45,6 +50,13 @@ class ChainsTable extends React.Component {
                         data={data} ignoreSinglePage trClassName='chain-component-col'>
           <TableHeaderColumn className='custom-header' key='id' dataField='name' dataSort={true}>
             Имя цепочки
+          </TableHeaderColumn>
+          <TableHeaderColumn className='custom-header' key='id' dataField='tests' dataSort={true} dataAlign='center'
+                             dataFormat={this.chainsFormatter}>
+            Состав цепочки
+          </TableHeaderColumn>
+          <TableHeaderColumn className='custom-header' key='id' width='9%' searchable={true} dataField='asystems'>
+            АС
           </TableHeaderColumn>
           <TableHeaderColumn className='custom-header' key='id' width='12%' searchable={false} dataField='description'>
             Описание цепочки
@@ -54,10 +66,6 @@ class ChainsTable extends React.Component {
           </TableHeaderColumn>
           <TableHeaderColumn className='custom-header' key='id' width='15%' dataField='templates'>
             Применимые шаблоны
-          </TableHeaderColumn>
-          <TableHeaderColumn className='custom-header' key='id' width='9%' searchable={true} dataField='tests'
-                             dataFormat={this.testFormatter}>
-            Тесты в составе цепочки
           </TableHeaderColumn>
           <TableHeaderColumn className='custom-header' key='id' width='10%' searchable={true} dataField='tags'
           >
@@ -75,7 +83,7 @@ class ChainsTable extends React.Component {
             Доступные действия
           </TableHeaderColumn>
         </BootstrapTable>
-        <TestInfo show={show} testsData={testsAll} tests={cell}  close={this.closeModal}/>
+        <TestInfo show={show} testsData={testsAll} tests={cell} close={this.closeModal}/>
       </div>
     )
   }
