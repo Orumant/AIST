@@ -28,7 +28,7 @@ class NavMenu extends React.Component {
       </ListItem>;
 
     return [
-      <List key={'nav-menu-list'} style={{marginTop: '64px', paddingBottom: '90%'}}>
+      <List key={'nav-menu-list'} style={{marginTop: '64px'}}>
         {Object.keys(links).map(elem => item(elem, links[elem].name, links[elem].link)) }
         <Divider />
         <ListItem
