@@ -15,6 +15,8 @@ import { styles } from "../style";
 import '../style.css';
 import IconButton from "@material-ui/core/IconButton";
 import ClearIcon from '@material-ui/icons/Clear';
+import Chip from "@material-ui/core/Chip/Chip";
+import Avatar from "@material-ui/core/Avatar/Avatar";
 
 
 class ReorderTest extends React.Component {
@@ -31,7 +33,9 @@ class ReorderTest extends React.Component {
       return (
         <Card key={value.test_id} className={classes.testCard}>
           <CardContent className={classes.testCardContent}>
-            <Typography>{ind+1}</Typography>
+            <Chip className={classes.aSystemChip}
+                  label={value.a_system || 'Отсутствует'}
+                  avatar={<Avatar className={classes.aSystemChipAvatar}>{ind+1}</Avatar>}/>
             <Typography className={classes.cardContent}>{value.test_name}</Typography>
             <IconButton onClick={() => onDelete(ind)}>
               <ClearIcon/>
@@ -56,7 +60,11 @@ class ReorderTest extends React.Component {
       tests.length > 0?
         <div key="tests-reorder-form" style={{overflow: 'auto', height: 'calc(100% - 24px)'}}>
           <div>
-            <SortableList pressDelay={200} items={tests} onSortEnd={this.onSortEnd} helperClass="sortableHelper"/>
+            <SortableList pressDelay={200}
+                          lockAxis={'y'}
+                          lockToContainerEdges
+                          items={tests}
+                          onSortEnd={this.onSortEnd}/>
           </div>
         </div> :
         <div key="empty-reorder-form" className={classes.emptyReorderForm}>
