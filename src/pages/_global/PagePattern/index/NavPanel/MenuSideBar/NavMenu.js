@@ -13,14 +13,14 @@ class NavMenu extends React.Component {
   render() {
 
     const links = {
-
-      chains: { name: 'Цепочки', link: '/chains'},
-      tests: { name: 'Тесты', link: '/testbuilder'},
-      results: { name: 'Результаты', link: '/results'},
-      dataDirectory: { name: 'Справочник данных', link: '/datadirectory'},
-      launcher: { name: 'Запуск цепочек', link: '/launcher'},
-      createPattern: { name: 'Создание шаблона', link: '/datatemplates'},
-      viewTests: { name: 'Реестр тестов', link: '/tests'},
+      launcher: {name: 'Запуск цепочек', link: '/launcher'},
+      results: {name: 'Результаты запусков', link: '/results'},
+      dataDirectory: {name: 'Тестовые данные', link: '/datadirectory'},
+      endLaunchBlock: {name: 'divider'},
+      chains: {name: 'Цепочки', link: '/chains'},
+      tests: {name: 'Тесты', link: '/testbuilder'},
+      createPattern: {name: 'Шаблоны', link: '/datatemplates'},
+      endEntitiesBlock: {name: 'divider'},
     };
 
     const item = (key, name, link) =>
@@ -28,10 +28,15 @@ class NavMenu extends React.Component {
         <ListItemText primary={name}/>
       </ListItem>;
 
-    return [
-      <List key={'nav-menu-list'} style={{marginTop: '64px'}}>
-        {Object.keys(links).map(elem => item(elem, links[elem].name, links[elem].link)) }
-        <Divider />
+    return (
+      <List style={{marginTop: '64px'}}>
+        {Object.keys(links).map(elem => {
+          if (links[elem].name === 'divider') {
+            return <Divider key={`Section-${elem}`}/>;
+          } else {
+            return item(elem, links[elem].name, links[elem].link)
+          }
+        })}
         <ListItem
           key={'menu-list-metrika'}
           button component={'a'}
@@ -50,7 +55,7 @@ class NavMenu extends React.Component {
           </ListItemIcon>
         </ListItem>
       </List>
-    ]
+    )
   }
 }
 
