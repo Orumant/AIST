@@ -18,7 +18,7 @@ class NavMenu extends React.Component {
       dataDirectory: {name: 'Тестовые данные', link: '/datadirectory'},
       endLaunchBlock: {name: 'divider'},
       chains: {name: 'Цепочки', link: '/chains'},
-      tests: {name: 'Тесты', link: '/testbuilder'},
+      tests: {name: 'Тесты', link: '/tests'},
       createPattern: {name: 'Шаблоны', link: '/datatemplates'},
       endEntitiesBlock: {name: 'divider'},
     };

@@ -16,7 +16,7 @@ class JenkinsParams extends React.Component {
       'login': '',
       'passOrToken': '',
     },
-    authType: 0,
+    authType: 1,
     isErrorJob: false,
     isErrorLogin: false,
     isErrorPassOrToken: false,
