@@ -43,11 +43,11 @@ class ReorderTest extends React.Component {
 
     const SortableList = SortableContainer(({items}) => {
       return (
-        <ul>
+        <div>
           {items.map((value, index) => (
             <SortableItem key={`item-${index}`} index={index} value={value} ind={index}/>
           ))}
-        </ul>
+        </div>
       );
     });
 
