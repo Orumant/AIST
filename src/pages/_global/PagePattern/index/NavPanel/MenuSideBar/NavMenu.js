@@ -5,8 +5,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ContactMail from '@material-ui/icons/ContactMail';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import Tooltip from "@material-ui/core/Tooltip";
+import Typography from "@material-ui/core/Typography";
 import {Link} from "react-router-dom";
-
 
 class NavMenu extends React.Component {
 
@@ -28,6 +29,19 @@ class NavMenu extends React.Component {
         <ListItemText primary={name}/>
       </ListItem>;
 
+    const isDisabled = process.env.REACT_APP_DOMAIN !== 'ALPHA';
+
+    const GrafanaLink =
+      <ListItem
+        key={'menu-list-metrika'}
+        style={{pointerEvents: 'all'}}
+        disabled={isDisabled}
+        button component={'a'}
+        href={isDisabled ? null : 'http://sbt-ot-289.ca.sbrf.ru:8069/dashboard/db/obshchaia-statistika'}
+        target={'_blank'}>
+        <ListItemText primary={'Портал метрик'}/>
+      </ListItem>;
+
     return (
       <List style={{marginTop: '64px'}}>
         {Object.keys(links).map(elem => {
@@ -37,13 +51,16 @@ class NavMenu extends React.Component {
             return item(elem, links[elem].name, links[elem].link)
           }
         })}
-        <ListItem
-          key={'menu-list-metrika'}
-          button component={'a'}
-          href={'http://sbt-ot-289.ca.sbrf.ru:8069/dashboard/db/obshchaia-statistika'}
-          target={'_blank'}>
-          <ListItemText primary={'Портал метрик'}/>
-        </ListItem>
+        {isDisabled ?
+          <Tooltip title={
+            <Typography style={{color: 'white'}} variant={"body2"}>
+            Данный модуль не доступен в домене Сигма, пожалуйста, перейдите в домен Альфа
+          </Typography>
+          }
+                   placement={'right'}>
+            {GrafanaLink}
+          </Tooltip>
+          : GrafanaLink}
         <ListItem
           key={'menu-list-sd'}
           button component={'a'}
