@@ -7,7 +7,7 @@ class ResultsPage extends React.Component {
 
   render() {
     return (
-      <PagePattern title="Результаты" content={<Results/>} help={<Help/>}/>
+      <PagePattern title="Результаты запусков" content={<Results/>} help={<Help/>}/>
     );
   }
 }

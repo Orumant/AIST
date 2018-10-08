@@ -24,11 +24,11 @@ class MainMenu extends React.Component {
       {name: "Тесты", description: Descriptions.tests, icon: Test, link: '/tests'},
       {name: "Цепочки", description: Descriptions.chains, icon: Chain, link: '/chains'},
       {name: "Шаблоны", description: Descriptions.template, icon: Template, link: '/datatemplates'},
-      {name: "Запуск", description: Descriptions.start, icon: Start, link: '/launcher'},
+      {name: "Запуск цепочек", description: Descriptions.start, icon: Start, link: '/launcher'},
       {name: "Результаты запусков", description: Descriptions.results, icon: Result, link: '/results'},
       {name: "Тестовые данные", description: Descriptions.datadirectory, icon: DataDir, link: '/datadirectory'},
       {
-        name: "Статистика", description: Descriptions.grafana, icon: Grafana,
+        name: "Портал метрик", description: Descriptions.grafana, icon: Grafana,
         link: 'http://sbt-ot-289.ca.sbrf.ru:8069/dashboard/db/obshchaia-statistika'
       },
     ];

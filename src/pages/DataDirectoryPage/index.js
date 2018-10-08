@@ -8,7 +8,7 @@ class DataDirectoryPage extends React.Component {
   render() {
 
     return (
-      <PagePattern title="Справочник данных" content={<DataDirectoryTest/>} help={<DataDirectoryHelp/>}/>
+      <PagePattern title="Тестовые данные" content={<DataDirectoryTest/>} help={<DataDirectoryHelp/>}/>
     );
   }
 }

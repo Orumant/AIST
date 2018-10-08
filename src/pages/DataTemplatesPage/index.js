@@ -9,7 +9,7 @@ class DataTemplatesPage extends React.Component {
     const {match} = this.props;
 
     return (
-      <PagePattern title="Редактор шаблонов" content={<DataTemplates match={match}/>} help={<DataTemplatesHelp/>}/>
+      <PagePattern title="Шаблоны" content={<DataTemplates match={match}/>} help={<DataTemplatesHelp/>}/>
     );
   }
 }
