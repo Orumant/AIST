@@ -56,3 +56,7 @@
   border-color: rgb(67, 136, 204) !important;
   color: #fff !important;
 }
+.pagination {
+  width: fit-content !important;
+  margin-bottom: 2vh !important;
+}

@@ -11,13 +11,13 @@ class TestInfo extends React.Component {
     return (
       <Modal show={show}>
         <ModalHeader className='chain-component-modal-header'>
-          <ModalTitle>Информация по цепочке тестов</ModalTitle>
+          <ModalTitle>Информация по составу цепочки</ModalTitle>
         </ModalHeader>
         <ModalBody>
           {tests.map((test, ind) => {
             return (<Row key={ind}>
-              <Col md={1} style={{fontWeight: 'bold'}}>{test}</Col>
-              <Col md={10}>{testsData[test]}</Col>
+              <Col md={1} style={{fontWeight: 'bold'}}>{testsData[test][0]}</Col>
+              <Col md={10}>{testsData[test][1]}</Col>
             </Row>)
           })}
         </ModalBody>

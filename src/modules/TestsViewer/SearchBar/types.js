@@ -1,0 +1,5 @@
+const FETCH_FILTERS_TESTS = 'FETCH_FILTERS_TESTS';
+
+export default {
+  FETCH_FILTERS_TESTS,
+}

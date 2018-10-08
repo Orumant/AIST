@@ -21,7 +21,7 @@ class MainMenu extends React.Component {
     const {classes} = this.props;
 
     const Items = [
-      {name: "Тесты", description: Descriptions.tests, icon: Test, link: '/testbuilder'},
+      {name: "Тесты", description: Descriptions.tests, icon: Test, link: '/tests'},
       {name: "Цепочки", description: Descriptions.chains, icon: Chain, link: '/chains'},
       {name: "Шаблоны", description: Descriptions.template, icon: Template, link: '/datatemplates'},
       {name: "Запуск", description: Descriptions.start, icon: Start, link: '/launcher'},

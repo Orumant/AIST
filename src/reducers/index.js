@@ -24,11 +24,12 @@ import chainTemplateList from "./chainTemplateList";
 import filterSidebarReducer from "../modules/_global/FilterSidebar";
 import searchBarReducerChainList from "../modules/ChainListPage/SearchBar";
 import chainsListReducer from "../modules/ChainListPage/ChainListPage";
+import {reducers} from '../modules/TestsViewer/index';
 import chainMasterReducer from "../modules/ChainsCreatePage/ChainMaster";
 import selectTestReducer from "../modules/ChainsCreatePage/ChainMaster/SelectTest";
 import regExpReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm/RegExp";
 import createFormReducer from "../modules/ChainsCreatePage/ChainMaster/CreateForm";
-
+import testMasterReducer from "../modules/TestsCreatePage/TestMaster";
 
 const rootReducer = combineReducers({
   launcher,
@@ -56,11 +57,12 @@ const rootReducer = combineReducers({
   filterSidebarReducer,
   searchBarReducerChainList,
   chainsListReducer,
+  TestsTableReducer: reducers.TestsTableReducer,
   chainMasterReducer,
   selectTestReducer,
   regExpReducer,
   createFormReducer,
-
+  testMasterReducer,
 });
 
 export default rootReducer

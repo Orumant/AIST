@@ -27,8 +27,10 @@ import 'babel-polyfill'
 import SelectSingle from "./pages/_global/select/SelectSimple";
 import SuccessPage from "./pages/ChainsCreatePage/index/SuccessPage";
 import DataTemplatesPage from "./pages/DataTemplatesPage/index";
+import TestsCreatePage from "./pages/TestsCreatePage/index";
+import TestSuccessPage from "./pages/TestsCreatePage/index/TestSuccessPage";
+import TestsViewer from './pages/TestsViever';
 import MainPage from "./pages/MainPage";
-
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -42,12 +44,14 @@ const store = createStore(
 
 ReactDOM.render((
     <Provider store={store}>
-      <div>
         <HashRouter>
           <Switch>
             <Route exact path='/launcher' component={LauncherPage}/>
             <Route exact path="/testbuilder" component={TestBuilderPage}/>
             <Route path="/testbuilder/:testName" component={TestBuilderPage}/>
+            <Route exact path="/test/create" component={TestsCreatePage}/>
+            <Route exact path='/test/edit/:testId' component={TestsCreatePage}/>
+            <Route exact path='/success_test' component={TestSuccessPage}/>
             <Route exact path="/datadirectory" component={DataDirectoryPage}/>
             <Route exact path='/chains' component={ChainsListPage}/>
             <Route exact path='/chains/create' component={ChainsCreatePage}/>
@@ -58,6 +62,9 @@ ReactDOM.render((
             <Route exact path='/chainTemplateList' component={ChainsListPage}/>
             <Route exact path="/datatemplates" component={DataTemplatesPage}/>
             <Route path="/main" component={MainPage}/>
+            <Route path="/homepage" component={HomePage}/>
+            <Route exact path='/tests' component={TestsViewer}/>
+            <Route path="/TDME2E" component={TDME2E}/>
             <Route path="/registration" component={RegistrationPage}/>
             <Route path="/personaldata" component={PersonalPage}/>
             <Route path="/results" component={ResultsPage}/>
@@ -65,7 +72,6 @@ ReactDOM.render((
             <Route exact path="/" component={AuthorizationPage}/>
           </Switch>
         </HashRouter>
-      </div>
     </Provider>
   ),
   document.getElementById('root'));
