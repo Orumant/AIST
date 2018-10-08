@@ -65,7 +65,7 @@
   "scripts": {
     "start-mocks": "nodemon mockserver.js",
     "start": "react-scripts start",
-    "build:prod": "react-scripts build",
+    "build": "react-scripts build",
     "build:sigma": "env-cmd .env.sigma npm run build",
     "build:stage": "env-cmd .env.stage npm run build",
     "test": "react-scripts test --env=jsdom",
