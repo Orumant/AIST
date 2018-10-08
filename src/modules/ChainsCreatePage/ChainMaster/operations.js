@@ -7,18 +7,25 @@ import {showError} from "../../common_api";
 export const fetchAllData = (chain_id) => (dispatch) => {
   const urlChain = `${BACKEND_URL}/chain_templates/${chain_id}`;
   const urlTests = `${BACKEND_URL}/tests`;
-  const urlTemplates = `${BACKEND_URL}/chain_templates`;
+  const urlChainsAll = `${BACKEND_URL}/chain_templates`;
   const urlGroups = `${BACKEND_URL}/owners/personal/getGroups`;
+  const urlTemplates = `${BACKEND_URL}/templates`;
   const header = {headers: {SessionID: getToken()}};
   dispatch(actions.startFetching());
   Promise.all([
-    axios.get(urlTemplates, header),
+    axios.get(urlChainsAll, header),
     axios.get(urlTests, header),
     axios.get(urlGroups, header),
+    axios.get(urlTemplates, header),
     chain_id ? axios.get(urlChain, header) : null,
   ])
-    .then(([templates, tests, groups, chain_data]) =>
-      dispatch(actions.dataFetchSucceed(templates.data, tests.data, groups.data, chain_data? chain_data.data: null)))
+    .then(([chainsAll, tests, groups, templates, chain_data]) =>
+      dispatch(actions.dataFetchSucceed(
+        chainsAll.data,
+        tests.data,
+        groups.data,
+        templates.data,
+        chain_data? chain_data.data: null)))
     .catch(response => {
       dispatch(actions.endFetching());
       dispatch(showError(response));

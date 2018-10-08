@@ -3,6 +3,7 @@ import types from './types'
 const initialState = {
   chain_data: {},
   dataAll: {
+    chainsAll: [],
     templates: [],
     tests: [],
     groups: [],
@@ -29,6 +30,7 @@ const chainMasterReducer = (state = initialState, action) => {
         ...state,
         chain_data: action.chain_data? action.chain_data: {},
         dataAll: {
+          chainsAll: action.chainsAll,
           templates: action.templatesAll,
           tests: action.testsAll,
           groups: action.groupsAll,

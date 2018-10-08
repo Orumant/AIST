@@ -5,8 +5,8 @@ import SelectCreatable from "../../../../_global/select/SelectCreatable";
 class ChainName extends React.Component {
 
   render() {
-    const {marker, templatesAll, onChange} = this.props;
-    const markerList = arrayToOptions(filterPropertyFromObjects(templatesAll, 'marker'));
+    const {marker, chainsAll, onChange} = this.props;
+    const markerList = arrayToOptions(filterPropertyFromObjects(chainsAll, 'marker'));
 
     return (
       <SelectCreatable
