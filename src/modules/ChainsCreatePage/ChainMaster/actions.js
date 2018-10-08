@@ -1,10 +1,11 @@
 import types from './types'
 
-const dataFetchSucceed = (templatesAll, testsAll, groupsAll, chain_data) => ({
+const dataFetchSucceed = (chainsAll, testsAll, groupsAll, templatesAll, chain_data) => ({
   type: types.DATA_FETCH_SUCCEED,
-  templatesAll,
+  chainsAll,
   testsAll,
   groupsAll,
+  templatesAll,
   chain_data,
 });
 
