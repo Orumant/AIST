@@ -62,9 +62,7 @@ ReactDOM.render((
             <Route exact path='/chainTemplateList' component={ChainsListPage}/>
             <Route exact path="/datatemplates" component={DataTemplatesPage}/>
             <Route path="/main" component={MainPage}/>
-            <Route path="/homepage" component={HomePage}/>
             <Route exact path='/tests' component={TestsViewer}/>
-            <Route path="/TDME2E" component={TDME2E}/>
             <Route path="/registration" component={RegistrationPage}/>
             <Route path="/personaldata" component={PersonalPage}/>
             <Route path="/results" component={ResultsPage}/>
