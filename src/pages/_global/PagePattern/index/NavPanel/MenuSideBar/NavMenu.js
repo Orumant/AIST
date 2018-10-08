@@ -55,7 +55,7 @@ class NavMenu extends React.Component {
           </ListItemIcon>
         </ListItem>
       </List>
-    ]
+    )
   }
 }
 
