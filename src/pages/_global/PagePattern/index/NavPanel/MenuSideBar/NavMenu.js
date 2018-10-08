@@ -1,6 +1,8 @@
 import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ContactMail from '@material-ui/icons/ContactMail';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import {Link} from "react-router-dom";
@@ -22,7 +24,7 @@ class NavMenu extends React.Component {
     };
 
     const item = (key, name, link) =>
-      <ListItem key={"menu-list-" + key} button component={Link} to={link}>
+      <ListItem key={'menu-list-' + key} button component={Link} to={link}>
         <ListItemText primary={name}/>
       </ListItem>;
 
@@ -36,13 +38,24 @@ class NavMenu extends React.Component {
           }
         })}
         <ListItem
-          button component="a"
+          key={'menu-list-metrika'}
+          button component={'a'}
           href={'http://sbt-ot-289.ca.sbrf.ru:8069/dashboard/db/obshchaia-statistika'}
-          target="_blank">
+          target={'_blank'}>
           <ListItemText primary={'Портал метрик'}/>
         </ListItem>
+        <ListItem
+          key={'menu-list-sd'}
+          button component={'a'}
+          href={'https://confluence.ca.sbrf.ru/pages/viewpage.action?pageId=726731773'}
+          target={'_blank'}>
+          <ListItemText primary={'Служба поддержки'}/>
+          <ListItemIcon>
+            <ContactMail/>
+          </ListItemIcon>
+        </ListItem>
       </List>
-    )
+    ]
   }
 }
 
