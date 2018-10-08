@@ -31,7 +31,7 @@ const chainsListReducer = (state = initialState, action) => {
 
     case types.TESTS_FETCH_SUCCEED: {
       const tests = action.testsAll;
-      const chains = action.chains_editable.map(chain => chain.name);
+      const chains = action.chains_editable.map(chain => chain.id);
       let testsData = {};
       tests.forEach(test => testsData={...testsData, [test.test_id] : [test.a_system,test.test_name]});
       return {

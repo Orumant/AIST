@@ -264,42 +264,6 @@ export const fetchChainTemplates = () => (dispatch, getState) => {
 };
 
 /**
- * Chain builder page
- * update chain if modified
- * insert chain if new
- */
-export const updateChainTemplate = (chainTemplate) => (dispatch, getState) => {
-  const requestBody = {
-    name: chainTemplate.value.name,
-    marker: chainTemplate.value.marker,
-    form: chainTemplate.value.form,
-    tests: chainTemplate.value.tests,
-    templates: chainTemplate.value.templates.map(t => t.value),
-    groups: chainTemplate.value.groups.map(t => t.label),
-  };
-
-  const header = {headers: {SessionID: getToken()}};
-  if (chainTemplate.value.modified) {
-    const url = `${BACKEND_URL}/chain_templates/${chainTemplate.name}`;
-    axios.post(url, [requestBody], header).then(function () {
-      dispatch(success({message: "Успешно сохранено!"}));
-      dispatch(submitChainTemplateSucceed());
-    }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
-    });
-  }
-  if (chainTemplate.value.new) {
-    const url = `${BACKEND_URL}/chain_templates`;
-    axios.put(url, [requestBody], header).then(function () {
-      dispatch(success({message: "Успешно сохранено!"}));
-      dispatch(submitChainTemplateSucceed());
-    }).catch(function (response) {
-      dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
-    });
-  }
-};
-
-/**
  * Form builder
  * fetching data from database
  */
@@ -336,86 +300,6 @@ export const fetchGroupsForMembers = () => (dispatch) => {
     dispatch(formGroupsForMembersFetchSucceed(response.data))
   }).catch(function (response) {
     dispatch(showError(response));
-  });
-};
-
-/**
- * Validate form entries
- */
-
-export const validateForm = (chainName, chain, idx) => (dispatch) => {
-  let result = true;
-  let tempArr = [];
-  if (chain.form.length > 0 && !isObjectEmpty(chain.form)) {
-    for (let field of chain.form) {
-      let validation = [];
-      delete field.validation;
-      let re = require( 'regex-regex' );
-      for (let j = 0; j < Object.keys(field).length; j++) {
-        if (Object.keys(field)[j] === "regEx" && Object.values(field)[j].length > 0 ) {
-          if (re.test(Object.values(field)[j]) === false) {
-            validation.push({
-              errorOn: 'regEx',
-              state: 'error',
-              message: 'Регулярное выражение для поля с именем ' + field.label + ' некорректно!',
-            });
-            result = false;
-            break;
-          }
-        }
-      }
-      if (tempArr.indexOf(field.paramName) !== -1 && field.paramName !== '') {
-        validation.push({
-          errorOn: 'paramName',
-          state: 'error',
-          message: 'Названия параметров дублируются',
-        });
-        result = false;
-      } else {
-        tempArr.push(field.paramName);
-        if (field.label === '') {
-          validation.push({
-            errorOn: 'label',
-            state: 'error',
-            message: 'Имя поля не может быть пустым',
-          });
-          result = false;
-        }
-        if (field.paramName === '') {
-          validation.push({
-            errorOn: 'paramName',
-            state: 'error',
-            message: 'Имя параметра не может быть пустым',
-          });
-          result = false;
-        }
-      }
-      if (validation.length > 0) {
-        field.validation = validation;
-      }
-    }
-  }
-
-  if (result) {
-    dispatch(updateChainForm(chainName, chain, idx));
-  }
-
-  dispatch(getValidationResults(chain, idx));
-};
-
-/**
- * Form builder
- * submit data to database
- */
-export const updateChainForm = (chainName, chain, idx) => (dispatch) => {
-  const url = `${BACKEND_URL}/chain_templates/${chainName}`;
-
-  const header = {headers: {SessionID: getToken()}};
-  axios.post(url, [chain], header).then(function () {
-    dispatch(success({message: "Успешно сохранено!"}));
-    dispatch(updateChainFormSucceed(idx));
-  }).catch(function (response) {
-    dispatch(error({message: "Произошла ошибка при сохранении!" + response}));
   });
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from "@material-ui/core/Typography";
 
 export const CommonDataInfo =
-  <div className="info-form" style={{width: "60%", maxWidth: "500px", height: "100%", maxHeight: "360px"}}>
+  <div className="info-form" style={{flexBasis: "60%", maxWidth: "500px", height: "100%"}}>
     <div style={{ marginTop: "24px", textAlign: 'right'}}>
       <Typography variant="title" style={{color: "rgba(67, 136, 204, 0.7)"}}>Инфо</Typography>
     </div>
