@@ -54,7 +54,6 @@ class CommonData extends React.Component {
   updateData = () => {
     const {data, chainsAll, templatesAll, groupsAll} = this.props;
     const {name, marker, groups, templates} = data;
-    console.log(data)
     const markerList = arrayToOptions(filterPropertyFromObjects(chainsAll, 'marker'));
     const groupList = arrayToOptions(filterPropertyFromObjects(groupsAll, 'name'));
     const templateList = arrayToOptions(filterPropertyFromObjects(templatesAll, 'name'));
