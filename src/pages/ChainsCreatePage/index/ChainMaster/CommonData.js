@@ -12,6 +12,7 @@ import {styles} from "../style";
 import {withStyles} from "@material-ui/core/styles/index";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from 'prop-types';
+import ChainTemplates from "./CommonData/ChainTemplates";
 
 
 class CommonData extends React.Component {
@@ -20,6 +21,7 @@ class CommonData extends React.Component {
     name: '',
     marker: '',
     groups: [],
+    templates: [],
     isError: false,
   };
 
@@ -28,11 +30,12 @@ class CommonData extends React.Component {
   };
 
   getChainData = () => {
-    const {name, marker, groups} = this.state;
+    const {name, marker, groups, templates} = this.state;
     return {
       name: name ? name : null,
       marker: marker ? marker.label : null,
-      groups: optionsToArray(groups)
+      groups: optionsToArray(groups),
+      templates: optionsToArray(templates),
     }
   };
 
@@ -49,16 +52,22 @@ class CommonData extends React.Component {
   };
 
   updateData = () => {
-    const {data, templatesAll, groupsAll} = this.props;
-    const {name, marker, groups} = data;
-    const markerList = arrayToOptions(filterPropertyFromObjects(templatesAll, 'marker'));
+    const {data, chainsAll, templatesAll, groupsAll} = this.props;
+    const {name, marker, groups, templates} = data;
+    console.log(data)
+    const markerList = arrayToOptions(filterPropertyFromObjects(chainsAll, 'marker'));
     const groupList = arrayToOptions(filterPropertyFromObjects(groupsAll, 'name'));
+    const templateList = arrayToOptions(filterPropertyFromObjects(templatesAll, 'name'));
     const initialState = {
       name: name ? name : '',
       marker: marker ? getOptionByLabel(marker, markerList) || {label: marker, val: markerList.length + 1} : '',
       groups: groups ? groups.map(group => {
         const option = getOptionByLabel(group, groupList);
         return option ? option : {label: group, value: group}
+      }) : [],
+      templates: templates ? templates.map(template => {
+        const option = getOptionByLabel(template, templateList);
+        return option ? option : {label: template, value: template}
       }) : [],
     };
     this.setState(initialState);
@@ -76,8 +85,8 @@ class CommonData extends React.Component {
   };
 
   render() {
-    const {name, marker, groups, isError} = this.state;
-    const {classes, templatesAll, groupsAll, handleNext, ...handleNavigation} = this.props;
+    const {name, marker, groups, templates,  isError} = this.state;
+    const {classes, chainsAll, templatesAll, groupsAll, handleNext, ...handleNavigation} = this.props;
     const item = (label, form) => <div className="input-item-form">{label}{form}</div>;
 
     return [
@@ -91,13 +100,20 @@ class CommonData extends React.Component {
                                           isError={isError}/>)}
             {item("Маркер", <ChainMarker key="chain-marker-field"
                                          marker={marker}
-                                         templatesAll={templatesAll}
+                                         chainsAll={chainsAll}
                                          onChange={option => this.changeInput("marker", option)}/>)}
 
             {item("Группы", <ChainGroups key="chain-groups-field"
                                          groups={groups}
                                          groupsAll={groupsAll}
                                          onChange={option => this.changeInput("groups", option)}
+
+            />)}
+            {item("Шаблоны", <ChainTemplates key="chain-templates-field"
+                                            templates={templates}
+                                            templatesAll={templatesAll}
+                                            onChange={option => this.changeInput("templates", option)}
+
             />)}
           </div>
           {CommonDataInfo}

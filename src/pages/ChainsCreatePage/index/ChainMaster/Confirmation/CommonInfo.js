@@ -9,7 +9,7 @@ class CommonInfo extends React.Component {
 
   render() {
     const {classes, data} = this.props;
-    const {name, marker, groups} = data;
+    const {name, marker, groups, templates} = data;
 
     const field = (label, val) => <div style={{margin: '24px'}}>
       <Typography variant="subheading">{label}:</Typography>
@@ -23,6 +23,7 @@ class CommonInfo extends React.Component {
           {field("Название", name)}
           {field("Маркер", marker? marker: "Не указан")}
           {field("Группы", groups? (groups.length > 0? new Array(groups).join(", ") : "Не выбраны") : null)}
+          {field("Шаблоны", templates? (templates.length > 0? new Array(templates).join(", ") : "Не выбраны") : null)}
         </div>
       </Grid>
     )
