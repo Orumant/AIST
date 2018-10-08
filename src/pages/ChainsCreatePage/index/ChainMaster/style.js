@@ -15,6 +15,7 @@ export const styles = theme => ({
     maxHeight: '400px',
     margin: theme.spacing.unit*2,
     zIndex: '1',
+    cursor: 'pointer',
   },
   testCardContent: {
     paddingTop: theme.spacing.unit,
@@ -41,5 +42,16 @@ export const styles = theme => ({
   },
   gridTitle: {
     marginLeft: theme.spacing.unit*3,
+  },
+  aSystemChip: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    cursor: 'pointer',
+  },
+  aSystemChipAvatar: {
+    backgroundColor: theme.palette.primary.light,
+    color: theme.palette.primary.contrastText,
+    border: `3px solid ${theme.palette.primary.main}`,
+    cursor: 'pointer',
   }
 });
