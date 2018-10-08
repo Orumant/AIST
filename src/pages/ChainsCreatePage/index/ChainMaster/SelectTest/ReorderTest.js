@@ -60,7 +60,7 @@ class ReorderTest extends React.Component {
       tests.length > 0?
         <div key="tests-reorder-form" style={{overflow: 'auto', height: 'calc(100% - 24px)'}}>
           <div>
-            <SortableList pressDelay={200}
+            <SortableList distance={10}
                           lockAxis={'y'}
                           lockToContainerEdges
                           items={tests}

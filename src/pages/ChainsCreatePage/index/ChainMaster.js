@@ -90,8 +90,8 @@ class ChainMaster extends React.Component {
     switch (step) {
       case 0:
         return <CommonData needUpdate={needUpdate.commonData} dataUpdated={() => this.dataUpdated("commonData")}
-                           data={chain_data} chainsAll={dataAll.chainsAll} templatesAll={dataAll.templates}
-                           groupsAll={dataAll.groups} isCreation={isCreation}/>;
+                           data={chain_data} chainsAll={dataAll.chainsAll || []} templatesAll={dataAll.templates || []}
+                           groupsAll={dataAll.groups || []} isCreation={isCreation}/>;
       case 1:
         return <SelectTest needUpdate={needUpdate.tests} dataUpdated={() => this.dataUpdated("tests")}
                             data={chain_data} testsAll={dataAll.tests}/>;
