@@ -20,6 +20,7 @@ class NavMenu extends React.Component {
       dataDirectory: { name: 'Справочник данных', link: '/datadirectory'},
       launcher: { name: 'Запуск цепочек', link: '/launcher'},
       createPattern: { name: 'Создание шаблона', link: '/datatemplates'},
+      viewTests: { name: 'Реестр тестов', link: '/tests'},
     };
 
     const item = (key, name, link) =>

@@ -328,7 +328,7 @@ class Launcher extends Component {
     });
 
     return [
-      <Grid>
+      <Grid fluid>
         {orderCreatedAlert()}
         <Panel header={header} bsStyle={'info'} className={'main-panel'}>
           {this.state.selectedChain !== null
