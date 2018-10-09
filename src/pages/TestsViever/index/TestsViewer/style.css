@@ -57,3 +57,7 @@
 .table-cell {
   vertical-align: middle !important;
 }
+
+.tests-table-body > .table-body:nth-child(odd) {
+  background-color: #f1f1f1;
+}
