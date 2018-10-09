@@ -14,8 +14,8 @@
   vertical-align: middle !important;
 }
 
-.table>tbody>tr>td:nth-child(2), .table>tbody>tr>th:nth-child(2),
-.table>thead>tr>td:nth-child(2), .table>thead>tr>th:nth-child(2){
+.table-bordered>tbody>tr>td:nth-child(2), .table-bordered>tbody>tr>th:nth-child(2),
+.table-bordered>thead>tr>td:nth-child(2), .table-bordered>thead>tr>th:nth-child(2){
   border-left: none !important;
   border-right: none !important;
 }
