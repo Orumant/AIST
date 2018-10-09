@@ -26,7 +26,7 @@ class SortableTableCell extends React.Component {
           <TableSortLabel active={isActive}
                           direction={order} classes={{icon: classes.icon}}
                           onClick={onClick}>
-            <Typography variant={"title"}>{columnLabel}</Typography>
+            <Typography variant={"body2"} style={{fontWeight: 'bold'}}>{columnLabel}</Typography>
           </TableSortLabel>
         </Tooltip>
       </TableCell>
