@@ -105,7 +105,7 @@ class TestsExpandableList extends Component {
           </TableRow>
         </TableHead>
         {tests.length > 0 ?
-          <TableBody>
+          <TableBody className={'tests-table-body'}>
             {tests.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map(test =>
                 <TableRow hover key={test.test_id} className={'table-body'}>
