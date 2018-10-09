@@ -23,7 +23,7 @@ class SuccessPageContent extends React.Component {
   timer = () => {
     const {time} = this.state;
     if (time >= 1) this.setState({time: this.state.time - 1});
-    if (time === 1) this.props.history.push('/testbuilder')
+    if (time === 1) this.props.history.push('/tests')
   };
 
   render() {
