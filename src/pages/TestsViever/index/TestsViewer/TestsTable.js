@@ -14,7 +14,7 @@ import './style.css';
 import SortableTableCell from "./TestsTable/SortableTableCell";
 import {operations} from '../../../../modules/TestsViewer/index';
 import JenkinsParamsTable from "./TestsTable/JenkinsParamsTable";
-import {isObjectEmpty} from "../../../../globalFunc";
+import {getUserName, isObjectEmpty} from "../../../../globalFunc";
 import {Link} from "react-router-dom";
 
 
@@ -41,6 +41,7 @@ class TestsExpandableList extends Component {
       order: 'asc',
       orderBy: null,
       sidebarOpen: false,
+      owner: getUserName(),
     };
   }
 
@@ -63,7 +64,7 @@ class TestsExpandableList extends Component {
 
   render() {
     const {tests} = this.props;
-    const {page, rowsPerPage, dialogOpen, order, orderBy} = this.state;
+    const {page, rowsPerPage, dialogOpen, order, orderBy, owner} = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tests.length - page * rowsPerPage);
     return (
       <Table className={'table'}>
@@ -72,14 +73,14 @@ class TestsExpandableList extends Component {
             <TableCell padding={"checkbox"}/>
             <SortableTableCell order={order}
                                onClick={this.handleSortDirectionChange('test_name')}
-                               columnLabel={'Наименование'}
+                               columnLabel={'Название'}
                                placement={'right'}
                                isActive={orderBy === 'test_name'}
                                tooltipTitle={'Сортировать по наименованию'}
                                cellWidth={'30vw'}/>
             <SortableTableCell order={order}
                                onClick={this.handleSortDirectionChange('stands')}
-                               columnLabel={'Стенды'}
+                               columnLabel={'Контур'}
                                isActive={orderBy === 'stands'}
                                tooltipTitle={'Сортировать по стендам'}/>
             <SortableTableCell order={order}
@@ -88,17 +89,12 @@ class TestsExpandableList extends Component {
                                isActive={orderBy === 'a_system'}
                                tooltipTitle={'Сортировать по АС'}/>
             <TableCell>
-              <Typography variant={"title"}>
-                Статические теги
-              </Typography>
-            </TableCell>
-            <TableCell>
-              <Typography variant={"title"}>
-                Динамические теги
+              <Typography variant={"body2"} style={{fontWeight: 'bold'}}>
+                Теги
               </Typography>
             </TableCell>
             <TableCell className={'btn-column-header'}>
-              <Typography variant={"title"}>
+              <Typography variant={"body2"} style={{fontWeight: 'bold'}}>
                 Параметры Jenkins
               </Typography>
             </TableCell>
@@ -109,39 +105,35 @@ class TestsExpandableList extends Component {
             {tests.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map(test =>
                 <TableRow hover key={test.test_id} className={'table-body'}>
-                  <TableCell padding={"checkbox"}>
+                  <TableCell padding={"checkbox"} style={{width: '1%'}}>
                     <IconButton component={Link}
                                 to={`/test/edit/${test.test_id}`}
+                                disabled={test.owner !== owner}
                                 title="Редактировать">
-                      <EditIcon/>
+                      {test.owner === owner ? <EditIcon/> : null}
                     </IconButton>
                   </TableCell>
-                  <TableCell className={'table-cell'}>
-                    <Typography variant={"subheading"}>
+                  <TableCell className={'table-cell'} style={{width: '39%'}}>
+                    <Typography variant={"body2"}>
                       {test.test_name}
                     </Typography>
                   </TableCell>
-                  <TableCell className={'table-cell'}>
-                    <Typography variant={"subheading"}>
+                  <TableCell className={'table-cell'} style={{width: '10%'}}>
+                    <Typography variant={"body2"}>
                       {operations.arrayToString(test.stands)}
                     </Typography>
                   </TableCell>
-                  <TableCell className={'table-cell'}>
-                    <Typography variant={"subheading"}>
+                  <TableCell className={'table-cell'} style={{width: '10%'}}>
+                    <Typography variant={"body2"}>
                       {test.a_system}
                     </Typography>
                   </TableCell>
-                  <TableCell className={'table-cell'}>
-                    <Typography variant={"subheading"}>
-                      {operations.arrayToString(test.tag_names.static)}
+                  <TableCell className={'table-cell'} style={{width: '20%'}}>
+                    <Typography variant={"body2"}>
+                      {operations.arrayToString(Array.from(new Set([...test.tag_names.static, ...test.tag_names.dynamic])))}
                     </Typography>
                   </TableCell>
-                  <TableCell className={'table-cell'}>
-                    <Typography variant={"subheading"}>
-                      {operations.arrayToString(test.tag_names.dynamic)}
-                    </Typography>
-                  </TableCell>
-                  <TableCell className={'btn-column-content'}>
+                  <TableCell className={'btn-column-content'} style={{width: '20%'}}>
                     {!isObjectEmpty(test.job_trigger) ?
                       <Button onClick={() => this.setState({dialogOpen: test.test_id})}
                               classes={{root: this.props.classes.button}} variant={"outlined"}>Показать</Button>
