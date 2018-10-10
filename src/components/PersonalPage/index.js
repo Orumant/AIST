@@ -14,8 +14,8 @@ import {
 } from "react-bootstrap";
 import Notifications from "react-notification-system-redux";
 import DropdownList from "../DropdownList";
-import Select from 'react-select';
 import './style.css'
+import SelectCreatable from "../../pages/_global/select/SelectCreatable";
 
 
 class Personal extends Component {
@@ -69,7 +69,7 @@ class Personal extends Component {
     const setTooltip = (id, text) => (
       <Tooltip id={id.toString()}>{text}</Tooltip>
     );
-    const groups = selectedGroups.map((name, index) => {
+    const groups = selectedGroups.map(name => {
       return {label: name, value: name};
     });
     const groupsList = () => (groups.map((group) =>
@@ -80,9 +80,9 @@ class Personal extends Component {
         &nbsp;
       </ListGroupItem>));
     return (
-      <div>
+      <div style={{width: '100%'}}>
         <Grid>
-          <Panel header={"Создание группы"}>
+          <Panel header={"Создание группы"} style={{width: '100%'}}>
             <Row>
               <Col sm={6}>
                 <FormControl className="form-control"
@@ -102,7 +102,7 @@ class Personal extends Component {
           </Panel>
         </Grid>
         <Grid>
-          <Panel header={"Добавление пользователей в группы"}>
+          <Panel header={"Добавление пользователей в группы"} style={{width: '100%'}}>
             <Row>
               <Col md={3}>
                 <DropdownList
@@ -121,9 +121,8 @@ class Personal extends Component {
                     overlay={setTooltip('members', 'Задайте шаблон данных')}
                   >
                     <div>
-                      <Select.Creatable
-                        wrapperStyle={{zIndex: '3', position: 'relative'}}
-                        multi={true}
+                      <SelectCreatable
+                        isMulti={true}
                         options={this.state.selectedGroup !== null ? membersTemplates[this.state.selectedGroup].members : []}
                         onChange={this.dataMembersSelected}
                         value={this.state.selectedMembers}
@@ -146,7 +145,7 @@ class Personal extends Component {
           </Panel>
         </Grid>
         <Grid>
-          <Panel header={"Список групп в которые входит пользователь"}>
+          <Panel header={"Список групп в которые входит пользователь"} style={{width: '100%'}}>
             <Row>
               <Col sm={3}/>
               <Col sm={6}>
