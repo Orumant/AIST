@@ -16,7 +16,8 @@ function mapDispatchToProps(dispatch) {
     fetchAllData: (chain_name) => dispatch(Operations.fetchAllData(chain_name)),
     updateData: (chain_data)  => dispatch(Actions.dataUpdated(chain_data)),
     submitNewChainData: (chain_data, history) => dispatch(Operations.submitNewChainData(chain_data, history)),
-    submitEditedChainData: (chain_name, chain_data, history) => dispatch(Operations.submitEditedChainData(chain_name, chain_data, history)),
+    submitEditedChainData: (chain_name, chain_data, history) =>
+      dispatch(Operations.submitEditedChainData(chain_name, chain_data, history)),
   }
 }
 

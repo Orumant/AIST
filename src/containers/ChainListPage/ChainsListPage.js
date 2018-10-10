@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {Operations} from "../../modules/ChainListPage/ChainListPage";
+import {Actions, Operations} from "../../modules/ChainListPage/ChainListPage";
 import ChainsList from "../../pages/ChainListPage/index/ChainList";
 
 function mapStateToProps(state) {
@@ -16,6 +16,7 @@ function mapDispatchToProps(dispatch) {
     fetchChains: (request) => dispatch(Operations.fetchChains(request)),
     fetchTestsData: () => dispatch(Operations.fetchTestsData()),
     fetchEditableTests: () => dispatch(Operations.fetchEditableTests()),
+    filterByName: (name) => dispatch(Actions.filterByName(name)),
   }
 }
 

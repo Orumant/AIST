@@ -62,9 +62,9 @@ const TestsTableReducer = (state = initialState, action) => {
 
       case types.TESTS_TABLE_FILTER_BY_NAME_TRIGGERED: {
         let filterMe = [...state.testsOrigin];
-        let regexp = new RegExp(action.name);
+        let regexp = new RegExp(action.name.toLowerCase());
         filterMe = filterMe.filter(test => {
-          return regexp.test(test.test_name);
+          return regexp.test(test.test_name.toLowerCase());
         });
         return {
           ...state,

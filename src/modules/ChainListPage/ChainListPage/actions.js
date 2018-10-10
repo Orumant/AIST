@@ -19,10 +19,16 @@ const endFetching = () => ({
   type: types.END_FETCHING,
 });
 
+const filterByName = (name) => ({
+  type: types.CHAINS_FILTER_BY_NAME,
+  name,
+});
+
 
 export default {
   chainsFetchSucceed,
   testsFetchSucceed,
   startFetching,
   endFetching,
+  filterByName,
 }
