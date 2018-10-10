@@ -41,6 +41,7 @@ class TestsExpandableList extends Component {
       order: 'asc',
       orderBy: null,
       sidebarOpen: false,
+      owner: getUserName(),
     };
   }
 
@@ -63,7 +64,7 @@ class TestsExpandableList extends Component {
 
   render() {
     const {tests} = this.props;
-    const {page, rowsPerPage, dialogOpen, order, orderBy} = this.state;
+    const {page, rowsPerPage, dialogOpen, order, orderBy, owner} = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, tests.length - page * rowsPerPage);
     return (
       <Table className={'table'}>
@@ -107,9 +108,9 @@ class TestsExpandableList extends Component {
                   <TableCell padding={"checkbox"} style={{width: '1%'}}>
                     <IconButton component={Link}
                                 to={`/test/edit/${test.test_id}`}
-                                disabled={test.owner !== getUserName()}
+                                disabled={test.owner !== owner}
                                 title="Редактировать">
-                      {test.owner === getUserName() ? <EditIcon/> : null}
+                      {test.owner === owner ? <EditIcon/> : null}
                     </IconButton>
                   </TableCell>
                   <TableCell className={'table-cell'} style={{width: '39%'}}>
