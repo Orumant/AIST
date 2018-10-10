@@ -1,16 +1,6 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import {
-  SortingState, PagingState, SelectionState,
-  IntegratedPaging, IntegratedSorting, IntegratedSelection
-} from '@devexpress/dx-react-grid';
-import {
-  Grid,
-  Table,
-  TableHeaderRow,
-  TableSelection,
-  PagingPanel
-} from '@devexpress/dx-react-grid-material-ui';
+import EnhancedTable from '../../../../_global/elements/Table'
 
 class TestTable extends React.Component {
   state = {
@@ -67,42 +57,9 @@ class TestTable extends React.Component {
 
     return (
       <Paper>
-        <Grid
-          rows={tests}
-          columns={this.columns}
-        >
-
-          <SortingState
-            defaultSorting={[
-              { columnName: 'start_time', direction: 'desc' },
-            ]}
-          />
-          <PagingState
-            defaultCurrentPage={0}
-            defaultPageSize={10}
-          />
-          <SelectionState
-            selection={selection}
-            onSelectionChange={this.changeSelection}
-          />
-
-
-          <IntegratedSorting />
-          <IntegratedPaging />
-          <IntegratedSelection />
-
-
-          <Table columnExtensions={this.tableColumnExtensions}
-                 messages={this.Messages}/>
-          <TableHeaderRow showSortingControls messages={this.Messages}/>
-          <TableSelection
-            selectByRowClick
-          />
-
-          <PagingPanel
-            messages={this.Messages}
-          />
-        </Grid>
+        <EnhancedTable data={tests}
+                       selection={selection} onSelectionChange={this.changeSelection} style={{width: '100%'}}
+        />
       </Paper>
     );
   }
