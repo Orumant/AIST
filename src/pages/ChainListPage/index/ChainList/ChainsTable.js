@@ -3,7 +3,7 @@ import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css'
 import {BootstrapTable, TableHeaderColumn,} from 'react-bootstrap-table'
 import TestInfo from "./ChainsTable/TestInfo";
 import {CloneButton, EditButton} from "./ChainsTable/Buttons";
-import {Button} from "react-bootstrap";
+import {Button, Tooltip, OverlayTrigger} from "react-bootstrap";
 
 class ChainsTable extends React.Component {
 
@@ -20,15 +20,15 @@ class ChainsTable extends React.Component {
         bsSize="sm"
         className="action"
         title="Посмотреть"
-        onClick={() => this.openModal(cell)}>Посмотреть</Button>
+        onClick={() => this.openModal(cell)}>ПОКАЗАТЬ</Button>
     );
   };
 
-  actionFormatter = (cell, row) => {
+  actionFormatter = (cell) => {
     const {chains_editable} = this.props;
     return <span>
-      {CloneButton(row.id)}
-      {chains_editable.indexOf(row.id) !== -1 ? EditButton(row.id) : null}
+      {CloneButton(cell)}
+      {chains_editable.indexOf(cell) !== -1 ? EditButton(cell) : null}
       </span>};
 
   openModal = (cell) => {
@@ -39,6 +39,17 @@ class ChainsTable extends React.Component {
     this.setState({show: false})
   };
 
+  descriptionFormatter = (cell) => {
+    const toolTip =<Tooltip id={cell} className={'tooltip-in'}>{cell}</Tooltip>;
+    return (
+      <OverlayTrigger placement={'bottom'} overlay={toolTip}>
+        <div>
+          {cell.length > 21 ? cell.substring(0, 20) + '...' : cell}
+        </div>
+      </OverlayTrigger>
+    );
+  };
+
   render() {
     const {data, testsAll} = this.props;
     const {show, cell} = this.state;
@@ -47,39 +58,33 @@ class ChainsTable extends React.Component {
       <div>
         <BootstrapTable keyField='id' striped hover pagination
                         data={data} ignoreSinglePage trClassName='chain-component-col'>
+          <TableHeaderColumn className='custom-header' key='id' width='120px' dataFormat={this.actionFormatter}
+                             columnClassName='chain-component-col-select'
+                             searchable={false} dataField='id'/>
           <TableHeaderColumn className='custom-header' key='id' dataField='name' dataSort={true}>
-            Имя цепочки
+            Название
           </TableHeaderColumn>
-          <TableHeaderColumn className='custom-header' key='id' dataField='tests' dataSort={true} dataAlign='center'
-                             dataFormat={this.chainsFormatter}>
+          <TableHeaderColumn className='custom-header' key='id' width='140px' dataField='tests' dataSort={true}
+                             dataAlign='center' dataFormat={this.chainsFormatter}>
             Состав цепочки
+          </TableHeaderColumn>
+          <TableHeaderColumn className='custom-header' key='id' width='6%' dataField='stands' dataSort={true}>
+            Контур
           </TableHeaderColumn>
           <TableHeaderColumn className='custom-header' key='id' width='9%' searchable={true} dataField='asystems'>
             АС
-          </TableHeaderColumn>
-          <TableHeaderColumn className='custom-header' key='id' width='12%' searchable={false} dataField='description'>
-            Описание цепочки
           </TableHeaderColumn>
           <TableHeaderColumn className='custom-header' key='id' width='12%' dataField='marker' dataSort={true}>
             Маркер
           </TableHeaderColumn>
           <TableHeaderColumn className='custom-header' key='id' width='15%' dataField='templates'>
-            Применимые шаблоны
+            Шаблоны
           </TableHeaderColumn>
-          <TableHeaderColumn className='custom-header' key='id' width='10%' searchable={true} dataField='tags'
-          >
+          <TableHeaderColumn className='custom-header' key='id' width='10%' searchable={true} dataField='tags'>
             Теги
-          </TableHeaderColumn>
-          <TableHeaderColumn className='custom-header' key='id' width='6%' dataField='stands' dataSort={true}>
-            Контур
           </TableHeaderColumn>
           <TableHeaderColumn className='custom-header' key='id' width='6%' dataField='groups'>
             Доступы
-          </TableHeaderColumn>
-          <TableHeaderColumn className='custom-header' key='id' width='120px' dataFormat={this.actionFormatter}
-                             columnClassName='chain-component-col-select'
-                             searchable={false} dataField='id'>
-            Доступные действия
           </TableHeaderColumn>
         </BootstrapTable>
         <TestInfo show={show} testsData={testsAll} tests={cell} close={this.closeModal}/>
@@ -87,5 +92,10 @@ class ChainsTable extends React.Component {
     )
   }
 }
+
+/* до лучших времён <TableHeaderColumn className='custom-header' key='id' width='12%' searchable={false} dataField='name'
+                    dataFormat={this.descriptionFormatter}>
+   Комментарий
+ </TableHeaderColumn>*/
 
 export default ChainsTable;
