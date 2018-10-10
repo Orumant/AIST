@@ -42,7 +42,7 @@ class FilterFormSingle extends React.Component {
 
 FilterFormSingle.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,

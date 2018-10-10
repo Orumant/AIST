@@ -2,7 +2,6 @@ import React from 'react';
 import FilterStand from "../../../../containers/_global/FilterStand";
 import FilterAS from "../../../_global/filters/FilterAS";
 import FilterTag from "../../../_global/filters/FilterTags";
-import FilterChains from "../../../_global/filters/FilterChains";
 import FilterSidebar from "../../../../containers/_global/FilterSidebar";
 import FilterMarker from "../../../_global/filters/FilterMarker";
 
@@ -18,7 +17,6 @@ class SearchBar extends React.Component {
     const {tests, chains, ...others} = this.props;
 
     const content = [
-      <FilterChains name='name' key={'chain-name-filter'} chains={chains}/>,
       <FilterAS name='asystems' key={'chain-as-filter'} isMulti tests={tests}/>,
       <FilterTag name='tag_names' key={'tag-filter'} tests={tests} />,
       <FilterMarker name='marker' key={'marker-filter'} chains={chains}/>,
