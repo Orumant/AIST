@@ -64,7 +64,7 @@ class ChainsTable extends React.Component {
           <TableHeaderColumn className='custom-header' key='id' dataField='name' dataSort={true}>
             Название
           </TableHeaderColumn>
-          <TableHeaderColumn className='custom-header' key='id' width='140px' dataField='tests' dataSort={true}
+          <TableHeaderColumn className='custom-header' key='id' width='140px' dataField='tests'
                              dataAlign='center' dataFormat={this.chainsFormatter}>
             Состав цепочки
           </TableHeaderColumn>
