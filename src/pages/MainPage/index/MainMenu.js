@@ -14,6 +14,7 @@ import {withStyles} from '@material-ui/core/styles';
 import {styles} from "./style";
 import './style.css';
 import Descriptions from "./MainMenu/Descriptions";
+import {BACKEND_URL} from "../../../constants/endpoints";
 
 class MainMenu extends React.Component {
 
@@ -29,7 +30,7 @@ class MainMenu extends React.Component {
       {name: "Тестовые данные", description: Descriptions.datadirectory, icon: DataDir, link: '/datadirectory'},
       {
         name: "Портал метрик", description: Descriptions.grafana, icon: Grafana,
-        link: 'http://sbt-ot-289.ca.sbrf.ru:8069/dashboard/db/obshchaia-statistika'
+        link: `${BACKEND_URL}/metrics/dashboard/db/obshchaia-statistika?orgId=1`
       },
     ];
 
