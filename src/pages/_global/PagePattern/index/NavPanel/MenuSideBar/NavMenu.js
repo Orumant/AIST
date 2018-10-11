@@ -39,7 +39,6 @@ class NavMenu extends React.Component {
         })}
         <ListItem
           key={'menu-list-metrika'}
-          style={{pointerEvents: 'all'}}
           button component={'a'}
           href={`${BACKEND_URL}/metrics/dashboard/db/obshchaia-statistika?orgId=1`}
           target={'_blank'}>
